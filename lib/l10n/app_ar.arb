@@ -1,0 +1,219 @@
+{
+  "@@locale": "ar",
+
+  "appName": "روارد جيف أواي",
+
+  "commonRetry": "إعادة المحاولة",
+  "commonCancel": "إلغاء",
+  "commonDismiss": "إغلاق",
+  "commonSomethingWrong": "حدث خطأ ما. حاول مرة أخرى.",
+  "commonRequired": "مطلوب",
+
+  "roleSelectionWelcome": "أهلاً بك 👋",
+  "roleSelectionChooseHow": "اختر كيف تريد المتابعة.",
+  "roleSelectionContinueAsUser": "المتابعة كمستخدم",
+  "roleSelectionContinueAsUserSubtitle": "انضم إلى السحوبات المثيرة واربح جوائز رائعة.",
+  "roleSelectionContinueAsAdmin": "المتابعة كمسؤول",
+  "roleSelectionContinueAsAdminSubtitle": "أنشئ وأدر حملات السحب على الجوائز.",
+  "roleSelectionSwitchAnytime": "يمكنك تبديل دورك في أي وقت.",
+
+  "userHomeWelcomeBack": "مرحباً بعودتك 👋",
+  "userHomeGuest": "زائر",
+  "userHomeSearchHint": "ابحث عن سحوبات…",
+  "userHomePopularGiveaways": "السحوبات الأكثر رواجاً",
+  "userHomeAllGiveaways": "جميع السحوبات",
+  "userHomeFeaturedGiveaway": "سحب مميز",
+  "userHomeJoinedCount": "{count} مشارك",
+  "@userHomeJoinedCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "userHomeViewDetails": "عرض التفاصيل",
+  "userHomeNoActiveGiveaways": "لا توجد سحوبات نشطة الآن — تحقق لاحقاً",
+  "userHomeCouldNotLoad": "تعذّر تحميل السحوبات.",
+  "statusActive": "نشط",
+  "statusEnded": "منتهٍ",
+  "statusDraft": "مسودة",
+  "statusScheduled": "مجدوَل",
+  "statusArchived": "مؤرشف",
+
+  "giveawayDetailsAboutPrize": "عن هذه الجائزة",
+  "giveawayDetailsHowToParticipate": "كيفية المشاركة",
+  "giveawayDetailsRules": "القواعد",
+  "giveawayDetailsGenerateNumber": "إنشاء رقمي",
+  "giveawayDetailsNotActive": "السحب غير نشط",
+  "giveawayDetailsYoureIn": "أنت مشارك بالفعل!",
+  "giveawayDetailsYoureInWithNumber": "أنت مشارك بالفعل! ‎#{number}",
+  "@giveawayDetailsYoureInWithNumber": {
+    "placeholders": {"number": {"type": "String"}}
+  },
+  "giveawayDetailsCouldNotLoad": "تعذّر تحميل هذا السحب.",
+  "giveawayDetailsEnded": "انتهى",
+  "giveawayDetailsHoursLeft": "باقي {hours} ساعة",
+  "@giveawayDetailsHoursLeft": {
+    "placeholders": {"hours": {"type": "int"}}
+  },
+  "giveawayDetailsDaysHoursLeft": "باقي {days} يوم و{hours} ساعة",
+  "@giveawayDetailsDaysHoursLeft": {
+    "placeholders": {"days": {"type": "int"}, "hours": {"type": "int"}}
+  },
+
+  "registrationTitle": "إنشاء حسابك",
+  "registrationSubtitle": "أدخل بياناتك لبدء المشاركة.",
+  "registrationFullNameLabel": "الاسم الكامل",
+  "registrationFullNameHint": "مثال: سارة أحمد",
+  "registrationFullNameError": "أدخل اسمك الكامل",
+  "registrationCountryLabel": "الدولة",
+  "registrationPhoneLabel": "رقم الهاتف",
+  "registrationPhoneHint": "٥٥٥ ٠٠٠ ٠٠٠٠",
+  "registrationPhoneRequiredError": "أدخل رقم هاتفك",
+  "registrationPhoneInvalidError": "أدخل رقم هاتف صحيح",
+  "registrationContinue": "متابعة",
+  "registrationAgreeTerms": "بالمتابعة، أنت توافق على سياسة الخصوصية والشروط والأحكام.",
+
+  "participationJoinGiveaway": "الانضمام إلى السحب",
+  "participationGeneratingNumber": "جارٍ إنشاء رقمك…",
+  "participationSuccessOpening": "تم بنجاح! جارٍ فتح بطاقتك…",
+  "participationTryAgain": "حاول مرة أخرى",
+
+  "scratchCardYourLuckyNumber": "رقم حظك",
+  "scratchCardScratchToReveal": "اخدش البطاقة للكشف عن رقمك",
+  "scratchCardViewInMyGiveaways": "عرضه في سحوباتي",
+
+  "myGiveawaysTitle": "سحوباتي",
+  "myGiveawaysEmpty": "لم تنضم إلى أي سحب بعد",
+  "myGiveawaysCouldNotLoad": "تعذّر تحميل سحوباتك.",
+  "myGiveawaysGiveawayFallback": "سحب",
+
+  "settingsTitle": "الإعدادات",
+  "settingsLanguage": "اللغة",
+  "settingsAbout": "حول التطبيق",
+  "settingsPrivacyPolicy": "سياسة الخصوصية",
+  "settingsTermsConditions": "الشروط والأحكام",
+  "settingsSignOut": "تسجيل الخروج",
+  "settingsSignOutConfirmTitle": "تسجيل الخروج؟",
+  "settingsSignOutConfirmBody": "ستعود إلى شاشة اختيار الدور. سحوباتك وسجلّك المحفوظ سيبقيان على هذا الجهاز.",
+  "settingsAboutBody": "يتيح لك تطبيق Reward Giveaway الانضمام إلى سحوبات الجوائز المثيرة وإدارتها. تم بناؤه باستخدام Flutter وSupabase.",
+
+  "adminAuthTitle": "المسؤول",
+  "adminAuthCreateAccount": "إنشاء حساب مسؤول",
+  "adminAuthSignInTitle": "تسجيل دخول المسؤول",
+  "adminAuthSignUpSubtitle": "سجّل حساب مسؤول جديد لإدارة حملات السحب.",
+  "adminAuthSignInSubtitle": "سجّل الدخول لإدارة حملات السحب.",
+  "adminAuthSignIn": "تسجيل الدخول",
+  "adminAuthSignUp": "إنشاء حساب",
+  "adminAuthFullNameLabel": "الاسم الكامل",
+  "adminAuthFullNameError": "أدخل اسمك الكامل",
+  "adminAuthEmailLabel": "البريد الإلكتروني",
+  "adminAuthEmailError": "أدخل بريداً إلكترونياً صحيحاً",
+  "adminAuthPasswordLabel": "كلمة المرور",
+  "adminAuthPasswordEmptyError": "أدخل كلمة المرور",
+  "adminAuthPasswordLengthError": "يجب ألا تقل كلمة المرور عن 8 أحرف",
+  "adminAuthConfirmPasswordLabel": "تأكيد كلمة المرور",
+  "adminAuthPasswordsNoMatch": "كلمتا المرور غير متطابقتين",
+  "adminAuthAccessCodeLabel": "رمز دخول المسؤول",
+  "adminAuthAccessCodeError": "أدخل رمز دخول المسؤول",
+  "adminAuthCreateAccountButton": "إنشاء الحساب",
+  "adminAuthSignInButton": "تسجيل الدخول",
+
+  "adminDashboardGoodDay": "يوم سعيد 👋",
+  "adminDashboardAdministrator": "المسؤول",
+  "adminDashboardActiveGiveaways": "السحوبات النشطة",
+  "adminDashboardTotalParticipants": "إجمالي المشاركين",
+  "adminDashboardFinished": "المنتهية",
+  "adminDashboardWinnersSelected": "الفائزون المختارون",
+  "adminDashboardActiveCampaign": "الحملة النشطة",
+  "adminDashboardNoActiveCampaigns": "لا توجد حملات نشطة بعد. اضغط + لإنشاء واحدة.",
+  "adminDashboardViewAnalytics": "عرض التحليلات",
+  "adminDashboardCouldNotLoad": "تعذّر تحميل لوحة التحكم.",
+  "adminDashboardParticipantsCount": "{count} مشارك",
+  "@adminDashboardParticipantsCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+
+  "adminGiveawaysTitle": "السحوبات",
+  "adminGiveawaysEmpty": "لا توجد سحوبات بعد.",
+  "adminGiveawaysParticipantsCount": "{count} مشارك",
+  "@adminGiveawaysParticipantsCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+
+  "createGiveawayTitle": "إنشاء سحب",
+  "createGiveawayGiveawayTitle": "عنوان السحب",
+  "createGiveawayGiveawayTitleHint": "مثال: آيفون 17 برو ماكس",
+  "createGiveawayOrganizerName": "اسم الجهة المنظمة",
+  "createGiveawayOrganizerNameHint": "مثال: شركة التقنية المتحدة",
+  "createGiveawayPrizeDescription": "وصف الجائزة",
+  "createGiveawayPrizeDescriptionHint": "صف بإيجاز ما سيحصل عليه الفائز.",
+  "createGiveawayRules": "وصف السحب وقواعده",
+  "createGiveawayRulesHint": "اذكر جميع الشروط والأحكام والتفاصيل الإضافية.",
+  "createGiveawayImage": "صورة السحب",
+  "createGiveawayTapToBrowse": "اضغط للاختيار من الجهاز",
+  "createGiveawayImageSizeHint": "JPG أو PNG أو GIF بحد أقصى 5 ميجابايت",
+  "createGiveawayImageTooLarge": "يجب ألا يتجاوز حجم الصورة 5 ميجابايت.",
+  "createGiveawayStartDate": "تاريخ البدء",
+  "createGiveawayEndDate": "تاريخ الانتهاء",
+  "createGiveawayEndTime": "وقت الانتهاء",
+  "createGiveawayDatePlaceholder": "شهر/يوم/سنة",
+  "createGiveawayTimePlaceholder": "--:--",
+  "createGiveawayMissingDates": "يرجى تحديد تاريخ البدء وتاريخ الانتهاء ووقت الانتهاء.",
+  "createGiveawayEndBeforeStart": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء أو مساوياً له.",
+  "createGiveawayPublish": "نشر السحب",
+
+  "giveawayAnalyticsTitle": "تحليلات السحب",
+  "giveawayAnalyticsSelectWinnerTitle": "اختيار فائز؟",
+  "giveawayAnalyticsSelectWinnerBody": "سيتم اختيار فائز عشوائياً من بين جميع المشاركين المؤهلين. لا يمكن التراجع عن هذا الإجراء.",
+  "giveawayAnalyticsSelectWinnerAction": "اختيار الفائز",
+  "giveawayAnalyticsWinnerSelected": "تم اختيار الفائز! تم إرسال إشعار.",
+  "giveawayAnalyticsTotalJoined": "إجمالي المنضمين",
+  "giveawayAnalyticsActiveToday": "نشط اليوم",
+  "giveawayAnalyticsParticipationGrowth": "نمو المشاركة",
+  "giveawayAnalyticsRecentParticipants": "المشاركون الأخيرون",
+  "giveawayAnalyticsNoParticipants": "لا يوجد مشاركون بعد.",
+  "giveawayAnalyticsTicketNumber": "التذكرة رقم {sequence}",
+  "@giveawayAnalyticsTicketNumber": {
+    "placeholders": {"sequence": {"type": "int"}}
+  },
+  "giveawayAnalyticsWinnerTicket": "تم اختيار الفائز: التذكرة رقم {number}",
+  "@giveawayAnalyticsWinnerTicket": {
+    "placeholders": {"number": {"type": "String"}}
+  },
+  "giveawayAnalyticsJustNow": "الآن",
+  "giveawayAnalyticsMinsAgo": "منذ {count} دقيقة",
+  "@giveawayAnalyticsMinsAgo": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "giveawayAnalyticsHoursAgo": "منذ {count} ساعة",
+  "@giveawayAnalyticsHoursAgo": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "giveawayAnalyticsDaysAgo": "منذ {count} يوم",
+  "@giveawayAnalyticsDaysAgo": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+
+  "adminProfileTitle": "الملف الشخصي للمسؤول",
+  "adminProfileAdministrator": "المسؤول",
+
+  "winnerCelebrationTitle": "فائز",
+  "winnerCelebrationCongratulations": "تهانينا! لقد فزت بـ:",
+  "winnerCelebrationViewPrize": "عرض الجائزة",
+  "winnerCelebrationDismiss": "إغلاق",
+  "winnerCelebrationYourPrize": "جائزتك",
+
+  "privacyPolicyTitle": "سياسة الخصوصية",
+  "termsConditionsTitle": "الشروط والأحكام",
+  "legalLastUpdated": "آخر تحديث: {date}",
+  "@legalLastUpdated": {
+    "placeholders": {"date": {"type": "String"}}
+  },
+  "legalContactUs": "تواصل معنا",
+
+  "failureNoInternet": "لا يوجد اتصال بالإنترنت.",
+  "failureServer": "حدث خطأ ما. حاول مرة أخرى.",
+  "failureUnauthorized": "غير مصرح لك بالقيام بذلك.",
+  "failureDuplicatePhone": "رقم الهاتف هذا مسجّل بالفعل.",
+  "failureDuplicateParticipation": "لقد شاركت بالفعل في هذا السحب.",
+  "failureGiveawayFull": "وصل هذا السحب إلى الحد الأقصى للمشاركين.",
+  "failureGiveawayEnded": "لم يعد هذا السحب نشطاً.",
+  "failureRateLimited": "محاولات كثيرة جداً. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى."
+}
