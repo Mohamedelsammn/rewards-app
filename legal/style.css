@@ -167,6 +167,46 @@ p {
   font-size: 1.05rem;
 }
 
+/* -- Prominent call-to-action button (Delete Account request) ---------- */
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  margin: 8px 0 4px;
+  box-shadow: 0 6px 18px rgba(64, 66, 225, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(64, 66, 225, 0.32);
+}
+
+.cta-wrap {
+  text-align: center;
+  margin: 24px 0 8px;
+}
+
+.notice {
+  background: var(--color-surface-container);
+  border-radius: var(--radius-chip);
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: var(--color-on-surface-variant);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
 /* -- Home page hero / link cards --------------------------------------- */
 
 .hero {
@@ -180,7 +220,7 @@ p {
 
 .link-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
   margin-top: 8px;
 }
