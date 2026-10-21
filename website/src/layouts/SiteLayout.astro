@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { copy, pageUrl, site, type Lang, type PageKey } from '../content/site';
+const { lang, page = 'home', title, description } = Astro.props as { lang: Lang; page?: PageKey | 'home'; title?: string; description?: string };
+const t = copy[lang];
+const seo = t.seo[page];
+const currentUrl = `${site.domain}${pageUrl(lang, page === 'home' ? undefined : page)}`;
+---
+<!doctype html>
+<html lang={lang} dir={t.direction}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#5146e5" />
+    <title>{title ?? seo.title}</title>
+    <meta name="description" content={description ?? seo.description} />
+    <link rel="canonical" href={currentUrl} />
+    <link rel="alternate" hreflang="en" href={`${site.domain}${pageUrl('en', page === 'home' ? undefined : page)}`} />
+    <link rel="alternate" hreflang="ar" href={`${site.domain}${pageUrl('ar', page === 'home' ? undefined : page)}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site.domain}${pageUrl('en', page === 'home' ? undefined : page)}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Creative Rewards App" />
+    <meta property="og:title" content={title ?? seo.title} />
+    <meta property="og:description" content={description ?? seo.description} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_EG' : 'en_US'} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="index,follow" />
+  </head>
+  <body>
+    <Header lang={lang} page={page === 'home' ? undefined : page}/>
+    <main id="main"><slot /></main>
+    <Footer lang={lang}/>
+  </body>
+</html>

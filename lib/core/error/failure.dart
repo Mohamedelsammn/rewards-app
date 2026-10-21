@@ -45,6 +45,20 @@ class ValidationFailure extends Failure {
   const ValidationFailure(super.message);
 }
 
+class InvalidGiveawayScheduleFailure extends ValidationFailure {
+  const InvalidGiveawayScheduleFailure() : super('End time must be after start time.');
+
+  @override
+  String localize(AppLocalizations l10n) => l10n.scheduleInvalidDates;
+}
+
+class GiveawayScheduleLockedFailure extends Failure {
+  const GiveawayScheduleLockedFailure() : super('This giveaway schedule is locked.');
+
+  @override
+  String localize(AppLocalizations l10n) => l10n.adminScheduleEditLocked;
+}
+
 class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure([super.message = 'You are not authorized to do that.']);
 
@@ -52,11 +66,33 @@ class UnauthorizedFailure extends Failure {
   String localize(AppLocalizations l10n) => l10n.failureUnauthorized;
 }
 
-class DuplicatePhoneFailure extends Failure {
-  const DuplicatePhoneFailure([super.message = 'This phone number is already registered.']);
+/// Returned when a phone number is already bound to a *different* device's
+/// identity (see `fn_register_or_link_user` / the security-hardening pass).
+/// Deliberately generic -- the server never discloses whose identity the
+/// phone belongs to, so this failure carries no user data, only the fact
+/// that registration was refused.
+class PhoneAlreadyRegisteredElsewhereFailure extends Failure {
+  const PhoneAlreadyRegisteredElsewhereFailure([
+    super.message = 'This phone number is already registered on another device.',
+  ]);
 
   @override
-  String localize(AppLocalizations l10n) => l10n.failureDuplicatePhone;
+  String localize(AppLocalizations l10n) => l10n.failurePhoneAlreadyRegisteredElsewhere;
+}
+
+/// Returned when a user tries to change their profile phone number to one
+/// already bound to a *different* account (`fn_update_user_profile`).
+/// Distinct copy from [PhoneAlreadyRegisteredElsewhereFailure] (that one is
+/// about a new device trying to register; this one is an existing,
+/// already-linked user editing their own profile) even though both map to
+/// the same underlying `users_phone_e164_key` uniqueness constraint.
+class PhoneAlreadyInUseFailure extends Failure {
+  const PhoneAlreadyInUseFailure([
+    super.message = 'This phone number is already used by another account.',
+  ]);
+
+  @override
+  String localize(AppLocalizations l10n) => l10n.failurePhoneAlreadyInUse;
 }
 
 class DuplicateParticipationFailure extends Failure {
@@ -108,6 +144,8 @@ Failure failureFromEdgeFunctionCode(String code, [String? message]) {
     case 'invalid_country_code':
     case 'invalid_body':
       return ValidationFailure(message ?? 'Please check your details and try again.');
+    case 'phone_already_registered_on_another_device':
+      return const PhoneAlreadyRegisteredElsewhereFailure();
     case 'rate_limited':
       return const RateLimitedFailure();
     default:

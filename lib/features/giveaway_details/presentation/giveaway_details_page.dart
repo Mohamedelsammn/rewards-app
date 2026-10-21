@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/di/injection.dart';
@@ -9,10 +10,14 @@ import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/models/giveaway.dart';
 import '../../../shared/models/giveaway_requirement.dart';
 import '../../../shared/widgets/app_network_image.dart';
+import '../../../shared/widgets/hero_back_button.dart';
 import '../../../shared/widgets/primary_gradient_button.dart';
 import '../../participation/presentation/pages/participation_flow_page.dart';
 import 'bloc/giveaway_details_cubit.dart';
 import 'bloc/giveaway_details_state.dart';
+import 'package:intl/intl.dart';
+
+RouteSettings giveawayDetailsSettings(String id) => RouteSettings(name: '/giveaway/$id');
 
 String _statusLabel(AppLocalizations l10n, GiveawayStatus status) {
   switch (status) {
@@ -32,14 +37,22 @@ String _statusLabel(AppLocalizations l10n, GiveawayStatus status) {
 }
 
 class GiveawayDetailsPage extends StatelessWidget {
-  const GiveawayDetailsPage({super.key, required this.giveawayId});
+  const GiveawayDetailsPage({super.key, required this.giveawayId, this.initialGiveaway});
 
   final String giveawayId;
+
+  /// When the caller already has this giveaway's data in memory (e.g.
+  /// tapping a card on Home or My Giveaways), passing it here renders the
+  /// page instantly with no loading state -- the cubit still refreshes it
+  /// silently in the background.
+  final Giveaway? initialGiveaway;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => GiveawayDetailsCubit(getIt(), getIt())..load(giveawayId),
+      create: (_) => GiveawayDetailsCubit(getIt(), getIt(), getIt(), seed: initialGiveaway)
+        ..load(giveawayId)
+        ..subscribeToRealtime(giveawayId),
       child: _GiveawayDetailsView(giveawayId: giveawayId),
     );
   }
@@ -96,7 +109,7 @@ class _ErrorView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.error_outline, color: AppColors.error, size: 40),
+          const Icon(AppIcons.error, color: AppColors.error, size: 40),
           const SizedBox(height: AppSpacing.md),
           Text(l10n.giveawayDetailsCouldNotLoad, style: AppTypography.bodyMd),
           const SizedBox(height: AppSpacing.md),
@@ -129,28 +142,42 @@ class _LoadedView extends StatelessWidget {
                 const SizedBox(height: AppSpacing.xs),
                 Row(
                   children: [
-                    const Icon(Icons.verified_rounded, size: 16, color: AppColors.primary),
+                    const Icon(AppIcons.verified, size: 16, color: AppColors.primary),
                     const SizedBox(width: 4),
-                    Text(giveaway.organizerName, style: AppTypography.bodyMd),
+                    Expanded(
+                      child: Text(
+                        giveaway.organizerName,
+                        style: AppTypography.bodyMd,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: AppSpacing.md),
                 _StatChips(giveaway: giveaway),
-                const SizedBox(height: AppSpacing.xl),
-                Text(
-                  l10n.giveawayDetailsAboutPrize,
-                  style: AppTypography.headlineMd.copyWith(fontSize: 20),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(AppSpacing.md),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceContainer,
-                    borderRadius: BorderRadius.circular(AppRadius.chip),
+                // Prize description and rules are optional at creation --
+                // Giveaway Details hides each section entirely when left
+                // blank rather than showing an empty box or the literal
+                // word "null". Giveaways created before this change (which
+                // always had both filled in) render exactly as before.
+                if (giveaway.prizeDescription.trim().isNotEmpty) ...[
+                  const SizedBox(height: AppSpacing.xl),
+                  Text(
+                    l10n.giveawayDetailsAboutPrize,
+                    style: AppTypography.headlineMd.copyWith(fontSize: 20),
                   ),
-                  child: Text(giveaway.prizeDescription, style: AppTypography.bodyMd),
-                ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(AppSpacing.md),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceContainer,
+                      borderRadius: BorderRadius.circular(AppRadius.chip),
+                    ),
+                    child: Text(giveaway.prizeDescription, style: AppTypography.bodyMd),
+                  ),
+                ],
                 if (state.requirements.isNotEmpty) ...[
                   const SizedBox(height: AppSpacing.xl),
                   Text(
@@ -160,13 +187,15 @@ class _LoadedView extends StatelessWidget {
                   const SizedBox(height: AppSpacing.sm),
                   ...state.requirements.map((r) => _RequirementTile(requirement: r)),
                 ],
-                const SizedBox(height: AppSpacing.xl),
-                Text(
-                  l10n.giveawayDetailsRules,
-                  style: AppTypography.headlineMd.copyWith(fontSize: 20),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                Text(giveaway.descriptionRules, style: AppTypography.bodyMd),
+                if (giveaway.descriptionRules.trim().isNotEmpty) ...[
+                  const SizedBox(height: AppSpacing.xl),
+                  Text(
+                    l10n.giveawayDetailsRules,
+                    style: AppTypography.headlineMd.copyWith(fontSize: 20),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(giveaway.descriptionRules, style: AppTypography.bodyMd),
+                ],
                 const SizedBox(height: AppSpacing.xxl),
               ],
             ),
@@ -185,44 +214,36 @@ class _Hero extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        AspectRatio(
-          aspectRatio: 16 / 10,
-          child: AppNetworkImage(
-            url: giveaway.imageUrl,
-            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(AppSpacing.lg)),
+        SafeArea(
+          bottom: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // A taller, square-ish canvas gives portrait products room to
+              // render fully while staying proportional to the available
+              // phone width. The image itself is never cropped or stretched.
+              final imageHeight = (constraints.maxWidth * 0.92).clamp(280.0, 460.0);
+              return SizedBox(
+                width: double.infinity,
+                height: imageHeight,
+                child: ColoredBox(
+                  color: AppColors.surface,
+                  child: AppNetworkImage(
+                    url: giveaway.imageUrl,
+                    fit: BoxFit.contain,
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(AppSpacing.lg),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
-        Positioned(
-          top: AppSpacing.md,
-          left: AppSpacing.md,
-          child: _CircleIconButton(
-            icon: Icons.arrow_back_rounded,
-            onTap: () => Navigator.of(context).maybePop(),
-          ),
-        ),
+        // SafeArea-aware -- see HeroBackButton's doc comment for the bug
+        // this replaced (a fixed offset that ignored the device's actual
+        // status-bar/notch height).
+        const HeroBackButton(),
       ],
-    );
-  }
-}
-
-class _CircleIconButton extends StatelessWidget {
-  const _CircleIconButton({required this.icon, required this.onTap});
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white.withValues(alpha: 0.9),
-      shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Icon(icon, color: AppColors.onSurface, size: 20),
-        ),
-      ),
     );
   }
 }
@@ -247,14 +268,14 @@ class _StatChips extends StatelessWidget {
       runSpacing: AppSpacing.sm,
       children: [
         _Chip(
-          icon: Icons.people_alt_rounded,
+          icon: AppIcons.participants,
           label: l10n.userHomeJoinedCount(giveaway.participantCount),
         ),
-        _Chip(icon: Icons.access_time_rounded, label: timeLabel),
+        _Chip(icon: AppIcons.clock, label: timeLabel),
         _Chip(
-          icon: Icons.circle,
+          icon: AppIcons.dot,
           iconColor: giveaway.status.name == 'active' ? AppColors.success : AppColors.outline,
-          label: _statusLabel(l10n, giveaway.status),
+          label: _statusLabel(l10n, giveaway.effectiveStatus),
         ),
       ],
     );
@@ -294,13 +315,13 @@ class _RequirementTile extends StatelessWidget {
   IconData get _icon {
     switch (requirement.type) {
       case RequirementType.follow:
-        return Icons.camera_alt_outlined;
+        return AppIcons.camera;
       case RequirementType.share:
-        return Icons.share_outlined;
+        return AppIcons.share;
       case RequirementType.tagFriends:
-        return Icons.group_add_outlined;
+        return AppIcons.userPlus;
       case RequirementType.custom:
-        return Icons.check_circle_outline;
+        return AppIcons.checkCircle;
     }
   }
 
@@ -322,8 +343,12 @@ class _RequirementTile extends StatelessWidget {
             child: Icon(_icon, size: 18, color: AppColors.primary),
           ),
           const SizedBox(width: AppSpacing.sm),
+          // No trailing chevron here (final correction pass): these tiles
+          // are informational -- they don't navigate anywhere on tap, so an
+          // arrow implying "go to a next screen" was misleading. Content
+          // stays left-aligned via the Expanded label; removing the arrow
+          // doesn't leave a gap since nothing else needs that trailing space.
           Expanded(child: Text(requirement.label, style: AppTypography.bodyMd)),
-          const Icon(Icons.chevron_right_rounded, color: AppColors.outline),
         ],
       ),
     );
@@ -332,10 +357,17 @@ class _RequirementTile extends StatelessWidget {
 
 /// The sticky bottom CTA -- separated so it can read the live cubit state
 /// via BlocBuilder without rebuilding the whole scroll view.
-class GiveawayDetailsCta extends StatelessWidget {
+class GiveawayDetailsCta extends StatefulWidget {
   const GiveawayDetailsCta({super.key, required this.giveawayId});
 
   final String giveawayId;
+
+  @override
+  State<GiveawayDetailsCta> createState() => _GiveawayDetailsCtaState();
+}
+
+class _GiveawayDetailsCtaState extends State<GiveawayDetailsCta> {
+  bool _openingParticipation = false;
 
   @override
   Widget build(BuildContext context) {
@@ -351,21 +383,29 @@ class GiveawayDetailsCta extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.success.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(AppSpacing.xl),
+              border: state.rewardedFrameUnlocked
+                  ? Border.all(color: AppColors.goldAccent, width: 2)
+                  : null,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.check_circle_rounded, color: AppColors.success),
+                const Icon(AppIcons.checkCircle, color: AppColors.success),
                 const SizedBox(width: AppSpacing.sm),
-                Text(
-                  state.myParticipationNumber != null
-                      ? l10n.giveawayDetailsYoureInWithNumber(
-                          state.myParticipationNumber.toString().padLeft(4, '0'),
-                        )
-                      : l10n.giveawayDetailsYoureIn,
-                  style: AppTypography.bodyLg.copyWith(
-                    color: AppColors.success,
-                    fontWeight: FontWeight.w700,
+                Flexible(
+                  child: Text(
+                    state.myParticipationNumber != null
+                        ? l10n.giveawayDetailsYoureInWithNumber(
+                            state.myParticipationNumber.toString().padLeft(4, '0'),
+                          )
+                        : l10n.giveawayDetailsYoureIn,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.bodyLg.copyWith(
+                      color: AppColors.success,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ],
@@ -373,21 +413,58 @@ class GiveawayDetailsCta extends StatelessWidget {
           );
         }
 
+        if (state.participationCheckStatus == ParticipationCheckStatus.loading ||
+            state.participationCheckStatus == ParticipationCheckStatus.initial) {
+          return Container(
+            height: 56,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.surfaceContainerLow,
+              borderRadius: BorderRadius.circular(AppSpacing.xl),
+            ),
+            child: const SizedBox.square(
+              dimension: 20,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+          );
+        }
+
+        if (state.participationCheckStatus == ParticipationCheckStatus.error) {
+          return TextButton.icon(
+            onPressed: () =>
+                context.read<GiveawayDetailsCubit>().load(widget.giveawayId, forceRefresh: true),
+            icon: const Icon(Icons.refresh_rounded),
+            label: Text(l10n.commonRetry),
+          );
+        }
+
         return PrimaryGradientButton(
           label: giveaway.isJoinable
               ? l10n.giveawayDetailsGenerateNumber
+              : giveaway.effectiveStatus == GiveawayStatus.scheduled
+              ? l10n.browseUpcomingMessage(
+                  DateFormat.yMMMd(
+                    Localizations.localeOf(context).languageCode,
+                  ).add_Hm().format(giveaway.startsAt),
+                )
               : l10n.giveawayDetailsNotActive,
-          icon: Icons.card_giftcard_rounded,
-          onPressed: giveaway.isJoinable
+          icon: AppIcons.gift,
+          onPressed: giveaway.isJoinable && !_openingParticipation
               ? () async {
-                  final result = await Navigator.of(context).push<int>(
-                    MaterialPageRoute(builder: (_) => ParticipationFlowPage(giveaway: giveaway)),
-                  );
-                  if (result != null && context.mounted) {
-                    context.read<GiveawayDetailsCubit>().markJoined(result);
+                  setState(() => _openingParticipation = true);
+                  try {
+                    final result = await Navigator.of(context).push<int>(
+                      MaterialPageRoute(builder: (_) => ParticipationFlowPage(giveaway: giveaway)),
+                    );
+                    if (result != null && context.mounted) {
+                      context.read<GiveawayDetailsCubit>().markJoined(result);
+                    }
+                  } finally {
+                    if (mounted) setState(() => _openingParticipation = false);
                   }
                 }
               : null,
+          isLoading: _openingParticipation,
         );
       },
     );

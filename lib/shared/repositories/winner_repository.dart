@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/error/failure.dart';
 import '../../core/error/result.dart';
+import '../models/eligible_participant.dart';
 import '../models/winner.dart';
 
 /// Winner selection (wraps `admin-select-winner`) plus the read paths behind
@@ -14,6 +17,15 @@ class WinnerRepository {
   WinnerRepository(this._client);
 
   final SupabaseClient _client;
+
+  final _winnerSelectedController = StreamController<Winner>.broadcast();
+
+  /// Fires the moment a winner selection is confirmed by THIS admin session
+  /// (manual or triggered from this device) -- the local, already-confirmed-
+  /// success signal Admin Dashboard/Analysis should act on immediately
+  /// (a selected winner also ends the giveaway, which changes both
+  /// screens' active/ended counts) rather than waiting on Realtime.
+  Stream<Winner> get winnerSelected => _winnerSelectedController.stream;
 
   /// The caller's own oldest unacknowledged win, if any. Scoped by an
   /// explicit `user_id` filter (not RLS) because `winners` is intentionally
@@ -54,11 +66,41 @@ class WinnerRepository {
     }
   }
 
+  /// The candidate list for Admin Analytics' manual "Select Winner" picker
+  /// -- every participant who hasn't already won, full stop (never capped
+  /// at the ~20-row "Recent Participants" preview, since that cap would
+  /// wrongly hide earlier joiners from being selectable). Uses a left-join
+  /// + `is null` filter on the embedded `winners` resource as a "not
+  /// already a winner" check, so it stays correct as new winners are
+  /// selected without a second round trip.
+  Future<Result<List<EligibleParticipant>>> getEligibleParticipants(String giveawayId) async {
+    try {
+      final rows = await _client
+          .from('participations')
+          .select(
+            'id, participation_number, created_at, users(full_name, phone_e164), winners!left(id)',
+          )
+          .eq('giveaway_id', giveawayId)
+          .filter('winners.id', 'is', null)
+          .order('created_at', ascending: true);
+
+      return Result.success(
+        (rows as List)
+            .map((e) => EligibleParticipant.fromJson(Map<String, dynamic>.from(e as Map)))
+            .toList(),
+      );
+    } on PostgrestException catch (e) {
+      return Result.failure(ServerFailure(e.message));
+    } catch (_) {
+      return const Result.failure(NetworkFailure());
+    }
+  }
+
   Future<Result<List<Winner>>> getWinnersForGiveaway(String giveawayId) async {
     try {
       final rows = await _client
           .from('winners')
-          .select('*, participations(participation_number)')
+          .select('*, participations(participation_number, users(full_name, phone_e164))')
           .eq('giveaway_id', giveawayId)
           .order('rank');
       return Result.success(
@@ -72,15 +114,21 @@ class WinnerRepository {
   }
 
   /// [participationId] null = server picks uniformly at random among
-  /// eligible participants; provided = manual pick.
-  Future<Result<Winner>> selectWinner({required String giveawayId, String? participationId}) async {
+  /// eligible participants; provided = manual pick. [rank] lets the caller
+  /// select multiple winners for the same giveaway (1st, 2nd, 3rd...) --
+  /// the server (`fn_select_winner`) has always accepted this; only the
+  /// Flutter side never varied it before now. `already_a_winner` is still
+  /// enforced per-participation server-side, so the same person can never
+  /// win twice regardless of rank.
+  Future<Result<Winner>> selectWinner({
+    required String giveawayId,
+    String? participationId,
+    int rank = 1,
+  }) async {
     try {
       final response = await _client.functions.invoke(
         'admin-select-winner',
-        body: {
-          'giveawayId': giveawayId,
-          if (participationId != null) 'participationId': participationId,
-        },
+        body: {'giveawayId': giveawayId, 'participationId': ?participationId, 'rank': rank},
       );
 
       final data = response.data;
@@ -91,17 +139,18 @@ class WinnerRepository {
       }
 
       final map = Map<String, dynamic>.from(data);
-      return Result.success(
-        Winner(
-          id: map['winnerId'] as String,
-          giveawayId: giveawayId,
-          participationId: map['participationId'] as String,
-          rank: 1,
-          selectedAt: DateTime.parse(map['selectedAt'] as String),
-          celebrationAcknowledgedAt: null,
-          participationNumber: map['participationNumber'] as int?,
-        ),
+      final winner = Winner(
+        id: map['winnerId'] as String,
+        giveawayId: giveawayId,
+        participationId: map['participationId'] as String,
+        rank: rank,
+        selectedAt: DateTime.parse(map['selectedAt'] as String),
+        celebrationAcknowledgedAt: null,
+        participationNumber: map['participationNumber'] as int?,
+        fullName: map['fullName'] as String?,
       );
+      _winnerSelectedController.add(winner);
+      return Result.success(winner);
     } on FunctionException catch (e) {
       final data = e.details;
       final code = (data is Map ? data['code'] as String? : null) ?? 'server_error';
@@ -117,6 +166,8 @@ class WinnerRepository {
       case 'not_an_admin':
       case 'unauthorized':
         return const UnauthorizedFailure('You are not authorized to select a winner.');
+      case 'not_giveaway_owner':
+        return const UnauthorizedFailure('You can only select winners for your own giveaways.');
       case 'no_eligible_participants':
         return const ValidationFailure('There are no eligible participants left to select.');
       case 'already_a_winner':

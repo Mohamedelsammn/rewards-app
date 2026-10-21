@@ -7,11 +7,18 @@ import '../../core/theme/app_colors.dart';
 /// (implementation-plan.md §29): shimmer-ish placeholder, graceful broken-
 /// image fallback, disk+memory caching via cached_network_image.
 class AppNetworkImage extends StatelessWidget {
-  const AppNetworkImage({super.key, required this.url, this.fit = BoxFit.cover, this.borderRadius});
+  const AppNetworkImage({
+    super.key,
+    required this.url,
+    this.fit = BoxFit.cover,
+    this.borderRadius,
+    this.memCacheWidth,
+  });
 
   final String? url;
   final BoxFit fit;
   final BorderRadius? borderRadius;
+  final int? memCacheWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +39,7 @@ class AppNetworkImage extends StatelessWidget {
       borderRadius: radius,
       child: CachedNetworkImage(
         imageUrl: url!,
+        memCacheWidth: memCacheWidth,
         fit: fit,
         placeholder: (context, _) => Container(color: AppColors.surfaceContainerHigh),
         errorWidget: (context, _, _) => Container(

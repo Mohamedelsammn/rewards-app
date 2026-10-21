@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_icons.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
@@ -49,7 +51,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.card_giftcard_rounded, color: AppColors.primary, size: 40),
+          Icon(AppIcons.gift, color: AppColors.primary, size: 40),
           const SizedBox(height: AppSpacing.md),
           Text(
             l10n.registrationTitle,
@@ -64,9 +66,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
           TextFormField(
             controller: _nameController,
             textCapitalization: TextCapitalization.words,
+            onTapOutside: (_) => FocusScope.of(context).unfocus(),
             decoration: InputDecoration(
               hintText: l10n.registrationFullNameHint,
-              prefixIcon: const Icon(Icons.person_outline),
+              prefixIcon: const Icon(AppIcons.profile),
             ),
             validator: (value) =>
                 (value == null || value.trim().length < 2) ? l10n.registrationFullNameError : null,
@@ -76,9 +79,19 @@ class _RegistrationFormState extends State<RegistrationForm> {
           const SizedBox(height: AppSpacing.xs),
           DropdownButtonFormField<Country>(
             initialValue: _country,
+            isExpanded: true,
             decoration: const InputDecoration(),
             items: kCountries
-                .map((c) => DropdownMenuItem(value: c, child: Text('${c.flagEmoji}  ${c.name}')))
+                .map(
+                  (c) => DropdownMenuItem(
+                    value: c,
+                    child: Text(
+                      '${c.flagEmoji}  ${c.name}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                )
                 .toList(),
             onChanged: (c) => setState(() => _country = c ?? _country),
           ),
@@ -102,6 +115,15 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 child: TextFormField(
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
+                  onTapOutside: (_) => FocusScope.of(context).unfocus(),
+                  // Country-aware, not a global maxLength -- a leading trunk
+                  // '0' is still allowed to be typed (PhoneUtil.normalize
+                  // strips exactly one), so the formatter allows one extra
+                  // digit beyond the country's national length.
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(_country.maxNationalDigits + 1),
+                  ],
                   decoration: InputDecoration(hintText: l10n.registrationPhoneHint),
                   validator: (value) {
                     if (value == null || value.isEmpty) return l10n.registrationPhoneRequiredError;
@@ -117,7 +139,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           const SizedBox(height: AppSpacing.lg),
           PrimaryGradientButton(
             label: l10n.registrationContinue,
-            icon: Icons.arrow_forward_rounded,
+            icon: AppIcons.forward,
             isLoading: widget.isSubmitting,
             onPressed: widget.isSubmitting ? null : _submit,
           ),

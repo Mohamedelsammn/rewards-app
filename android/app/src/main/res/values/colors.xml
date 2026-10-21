@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches AppColors.surface (lib/core/theme/app_colors.dart), the
+         background _SplashBody's Scaffold uses, so the native launch
+         window (launch_background.xml) is visually continuous with the
+         Flutter splash that replaces it. -->
+    <color name="splash_background">#FCF8FF</color>
+</resources>

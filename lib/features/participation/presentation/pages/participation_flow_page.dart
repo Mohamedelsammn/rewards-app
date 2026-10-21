@@ -7,21 +7,19 @@ import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../services/secure_storage_service.dart';
+import '../../../../services/ads/ad_service.dart';
 import '../../../../shared/models/giveaway.dart';
 import '../../../../shared/repositories/giveaway_repository.dart';
 import '../../../../shared/repositories/participation_repository.dart';
 import '../../../../shared/repositories/user_repository.dart';
 import '../../../../shared/widgets/primary_gradient_button.dart';
-import '../../../scratch_card/presentation/scratch_card_page.dart';
+import '../../../number_reveal/presentation/number_reveal_page.dart';
 import '../bloc/participation_cubit.dart';
 import '../bloc/participation_state.dart';
 import '../widgets/registration_form.dart';
 
-/// Orchestrates the full participation flow's UI: registration (if needed)
-/// -> direct server-side participation creation (no ad step -- V1 has no
-/// advertisement system) -> hand-off to Scratch Card -> pops back to
-/// Giveaway Details with the revealed number as the result
-/// (implementation-plan.md §3, tasks.md T10-06).
+/// Registration, explicit optional rewarded-ad choice, server-authoritative
+/// entry, then the existing number reveal.
 class ParticipationFlowPage extends StatelessWidget {
   const ParticipationFlowPage({super.key, required this.giveaway});
 
@@ -36,6 +34,9 @@ class ParticipationFlowPage extends StatelessWidget {
         userRepository: getIt<UserRepository>(),
         participationRepository: getIt<ParticipationRepository>(),
         giveawayRepository: getIt<GiveawayRepository>(),
+        showRewardedAd: () => getIt.isRegistered<AdService>()
+            ? getIt<AdService>().showRewarded()
+            : Future.value(false),
       )..start(),
       child: const _ParticipationFlowView(),
     );
@@ -50,7 +51,23 @@ class _ParticipationFlowView extends StatefulWidget {
 }
 
 class _ParticipationFlowViewState extends State<_ParticipationFlowView> {
-  bool _navigatedToScratchCard = false;
+  bool _navigatedToReveal = false;
+  bool _rewardDialogShown = false;
+  AdService? _ads;
+  @override
+  void initState() {
+    super.initState();
+    if (getIt.isRegistered<AdService>()) {
+      _ads = getIt<AdService>();
+      _ads!.frequency.criticalFlows++;
+    }
+  }
+
+  @override
+  void dispose() {
+    if (_ads != null) _ads!.frequency.criticalFlows--;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +77,41 @@ class _ParticipationFlowViewState extends State<_ParticipationFlowView> {
       appBar: AppBar(title: Text(l10n.participationJoinGiveaway)),
       body: BlocConsumer<ParticipationCubit, ParticipationState>(
         listenWhen: (previous, current) =>
-            current.step == ParticipationStep.success && !_navigatedToScratchCard,
+            (current.step == ParticipationStep.readyToJoin && !_rewardDialogShown) ||
+            (current.step == ParticipationStep.success ||
+                    current.step == ParticipationStep.alreadyParticipating) &&
+                !_navigatedToReveal,
         listener: (context, state) async {
-          _navigatedToScratchCard = true;
+          if (state.step == ParticipationStep.readyToJoin) {
+            _rewardDialogShown = true;
+            final watch = await showDialog<bool>(
+              context: context,
+              barrierDismissible: false,
+              builder: (dialogContext) => RewardFrameChoiceDialog(
+                onClose: () => Navigator.of(dialogContext).pop(false),
+                onWatch: () => Navigator.of(dialogContext).pop(true),
+              ),
+            );
+            if (!context.mounted) return;
+            if (watch == true) {
+              await context.read<ParticipationCubit>().joinWithRewardedAd();
+            } else {
+              await context.read<ParticipationCubit>().joinWithoutAd();
+            }
+            return;
+          }
+          _navigatedToReveal = true;
+          if (state.step == ParticipationStep.alreadyParticipating) {
+            Navigator.of(context).pop(state.participationNumber);
+            return;
+          }
           final result = await Navigator.of(context).push<int>(
             MaterialPageRoute(
               fullscreenDialog: true,
-              builder: (_) => ScratchCardPage(
+              builder: (_) => NumberRevealPage(
                 participationId: state.participationId!,
                 participationNumber: state.participationNumber!,
+                rewardedFrameUnlocked: state.rewardedFrameUnlocked,
               ),
             ),
           );
@@ -81,6 +124,18 @@ class _ParticipationFlowViewState extends State<_ParticipationFlowView> {
             case ParticipationStep.checkingIdentity:
             case ParticipationStep.submittingRegistration:
               return const Center(child: CircularProgressIndicator());
+
+            case ParticipationStep.readyToJoin:
+              return _StatusView(
+                icon: Icons.confirmation_number_rounded,
+                label: l10n.participationGeneratingNumber,
+              );
+
+            case ParticipationStep.showingRewardedAd:
+              return _StatusView(
+                icon: Icons.ondemand_video_rounded,
+                label: l10n.participationGeneratingNumber,
+              );
 
             case ParticipationStep.needsRegistration:
               return Padding(
@@ -108,10 +163,14 @@ class _ParticipationFlowViewState extends State<_ParticipationFlowView> {
               );
 
             case ParticipationStep.success:
+            case ParticipationStep.participationCreated:
               return _StatusView(
                 icon: Icons.check_circle_rounded,
                 label: l10n.participationSuccessOpening,
               );
+
+            case ParticipationStep.alreadyParticipating:
+              return const Center(child: CircularProgressIndicator());
 
             case ParticipationStep.failure:
               return _FailureView(
@@ -120,6 +179,55 @@ class _ParticipationFlowViewState extends State<_ParticipationFlowView> {
               );
           }
         },
+      ),
+    );
+  }
+}
+
+class RewardFrameChoiceDialog extends StatelessWidget {
+  const RewardFrameChoiceDialog({super.key, required this.onClose, required this.onWatch});
+
+  final VoidCallback onClose;
+  final VoidCallback onWatch;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Dialog(
+      backgroundColor: AppColors.surfaceContainerLowest,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 380),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(22, 12, 22, 22),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  onPressed: onClose,
+                  icon: const Icon(Icons.close_rounded),
+                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                ),
+              ),
+              Text(
+                l10n.rewardFrameDialogTitle,
+                textAlign: TextAlign.center,
+                style: AppTypography.headlineMd.copyWith(color: AppColors.onSurface),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                l10n.rewardFrameDialogDescription,
+                textAlign: TextAlign.center,
+                style: AppTypography.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              PrimaryGradientButton(label: l10n.rewardFrameWatchAd, onPressed: onWatch),
+            ],
+          ),
+        ),
       ),
     );
   }

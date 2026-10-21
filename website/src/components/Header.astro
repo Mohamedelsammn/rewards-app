@@ -1,0 +1,34 @@
+---
+import Icon from './Icon.astro';
+import { copy, pageUrl, type Lang, type PageKey } from '../content/site';
+const { lang, page } = Astro.props as { lang: Lang; page?: PageKey };
+const t = copy[lang];
+---
+<a class="skip-link" href="#main">{lang === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content'}</a>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href={pageUrl(lang)} aria-label={t.home.titleA + ' ' + t.home.titleB}>
+      <img class="brand-mark" src="/app-logo.png" width="38" height="38" alt=""/><span>Creative Rewards</span>
+    </a>
+    <nav class="nav-links" id="site-nav" aria-label={lang === 'ar' ? 'التنقل الرئيسي' : 'Main navigation'} data-open="false">
+      <a href={pageUrl(lang)}>{t.nav.home}</a>
+      <a href={pageUrl(lang, 'about')}>{t.nav.about}</a>
+      <a href={pageUrl(lang, 'privacy')}>{t.nav.privacy}</a>
+      <a href={pageUrl(lang, 'terms')}>{t.nav.terms}</a>
+      <a href={pageUrl(lang, 'contact')}>{t.nav.contact}</a>
+    </nav>
+    <div class="nav-tools">
+      <a class="language-link" href={pageUrl(lang === 'en' ? 'ar' : 'en', page)} lang={lang === 'en' ? 'ar' : 'en'} aria-label={lang === 'ar' ? 'Switch language to English' : 'تغيير اللغة إلى العربية'}>{t.switchLabel}</a>
+      <button class="mobile-toggle" type="button" aria-label={t.nav.menu} aria-expanded="false" aria-controls="site-nav"><Icon name="menu" size={20}/></button>
+    </div>
+  </div>
+</header>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.mobile-toggle');
+  const nav = document.querySelector<HTMLElement>('#site-nav');
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    nav?.setAttribute('data-open', String(open));
+  });
+</script>

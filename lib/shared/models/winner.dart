@@ -13,6 +13,8 @@ class Winner extends Equatable {
     this.giveawayTitle,
     this.giveawayImageUrl,
     this.participationNumber,
+    this.fullName,
+    this.phoneE164,
   });
 
   final String id;
@@ -25,11 +27,20 @@ class Winner extends Equatable {
   final String? giveawayImageUrl;
   final int? participationNumber;
 
+  /// Populated only when fetched joined with `participations(users(...))`
+  /// (Admin Analysis's winner card) -- null for the plain celebration-check
+  /// read, which doesn't need it.
+  final String? fullName;
+  final String? phoneE164;
+
   bool get isCelebrationPending => celebrationAcknowledgedAt == null;
+
+  String get formattedParticipationNumber => (participationNumber ?? 0).toString().padLeft(4, '0');
 
   factory Winner.fromJson(Map<String, dynamic> json) {
     final giveaway = json['giveaways'] as Map<String, dynamic>?;
     final participation = json['participations'] as Map<String, dynamic>?;
+    final user = participation?['users'] as Map<String, dynamic>?;
     return Winner(
       id: json['id'] as String,
       giveawayId: json['giveaway_id'] as String,
@@ -42,6 +53,8 @@ class Winner extends Equatable {
       giveawayTitle: giveaway?['title'] as String?,
       giveawayImageUrl: giveaway?['image_url'] as String?,
       participationNumber: participation?['participation_number'] as int?,
+      fullName: user?['full_name'] as String?,
+      phoneE164: user?['phone_e164'] as String?,
     );
   }
 

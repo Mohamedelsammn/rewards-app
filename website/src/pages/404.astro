@@ -1,0 +1,7 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { pageUrl } from '../content/site';
+---
+<SiteLayout lang="en" page="home" title="Page not found — Creative Rewards App" description="This page could not be found.">
+  <section class="container page-hero"><span class="eyebrow">404</span><h1>Page not found</h1><p>That page may have moved. The policy and support pages remain available from the navigation.</p><a class="button button-primary" href={pageUrl('en')}>Back to home</a></section>
+</SiteLayout>

@@ -18,13 +18,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get commonCancel => 'إلغاء';
 
   @override
+  String get commonConfirm => 'تأكيد';
+
+  @override
   String get commonDismiss => 'إغلاق';
+
+  @override
+  String get commonDelete => 'حذف';
 
   @override
   String get commonSomethingWrong => 'حدث خطأ ما. حاول مرة أخرى.';
 
   @override
   String get commonRequired => 'مطلوب';
+
+  @override
+  String get navHome => 'الرئيسية';
+
+  @override
+  String get navDashboard => 'لوحة التحكم';
 
   @override
   String get roleSelectionWelcome => 'أهلاً بك 👋';
@@ -48,7 +60,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get roleSelectionSwitchAnytime => 'يمكنك تبديل دورك في أي وقت.';
 
   @override
-  String get userHomeWelcomeBack => 'مرحباً بعودتك 👋';
+  String get userHomeWelcomeBack => 'مرحبًا بعودتك 👋';
 
   @override
   String get userHomeGuest => 'زائر';
@@ -176,19 +188,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get participationGeneratingNumber => 'جارٍ إنشاء رقمك…';
 
   @override
-  String get participationSuccessOpening => 'تم بنجاح! جارٍ فتح بطاقتك…';
+  String get participationSuccessOpening => 'تم بنجاح! جارٍ الكشف عن رمزك…';
 
   @override
   String get participationTryAgain => 'حاول مرة أخرى';
 
   @override
-  String get scratchCardYourLuckyNumber => 'رقم حظك';
+  String get numberRevealTitle => 'رمز مشاركتك';
 
   @override
-  String get scratchCardScratchToReveal => 'اخدش البطاقة للكشف عن رقمك';
+  String get numberRevealSubtitle => 'تم إنشاؤه خصيصًا لك';
 
   @override
-  String get scratchCardViewInMyGiveaways => 'عرضه في سحوباتي';
+  String get numberRevealViewInMyGiveaways => 'عرضه في سحوباتي';
 
   @override
   String get myGiveawaysTitle => 'سحوباتي';
@@ -201,6 +213,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get myGiveawaysGiveawayFallback => 'سحب';
+
+  @override
+  String get myGiveawaysWinner => 'لقد فزت بهذا السحب!';
+
+  @override
+  String get myGiveawaysNotSelected => 'لم يتم اختيارك كفائز هذه المرة';
+
+  @override
+  String get notificationsTitle => 'الإشعارات';
+
+  @override
+  String get notificationsEmpty => 'لا توجد إشعارات جديدة حتى الآن.';
+
+  @override
+  String get notificationsCouldNotLoad => 'تعذّر تحميل الإشعارات.';
+
+  @override
+  String get notificationsMarkAllRead => 'تعليم الكل كمقروء';
 
   @override
   String get settingsTitle => 'الإعدادات';
@@ -232,6 +262,18 @@ class AppLocalizationsAr extends AppLocalizations {
       'يتيح لك تطبيق Reward Giveaway الانضمام إلى سحوبات الجوائز المثيرة وإدارتها. تم بناؤه باستخدام Flutter وSupabase.';
 
   @override
+  String get settingsSectionGeneral => 'عام';
+
+  @override
+  String get settingsSectionInformation => 'معلومات';
+
+  @override
+  String get settingsSectionAccount => 'الحساب';
+
+  @override
+  String get settingsGuestSubtitle => 'انضم إلى سحب لإنشاء ملفك الشخصي';
+
+  @override
   String get adminAuthTitle => 'المسؤول';
 
   @override
@@ -259,10 +301,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get adminAuthFullNameError => 'أدخل اسمك الكامل';
 
   @override
+  String get adminAuthFullNameHint => 'اسمك الكامل';
+
+  @override
   String get adminAuthEmailLabel => 'البريد الإلكتروني';
 
   @override
   String get adminAuthEmailError => 'أدخل بريداً إلكترونياً صحيحاً';
+
+  @override
+  String get adminAuthEmailHint => 'example@gmail.com';
 
   @override
   String get adminAuthPasswordLabel => 'كلمة المرور';
@@ -272,6 +320,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get adminAuthPasswordLengthError => 'يجب ألا تقل كلمة المرور عن 8 أحرف';
+
+  @override
+  String get adminAuthPasswordHint => '••••••••';
+
+  @override
+  String get adminAuthPasswordRequirementHelper => '8 أحرف على الأقل';
 
   @override
   String get adminAuthConfirmPasswordLabel => 'تأكيد كلمة المرور';
@@ -286,10 +340,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get adminAuthAccessCodeError => 'أدخل رمز دخول المسؤول';
 
   @override
+  String get adminAuthAccessCodeHint => 'أدخل الرمز الذي زُوّدت به';
+
+  @override
   String get adminAuthCreateAccountButton => 'إنشاء الحساب';
 
   @override
   String get adminAuthSignInButton => 'تسجيل الدخول';
+
+  @override
+  String get adminAuthNoAccessCodeQuestion => 'ليس لديك كود دخول المسؤول؟';
+
+  @override
+  String get adminAuthContactWhatsAppSubtitle => 'تواصل معنا عبر واتساب لطلب الوصول.';
+
+  @override
+  String get adminAuthWhatsAppPrefilledMessage =>
+      'مرحباً، أريد الانضمام إلى المسابقات الخاصة بكم وأحتاج إلى كود دخول المسؤول لإنشاء حساب Admin.';
+
+  @override
+  String get adminAuthWhatsAppOpenFailed => 'تعذّر فتح واتساب. يُرجى المحاولة مرة أخرى.';
+
+  @override
+  String get commonShowPassword => 'إظهار كلمة المرور';
+
+  @override
+  String get commonHidePassword => 'إخفاء كلمة المرور';
 
   @override
   String get adminDashboardGoodDay => 'يوم سعيد 👋';
@@ -310,10 +386,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get adminDashboardWinnersSelected => 'الفائزون المختارون';
 
   @override
-  String get adminDashboardActiveCampaign => 'الحملة النشطة';
+  String get adminDashboardActiveCampaign => 'الحملات النشطة';
 
   @override
   String get adminDashboardNoActiveCampaigns => 'لا توجد حملات نشطة بعد. اضغط + لإنشاء واحدة.';
+
+  @override
+  String get adminDashboardEndedCampaign => 'الحملات المنتهية';
 
   @override
   String get adminDashboardViewAnalytics => 'عرض التحليلات';
@@ -353,13 +432,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createGiveawayOrganizerNameHint => 'مثال: شركة التقنية المتحدة';
 
   @override
-  String get createGiveawayPrizeDescription => 'وصف الجائزة';
+  String get createGiveawayPrizeDescription => 'وصف الجائزة (اختياري)';
 
   @override
   String get createGiveawayPrizeDescriptionHint => 'صف بإيجاز ما سيحصل عليه الفائز.';
 
   @override
-  String get createGiveawayRules => 'وصف السحب وقواعده';
+  String get createGiveawayRules => 'وصف السحب وقواعده (اختياري)';
 
   @override
   String get createGiveawayRulesHint => 'اذكر جميع الشروط والأحكام والتفاصيل الإضافية.';
@@ -392,7 +471,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createGiveawayTimePlaceholder => '--:--';
 
   @override
-  String get createGiveawayMissingDates => 'يرجى تحديد تاريخ البدء وتاريخ الانتهاء ووقت الانتهاء.';
+  String get createGiveawayMissingDates => 'يرجى تحديد تاريخ ووقت البدء والانتهاء.';
 
   @override
   String get createGiveawayEndBeforeStart =>
@@ -405,17 +484,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get giveawayAnalyticsTitle => 'تحليلات السحب';
 
   @override
-  String get giveawayAnalyticsSelectWinnerTitle => 'اختيار فائز؟';
+  String get giveawayAnalyticsSelectParticipantTitle => 'اختر مشاركًا';
 
   @override
-  String get giveawayAnalyticsSelectWinnerBody =>
-      'سيتم اختيار فائز عشوائياً من بين جميع المشاركين المؤهلين. لا يمكن التراجع عن هذا الإجراء.';
+  String get giveawayAnalyticsConfirmWinnerTitle => 'تأكيد الفائز';
+
+  @override
+  String giveawayAnalyticsConfirmWinnerBody(String code, String name) {
+    return 'هل تريد اختيار المشارك $code ($name) كفائز؟';
+  }
 
   @override
   String get giveawayAnalyticsSelectWinnerAction => 'اختيار الفائز';
 
   @override
+  String get giveawayAnalyticsSelectAnotherWinnerAction => 'اختيار فائز آخر';
+
+  @override
   String get giveawayAnalyticsWinnerSelected => 'تم اختيار الفائز! تم إرسال إشعار.';
+
+  @override
+  String get giveawayAnalyticsNoEligibleParticipants => 'جميع المشاركين فازوا بالفعل.';
 
   @override
   String get giveawayAnalyticsTotalJoined => 'إجمالي المنضمين';
@@ -433,14 +522,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get giveawayAnalyticsNoParticipants => 'لا يوجد مشاركون بعد.';
 
   @override
-  String giveawayAnalyticsTicketNumber(int sequence) {
-    return 'التذكرة رقم $sequence';
+  String giveawayAnalyticsParticipationCode(String code) {
+    return 'الرمز $code';
   }
 
   @override
-  String giveawayAnalyticsWinnerTicket(String number) {
-    return 'تم اختيار الفائز: التذكرة رقم $number';
+  String get giveawayAnalyticsWinnersSectionTitle => 'الفائزون';
+
+  @override
+  String get giveawayAnalyticsViewWinners => 'عرض الفائز';
+
+  @override
+  String get giveawayAnalyticsNoWinners => 'لا يوجد فائزون بعد.';
+
+  @override
+  String get giveawayAnalyticsRemoveFromView => 'إخفاء من العرض';
+
+  @override
+  String get giveawayAnalyticsWinnerLabel => 'الفائز';
+
+  @override
+  String giveawayAnalyticsWinnerRank(int rank) {
+    return 'الفائز رقم $rank';
   }
+
+  @override
+  String get giveawayAnalyticsSelectedAtLabel => 'وقت الاختيار';
 
   @override
   String get giveawayAnalyticsJustNow => 'الآن';
@@ -461,10 +568,73 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get giveawayAnalyticsChooseParticipantTooltip => 'اختيار مشارك';
+
+  @override
+  String giveawayAnalyticsPendingSelection(String code, String name) {
+    return 'الاستهداف اليدوي: $code · $name';
+  }
+
+  @override
+  String get giveawayAnalyticsClearSelectionTooltip => 'إلغاء الاختيار';
+
+  @override
+  String get giveawayAnalyticsSelecting => 'جارٍ اختيار الفائز…';
+
+  @override
+  String get giveawayAnalyticsWheelErrorTitle => 'تعذر اختيار فائز';
+
+  @override
+  String get giveawayAnalyticsWheelDoneAction => 'تم';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayTooltip => 'حذف السحب';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayTitle => 'حذف السحب؟';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayBody =>
+      'سيؤدي هذا إلى حذف هذا السحب نهائيًا مع كل بياناته الخاصة به، بما في ذلك المشاركين والفائزين. لا يمكن التراجع عن هذا الإجراء.';
+
+  @override
+  String get giveawayAnalyticsGiveawayDeleted => 'تم حذف السحب.';
+
+  @override
   String get adminProfileTitle => 'الملف الشخصي للمسؤول';
 
   @override
   String get adminProfileAdministrator => 'المسؤول';
+
+  @override
+  String get adminProfileSignOutConfirmBody => 'ستعود إلى شاشة اختيار الدور.';
+
+  @override
+  String get adminAnalysisTitle => 'التحليلات';
+
+  @override
+  String get adminAnalysisTotalGiveaways => 'إجمالي السحوبات';
+
+  @override
+  String get adminAnalysisActiveGiveaways => 'نشطة';
+
+  @override
+  String get adminAnalysisFinishedGiveaways => 'منتهية';
+
+  @override
+  String get adminAnalysisTotalParticipants => 'إجمالي المشاركين';
+
+  @override
+  String get adminAnalysisTotalWinners => 'الفائزون المختارون';
+
+  @override
+  String get adminAnalysisGrowthTrend => 'نمو المشاركة (آخر 7 أيام)';
+
+  @override
+  String get adminAnalysisCouldNotLoad => 'تعذّر تحميل التحليلات.';
+
+  @override
+  String get adminAnalysisNoData => 'لا توجد سحوبات بعد — أنشئ واحدًا لعرض التحليلات هنا.';
 
   @override
   String get winnerCelebrationTitle => 'فائز';
@@ -505,7 +675,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get failureUnauthorized => 'غير مصرح لك بالقيام بذلك.';
 
   @override
-  String get failureDuplicatePhone => 'رقم الهاتف هذا مسجّل بالفعل.';
+  String get failurePhoneAlreadyRegisteredElsewhere => 'رقم الهاتف هذا مسجّل بالفعل على جهاز آخر.';
+
+  @override
+  String get failurePhoneAlreadyInUse => 'رقم الهاتف هذا مستخدم بالفعل من قبل حساب آخر.';
 
   @override
   String get failureDuplicateParticipation => 'لقد شاركت بالفعل في هذا السحب.';
@@ -518,4 +691,147 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failureRateLimited => 'محاولات كثيرة جداً. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى.';
+
+  @override
+  String get settingsEditProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get editProfileTitle => 'تعديل الملف الشخصي';
+
+  @override
+  String get editProfileSubtitle => 'حافظ على تحديث اسمك ورقم هاتفك.';
+
+  @override
+  String get editProfileSaveAction => 'حفظ التغييرات';
+
+  @override
+  String get editProfileUpdateSuccess => 'تم تحديث الملف الشخصي';
+
+  @override
+  String get browseAll => 'الكل';
+
+  @override
+  String get browseClearSearch => 'مسح البحث';
+
+  @override
+  String get browseUpcoming => 'قريبًا';
+
+  @override
+  String get browseEndingSoon => 'تنتهي قريبًا';
+
+  @override
+  String get browseStartsIn => 'تبدأ';
+
+  @override
+  String get browseDayShort => 'ي';
+
+  @override
+  String get browseHourShort => 'س متبقية';
+
+  @override
+  String get browseJoined => 'مشارك';
+
+  @override
+  String get browseNoGiveaways => 'لم يتم العثور على مسابقات';
+
+  @override
+  String get browseSearchResults => 'نتائج البحث';
+
+  @override
+  String get browseLoadMore => 'تحميل المزيد';
+
+  @override
+  String get browseCategoriesRetry => 'إعادة تحميل الفئات';
+
+  @override
+  String browseUpcomingMessage(String date) {
+    return 'تبدأ في $date. تتاح المشاركة في الموعد المحدد.';
+  }
+
+  @override
+  String get categoryManagement => 'إدارة الفئات';
+
+  @override
+  String get categoryCreate => 'إنشاء فئة';
+
+  @override
+  String get categoryEdit => 'تعديل الفئة';
+
+  @override
+  String get categorySelect => 'اختر الفئة';
+
+  @override
+  String get categoryNameEn => 'الاسم بالإنجليزية';
+
+  @override
+  String get categoryNameAr => 'الاسم بالعربية';
+
+  @override
+  String get categoryIcon => 'رمز تعبيري اختياري';
+
+  @override
+  String get categoryOrder => 'ترتيب العرض';
+
+  @override
+  String get categoryEnabled => 'مفعّلة';
+
+  @override
+  String get categoryDisabled => 'معطّلة';
+
+  @override
+  String get categoryRequired => 'أدخل قيمة صحيحة';
+
+  @override
+  String get categorySave => 'حفظ';
+
+  @override
+  String get categoryUnauthorized => 'إدارة الفئات تتطلب صلاحية المشرف العام.';
+
+  @override
+  String get categoryUncategorized => 'بدون فئة';
+
+  @override
+  String get categoryInactiveKept => 'تُحفظ الفئة الحالية غير النشطة حتى تختار بديلًا.';
+
+  @override
+  String get categoryEditGiveaway => 'تعديل المسابقة';
+
+  @override
+  String get scheduleStartTime => 'وقت البداية';
+
+  @override
+  String get scheduleLocalTime =>
+      'تُعرض الأوقات بالتوقيت المحلي للجهاز وتُحفظ بالتوقيت العالمي UTC.';
+
+  @override
+  String get adsPrivacyChoices => 'خيارات خصوصية الإعلانات';
+
+  @override
+  String get scheduleInvalidDates => 'يجب أن يكون وقت الانتهاء بعد وقت البدء.';
+
+  @override
+  String get adminDashboardScheduleSection => 'جدول المسابقات';
+
+  @override
+  String get adminFilterAll => 'الكل';
+
+  @override
+  String get adminNoFilteredGiveaways => 'لا توجد مسابقات ضمن هذه المجموعة حاليًا.';
+
+  @override
+  String get createGiveawayEditTitle => 'تعديل المسابقة';
+
+  @override
+  String get adminScheduleEditLocked =>
+      'لا يمكن تغيير الموعد بعد بدء المسابقة أو تسجيل مشاركين فيها.';
+
+  @override
+  String get rewardFrameDialogTitle => 'اجعل مشاركتك مميزة!';
+
+  @override
+  String get rewardFrameDialogDescription =>
+      'شاهد إعلانًا واحصل على إطار مميز لرقم مشاركتك داخل التطبيق.';
+
+  @override
+  String get rewardFrameWatchAd => 'Watch Ad';
 }

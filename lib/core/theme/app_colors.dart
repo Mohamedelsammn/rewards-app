@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
-  static const surface = Color(0xFFFCF8FF);
+  static const surface = Color(0xFFFFFFFF);
   static const surfaceDim = Color(0xFFDBD8E5);
   static const surfaceContainerLowest = Color(0xFFFFFFFF);
   static const surfaceContainerLow = Color(0xFFF5F2FF);
@@ -40,7 +40,7 @@ class AppColors {
   static const errorContainer = Color(0xFFFFDAD6);
   static const onErrorContainer = Color(0xFF93000A);
 
-  static const background = Color(0xFFFCF8FF);
+  static const background = Color(0xFFFFFFFF);
   static const onBackground = Color(0xFF1B1B24);
   static const surfaceVariant = Color(0xFFE4E1EE);
 

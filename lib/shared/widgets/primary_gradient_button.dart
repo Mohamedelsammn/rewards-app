@@ -61,11 +61,15 @@ class PrimaryGradientButton extends StatelessWidget {
                             Icon(icon, color: Colors.white, size: 20),
                             const SizedBox(width: AppSpacing.sm),
                           ],
-                          Text(
-                            label,
-                            style: AppTypography.bodyLg.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
+                          Flexible(
+                            child: Text(
+                              label,
+                              style: AppTypography.bodyLg.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],

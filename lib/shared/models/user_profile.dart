@@ -14,7 +14,7 @@ class UserProfile extends Equatable {
   final String countryCode;
 
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
-    id: json['userId'] as String? ?? json['id'] as String,
+    id: json['userId'] as String? ?? json['user_id'] as String? ?? json['id'] as String,
     fullName: json['fullName'] as String? ?? json['full_name'] as String? ?? '',
     phoneE164: json['phoneE164'] as String? ?? json['phone_e164'] as String? ?? '',
     countryCode: json['countryCode'] as String? ?? json['country_code'] as String? ?? '',

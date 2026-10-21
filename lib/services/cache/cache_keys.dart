@@ -6,7 +6,14 @@ class CacheKeys {
 
   static const String giveawayList = 'giveaways:list';
   static String giveawayDetails(String id) => 'giveaway:$id';
-  static const String myParticipations = 'participations:mine';
+
+  /// Scoped by the *current session's* `auth.uid()`, not a flat key. Two
+  /// different identities using the same device (e.g. this device's
+  /// anonymous session was ever lost/replaced -- see UserIdentityService)
+  /// must never read each other's cached participation list; only the
+  /// signing-out-and-back-in-as-the-SAME-identity case, where auth.uid()
+  /// is unchanged, should ever see this cache reused.
+  static String myParticipations(String authUid) => 'participations:mine:$authUid';
 
   /// Giveaway list changes when admins publish/edit -- short TTL so a newly
   /// published giveaway shows up quickly without polling.

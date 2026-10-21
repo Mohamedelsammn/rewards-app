@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Icon from '../components/Icon.astro';
+import { copy, pageKeys, pageUrl, site, type PageKey, type Section } from '../content/site';
+export function getStaticPaths() { return pageKeys.map((page) => ({ params: { page } })); }
+const page = Astro.params.page as PageKey;
+const t = copy.en;
+const isLegal = page === 'privacy' || page === 'terms';
+const sections: Section[] = isLegal ? t[page] : [];
+const title = t.seo[page].title;
+const intro = page === 'delete-account' ? t.deletion.intro : page === 'contact' ? t.contact.intro : page === 'about' ? t.about.intro : '';
+---
+<SiteLayout lang="en" page={page}>
+  <section class="container page-hero"><span class="eyebrow"><Icon name={page === 'privacy' ? 'shield' : page === 'terms' ? 'ticket' : 'sparkles'} size={17}/>{t.labels.appName}: Creative Rewards App</span><h1>{title.split(' — ')[0]}</h1><p>{isLegal ? t.seo[page].description : intro}</p><small>{isLegal ? t.labels.lastUpdated : ''}</small></section>
+  {isLegal && <div class="container legal-layout"><article class="legal-content">{sections.map((section, i) => <section id={`section-${i + 1}`}><h2>{section.title}</h2>{(section.paragraphs ?? []).map(p => <p set:html={p}></p>)}{section.bullets && <ul>{section.bullets.map(item => <li>{item}</li>)}</ul>}</section>)}</article><aside class="legal-toc"><strong>{t.labels.toc}</strong>{sections.map((section, i) => <a href={`#section-${i + 1}`}>{section.title}</a>)}</aside></div>}
+  {page === 'delete-account' && <section class="container section" style="padding-top:0"><div class="legal-content"><div class="notice">{t.deletion.verify}</div><h2>{t.deletion.stepsTitle}</h2><ol>{t.deletion.steps.map(step => <li set:html={step}></li>)}</ol><h2>{t.deletion.deleteTitle}</h2><p>{t.deletion.deleteText}</p><p>{t.deletion.noAutomation}</p><div class="contact-card"><span>{t.deletion.contact} <strong>{site.supportEmail}</strong></span><a href={`mailto:${site.supportEmail}?subject=Creative%20Rewards%20App%20data%20deletion`}>Email support <Icon name="arrow" size={18}/></a></div></div></section>}
+  {page === 'contact' && <section class="container section" style="padding-top:0"><div class="section-heading"><h2>{t.labels.contactUs}</h2><p>{t.contact.response}</p></div>{[t.contact.support,t.contact.privacy,t.contact.deletion].map((label, i) => <article class="contact-card"><span><strong>{label}</strong><br/>{i === 0 ? 'App help and feedback' : i === 1 ? 'Questions about information and choices' : 'Participant data removal requests'}</span><a href={`mailto:${site.supportEmail}?subject=${encodeURIComponent(label)}`}>{site.supportEmail}<Icon name="arrow" size={18}/></a></article>)}</section>}
+  {page === 'about' && <section class="container section" style="padding-top:0"><article class="info-card"><div class="card-icon"><Icon name="gift" size={25}/></div><h3>{t.about.title}</h3><p>{t.about.body}</p><p><a href={site.playUrl} target="_blank" rel="noopener noreferrer">{t.labels.external}</a></p></article></section>}
+  <div class="container" style="padding-bottom:60px"><a href={pageUrl('en')} class="button button-secondary">← {t.labels.backHome}</a></div>
+</SiteLayout>

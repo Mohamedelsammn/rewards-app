@@ -30,6 +30,16 @@ class LegalContent {
 
   static final _privacyEn = <LegalSection>[
     const LegalSection(
+      'Advertising and Your Choices',
+      'We request non-personalized ads. This does not disable device identifiers, ad measurement or fraud prevention. '
+          'Where required, Google UMP asks for consent before ad requests; required privacy choices remain available in Settings. '
+          'Rewarded ads are optional. Continue Without Ad gives the same free giveaway entry and odds. '
+          'Watching an ad never creates an extra entry. Google controls retention of SDK data under its privacy terms. '
+          'You may also manage advertising identifiers through Android settings. Deleting your participant record does not '
+          'automatically erase data already processed independently by Google. See https://policies.google.com/technologies/ads.',
+    ),
+
+    const LegalSection(
       'Overview',
       'This Privacy Policy explains what information the Reward Giveaway app '
           'collects, why it is collected, and how it is used. By using the app '
@@ -43,9 +53,9 @@ class LegalContent {
           'never shown publicly. We also store a device identifier and, if you '
           'allow notifications, a push-notification token, so we can tell you '
           'when a giveaway you joined has a winner. When you take part in a '
-          'giveaway we record your participation number and timestamp. This '
-          'version of the app contains no advertising or ad-tracking SDKs, so '
-          'no advertising identifiers or ad-interaction data are collected.',
+          'giveaway we record your participation number and timestamp. Google AdMob may collect '
+          'IP address, approximate location inferred from IP, device/advertising identifiers, '
+          'ad interactions and diagnostic data to deliver ads, measure performance and prevent fraud.',
     ),
     const LegalSection(
       'How We Use Your Information',
@@ -53,8 +63,8 @@ class LegalContent {
           'participant record, generating and displaying your participation '
           'number, selecting and announcing winners, and sending you '
           'notifications about giveaways you have joined. We do not use your '
-          'information for advertising, and we do not sell it to third '
-          'parties.',
+          'participant phone numbers or names to target ads. Advertising SDK data is processed '
+          'by Google for ad delivery, measurement and fraud prevention, subject to consent where required.',
     ),
     const LegalSection(
       'How Your Identity Is Kept',
@@ -70,9 +80,9 @@ class LegalContent {
       'We use Supabase to host our database, authentication, file storage, '
           'and server-side functions, and (once configured) Firebase Cloud '
           'Messaging to deliver push notifications. These providers process '
-          'data on our behalf under their own security and privacy commitments '
-          'and do not use your data for their own purposes. We do not share '
-          'your information with advertisers or data brokers.',
+          'data under their own security and privacy commitments. Google AdMob and its User '
+          'Messaging Platform also process advertising data and consent choices. Google may '
+          'process that data under its own privacy terms: https://policies.google.com/privacy.',
     ),
     const LegalSection(
       'Data Retention',
@@ -118,6 +128,16 @@ class LegalContent {
 
   static final _privacyAr = <LegalSection>[
     const LegalSection(
+      'الإعلانات وخياراتك',
+      'نطلب إعلانات غير مخصّصة؛ وقد تستمر معالجة معرّفات الجهاز وقياس الإعلانات ومنع الاحتيال. '
+          'تعرض Google UMP الموافقة حيث تُطلب، وتتاح خيارات الخصوصية المطلوبة في الإعدادات. '
+          'إعلانات المكافآت اختيارية، والمتابعة بدون إعلان تمنح المشاركة المجانية نفسها وفرص الفوز نفسها. '
+          'لا تُنشئ المشاهدة مشاركة إضافية. تخضع مدة احتفاظ Google بالبيانات لسياسة خصوصيتها. '
+          'يمكن إدارة معرّفات الإعلانات من إعدادات Android. حذف سجل المشارك لا يحذف تلقائيًا البيانات '
+          'التي عالجتها Google بشكل مستقل. https://policies.google.com/technologies/ads',
+    ),
+
+    const LegalSection(
       'نظرة عامة',
       'توضح سياسة الخصوصية هذه ما هي المعلومات التي يجمعها تطبيق Reward '
           'Giveaway، ولماذا يتم جمعها، وكيفية استخدامها. باستخدامك للتطبيق فإنك '
@@ -125,20 +145,11 @@ class LegalContent {
     ),
     const LegalSection(
       'المعلومات التي نجمعها',
-      'عند التسجيل كمشارك، نقوم بجمع اسمك الكامل ودولتك ورقم هاتفك. يُستخدم '
-          'رقم هاتفك لمنع الشخص نفسه من المشاركة في نفس السحب أكثر من مرة، ولا '
-          'يُعرض علنًا أبدًا. كما نخزّن معرّف الجهاز، وإذا سمحت بالإشعارات، رمز '
-          'إشعارات الدفع (push token)، حتى نتمكن من إعلامك عند وجود فائز في '
-          'سحب انضممت إليه. عند مشاركتك في سحب، نسجّل رقم مشاركتك وتوقيت '
-          'إنشائها. لا تحتوي هذه النسخة من التطبيق على أي حزم إعلانات أو تتبع '
-          'إعلاني، لذلك لا يتم جمع أي معرّفات إعلانية أو بيانات تفاعل إعلاني.',
+      'عند التسجيل نجمع الاسم والدولة ورقم الهاتف ومعرّف الجلسة ورمز الإشعارات عند السماح بها ورقم المشاركة وتوقيتها. قد تجمع Google AdMob عنوان IP والموقع التقريبي المستنتج منه ومعرّفات الجهاز والإعلانات وبيانات التفاعل مع الإعلانات والتشخيص لتقديم الإعلانات وقياس الأداء ومنع الاحتيال.',
     ),
     const LegalSection(
       'كيفية استخدام معلوماتك',
-      'نستخدم المعلومات المذكورة أعلاه لتشغيل السحوبات: إنشاء سجل المشارك '
-          'الخاص بك، وإنشاء وعرض رقم مشاركتك، واختيار الفائزين والإعلان عنهم، '
-          'وإرسال إشعارات لك بخصوص السحوبات التي انضممت إليها. لا نستخدم '
-          'معلوماتك لأغراض إعلانية، ولا نبيعها لأي طرف ثالث.',
+      'نستخدم بيانات المشارك لتشغيل المسابقات وإظهار الأرقام واختيار الفائزين وإرسال الإشعارات. لا نرسل اسم المشارك أو رقم هاتفه لاستهداف الإعلانات. تعالج Google بيانات حزمة الإعلانات لتقديم الإعلانات وقياس الأداء ومنع الاحتيال وفق خيارات الموافقة حيثما تُطلب.',
     ),
     const LegalSection(
       'كيفية الحفاظ على هويتك',
@@ -150,11 +161,7 @@ class LegalContent {
     ),
     const LegalSection(
       'المشاركة مع مزوّدي الخدمة',
-      'نستخدم Supabase لاستضافة قاعدة بياناتنا ونظام المصادقة وتخزين الملفات '
-          'والدوال الخادمية، وعند تفعيله، نستخدم Firebase Cloud Messaging '
-          'لإرسال الإشعارات. يعالج هؤلاء المزوّدون البيانات نيابة عنا بموجب '
-          'التزاماتهم الخاصة بالأمان والخصوصية، ولا يستخدمون بياناتك لأغراضهم '
-          'الخاصة. لا نشارك معلوماتك مع المعلنين أو وسطاء البيانات.',
+      'نستخدم Supabase للبيانات والمصادقة والتخزين وFirebase Cloud Messaging للإشعارات. نستخدم Google AdMob وUser Messaging Platform لمعالجة بيانات الإعلانات وخيارات الموافقة. تخضع معالجة Google أيضًا لسياسة خصوصيتها https://policies.google.com/privacy.',
     ),
     const LegalSection(
       'الاحتفاظ بالبيانات',

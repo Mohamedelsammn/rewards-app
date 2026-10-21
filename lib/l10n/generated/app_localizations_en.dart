@@ -18,13 +18,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCancel => 'Cancel';
 
   @override
+  String get commonConfirm => 'Confirm';
+
+  @override
   String get commonDismiss => 'Dismiss';
+
+  @override
+  String get commonDelete => 'Delete';
 
   @override
   String get commonSomethingWrong => 'Something went wrong. Please try again.';
 
   @override
   String get commonRequired => 'Required';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navDashboard => 'Dashboard';
 
   @override
   String get roleSelectionWelcome => 'Welcome 👋';
@@ -49,7 +61,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get roleSelectionSwitchAnytime => 'YOU CAN SWITCH YOUR ROLE ANYTIME.';
 
   @override
-  String get userHomeWelcomeBack => 'WELCOME BACK 👋';
+  String get userHomeWelcomeBack => 'Welcome back 👋';
 
   @override
   String get userHomeGuest => 'Guest';
@@ -75,7 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get userHomeViewDetails => 'View Details';
 
   @override
-  String get userHomeNoActiveGiveaways => 'No active giveaways right now — check back soon';
+  String get userHomeNoActiveGiveaways => 'No active giveaways right now';
 
   @override
   String get userHomeCouldNotLoad => 'Couldn\'t load giveaways.';
@@ -177,19 +189,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get participationGeneratingNumber => 'Generating your number…';
 
   @override
-  String get participationSuccessOpening => 'Success! Opening your card…';
+  String get participationSuccessOpening => 'Success! Revealing your code…';
 
   @override
   String get participationTryAgain => 'Try Again';
 
   @override
-  String get scratchCardYourLuckyNumber => 'Your Lucky Number';
+  String get numberRevealTitle => 'Your Participation Code';
 
   @override
-  String get scratchCardScratchToReveal => 'Scratch the card to reveal your number';
+  String get numberRevealSubtitle => 'Generated just for you';
 
   @override
-  String get scratchCardViewInMyGiveaways => 'View in My Giveaways';
+  String get numberRevealViewInMyGiveaways => 'View in My Giveaways';
 
   @override
   String get myGiveawaysTitle => 'My Giveaways';
@@ -202,6 +214,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get myGiveawaysGiveawayFallback => 'Giveaway';
+
+  @override
+  String get myGiveawaysWinner => 'You Won This Giveaway!';
+
+  @override
+  String get myGiveawaysNotSelected => 'Not selected as the winner this time';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get notificationsEmpty => 'You\'re all caught up — no notifications yet.';
+
+  @override
+  String get notificationsCouldNotLoad => 'Couldn\'t load notifications.';
+
+  @override
+  String get notificationsMarkAllRead => 'Mark all read';
 
   @override
   String get settingsTitle => 'Settings';
@@ -233,6 +263,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.';
 
   @override
+  String get settingsSectionGeneral => 'GENERAL';
+
+  @override
+  String get settingsSectionInformation => 'INFORMATION';
+
+  @override
+  String get settingsSectionAccount => 'ACCOUNT';
+
+  @override
+  String get settingsGuestSubtitle => 'Join a giveaway to create your profile';
+
+  @override
   String get adminAuthTitle => 'Admin';
 
   @override
@@ -261,10 +303,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get adminAuthFullNameError => 'Enter your full name';
 
   @override
+  String get adminAuthFullNameHint => 'Your full name';
+
+  @override
   String get adminAuthEmailLabel => 'EMAIL';
 
   @override
   String get adminAuthEmailError => 'Enter a valid email';
+
+  @override
+  String get adminAuthEmailHint => 'example@gmail.com';
 
   @override
   String get adminAuthPasswordLabel => 'PASSWORD';
@@ -274,6 +322,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adminAuthPasswordLengthError => 'Password must be at least 8 characters';
+
+  @override
+  String get adminAuthPasswordHint => '••••••••';
+
+  @override
+  String get adminAuthPasswordRequirementHelper => 'Minimum 8 characters';
 
   @override
   String get adminAuthConfirmPasswordLabel => 'CONFIRM PASSWORD';
@@ -288,10 +342,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get adminAuthAccessCodeError => 'Enter your admin access code';
 
   @override
+  String get adminAuthAccessCodeHint => 'Enter the access code provided to you';
+
+  @override
   String get adminAuthCreateAccountButton => 'CREATE ACCOUNT';
 
   @override
   String get adminAuthSignInButton => 'SIGN IN';
+
+  @override
+  String get adminAuthNoAccessCodeQuestion => 'Don\'t have an Admin Access Code?';
+
+  @override
+  String get adminAuthContactWhatsAppSubtitle => 'Contact us on WhatsApp to request access.';
+
+  @override
+  String get adminAuthWhatsAppPrefilledMessage =>
+      'Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.';
+
+  @override
+  String get adminAuthWhatsAppOpenFailed => 'Could not open WhatsApp. Please try again.';
+
+  @override
+  String get commonShowPassword => 'Show password';
+
+  @override
+  String get commonHidePassword => 'Hide password';
 
   @override
   String get adminDashboardGoodDay => 'Good day 👋';
@@ -312,10 +388,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get adminDashboardWinnersSelected => 'WINNERS SELECTED';
 
   @override
-  String get adminDashboardActiveCampaign => 'Active Campaign';
+  String get adminDashboardActiveCampaign => 'Active Campaigns';
 
   @override
   String get adminDashboardNoActiveCampaigns => 'No active campaigns yet. Tap + to create one.';
+
+  @override
+  String get adminDashboardEndedCampaign => 'Ended Campaigns';
 
   @override
   String get adminDashboardViewAnalytics => 'View Analytics';
@@ -355,13 +434,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createGiveawayOrganizerNameHint => 'e.g. TechCorp Inc.';
 
   @override
-  String get createGiveawayPrizeDescription => 'PRIZE DESCRIPTION';
+  String get createGiveawayPrizeDescription => 'PRIZE DESCRIPTION (OPTIONAL)';
 
   @override
   String get createGiveawayPrizeDescriptionHint => 'Briefly describe what the winner will receive.';
 
   @override
-  String get createGiveawayRules => 'GIVEAWAY DESCRIPTION & RULES';
+  String get createGiveawayRules => 'GIVEAWAY DESCRIPTION & RULES (OPTIONAL)';
 
   @override
   String get createGiveawayRulesHint => 'Detail the full terms, conditions, and extra info.';
@@ -394,7 +473,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createGiveawayTimePlaceholder => '--:--';
 
   @override
-  String get createGiveawayMissingDates => 'Please set start date, end date, and end time.';
+  String get createGiveawayMissingDates =>
+      'Please set the start date and time, and the end date and time.';
 
   @override
   String get createGiveawayEndBeforeStart => 'End date must be on or after the start date.';
@@ -406,17 +486,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get giveawayAnalyticsTitle => 'Giveaway Analytics';
 
   @override
-  String get giveawayAnalyticsSelectWinnerTitle => 'Select Winner?';
+  String get giveawayAnalyticsSelectParticipantTitle => 'Select a Participant';
 
   @override
-  String get giveawayAnalyticsSelectWinnerBody =>
-      'A winner will be picked at random from all eligible participants. This cannot be undone.';
+  String get giveawayAnalyticsConfirmWinnerTitle => 'Confirm Winner';
+
+  @override
+  String giveawayAnalyticsConfirmWinnerBody(String code, String name) {
+    return 'Select participant $code ($name) as the winner?';
+  }
 
   @override
   String get giveawayAnalyticsSelectWinnerAction => 'Select Winner';
 
   @override
+  String get giveawayAnalyticsSelectAnotherWinnerAction => 'Select Another Winner';
+
+  @override
   String get giveawayAnalyticsWinnerSelected => 'Winner selected! A notification was sent.';
+
+  @override
+  String get giveawayAnalyticsNoEligibleParticipants => 'Every participant has already won.';
 
   @override
   String get giveawayAnalyticsTotalJoined => 'Total Joined';
@@ -434,14 +524,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get giveawayAnalyticsNoParticipants => 'No participants yet.';
 
   @override
-  String giveawayAnalyticsTicketNumber(int sequence) {
-    return 'Ticket #$sequence';
+  String giveawayAnalyticsParticipationCode(String code) {
+    return 'Code $code';
   }
 
   @override
-  String giveawayAnalyticsWinnerTicket(String number) {
-    return 'Winner selected: ticket #$number';
+  String get giveawayAnalyticsWinnersSectionTitle => 'Winner';
+
+  @override
+  String get giveawayAnalyticsViewWinners => 'View Winner';
+
+  @override
+  String get giveawayAnalyticsNoWinners => 'No winners yet.';
+
+  @override
+  String get giveawayAnalyticsRemoveFromView => 'Remove from view';
+
+  @override
+  String get giveawayAnalyticsWinnerLabel => 'Winner';
+
+  @override
+  String giveawayAnalyticsWinnerRank(int rank) {
+    return 'Winner #$rank';
   }
+
+  @override
+  String get giveawayAnalyticsSelectedAtLabel => 'Selected At';
 
   @override
   String get giveawayAnalyticsJustNow => 'Just now';
@@ -462,10 +570,73 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get giveawayAnalyticsChooseParticipantTooltip => 'Choose participant';
+
+  @override
+  String giveawayAnalyticsPendingSelection(String code, String name) {
+    return 'Manually targeting $code · $name';
+  }
+
+  @override
+  String get giveawayAnalyticsClearSelectionTooltip => 'Clear selection';
+
+  @override
+  String get giveawayAnalyticsSelecting => 'Selecting winner…';
+
+  @override
+  String get giveawayAnalyticsWheelErrorTitle => 'Couldn\'t select a winner';
+
+  @override
+  String get giveawayAnalyticsWheelDoneAction => 'Done';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayTooltip => 'Delete giveaway';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayTitle => 'Delete Giveaway?';
+
+  @override
+  String get giveawayAnalyticsDeleteGiveawayBody =>
+      'This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.';
+
+  @override
+  String get giveawayAnalyticsGiveawayDeleted => 'Giveaway deleted.';
+
+  @override
   String get adminProfileTitle => 'Admin Profile';
 
   @override
   String get adminProfileAdministrator => 'Administrator';
+
+  @override
+  String get adminProfileSignOutConfirmBody => 'You\'ll return to the role selection screen.';
+
+  @override
+  String get adminAnalysisTitle => 'Analysis';
+
+  @override
+  String get adminAnalysisTotalGiveaways => 'TOTAL GIVEAWAYS';
+
+  @override
+  String get adminAnalysisActiveGiveaways => 'ACTIVE';
+
+  @override
+  String get adminAnalysisFinishedGiveaways => 'FINISHED';
+
+  @override
+  String get adminAnalysisTotalParticipants => 'TOTAL PARTICIPANTS';
+
+  @override
+  String get adminAnalysisTotalWinners => 'WINNERS SELECTED';
+
+  @override
+  String get adminAnalysisGrowthTrend => 'Participation Growth (Last 7 Days)';
+
+  @override
+  String get adminAnalysisCouldNotLoad => 'Couldn\'t load analysis.';
+
+  @override
+  String get adminAnalysisNoData => 'No giveaways yet — create one to see analysis here.';
 
   @override
   String get winnerCelebrationTitle => 'WINNER';
@@ -506,7 +677,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failureUnauthorized => 'You are not authorized to do that.';
 
   @override
-  String get failureDuplicatePhone => 'This phone number is already registered.';
+  String get failurePhoneAlreadyRegisteredElsewhere =>
+      'This phone number is already registered on another device.';
+
+  @override
+  String get failurePhoneAlreadyInUse => 'This phone number is already used by another account.';
 
   @override
   String get failureDuplicateParticipation => 'You\'ve already joined this giveaway.';
@@ -519,4 +694,147 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failureRateLimited => 'Too many attempts. Please wait a moment and try again.';
+
+  @override
+  String get settingsEditProfile => 'Edit Profile';
+
+  @override
+  String get editProfileTitle => 'Edit Profile';
+
+  @override
+  String get editProfileSubtitle => 'Keep your name and phone number up to date.';
+
+  @override
+  String get editProfileSaveAction => 'Save Changes';
+
+  @override
+  String get editProfileUpdateSuccess => 'Profile updated';
+
+  @override
+  String get browseAll => 'All';
+
+  @override
+  String get browseClearSearch => 'Clear search';
+
+  @override
+  String get browseUpcoming => 'Upcoming';
+
+  @override
+  String get browseEndingSoon => 'Ending Soon';
+
+  @override
+  String get browseStartsIn => 'Starts';
+
+  @override
+  String get browseDayShort => 'd';
+
+  @override
+  String get browseHourShort => 'h left';
+
+  @override
+  String get browseJoined => 'joined';
+
+  @override
+  String get browseNoGiveaways => 'No giveaways found';
+
+  @override
+  String get browseSearchResults => 'Search Results';
+
+  @override
+  String get browseLoadMore => 'Load more';
+
+  @override
+  String get browseCategoriesRetry => 'Retry loading categories';
+
+  @override
+  String browseUpcomingMessage(String date) {
+    return 'Starts on $date. Participation opens at the scheduled time.';
+  }
+
+  @override
+  String get categoryManagement => 'Category Management';
+
+  @override
+  String get categoryCreate => 'Create Category';
+
+  @override
+  String get categoryEdit => 'Edit Category';
+
+  @override
+  String get categorySelect => 'Select Category';
+
+  @override
+  String get categoryNameEn => 'English name';
+
+  @override
+  String get categoryNameAr => 'Arabic name';
+
+  @override
+  String get categoryIcon => 'Optional emoji icon';
+
+  @override
+  String get categoryOrder => 'Sort order';
+
+  @override
+  String get categoryEnabled => 'Enabled';
+
+  @override
+  String get categoryDisabled => 'Disabled';
+
+  @override
+  String get categoryRequired => 'Enter a valid value';
+
+  @override
+  String get categorySave => 'Save';
+
+  @override
+  String get categoryUnauthorized => 'Category management requires a super administrator.';
+
+  @override
+  String get categoryUncategorized => 'Uncategorized';
+
+  @override
+  String get categoryInactiveKept =>
+      'The existing inactive category is kept until you select a replacement.';
+
+  @override
+  String get categoryEditGiveaway => 'Edit giveaway';
+
+  @override
+  String get scheduleStartTime => 'Start time';
+
+  @override
+  String get scheduleLocalTime => 'Times use this device\'s local timezone and are saved in UTC.';
+
+  @override
+  String get adsPrivacyChoices => 'Advertising privacy choices';
+
+  @override
+  String get scheduleInvalidDates => 'End time must be after start time.';
+
+  @override
+  String get adminDashboardScheduleSection => 'GIVEAWAY SCHEDULE';
+
+  @override
+  String get adminFilterAll => 'All';
+
+  @override
+  String get adminNoFilteredGiveaways => 'No giveaways in this group yet.';
+
+  @override
+  String get createGiveawayEditTitle => 'Edit Giveaway';
+
+  @override
+  String get adminScheduleEditLocked =>
+      'This schedule cannot be changed after a giveaway starts or receives participants.';
+
+  @override
+  String get rewardFrameDialogTitle => 'Make your entry special!';
+
+  @override
+  String get rewardFrameDialogDescription =>
+      'Watch an ad to get a special frame around your participation number in the app.';
+
+  @override
+  String get rewardFrameWatchAd => 'Watch Ad';
 }

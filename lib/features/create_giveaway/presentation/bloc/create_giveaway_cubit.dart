@@ -26,7 +26,22 @@ class CreateGiveawayCubit extends Cubit<CreateGiveawayState> {
     required String endTime,
     Uint8List? imageBytes,
     String? imageExtension,
+    String? categoryId,
+    DateTime? startsAt,
+    DateTime? endsAt,
+    String? editingId,
+    String? existingImageUrl,
   }) async {
+    if (state.status == CreateGiveawayStatus.submitting) return;
+    if (startsAt != null && endsAt != null && !endsAt.isAfter(startsAt)) {
+      emit(
+        state.copyWith(
+          status: CreateGiveawayStatus.error,
+          failure: const InvalidGiveawayScheduleFailure(),
+        ),
+      );
+      return;
+    }
     emit(state.copyWith(status: CreateGiveawayStatus.submitting));
 
     final adminId = _client.auth.currentUser?.id;
@@ -40,7 +55,7 @@ class CreateGiveawayCubit extends Cubit<CreateGiveawayState> {
       return;
     }
 
-    String? imageUrl;
+    String? imageUrl = existingImageUrl;
     if (imageBytes != null && imageExtension != null) {
       final uploadResult = await _storageRepository.uploadGiveawayImage(
         bytes: imageBytes,
@@ -64,6 +79,10 @@ class CreateGiveawayCubit extends Cubit<CreateGiveawayState> {
       endDate: endDate,
       endTime: endTime,
       createdByAdminId: adminId,
+      categoryId: categoryId,
+      startsAt: startsAt,
+      endsAt: endsAt,
+      editingId: editingId,
     );
 
     result.fold(

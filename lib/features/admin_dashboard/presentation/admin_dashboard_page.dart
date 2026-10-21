@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/di/injection.dart';
@@ -6,7 +7,11 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
+import '../../../shared/widgets/app_bottom_nav.dart';
 import '../../../shared/widgets/app_network_image.dart';
+import '../../../shared/models/giveaway.dart';
+import '../../../shared/models/giveaway_category.dart';
+import '../../../shared/repositories/category_repository.dart';
 import '../../create_giveaway/presentation/create_giveaway_page.dart';
 import '../../giveaway_analytics/presentation/giveaway_analytics_page.dart';
 import 'bloc/admin_dashboard_cubit.dart';
@@ -18,7 +23,9 @@ class AdminDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => AdminDashboardCubit(getIt(), getIt())..load(),
+      create: (_) => AdminDashboardCubit(getIt(), getIt(), getIt())
+        ..load()
+        ..subscribeToRealtime(),
       child: const _AdminDashboardView(),
     );
   }
@@ -32,17 +39,29 @@ class _AdminDashboardView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.surface,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primary,
-        onPressed: () async {
-          final created = await Navigator.of(
+      // This page renders inside AdminShell's GlassScaffold, which floats
+      // its own Liquid Glass bottom nav bar ABOVE this inner Scaffold in a
+      // separate Stack layer -- this Scaffold has no `bottomNavigationBar`
+      // of its own, so it doesn't know to reserve space for that bar and a
+      // default-positioned FAB sits underneath/behind it. Padding the FAB
+      // up by the nav's actual computed footprint (pill height + its own
+      // padding + the device safe area -- see AppBottomNav.footprint, the
+      // single source of truth GlassScaffold itself uses) keeps it clear on
+      // every screen size without a hardcoded, device-specific offset.
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: AppBottomNav.footprint(context)),
+        child: FloatingActionButton(
+          backgroundColor: AppColors.primary,
+          // No manual reload here on return -- AdminDashboardCubit reloads
+          // itself the moment GiveawayRepository.createGiveaway() confirms
+          // success (see its `giveawayCreated` stream subscription), so a
+          // second explicit `.load()` here would just be a redundant
+          // network request racing the same reload.
+          onPressed: () => Navigator.of(
             context,
-          ).push<bool>(MaterialPageRoute(builder: (_) => const CreateGiveawayPage()));
-          if (created == true && context.mounted) {
-            context.read<AdminDashboardCubit>().load();
-          }
-        },
-        child: const Icon(Icons.add_rounded, color: Colors.white),
+          ).push<bool>(MaterialPageRoute(builder: (_) => const CreateGiveawayPage())),
+          child: const Icon(AppIcons.add, color: Colors.white),
+        ),
       ),
       body: SafeArea(
         child: BlocBuilder<AdminDashboardCubit, AdminDashboardState>(
@@ -69,7 +88,14 @@ class _AdminDashboardView extends StatelessWidget {
             return RefreshIndicator(
               onRefresh: () => context.read<AdminDashboardCubit>().load(),
               child: ListView(
-                padding: const EdgeInsets.all(AppSpacing.containerPadding),
+                padding: EdgeInsets.fromLTRB(
+                  AppSpacing.containerPadding,
+                  AppSpacing.containerPadding,
+                  AppSpacing.containerPadding,
+                  // Nav footprint + FAB clearance so the last card and the
+                  // floating "+" button are never covered.
+                  AppBottomNav.footprint(context) + AppSpacing.xxl,
+                ),
                 children: [
                   Text(
                     l10n.adminDashboardGoodDay,
@@ -81,7 +107,7 @@ class _AdminDashboardView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _StatCard(
-                          icon: Icons.campaign_rounded,
+                          icon: AppIcons.campaign,
                           label: l10n.adminDashboardActiveGiveaways,
                           value: '${state.activeCount}',
                         ),
@@ -89,7 +115,7 @@ class _AdminDashboardView extends StatelessWidget {
                       const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: _StatCard(
-                          icon: Icons.people_alt_rounded,
+                          icon: AppIcons.participants,
                           label: l10n.adminDashboardTotalParticipants,
                           value: '${state.totalParticipants}',
                         ),
@@ -101,7 +127,7 @@ class _AdminDashboardView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _StatCard(
-                          icon: Icons.check_circle_rounded,
+                          icon: AppIcons.checkCircle,
                           label: l10n.adminDashboardFinished,
                           value: '${state.finishedCount}',
                         ),
@@ -109,7 +135,7 @@ class _AdminDashboardView extends StatelessWidget {
                       const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: _StatCard(
-                          icon: Icons.emoji_events_rounded,
+                          icon: AppIcons.trophy,
                           label: l10n.adminDashboardWinnersSelected,
                           value: '${state.winnersSelectedCount}',
                         ),
@@ -117,30 +143,7 @@ class _AdminDashboardView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: AppSpacing.xl),
-                  if (state.activeCampaign != null) ...[
-                    Text(
-                      l10n.adminDashboardActiveCampaign,
-                      style: AppTypography.headlineMd.copyWith(fontSize: 20),
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-                    _ActiveCampaignCard(
-                      giveawayId: state.activeCampaign!.id,
-                      title: state.activeCampaign!.title,
-                      organizerName: state.activeCampaign!.organizerName,
-                      imageUrl: state.activeCampaign!.imageUrl,
-                      participantCount: state.activeCampaign!.participantCount,
-                    ),
-                  ] else
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: AppSpacing.xl),
-                      child: Center(
-                        child: Text(
-                          l10n.adminDashboardNoActiveCampaigns,
-                          style: AppTypography.bodyMd,
-                        ),
-                      ),
-                    ),
-                  const SizedBox(height: AppSpacing.xxl),
+                  _CampaignSections(state: state),
                 ],
               ),
             );
@@ -186,20 +189,18 @@ class _StatCard extends StatelessWidget {
   }
 }
 
-class _ActiveCampaignCard extends StatelessWidget {
-  const _ActiveCampaignCard({
-    required this.giveawayId,
-    required this.title,
-    required this.organizerName,
-    required this.imageUrl,
-    required this.participantCount,
+class _CampaignCard extends StatelessWidget {
+  const _CampaignCard({
+    required this.giveaway,
+    required this.isEnded,
+    this.isUpcoming = false,
+    this.categoryName,
   });
 
-  final String giveawayId;
-  final String title;
-  final String organizerName;
-  final String? imageUrl;
-  final int participantCount;
+  final Giveaway giveaway;
+  final bool isEnded;
+  final bool isUpcoming;
+  final String? categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -219,23 +220,65 @@ class _ActiveCampaignCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: AppNetworkImage(
-              url: imageUrl,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.card)),
-            ),
+          Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: AppNetworkImage(
+                  url: giveaway.imageUrl,
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.card)),
+                ),
+              ),
+              // Same Active/Ended badge language already used on the User
+              // side (My Giveaways) and Giveaway Analytics -- one status
+              // badge look across the whole app.
+              PositionedDirectional(
+                top: AppSpacing.sm,
+                end: AppSpacing.sm,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: isUpcoming
+                        ? AppColors.primary
+                        : isEnded
+                        ? AppColors.outline
+                        : AppColors.success,
+                    borderRadius: BorderRadius.circular(AppRadius.full),
+                  ),
+                  child: Text(
+                    isUpcoming
+                        ? l10n.browseUpcoming
+                        : isEnded
+                        ? l10n.statusEnded
+                        : l10n.statusActive,
+                    style: AppTypography.labelSm.copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(AppSpacing.md),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(organizerName.toUpperCase(), style: AppTypography.labelSm),
-                Text(title, style: AppTypography.headlineMd.copyWith(fontSize: 18)),
+                Text(giveaway.organizerName.toUpperCase(), style: AppTypography.labelSm),
+                Text(giveaway.title, style: AppTypography.headlineMd.copyWith(fontSize: 18)),
+                if (isUpcoming) ...[
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    '${l10n.scheduleStartTime}: ${MaterialLocalizations.of(context).formatMediumDate(giveaway.startsAt)} ${MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime(giveaway.startsAt))}',
+                    style: AppTypography.bodyMd,
+                  ),
+                  Text(
+                    '${l10n.createGiveawayEndDate}: ${MaterialLocalizations.of(context).formatMediumDate(giveaway.endsAt)} ${MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime(giveaway.endsAt))}',
+                    style: AppTypography.bodyMd,
+                  ),
+                  Text(categoryName ?? l10n.categoryUncategorized, style: AppTypography.labelSm),
+                ],
                 const SizedBox(height: AppSpacing.xs),
                 Text(
-                  l10n.adminDashboardParticipantsCount(participantCount),
+                  l10n.adminDashboardParticipantsCount(giveaway.participantCount),
                   style: AppTypography.bodyMd,
                 ),
                 const SizedBox(height: AppSpacing.md),
@@ -244,10 +287,25 @@ class _ActiveCampaignCard extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => GiveawayAnalyticsPage(giveawayId: giveawayId),
+                        builder: (_) => GiveawayAnalyticsPage(giveawayId: giveaway.id),
                       ),
                     ),
                     child: Text(l10n.adminDashboardViewAnalytics),
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    icon: const Icon(AppIcons.edit),
+                    label: Text(l10n.categoryEditGiveaway),
+                    onPressed: () async {
+                      final changed = await Navigator.of(context).push<bool>(
+                        MaterialPageRoute(builder: (_) => CreateGiveawayPage(giveaway: giveaway)),
+                      );
+                      if (changed == true && context.mounted) {
+                        context.read<AdminDashboardCubit>().load();
+                      }
+                    },
                   ),
                 ),
               ],
@@ -257,4 +315,90 @@ class _ActiveCampaignCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _CampaignSections extends StatefulWidget {
+  const _CampaignSections({required this.state});
+  final AdminDashboardState state;
+
+  @override
+  State<_CampaignSections> createState() => _CampaignSectionsState();
+}
+
+class _CampaignSectionsState extends State<_CampaignSections> {
+  String _filter = 'all';
+  List<GiveawayCategory> _categories = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    if (getIt.isRegistered<CategoryRepository>()) _loadCategories();
+  }
+
+  Future<void> _loadCategories() async {
+    final result = await getIt<CategoryRepository>().getCategories();
+    if (!mounted) return;
+    result.fold((_) {}, (rows) => setState(() => _categories = rows));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final all = [
+      ...widget.state.upcomingCampaigns,
+      ...widget.state.activeCampaigns,
+      ...widget.state.endedCampaigns,
+    ];
+    final rows = switch (_filter) {
+      'upcoming' => widget.state.upcomingCampaigns,
+      'active' => widget.state.activeCampaigns,
+      'ended' => widget.state.endedCampaigns,
+      _ => all,
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          children: [
+            _filterChip('all', l10n.adminFilterAll),
+            _filterChip('upcoming', l10n.browseUpcoming),
+            _filterChip('active', l10n.statusActive),
+            _filterChip('ended', l10n.statusEnded),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.md),
+        if (rows.isEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppSpacing.xl),
+            child: Center(child: Text(l10n.adminNoFilteredGiveaways, style: AppTypography.bodyMd)),
+          )
+        else
+          for (final giveaway in rows) ...[
+            _CampaignCard(
+              giveaway: giveaway,
+              isEnded: giveaway.effectiveStatus == GiveawayStatus.ended,
+              isUpcoming: giveaway.effectiveStatus == GiveawayStatus.scheduled,
+              categoryName: _categoryName(giveaway),
+            ),
+            const SizedBox(height: AppSpacing.md),
+          ],
+      ],
+    );
+  }
+
+  String? _categoryName(Giveaway giveaway) {
+    final id = giveaway.categoryId;
+    if (id == null) return null;
+    for (final category in _categories) {
+      if (category.id == id) return category.label(Localizations.localeOf(context).languageCode);
+    }
+    return null;
+  }
+
+  Widget _filterChip(String value, String label) => ChoiceChip(
+    label: Text(label),
+    selected: _filter == value,
+    onSelected: (_) => setState(() => _filter = value),
+  );
 }

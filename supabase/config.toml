@@ -1,0 +1,8 @@
+[functions.verify-ad-reward]
+verify_jwt = false
+
+[functions.prepare-rewarded-frame]
+verify_jwt = true
+
+[functions.cancel-rewarded-frame]
+verify_jwt = true

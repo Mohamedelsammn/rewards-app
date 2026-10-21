@@ -12,7 +12,9 @@ class AdminDashboardState extends Equatable {
     this.totalParticipants = 0,
     this.finishedCount = 0,
     this.winnersSelectedCount = 0,
-    this.activeCampaign,
+    this.activeCampaigns = const [],
+    this.upcomingCampaigns = const [],
+    this.endedCampaigns = const [],
     this.failure,
   });
 
@@ -21,7 +23,20 @@ class AdminDashboardState extends Equatable {
   final int totalParticipants;
   final int finishedCount;
   final int winnersSelectedCount;
-  final Giveaway? activeCampaign;
+
+  /// All of this admin's own active giveaways -- rendered as one card each
+  /// (implementation-plan.md's Admin Dashboard section). Now that there is
+  /// no standalone Giveaways list, this is the only place an admin reaches
+  /// "View Analysis" for a specific campaign, so it must show every active
+  /// campaign, not just the first.
+  final List<Giveaway> activeCampaigns;
+  final List<Giveaway> upcomingCampaigns;
+
+  /// A giveaway ending (a winner selected, manually or automatically) must
+  /// never make it disappear from the admin's app -- this is the historical/
+  /// ended counterpart to [activeCampaigns], rendered as its own section so
+  /// the giveaway, its winner(s), and its analytics all stay reachable.
+  final List<Giveaway> endedCampaigns;
   final Failure? failure;
 
   AdminDashboardState copyWith({
@@ -30,7 +45,9 @@ class AdminDashboardState extends Equatable {
     int? totalParticipants,
     int? finishedCount,
     int? winnersSelectedCount,
-    Giveaway? activeCampaign,
+    List<Giveaway>? activeCampaigns,
+    List<Giveaway>? upcomingCampaigns,
+    List<Giveaway>? endedCampaigns,
     Failure? failure,
   }) {
     return AdminDashboardState(
@@ -39,7 +56,9 @@ class AdminDashboardState extends Equatable {
       totalParticipants: totalParticipants ?? this.totalParticipants,
       finishedCount: finishedCount ?? this.finishedCount,
       winnersSelectedCount: winnersSelectedCount ?? this.winnersSelectedCount,
-      activeCampaign: activeCampaign ?? this.activeCampaign,
+      activeCampaigns: activeCampaigns ?? this.activeCampaigns,
+      upcomingCampaigns: upcomingCampaigns ?? this.upcomingCampaigns,
+      endedCampaigns: endedCampaigns ?? this.endedCampaigns,
       failure: failure,
     );
   }
@@ -51,7 +70,9 @@ class AdminDashboardState extends Equatable {
     totalParticipants,
     finishedCount,
     winnersSelectedCount,
-    activeCampaign,
+    activeCampaigns,
+    upcomingCampaigns,
+    endedCampaigns,
     failure,
   ];
 }

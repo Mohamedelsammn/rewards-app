@@ -11,6 +11,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/models/winner.dart';
+import '../../../shared/repositories/participation_repository.dart';
 import '../../../shared/repositories/winner_repository.dart';
 import '../../../shared/widgets/app_network_image.dart';
 import '../../../shared/widgets/primary_gradient_button.dart';
@@ -52,6 +53,10 @@ class _WinnerCelebrationPageState extends State<WinnerCelebrationPage> {
 
   Future<void> _acknowledge({bool viewGiveaway = false}) async {
     await getIt<WinnerRepository>().acknowledgeCelebration(widget.winner.id);
+    // The winning giveaway just transitioned to `ended` server-side -- clear
+    // the cached My Giveaways list so it doesn't keep showing stale
+    // active/unresolved state for up to CacheKeys.myParticipationsTtl.
+    await getIt<ParticipationRepository>().invalidateMyParticipations();
     if (!mounted) return;
     Navigator.of(context).pop();
     if (viewGiveaway) {
@@ -114,73 +119,80 @@ class _WinnerCelebrationPageState extends State<WinnerCelebrationPage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.containerPadding),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ShaderMask(
-                    shaderCallback: (bounds) => AppColors.gradientGold.createShader(bounds),
-                    child: Text(
-                      l10n.winnerCelebrationTitle,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.display.copyWith(
-                        color: Colors.white,
-                        fontSize: 52,
-                        letterSpacing: 2,
+            SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.containerPadding,
+                    vertical: AppSpacing.lg,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ShaderMask(
+                        shaderCallback: (bounds) => AppColors.gradientGold.createShader(bounds),
+                        child: Text(
+                          l10n.winnerCelebrationTitle,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.display.copyWith(
+                            color: Colors.white,
+                            fontSize: 52,
+                            letterSpacing: 2,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Text(
-                    l10n.winnerCelebrationCongratulations,
-                    textAlign: TextAlign.center,
-                    style: AppTypography.bodyLg.copyWith(color: Colors.white),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.md),
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceContainerLowest,
-                      borderRadius: BorderRadius.circular(AppRadius.card),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: AppNetworkImage(
-                            url: widget.winner.giveawayImageUrl,
-                            borderRadius: BorderRadius.circular(AppRadius.chip),
-                          ),
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        l10n.winnerCelebrationCongratulations,
+                        textAlign: TextAlign.center,
+                        style: AppTypography.bodyLg.copyWith(color: Colors.white),
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      Container(
+                        padding: const EdgeInsets.all(AppSpacing.md),
+                        decoration: BoxDecoration(
+                          color: AppColors.surfaceContainerLowest,
+                          borderRadius: BorderRadius.circular(AppRadius.card),
                         ),
-                        const SizedBox(width: AppSpacing.sm),
-                        Flexible(
-                          child: Text(
-                            widget.winner.giveawayTitle ?? l10n.winnerCelebrationYourPrize,
-                            style: AppTypography.headlineMd.copyWith(fontSize: 18),
-                          ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 56,
+                              height: 56,
+                              child: AppNetworkImage(
+                                url: widget.winner.giveawayImageUrl,
+                                borderRadius: BorderRadius.circular(AppRadius.chip),
+                              ),
+                            ),
+                            const SizedBox(width: AppSpacing.sm),
+                            Flexible(
+                              child: Text(
+                                widget.winner.giveawayTitle ?? l10n.winnerCelebrationYourPrize,
+                                style: AppTypography.headlineMd.copyWith(fontSize: 18),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
+                      PrimaryGradientButton(
+                        label: l10n.winnerCelebrationViewPrize,
+                        icon: Icons.card_giftcard_rounded,
+                        gradient: AppColors.gradientGold,
+                        onPressed: () => _acknowledge(viewGiveaway: true),
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      TextButton(
+                        onPressed: () => _acknowledge(),
+                        child: Text(
+                          l10n.winnerCelebrationDismiss,
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: AppSpacing.xl),
-                  PrimaryGradientButton(
-                    label: l10n.winnerCelebrationViewPrize,
-                    icon: Icons.card_giftcard_rounded,
-                    gradient: AppColors.gradientGold,
-                    onPressed: () => _acknowledge(viewGiveaway: true),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  TextButton(
-                    onPressed: () => _acknowledge(),
-                    child: Text(
-                      l10n.winnerCelebrationDismiss,
-                      style: const TextStyle(color: Colors.white70),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],

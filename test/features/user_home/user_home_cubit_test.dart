@@ -1,4 +1,4 @@
-import 'package:bloc_test/bloc_test.dart';
+import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:rewardsapp/core/error/failure.dart';
@@ -6,83 +6,139 @@ import 'package:rewardsapp/core/error/result.dart';
 import 'package:rewardsapp/features/user_home/presentation/bloc/user_home_cubit.dart';
 import 'package:rewardsapp/features/user_home/presentation/bloc/user_home_state.dart';
 import 'package:rewardsapp/shared/models/giveaway.dart';
+import 'package:rewardsapp/shared/models/giveaway_category.dart';
+import 'package:rewardsapp/shared/repositories/category_repository.dart';
 import 'package:rewardsapp/shared/repositories/giveaway_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class MockGiveawayRepository extends Mock implements GiveawayRepository {}
+class Repo extends Mock implements GiveawayRepository {}
 
-Giveaway _giveaway(String id, String title) => Giveaway(
-  id: id,
-  title: title,
-  organizerName: 'Org',
-  prizeDescription: 'Prize',
-  descriptionRules: 'Rules',
+class Categories extends Mock implements CategoryRepository {}
+
+class Client extends Mock implements SupabaseClient {}
+
+Giveaway row(int i) => Giveaway(
+  id: '$i',
+  title: 'Giveaway $i',
+  organizerName: 'Organizer',
+  prizeDescription: '',
+  descriptionRules: '',
   imageUrl: null,
-  startDate: DateTime(2026, 1, 1),
-  endDate: DateTime(2026, 1, 10),
+  startDate: DateTime(2026),
+  endDate: DateTime(2030),
   endTime: '18:00',
   status: GiveawayStatus.active,
   numberDigitWidth: 4,
   maxParticipants: null,
-  participantCount: 5,
+  participantCount: i,
 );
-
 void main() {
-  late MockGiveawayRepository repository;
-
+  late Repo repo;
+  late Categories categories;
+  late UserHomeCubit cubit;
   setUp(() {
-    repository = MockGiveawayRepository();
+    repo = Repo();
+    categories = Categories();
+    when(
+      () => repo.getBrowsePage(
+        page: any(named: 'page'),
+        query: any(named: 'query'),
+        categoryId: any(named: 'categoryId'),
+      ),
+    ).thenAnswer((_) async => const Result.success([]));
+    cubit = UserHomeCubit(repo, Client(), categories: categories);
   });
-
-  group('UserHomeCubit', () {
-    blocTest<UserHomeCubit, UserHomeState>(
-      'emits loading then loaded on successful fetch',
-      build: () => UserHomeCubit(repository),
-      setUp: () {
-        when(() => repository.getGiveaways(forceRefresh: false)).thenAnswer(
-          (_) async => Result.success([_giveaway('1', 'iPhone'), _giveaway('2', 'Tesla')]),
-        );
-      },
-      act: (cubit) => cubit.load(),
-      expect: () => [
-        const UserHomeState(status: UserHomeStatus.loading),
-        UserHomeState(
-          status: UserHomeStatus.loaded,
-          allGiveaways: [_giveaway('1', 'iPhone'), _giveaway('2', 'Tesla')],
-        ),
-      ],
+  tearDown(() => cubit.close());
+  test('first page is bounded; loadMore deduplicates and stops on final page', () async {
+    when(
+      () => repo.getBrowsePage(),
+    ).thenAnswer((_) async => Result.success(List.generate(24, row)));
+    when(
+      () => repo.getBrowsePage(page: 1),
+    ).thenAnswer((_) async => Result.success([row(23), row(24)]));
+    await cubit.load();
+    expect(cubit.state.hasMore, true);
+    await Future.wait([cubit.loadMore(), cubit.loadMore()]);
+    expect(cubit.state.allGiveaways.length, 25);
+    expect(cubit.state.hasMore, false);
+    verify(() => repo.getBrowsePage(page: 1)).called(1);
+  });
+  test('debounces Arabic title input and skips equivalent queries', () async {
+    cubit.onSearchChanged('ه');
+    cubit.onSearchChanged('هاتف');
+    await Future<void>.delayed(const Duration(milliseconds: 340));
+    expect(cubit.state.searchQuery, 'هاتف');
+    verify(() => repo.getBrowsePage(query: 'هاتف')).called(1);
+    cubit.onSearchChanged(' هاتف ');
+    await Future<void>.delayed(const Duration(milliseconds: 340));
+    verifyNever(() => repo.getBrowsePage(query: 'هاتف'));
+  });
+  test('stale response cannot replace a newer category selection', () async {
+    final old = Completer<Result<List<Giveaway>>>();
+    when(() => repo.getBrowsePage()).thenAnswer((_) => old.future);
+    final loading = cubit.load();
+    cubit.selectCategory('phones');
+    await Future<void>.delayed(Duration.zero);
+    old.complete(Result.success([row(0)]));
+    await loading;
+    expect(cubit.state.categoryId, 'phones');
+    expect(cubit.state.allGiveaways, isEmpty);
+    verify(() => repo.getBrowsePage(categoryId: 'phones')).called(1);
+  });
+  test('All clears the category filter and clear search resets query', () async {
+    cubit.selectCategory('phones');
+    await Future<void>.delayed(Duration.zero);
+    cubit.selectCategory(null);
+    await Future<void>.delayed(Duration.zero);
+    cubit.onSearchChanged('Phone');
+    await Future<void>.delayed(const Duration(milliseconds: 340));
+    cubit.clearSearch();
+    await Future<void>.delayed(Duration.zero);
+    expect(cubit.state.categoryId, null);
+    expect(cubit.state.searchQuery, '');
+  });
+  test('pagination failure preserves loaded rows and can retry', () async {
+    when(
+      () => repo.getBrowsePage(),
+    ).thenAnswer((_) async => Result.success(List.generate(24, row)));
+    when(
+      () => repo.getBrowsePage(page: 1),
+    ).thenAnswer((_) async => const Result.failure(NetworkFailure()));
+    await cubit.load();
+    await cubit.loadMore();
+    expect(cubit.state.allGiveaways.length, 24);
+    expect(cubit.state.failure, isA<NetworkFailure>());
+    when(() => repo.getBrowsePage(page: 1)).thenAnswer((_) async => const Result.success([]));
+    await cubit.loadMore();
+    expect(cubit.state.hasMore, false);
+    expect(cubit.state.failure, null);
+  });
+  test('disabled/removed selected category returns to All', () async {
+    cubit.selectCategory('inactive');
+    await Future<void>.delayed(Duration.zero);
+    when(() => categories.getCategories()).thenAnswer(
+      (_) async => const Result.success([
+        GiveawayCategory(id: 'phones', nameEn: 'Phones', nameAr: 'الهواتف'),
+      ]),
     );
-
-    blocTest<UserHomeCubit, UserHomeState>(
-      'emits loading then error on failure',
-      build: () => UserHomeCubit(repository),
-      setUp: () {
-        when(
-          () => repository.getGiveaways(forceRefresh: false),
-        ).thenAnswer((_) async => const Result.failure(NetworkFailure()));
-      },
-      act: (cubit) => cubit.load(),
-      expect: () => [
-        const UserHomeState(status: UserHomeStatus.loading),
-        const UserHomeState(status: UserHomeStatus.error, failure: NetworkFailure()),
-      ],
-    );
-
-    test('filteredGiveaways narrows by case-insensitive title match', () {
-      const state = UserHomeState();
-      final populated = state.copyWith(
-        allGiveaways: [_giveaway('1', 'iPhone 17 Pro'), _giveaway('2', 'Tesla Model S')],
-        searchQuery: 'tesla',
-      );
-      expect(populated.filteredGiveaways, [_giveaway('2', 'Tesla Model S')]);
-    });
-
-    test('featured is the first giveaway and popular excludes it', () {
-      const state = UserHomeState();
-      final populated = state.copyWith(
-        allGiveaways: [_giveaway('1', 'A'), _giveaway('2', 'B'), _giveaway('3', 'C')],
-      );
-      expect(populated.featured, _giveaway('1', 'A'));
-      expect(populated.popular, [_giveaway('2', 'B'), _giveaway('3', 'C')]);
-    });
+    await cubit.loadCategories();
+    await Future<void>.delayed(Duration.zero);
+    expect(cubit.state.categoryId, null);
+    expect(cubit.state.categories.length, 1);
+  });
+  test('cold failure shows recoverable error', () async {
+    when(
+      () => repo.getBrowsePage(),
+    ).thenAnswer((_) async => const Result.failure(NetworkFailure()));
+    await cubit.load();
+    expect(cubit.state.status, UserHomeStatus.error);
+  });
+  test('closing while a page is pending discards its response', () async {
+    final pending = Completer<Result<List<Giveaway>>>();
+    when(() => repo.getBrowsePage()).thenAnswer((_) => pending.future);
+    final loading = cubit.load();
+    await cubit.close();
+    pending.complete(Result.success([row(1)]));
+    await loading;
   });
 }

@@ -1,0 +1,15 @@
+---
+import {
+  ArrowRight, CalendarDays, Check, Gift, Globe, LayoutDashboard, Menu,
+  Search, ShieldCheck, Sparkles, Ticket, Trophy, UsersRound,
+} from '@lucide/astro';
+const { name = 'sparkles', size = 22 } = Astro.props as { name?: string; size?: number };
+const icons: Record<string, typeof Sparkles> = {
+  arrow: ArrowRight, calendar: CalendarDays, check: Check, gift: Gift,
+  globe: Globe, dashboard: LayoutDashboard, menu: Menu, search: Search,
+  shield: ShieldCheck, sparkles: Sparkles, ticket: Ticket, trophy: Trophy,
+  users: UsersRound,
+};
+const Icon = icons[name] ?? Sparkles;
+---
+<Icon width={size} height={size} aria-hidden="true" stroke-width={1.8}/>

@@ -75,4 +75,23 @@ void main() {
     expect(capturedPhone, '+12025550190');
     expect(capturedCountry, 'US');
   });
+
+  testWidgets('tapping outside a focused field dismisses the keyboard and clears focus', (
+    tester,
+  ) async {
+    await pumpForm(tester, onSubmit: (_, _, _) {});
+
+    final nameField = find.widgetWithText(TextFormField, 'Jane Doe');
+    await tester.tap(nameField);
+    await tester.pumpAndSettle();
+
+    expect(tester.testTextInput.isVisible, isTrue);
+
+    // Tap somewhere that isn't a text field -- the title text, per every
+    // TextFormField's `onTapOutside: (_) => FocusScope.of(context).unfocus()`.
+    await tester.tap(find.text('Create Your Account'));
+    await tester.pumpAndSettle();
+
+    expect(tester.testTextInput.isVisible, isFalse);
+  });
 }

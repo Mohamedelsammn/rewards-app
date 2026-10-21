@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { copy, site } from '../../content/site';
+const t = copy.ar;
+---
+<SiteLayout lang="ar" page="home">
+  <section class="container hero">
+    <div>
+      <span class="eyebrow"><Icon name="sparkles" size={17}/>{t.home.eyebrow}</span>
+      <h1>{t.home.titleA}<br/><span class="gradient-text">{t.home.titleB}</span></h1>
+      <p class="lead">{t.home.lead}</p>
+      <div class="actions"><a class="button button-primary" href={site.playUrl} target="_blank" rel="noopener noreferrer">{t.home.download}<Icon name="arrow" size={19}/></a><a class="button button-secondary" href="/ar/about/">{t.nav.about}</a></div>
+    </div>
+    <div class="hero-visual" aria-label="واجهة تصفح المسابقات في التطبيق" role="img">
+      <div class="visual-orb"></div><div class="float-badge badge-one"><Icon name="check" size={18}/> مشاركة مؤهلة</div>
+      <div class="phone-card"><div class="phone-top"></div><div class="phone-welcome">مرحباً بعودتك 👋</div><div class="phone-title">اكتشف المسابقات</div><div class="phone-search">⌕ &nbsp; ابحث عن مسابقة…</div><div class="mini-card"><div class="mini-image"></div><div><div class="mini-title">تصفح الحملة</div><div class="mini-caption">راجع الشروط والتواريخ</div></div></div><div class="mini-card"><div class="mini-image blue"></div><div><div class="mini-title">شارك عند الأهلية</div><div class="mini-caption">تأكيد مشاركتك</div></div></div><div class="mini-card"><div class="mini-image green"></div><div><div class="mini-title">تابع التفاصيل</div><div class="mini-caption">شاهد رقم المشاركة</div></div></div></div>
+      <div class="float-badge badge-two"><Icon name="ticket" size={18}/> رقم المشاركة</div>
+    </div>
+  </section>
+  <section class="section"><div class="container"><div class="section-heading"><span class="eyebrow"><Icon name="gift" size={16}/> {t.home.how}</span><h2>{t.home.how}</h2><p>{t.home.howLead}</p></div><div class="steps">{t.home.steps.map((step, i) => <article class="step"><div class="step-icon"><Icon name={['search','shield','ticket','trophy'][i]} size={24}/></div><h3>{step.title}</h3><p>{step.body}</p></article>)}</div></div></section>
+  <section class="container section" style="padding-top:10px"><div class="organizer"><div><span class="eyebrow"><Icon name="dashboard" size={16}/> أدوات المنظم</span><h2>{t.home.adminTitle}</h2><p>{t.home.adminLead}</p></div><div class="organizer-list">{t.home.adminItems.map(item => <div class="organizer-item"><span class="step-icon"><Icon name="check" size={19}/></span><div><strong>{item.title}</strong><span>{item.body}</span></div></div>)}</div></div><div class="cta"><div><h2>{t.home.ctaTitle}</h2><p>{t.home.ctaBody}</p></div><a class="button" href={site.playUrl} target="_blank" rel="noopener noreferrer">{t.home.browse}<Icon name="arrow" size={19}/></a></div></section>
+</SiteLayout>

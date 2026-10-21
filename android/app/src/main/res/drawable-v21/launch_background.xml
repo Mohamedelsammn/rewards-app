@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Modify this file to customize your launch splash screen -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="?android:colorBackground" />
+<!-- Native window background shown from process start until Flutter draws
+     its first frame (the Flutter SplashPage). Matches AppColors.surface
+     (#FCF8FF), the same background _SplashBody uses, so this native window
+     and the Flutter splash that replaces it are visually continuous,
+     with no white/blank flash in between.
 
-    <!-- You can insert your own image assets here -->
-    <!-- <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@mipmap/launch_image" />
-    </item> -->
+     Deliberately a fixed color rather than ?android:colorBackground (the
+     previous, theme-relative value): the Flutter splash itself always
+     renders AppColors.surface regardless of system dark mode (MaterialApp
+     only sets `theme:`, no `darkTheme:`), so matching it unconditionally
+     avoids a light/dark mismatch flash on devices in system dark mode. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/splash_background" />
 </layer-list>

@@ -1,15 +1,18 @@
 {
   "@@locale": "en",
-
   "appName": "Reward Giveaway",
-  "@appName": {"description": "App name shown on the splash screen"},
-
+  "@appName": {
+    "description": "App name shown on the splash screen"
+  },
   "commonRetry": "Retry",
   "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
   "commonDismiss": "Dismiss",
+  "commonDelete": "Delete",
   "commonSomethingWrong": "Something went wrong. Please try again.",
   "commonRequired": "Required",
-
+  "navHome": "Home",
+  "navDashboard": "Dashboard",
   "roleSelectionWelcome": "Welcome 👋",
   "roleSelectionChooseHow": "Choose how you'd like to continue.",
   "roleSelectionContinueAsUser": "Continue as User",
@@ -17,8 +20,7 @@
   "roleSelectionContinueAsAdmin": "Continue as Admin",
   "roleSelectionContinueAsAdminSubtitle": "Create and manage giveaway campaigns.",
   "roleSelectionSwitchAnytime": "YOU CAN SWITCH YOUR ROLE ANYTIME.",
-
-  "userHomeWelcomeBack": "WELCOME BACK 👋",
+  "userHomeWelcomeBack": "Welcome back 👋",
   "userHomeGuest": "Guest",
   "userHomeSearchHint": "Search giveaways…",
   "userHomePopularGiveaways": "Popular Giveaways",
@@ -26,17 +28,20 @@
   "userHomeFeaturedGiveaway": "Featured Giveaway",
   "userHomeJoinedCount": "{count} joined",
   "@userHomeJoinedCount": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "userHomeViewDetails": "View Details",
-  "userHomeNoActiveGiveaways": "No active giveaways right now — check back soon",
+  "userHomeNoActiveGiveaways": "No active giveaways right now",
   "userHomeCouldNotLoad": "Couldn't load giveaways.",
   "statusActive": "Active",
   "statusEnded": "Ended",
   "statusDraft": "Draft",
   "statusScheduled": "Scheduled",
   "statusArchived": "Archived",
-
   "giveawayDetailsAboutPrize": "About this prize",
   "giveawayDetailsHowToParticipate": "How to Participate",
   "giveawayDetailsRules": "Rules",
@@ -45,19 +50,33 @@
   "giveawayDetailsYoureIn": "You're in!",
   "giveawayDetailsYoureInWithNumber": "You're in! #{number}",
   "@giveawayDetailsYoureInWithNumber": {
-    "placeholders": {"number": {"type": "String"}}
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
   },
   "giveawayDetailsCouldNotLoad": "Couldn't load this giveaway.",
   "giveawayDetailsEnded": "Ended",
   "giveawayDetailsHoursLeft": "{hours} h left",
   "@giveawayDetailsHoursLeft": {
-    "placeholders": {"hours": {"type": "int"}}
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
   },
   "giveawayDetailsDaysHoursLeft": "{days} d {hours} h left",
   "@giveawayDetailsDaysHoursLeft": {
-    "placeholders": {"days": {"type": "int"}, "hours": {"type": "int"}}
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
   },
-
   "registrationTitle": "Create Your Account",
   "registrationSubtitle": "Enter your information to start participating.",
   "registrationFullNameLabel": "FULL NAME",
@@ -70,21 +89,23 @@
   "registrationPhoneInvalidError": "Enter a valid phone number",
   "registrationContinue": "CONTINUE",
   "registrationAgreeTerms": "By continuing you agree to our Privacy Policy and Terms.",
-
   "participationJoinGiveaway": "Join Giveaway",
   "participationGeneratingNumber": "Generating your number…",
-  "participationSuccessOpening": "Success! Opening your card…",
+  "participationSuccessOpening": "Success! Revealing your code…",
   "participationTryAgain": "Try Again",
-
-  "scratchCardYourLuckyNumber": "Your Lucky Number",
-  "scratchCardScratchToReveal": "Scratch the card to reveal your number",
-  "scratchCardViewInMyGiveaways": "View in My Giveaways",
-
+  "numberRevealTitle": "Your Participation Code",
+  "numberRevealSubtitle": "Generated just for you",
+  "numberRevealViewInMyGiveaways": "View in My Giveaways",
   "myGiveawaysTitle": "My Giveaways",
   "myGiveawaysEmpty": "You haven't joined any giveaways yet",
   "myGiveawaysCouldNotLoad": "Couldn't load your giveaways.",
   "myGiveawaysGiveawayFallback": "Giveaway",
-
+  "myGiveawaysWinner": "You Won This Giveaway!",
+  "myGiveawaysNotSelected": "Not selected as the winner this time",
+  "notificationsTitle": "Notifications",
+  "notificationsEmpty": "You're all caught up — no notifications yet.",
+  "notificationsCouldNotLoad": "Couldn't load notifications.",
+  "notificationsMarkAllRead": "Mark all read",
   "settingsTitle": "Settings",
   "settingsLanguage": "Language",
   "settingsAbout": "About",
@@ -94,7 +115,10 @@
   "settingsSignOutConfirmTitle": "Sign Out?",
   "settingsSignOutConfirmBody": "You'll return to the role selection screen. Your saved giveaways and history stay on this device.",
   "settingsAboutBody": "Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.",
-
+  "settingsSectionGeneral": "GENERAL",
+  "settingsSectionInformation": "INFORMATION",
+  "settingsSectionAccount": "ACCOUNT",
+  "settingsGuestSubtitle": "Join a giveaway to create your profile",
   "adminAuthTitle": "Admin",
   "adminAuthCreateAccount": "Create Admin Account",
   "adminAuthSignInTitle": "Admin Sign In",
@@ -104,48 +128,65 @@
   "adminAuthSignUp": "Sign Up",
   "adminAuthFullNameLabel": "FULL NAME",
   "adminAuthFullNameError": "Enter your full name",
+  "adminAuthFullNameHint": "Your full name",
   "adminAuthEmailLabel": "EMAIL",
   "adminAuthEmailError": "Enter a valid email",
+  "adminAuthEmailHint": "example@gmail.com",
   "adminAuthPasswordLabel": "PASSWORD",
   "adminAuthPasswordEmptyError": "Enter your password",
   "adminAuthPasswordLengthError": "Password must be at least 8 characters",
+  "adminAuthPasswordHint": "••••••••",
+  "adminAuthPasswordRequirementHelper": "Minimum 8 characters",
   "adminAuthConfirmPasswordLabel": "CONFIRM PASSWORD",
   "adminAuthPasswordsNoMatch": "Passwords do not match",
   "adminAuthAccessCodeLabel": "ADMIN ACCESS CODE",
   "adminAuthAccessCodeError": "Enter your admin access code",
+  "adminAuthAccessCodeHint": "Enter the access code provided to you",
   "adminAuthCreateAccountButton": "CREATE ACCOUNT",
   "adminAuthSignInButton": "SIGN IN",
-
+  "adminAuthNoAccessCodeQuestion": "Don't have an Admin Access Code?",
+  "adminAuthContactWhatsAppSubtitle": "Contact us on WhatsApp to request access.",
+  "adminAuthWhatsAppPrefilledMessage": "Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.",
+  "adminAuthWhatsAppOpenFailed": "Could not open WhatsApp. Please try again.",
+  "commonShowPassword": "Show password",
+  "commonHidePassword": "Hide password",
   "adminDashboardGoodDay": "Good day 👋",
   "adminDashboardAdministrator": "Administrator",
   "adminDashboardActiveGiveaways": "ACTIVE GIVEAWAYS",
   "adminDashboardTotalParticipants": "TOTAL PARTICIPANTS",
   "adminDashboardFinished": "FINISHED",
   "adminDashboardWinnersSelected": "WINNERS SELECTED",
-  "adminDashboardActiveCampaign": "Active Campaign",
+  "adminDashboardActiveCampaign": "Active Campaigns",
   "adminDashboardNoActiveCampaigns": "No active campaigns yet. Tap + to create one.",
+  "adminDashboardEndedCampaign": "Ended Campaigns",
   "adminDashboardViewAnalytics": "View Analytics",
   "adminDashboardCouldNotLoad": "Couldn't load dashboard.",
   "adminDashboardParticipantsCount": "{count} participants",
   "@adminDashboardParticipantsCount": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "adminGiveawaysTitle": "Giveaways",
   "adminGiveawaysEmpty": "No giveaways yet.",
   "adminGiveawaysParticipantsCount": "{count} participants",
   "@adminGiveawaysParticipantsCount": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "createGiveawayTitle": "Create Giveaway",
   "createGiveawayGiveawayTitle": "GIVEAWAY TITLE",
   "createGiveawayGiveawayTitleHint": "e.g. iPhone 17 Pro Max",
   "createGiveawayOrganizerName": "ORGANIZER NAME",
   "createGiveawayOrganizerNameHint": "e.g. TechCorp Inc.",
-  "createGiveawayPrizeDescription": "PRIZE DESCRIPTION",
+  "createGiveawayPrizeDescription": "PRIZE DESCRIPTION (OPTIONAL)",
   "createGiveawayPrizeDescriptionHint": "Briefly describe what the winner will receive.",
-  "createGiveawayRules": "GIVEAWAY DESCRIPTION & RULES",
+  "createGiveawayRules": "GIVEAWAY DESCRIPTION & RULES (OPTIONAL)",
   "createGiveawayRulesHint": "Detail the full terms, conditions, and extra info.",
   "createGiveawayImage": "GIVEAWAY IMAGE",
   "createGiveawayTapToBrowse": "Tap to browse from device",
@@ -156,65 +197,187 @@
   "createGiveawayEndTime": "END TIME",
   "createGiveawayDatePlaceholder": "mm/dd/yyyy",
   "createGiveawayTimePlaceholder": "--:--",
-  "createGiveawayMissingDates": "Please set start date, end date, and end time.",
+  "createGiveawayMissingDates": "Please set the start date and time, and the end date and time.",
   "createGiveawayEndBeforeStart": "End date must be on or after the start date.",
   "createGiveawayPublish": "Publish Giveaway",
-
   "giveawayAnalyticsTitle": "Giveaway Analytics",
-  "giveawayAnalyticsSelectWinnerTitle": "Select Winner?",
-  "giveawayAnalyticsSelectWinnerBody": "A winner will be picked at random from all eligible participants. This cannot be undone.",
+  "giveawayAnalyticsSelectParticipantTitle": "Select a Participant",
+  "giveawayAnalyticsConfirmWinnerTitle": "Confirm Winner",
+  "giveawayAnalyticsConfirmWinnerBody": "Select participant {code} ({name}) as the winner?",
+  "@giveawayAnalyticsConfirmWinnerBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "giveawayAnalyticsSelectWinnerAction": "Select Winner",
+  "giveawayAnalyticsSelectAnotherWinnerAction": "Select Another Winner",
   "giveawayAnalyticsWinnerSelected": "Winner selected! A notification was sent.",
+  "giveawayAnalyticsNoEligibleParticipants": "Every participant has already won.",
   "giveawayAnalyticsTotalJoined": "Total Joined",
   "giveawayAnalyticsActiveToday": "Active Today",
   "giveawayAnalyticsParticipationGrowth": "Participation Growth",
   "giveawayAnalyticsRecentParticipants": "Recent Participants",
   "giveawayAnalyticsNoParticipants": "No participants yet.",
-  "giveawayAnalyticsTicketNumber": "Ticket #{sequence}",
-  "@giveawayAnalyticsTicketNumber": {
-    "placeholders": {"sequence": {"type": "int"}}
+  "giveawayAnalyticsParticipationCode": "Code {code}",
+  "@giveawayAnalyticsParticipationCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
   },
-  "giveawayAnalyticsWinnerTicket": "Winner selected: ticket #{number}",
-  "@giveawayAnalyticsWinnerTicket": {
-    "placeholders": {"number": {"type": "String"}}
+  "giveawayAnalyticsWinnersSectionTitle": "Winner",
+  "giveawayAnalyticsViewWinners": "View Winner",
+  "giveawayAnalyticsNoWinners": "No winners yet.",
+  "giveawayAnalyticsRemoveFromView": "Remove from view",
+  "giveawayAnalyticsWinnerLabel": "Winner",
+  "giveawayAnalyticsWinnerRank": "Winner #{rank}",
+  "@giveawayAnalyticsWinnerRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
   },
+  "giveawayAnalyticsSelectedAtLabel": "Selected At",
   "giveawayAnalyticsJustNow": "Just now",
   "giveawayAnalyticsMinsAgo": "{count} mins ago",
   "@giveawayAnalyticsMinsAgo": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "giveawayAnalyticsHoursAgo": "{count} hours ago",
   "@giveawayAnalyticsHoursAgo": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "giveawayAnalyticsDaysAgo": "{count} days ago",
   "@giveawayAnalyticsDaysAgo": {
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
+  "giveawayAnalyticsChooseParticipantTooltip": "Choose participant",
+  "giveawayAnalyticsPendingSelection": "Manually targeting {code} · {name}",
+  "@giveawayAnalyticsPendingSelection": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "giveawayAnalyticsClearSelectionTooltip": "Clear selection",
+  "giveawayAnalyticsSelecting": "Selecting winner…",
+  "giveawayAnalyticsWheelErrorTitle": "Couldn't select a winner",
+  "giveawayAnalyticsWheelDoneAction": "Done",
+  "giveawayAnalyticsDeleteGiveawayTooltip": "Delete giveaway",
+  "giveawayAnalyticsDeleteGiveawayTitle": "Delete Giveaway?",
+  "giveawayAnalyticsDeleteGiveawayBody": "This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.",
+  "giveawayAnalyticsGiveawayDeleted": "Giveaway deleted.",
   "adminProfileTitle": "Admin Profile",
   "adminProfileAdministrator": "Administrator",
-
+  "adminProfileSignOutConfirmBody": "You'll return to the role selection screen.",
+  "adminAnalysisTitle": "Analysis",
+  "adminAnalysisTotalGiveaways": "TOTAL GIVEAWAYS",
+  "adminAnalysisActiveGiveaways": "ACTIVE",
+  "adminAnalysisFinishedGiveaways": "FINISHED",
+  "adminAnalysisTotalParticipants": "TOTAL PARTICIPANTS",
+  "adminAnalysisTotalWinners": "WINNERS SELECTED",
+  "adminAnalysisGrowthTrend": "Participation Growth (Last 7 Days)",
+  "adminAnalysisCouldNotLoad": "Couldn't load analysis.",
+  "adminAnalysisNoData": "No giveaways yet — create one to see analysis here.",
   "winnerCelebrationTitle": "WINNER",
   "winnerCelebrationCongratulations": "Congratulations! You've won:",
   "winnerCelebrationViewPrize": "View Prize",
   "winnerCelebrationDismiss": "Dismiss",
   "winnerCelebrationYourPrize": "Your prize",
-
   "privacyPolicyTitle": "Privacy Policy",
   "termsConditionsTitle": "Terms & Conditions",
   "legalLastUpdated": "Last updated: {date}",
   "@legalLastUpdated": {
-    "placeholders": {"date": {"type": "String"}}
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
   },
   "legalContactUs": "Contact us",
-
   "failureNoInternet": "No internet connection.",
   "failureServer": "Something went wrong. Please try again.",
   "failureUnauthorized": "You are not authorized to do that.",
-  "failureDuplicatePhone": "This phone number is already registered.",
+  "failurePhoneAlreadyRegisteredElsewhere": "This phone number is already registered on another device.",
+  "failurePhoneAlreadyInUse": "This phone number is already used by another account.",
   "failureDuplicateParticipation": "You've already joined this giveaway.",
   "failureGiveawayFull": "This giveaway has reached its participant limit.",
   "failureGiveawayEnded": "This giveaway is no longer active.",
-  "failureRateLimited": "Too many attempts. Please wait a moment and try again."
+  "failureRateLimited": "Too many attempts. Please wait a moment and try again.",
+  "settingsEditProfile": "Edit Profile",
+  "editProfileTitle": "Edit Profile",
+  "editProfileSubtitle": "Keep your name and phone number up to date.",
+  "editProfileSaveAction": "Save Changes",
+  "editProfileUpdateSuccess": "Profile updated",
+  "browseAll": "All",
+  "browseClearSearch": "Clear search",
+  "browseUpcoming": "Upcoming",
+  "browseEndingSoon": "Ending Soon",
+  "browseStartsIn": "Starts",
+  "browseDayShort": "d",
+  "browseHourShort": "h left",
+  "browseJoined": "joined",
+  "browseNoGiveaways": "No giveaways found",
+  "browseSearchResults": "Search Results",
+  "browseLoadMore": "Load more",
+  "browseCategoriesRetry": "Retry loading categories",
+  "browseUpcomingMessage": "Starts on {date}. Participation opens at the scheduled time.",
+  "categoryManagement": "Category Management",
+  "categoryCreate": "Create Category",
+  "categoryEdit": "Edit Category",
+  "categorySelect": "Select Category",
+  "categoryNameEn": "English name",
+  "categoryNameAr": "Arabic name",
+  "categoryIcon": "Optional emoji icon",
+  "categoryOrder": "Sort order",
+  "categoryEnabled": "Enabled",
+  "categoryDisabled": "Disabled",
+  "categoryRequired": "Enter a valid value",
+  "categorySave": "Save",
+  "categoryUnauthorized": "Category management requires a super administrator.",
+  "categoryUncategorized": "Uncategorized",
+  "categoryInactiveKept": "The existing inactive category is kept until you select a replacement.",
+  "categoryEditGiveaway": "Edit giveaway",
+  "scheduleStartTime": "Start time",
+  "scheduleLocalTime": "Times use this device's local timezone and are saved in UTC.",
+  "adsPrivacyChoices": "Advertising privacy choices",
+  "@browseUpcomingMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleInvalidDates": "End time must be after start time.",
+  "adminDashboardScheduleSection": "GIVEAWAY SCHEDULE",
+  "adminFilterAll": "All",
+  "adminNoFilteredGiveaways": "No giveaways in this group yet.",
+  "createGiveawayEditTitle": "Edit Giveaway",
+  "adminScheduleEditLocked": "This schedule cannot be changed after a giveaway starts or receives participants."
+  ,"rewardFrameDialogTitle": "Make your entry special!"
+  ,"rewardFrameDialogDescription": "Watch an ad to get a special frame around your participation number in the app."
+  ,"rewardFrameWatchAd": "Watch Ad"
 }

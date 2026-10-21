@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum SplashDestination { roleSelection, userHome }
+enum SplashDestination { roleSelection, userHome, adminShell }
 
 class SplashState extends Equatable {
   const SplashState({this.destination});

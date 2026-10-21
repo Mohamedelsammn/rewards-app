@@ -34,6 +34,16 @@ void main() {
       expect(failureFromEdgeFunctionCode('rate_limited'), isA<RateLimitedFailure>());
     });
 
+    test(
+      'maps phone_already_registered_on_another_device to PhoneAlreadyRegisteredElsewhereFailure',
+      () {
+        expect(
+          failureFromEdgeFunctionCode('phone_already_registered_on_another_device'),
+          isA<PhoneAlreadyRegisteredElsewhereFailure>(),
+        );
+      },
+    );
+
     test('falls back to ServerFailure for unknown codes', () {
       expect(failureFromEdgeFunctionCode('something_unexpected'), isA<ServerFailure>());
     });
@@ -46,13 +56,17 @@ void main() {
       expect(const NetworkFailure().localize(l10n), l10n.failureNoInternet);
       expect(const ServerFailure().localize(l10n), l10n.failureServer);
       expect(const UnauthorizedFailure().localize(l10n), l10n.failureUnauthorized);
-      expect(const DuplicatePhoneFailure().localize(l10n), l10n.failureDuplicatePhone);
+      expect(
+        const PhoneAlreadyRegisteredElsewhereFailure().localize(l10n),
+        l10n.failurePhoneAlreadyRegisteredElsewhere,
+      );
       expect(
         const DuplicateParticipationFailure().localize(l10n),
         l10n.failureDuplicateParticipation,
       );
       expect(const GiveawayFullFailure().localize(l10n), l10n.failureGiveawayFull);
       expect(const GiveawayEndedFailure().localize(l10n), l10n.failureGiveawayEnded);
+      expect(const GiveawayScheduleLockedFailure().localize(l10n), l10n.adminScheduleEditLocked);
       expect(const RateLimitedFailure().localize(l10n), l10n.failureRateLimited);
     });
 

@@ -4,9 +4,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../core/di/injection.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_spacing.dart';
-import '../../../core/theme/app_typography.dart';
-import '../../../l10n/generated/app_localizations.dart';
+import '../../admin_dashboard/presentation/admin_shell.dart';
 import '../../role_selection/presentation/role_selection_page.dart';
 import '../../user_home/presentation/user_home_shell.dart';
 import 'cubit/splash_cubit.dart';
@@ -18,13 +16,14 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SplashCubit(getIt(), getIt())..bootstrap(),
+      create: (_) => SplashCubit(getIt(), getIt(), getIt())..bootstrap(),
       child: BlocListener<SplashCubit, SplashState>(
         listenWhen: (previous, current) => !previous.isReady && current.isReady,
         listener: (context, state) {
           final page = switch (state.destination!) {
             SplashDestination.roleSelection => const RoleSelectionPage(),
             SplashDestination.userHome => const UserHomeShell(),
+            SplashDestination.adminShell => const AdminShell(),
           };
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => page));
         },
@@ -42,16 +41,15 @@ class _SplashBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+ 
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 280, child: Lottie.asset('assets/lottie/splash.json', repeat: true)),
-            const SizedBox(height: AppSpacing.md),
-            Text(l10n.appName, style: AppTypography.headlineLg.copyWith(color: AppColors.primary)),
+            SizedBox(width: 400, child: Lottie.asset('assets/lottie/splash.json', repeat: true)),
+       
           ],
         ),
       ),

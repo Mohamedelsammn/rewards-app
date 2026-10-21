@@ -1,0 +1,311 @@
+{
+  "description": "Creative Rewards extracted screenshot assets and generated illustrative alternatives. Exact crops retain screenshot pixels, including baked-in UI text where noted. Cropped screenshots may contain rounded corners, background and are not transparent cutouts. Generated sheet images are not exact reconstructions.",
+  "assets": [
+    {
+      "file": "01_category_banners/category_pubg_mobile.png",
+      "size": [
+        594,
+        156
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "01_category_banners/category_valorant.png",
+      "size": [
+        594,
+        155
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "01_category_banners/category_instagram.png",
+      "size": [
+        594,
+        156
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "01_category_banners/category_tiktok.png",
+      "size": [
+        594,
+        156
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "01_category_banners/category_facebook.png",
+      "size": [
+        594,
+        155
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "01_category_banners/category_phones.png",
+      "size": [
+        594,
+        156
+      ],
+      "source": "category-page(1).png",
+      "note": "Exact screenshot crop; embedded title/subtitle text"
+    },
+    {
+      "file": "02_home_categories/home_pubg_mobile.png",
+      "size": [
+        145,
+        149
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop"
+    },
+    {
+      "file": "02_home_categories/home_valorant.png",
+      "size": [
+        146,
+        149
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop"
+    },
+    {
+      "file": "02_home_categories/home_instagram.png",
+      "size": [
+        143,
+        149
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop"
+    },
+    {
+      "file": "02_home_categories/home_tiktok.png",
+      "size": [
+        136,
+        149
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop"
+    },
+    {
+      "file": "03_home_rewards_cards/reward_card_airpods_pro.png",
+      "size": [
+        293,
+        217
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop; embedded labels and arrow"
+    },
+    {
+      "file": "03_home_rewards_cards/reward_card_iphone_15_pro.png",
+      "size": [
+        295,
+        217
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop; embedded labels and arrow"
+    },
+    {
+      "file": "03_home_rewards_cards/reward_card_playstation_5.png",
+      "size": [
+        293,
+        213
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop; embedded labels and arrow"
+    },
+    {
+      "file": "03_home_rewards_cards/reward_card_coffee_machine.png",
+      "size": [
+        295,
+        213
+      ],
+      "source": "home-page(3).png",
+      "note": "Exact screenshot crop; embedded labels and arrow"
+    },
+    {
+      "file": "04_reward_product_art/reward_airpods_pro.png",
+      "size": [
+        179,
+        138
+      ],
+      "source": "home-page(3).png",
+      "note": "Artwork crop; background remains from screenshot"
+    },
+    {
+      "file": "04_reward_product_art/reward_iphone_15_pro.png",
+      "size": [
+        166,
+        143
+      ],
+      "source": "home-page(3).png",
+      "note": "Artwork crop; background remains from screenshot"
+    },
+    {
+      "file": "04_reward_product_art/reward_playstation_5.png",
+      "size": [
+        178,
+        125
+      ],
+      "source": "home-page(3).png",
+      "note": "Artwork crop; background remains from screenshot"
+    },
+    {
+      "file": "04_reward_product_art/reward_coffee_machine.png",
+      "size": [
+        150,
+        125
+      ],
+      "source": "home-page(3).png",
+      "note": "Artwork crop; background remains from screenshot"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_60.png",
+      "size": [
+        271,
+        120
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_180.png",
+      "size": [
+        265,
+        120
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_325.png",
+      "size": [
+        271,
+        137
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_660.png",
+      "size": [
+        265,
+        137
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_1800.png",
+      "size": [
+        271,
+        132
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "05_pubg_uc_packages/pubg_uc_3850.png",
+      "size": [
+        265,
+        132
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Exact crop of product artwork tile, no redeem button"
+    },
+    {
+      "file": "06_category_details/pubg_header_reference_crop.png",
+      "size": [
+        645,
+        385
+      ],
+      "source": "categoryDetails -page(1).png",
+      "note": "Header crop includes navigation and UI text; use as visual reference, not flat UI background"
+    },
+    {
+      "file": "06_category_details/pubg_generated_banner.png",
+      "size": [
+        346,
+        194
+      ],
+      "source": "generated asset contact sheet",
+      "note": "Generated illustration alternative, not pixel-exact"
+    },
+    {
+      "file": "06_category_details/valorant_generated_banner.png",
+      "size": [
+        391,
+        148
+      ],
+      "source": "generated asset contact sheet",
+      "note": "Generated illustration alternative, not pixel-exact"
+    },
+    {
+      "file": "07_profile/profile_header_background.png",
+      "size": [
+        480,
+        153
+      ],
+      "source": "generated asset contact sheet",
+      "note": "Generated profile header art without character; crop includes decorative items"
+    },
+    {
+      "file": "08_generated_category_art/art_pubg.png",
+      "size": [
+        254,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    },
+    {
+      "file": "08_generated_category_art/art_valorant.png",
+      "size": [
+        234,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    },
+    {
+      "file": "08_generated_category_art/art_instagram.png",
+      "size": [
+        233,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    },
+    {
+      "file": "08_generated_category_art/art_tiktok.png",
+      "size": [
+        239,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    },
+    {
+      "file": "08_generated_category_art/art_facebook.png",
+      "size": [
+        238,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    },
+    {
+      "file": "08_generated_category_art/art_phones.png",
+      "size": [
+        252,
+        219
+      ],
+      "source": "generated asset contact sheet",
+      "note": "AI-generated art; no text overlays except in-image branding"
+    }
+  ]
+}

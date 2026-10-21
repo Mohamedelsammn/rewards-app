@@ -13,7 +13,10 @@ const List<Locale> kSupportedLocales = [Locale('en'), Locale('ar')];
 /// via [ValueListenableBuilder] and rebuilds `MaterialApp` (and therefore
 /// every `AppLocalizations.of(context)` lookup) immediately.
 class LocaleController extends ValueNotifier<Locale> {
-  LocaleController(this._secureStorage) : super(const Locale('en'));
+  /// Arabic is the first-run fallback. A previously persisted language is
+  /// loaded by [loadPersisted] during bootstrap and takes precedence, so an
+  /// existing English selection is never overwritten on app updates.
+  LocaleController(this._secureStorage) : super(const Locale('ar'));
 
   final SecureStorageService _secureStorage;
 

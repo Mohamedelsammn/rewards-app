@@ -1,8 +1,35 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Required on Android 13+ (API 33) for any notification, including an
+         FCM-delivered one, to be allowed to show at all. firebase_messaging's
+         own library manifest already merges this in, but declaring it
+         explicitly here removes any doubt and matches what
+         FirebaseMessaging.instance.requestPermission() (see
+         NotificationService.initialize()) actually prompts for at runtime. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
-        android:label="rewardsapp"
+        android:label="Rewards App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6633902647647422~7562449689" />
+        <!-- The channel an FCM "notification" message displays under while the
+             app is backgrounded/terminated (no Dart code runs to pick one)
+             must exist before any such message arrives; MainActivity creates it
+             with IMPORTANCE_HIGH on first launch so a fresh install is covered
+             immediately, not just after Firebase's own lazier auto-creation
+             (which defaults to IMPORTANCE_DEFAULT, not HIGH). Must match the
+             channel_id the admin-select-winner Edge Function sends. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="winner_announcements" />
+        <!-- A full-color launcher icon renders as a blank/malformed blob in the
+             status bar; Android notification small icons must be a single-
+             color (alpha-only) shape. Must match the icon name the Edge
+             Function sends. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_notification" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

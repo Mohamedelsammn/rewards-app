@@ -111,11 +111,23 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get commonCancel;
 
+  /// No description provided for @commonConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get commonConfirm;
+
   /// No description provided for @commonDismiss.
   ///
   /// In en, this message translates to:
   /// **'Dismiss'**
   String get commonDismiss;
+
+  /// No description provided for @commonDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDelete;
 
   /// No description provided for @commonSomethingWrong.
   ///
@@ -128,6 +140,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Required'**
   String get commonRequired;
+
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get navDashboard;
 
   /// No description provided for @roleSelectionWelcome.
   ///
@@ -174,7 +198,7 @@ abstract class AppLocalizations {
   /// No description provided for @userHomeWelcomeBack.
   ///
   /// In en, this message translates to:
-  /// **'WELCOME BACK 👋'**
+  /// **'Welcome back 👋'**
   String get userHomeWelcomeBack;
 
   /// No description provided for @userHomeGuest.
@@ -222,7 +246,7 @@ abstract class AppLocalizations {
   /// No description provided for @userHomeNoActiveGiveaways.
   ///
   /// In en, this message translates to:
-  /// **'No active giveaways right now — check back soon'**
+  /// **'No active giveaways right now'**
   String get userHomeNoActiveGiveaways;
 
   /// No description provided for @userHomeCouldNotLoad.
@@ -414,7 +438,7 @@ abstract class AppLocalizations {
   /// No description provided for @participationSuccessOpening.
   ///
   /// In en, this message translates to:
-  /// **'Success! Opening your card…'**
+  /// **'Success! Revealing your code…'**
   String get participationSuccessOpening;
 
   /// No description provided for @participationTryAgain.
@@ -423,23 +447,23 @@ abstract class AppLocalizations {
   /// **'Try Again'**
   String get participationTryAgain;
 
-  /// No description provided for @scratchCardYourLuckyNumber.
+  /// No description provided for @numberRevealTitle.
   ///
   /// In en, this message translates to:
-  /// **'Your Lucky Number'**
-  String get scratchCardYourLuckyNumber;
+  /// **'Your Participation Code'**
+  String get numberRevealTitle;
 
-  /// No description provided for @scratchCardScratchToReveal.
+  /// No description provided for @numberRevealSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Scratch the card to reveal your number'**
-  String get scratchCardScratchToReveal;
+  /// **'Generated just for you'**
+  String get numberRevealSubtitle;
 
-  /// No description provided for @scratchCardViewInMyGiveaways.
+  /// No description provided for @numberRevealViewInMyGiveaways.
   ///
   /// In en, this message translates to:
   /// **'View in My Giveaways'**
-  String get scratchCardViewInMyGiveaways;
+  String get numberRevealViewInMyGiveaways;
 
   /// No description provided for @myGiveawaysTitle.
   ///
@@ -464,6 +488,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Giveaway'**
   String get myGiveawaysGiveawayFallback;
+
+  /// No description provided for @myGiveawaysWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'You Won This Giveaway!'**
+  String get myGiveawaysWinner;
+
+  /// No description provided for @myGiveawaysNotSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected as the winner this time'**
+  String get myGiveawaysNotSelected;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// No description provided for @notificationsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up — no notifications yet.'**
+  String get notificationsEmpty;
+
+  /// No description provided for @notificationsCouldNotLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load notifications.'**
+  String get notificationsCouldNotLoad;
+
+  /// No description provided for @notificationsMarkAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all read'**
+  String get notificationsMarkAllRead;
 
   /// No description provided for @settingsTitle.
   ///
@@ -519,6 +579,30 @@ abstract class AppLocalizations {
   /// **'Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.'**
   String get settingsAboutBody;
 
+  /// No description provided for @settingsSectionGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'GENERAL'**
+  String get settingsSectionGeneral;
+
+  /// No description provided for @settingsSectionInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'INFORMATION'**
+  String get settingsSectionInformation;
+
+  /// No description provided for @settingsSectionAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'ACCOUNT'**
+  String get settingsSectionAccount;
+
+  /// No description provided for @settingsGuestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a giveaway to create your profile'**
+  String get settingsGuestSubtitle;
+
   /// No description provided for @adminAuthTitle.
   ///
   /// In en, this message translates to:
@@ -573,6 +657,12 @@ abstract class AppLocalizations {
   /// **'Enter your full name'**
   String get adminAuthFullNameError;
 
+  /// No description provided for @adminAuthFullNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your full name'**
+  String get adminAuthFullNameHint;
+
   /// No description provided for @adminAuthEmailLabel.
   ///
   /// In en, this message translates to:
@@ -584,6 +674,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid email'**
   String get adminAuthEmailError;
+
+  /// No description provided for @adminAuthEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'example@gmail.com'**
+  String get adminAuthEmailHint;
 
   /// No description provided for @adminAuthPasswordLabel.
   ///
@@ -602,6 +698,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password must be at least 8 characters'**
   String get adminAuthPasswordLengthError;
+
+  /// No description provided for @adminAuthPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'••••••••'**
+  String get adminAuthPasswordHint;
+
+  /// No description provided for @adminAuthPasswordRequirementHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum 8 characters'**
+  String get adminAuthPasswordRequirementHelper;
 
   /// No description provided for @adminAuthConfirmPasswordLabel.
   ///
@@ -627,6 +735,12 @@ abstract class AppLocalizations {
   /// **'Enter your admin access code'**
   String get adminAuthAccessCodeError;
 
+  /// No description provided for @adminAuthAccessCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the access code provided to you'**
+  String get adminAuthAccessCodeHint;
+
   /// No description provided for @adminAuthCreateAccountButton.
   ///
   /// In en, this message translates to:
@@ -638,6 +752,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SIGN IN'**
   String get adminAuthSignInButton;
+
+  /// No description provided for @adminAuthNoAccessCodeQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an Admin Access Code?'**
+  String get adminAuthNoAccessCodeQuestion;
+
+  /// No description provided for @adminAuthContactWhatsAppSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us on WhatsApp to request access.'**
+  String get adminAuthContactWhatsAppSubtitle;
+
+  /// No description provided for @adminAuthWhatsAppPrefilledMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.'**
+  String get adminAuthWhatsAppPrefilledMessage;
+
+  /// No description provided for @adminAuthWhatsAppOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open WhatsApp. Please try again.'**
+  String get adminAuthWhatsAppOpenFailed;
+
+  /// No description provided for @commonShowPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get commonShowPassword;
+
+  /// No description provided for @commonHidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get commonHidePassword;
 
   /// No description provided for @adminDashboardGoodDay.
   ///
@@ -678,7 +828,7 @@ abstract class AppLocalizations {
   /// No description provided for @adminDashboardActiveCampaign.
   ///
   /// In en, this message translates to:
-  /// **'Active Campaign'**
+  /// **'Active Campaigns'**
   String get adminDashboardActiveCampaign;
 
   /// No description provided for @adminDashboardNoActiveCampaigns.
@@ -686,6 +836,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No active campaigns yet. Tap + to create one.'**
   String get adminDashboardNoActiveCampaigns;
+
+  /// No description provided for @adminDashboardEndedCampaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended Campaigns'**
+  String get adminDashboardEndedCampaign;
 
   /// No description provided for @adminDashboardViewAnalytics.
   ///
@@ -756,7 +912,7 @@ abstract class AppLocalizations {
   /// No description provided for @createGiveawayPrizeDescription.
   ///
   /// In en, this message translates to:
-  /// **'PRIZE DESCRIPTION'**
+  /// **'PRIZE DESCRIPTION (OPTIONAL)'**
   String get createGiveawayPrizeDescription;
 
   /// No description provided for @createGiveawayPrizeDescriptionHint.
@@ -768,7 +924,7 @@ abstract class AppLocalizations {
   /// No description provided for @createGiveawayRules.
   ///
   /// In en, this message translates to:
-  /// **'GIVEAWAY DESCRIPTION & RULES'**
+  /// **'GIVEAWAY DESCRIPTION & RULES (OPTIONAL)'**
   String get createGiveawayRules;
 
   /// No description provided for @createGiveawayRulesHint.
@@ -834,7 +990,7 @@ abstract class AppLocalizations {
   /// No description provided for @createGiveawayMissingDates.
   ///
   /// In en, this message translates to:
-  /// **'Please set start date, end date, and end time.'**
+  /// **'Please set the start date and time, and the end date and time.'**
   String get createGiveawayMissingDates;
 
   /// No description provided for @createGiveawayEndBeforeStart.
@@ -855,17 +1011,23 @@ abstract class AppLocalizations {
   /// **'Giveaway Analytics'**
   String get giveawayAnalyticsTitle;
 
-  /// No description provided for @giveawayAnalyticsSelectWinnerTitle.
+  /// No description provided for @giveawayAnalyticsSelectParticipantTitle.
   ///
   /// In en, this message translates to:
-  /// **'Select Winner?'**
-  String get giveawayAnalyticsSelectWinnerTitle;
+  /// **'Select a Participant'**
+  String get giveawayAnalyticsSelectParticipantTitle;
 
-  /// No description provided for @giveawayAnalyticsSelectWinnerBody.
+  /// No description provided for @giveawayAnalyticsConfirmWinnerTitle.
   ///
   /// In en, this message translates to:
-  /// **'A winner will be picked at random from all eligible participants. This cannot be undone.'**
-  String get giveawayAnalyticsSelectWinnerBody;
+  /// **'Confirm Winner'**
+  String get giveawayAnalyticsConfirmWinnerTitle;
+
+  /// No description provided for @giveawayAnalyticsConfirmWinnerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Select participant {code} ({name}) as the winner?'**
+  String giveawayAnalyticsConfirmWinnerBody(String code, String name);
 
   /// No description provided for @giveawayAnalyticsSelectWinnerAction.
   ///
@@ -873,11 +1035,23 @@ abstract class AppLocalizations {
   /// **'Select Winner'**
   String get giveawayAnalyticsSelectWinnerAction;
 
+  /// No description provided for @giveawayAnalyticsSelectAnotherWinnerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Another Winner'**
+  String get giveawayAnalyticsSelectAnotherWinnerAction;
+
   /// No description provided for @giveawayAnalyticsWinnerSelected.
   ///
   /// In en, this message translates to:
   /// **'Winner selected! A notification was sent.'**
   String get giveawayAnalyticsWinnerSelected;
+
+  /// No description provided for @giveawayAnalyticsNoEligibleParticipants.
+  ///
+  /// In en, this message translates to:
+  /// **'Every participant has already won.'**
+  String get giveawayAnalyticsNoEligibleParticipants;
 
   /// No description provided for @giveawayAnalyticsTotalJoined.
   ///
@@ -909,17 +1083,53 @@ abstract class AppLocalizations {
   /// **'No participants yet.'**
   String get giveawayAnalyticsNoParticipants;
 
-  /// No description provided for @giveawayAnalyticsTicketNumber.
+  /// No description provided for @giveawayAnalyticsParticipationCode.
   ///
   /// In en, this message translates to:
-  /// **'Ticket #{sequence}'**
-  String giveawayAnalyticsTicketNumber(int sequence);
+  /// **'Code {code}'**
+  String giveawayAnalyticsParticipationCode(String code);
 
-  /// No description provided for @giveawayAnalyticsWinnerTicket.
+  /// No description provided for @giveawayAnalyticsWinnersSectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Winner selected: ticket #{number}'**
-  String giveawayAnalyticsWinnerTicket(String number);
+  /// **'Winner'**
+  String get giveawayAnalyticsWinnersSectionTitle;
+
+  /// No description provided for @giveawayAnalyticsViewWinners.
+  ///
+  /// In en, this message translates to:
+  /// **'View Winner'**
+  String get giveawayAnalyticsViewWinners;
+
+  /// No description provided for @giveawayAnalyticsNoWinners.
+  ///
+  /// In en, this message translates to:
+  /// **'No winners yet.'**
+  String get giveawayAnalyticsNoWinners;
+
+  /// No description provided for @giveawayAnalyticsRemoveFromView.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from view'**
+  String get giveawayAnalyticsRemoveFromView;
+
+  /// No description provided for @giveawayAnalyticsWinnerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Winner'**
+  String get giveawayAnalyticsWinnerLabel;
+
+  /// No description provided for @giveawayAnalyticsWinnerRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Winner #{rank}'**
+  String giveawayAnalyticsWinnerRank(int rank);
+
+  /// No description provided for @giveawayAnalyticsSelectedAtLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected At'**
+  String get giveawayAnalyticsSelectedAtLabel;
 
   /// No description provided for @giveawayAnalyticsJustNow.
   ///
@@ -945,6 +1155,66 @@ abstract class AppLocalizations {
   /// **'{count} days ago'**
   String giveawayAnalyticsDaysAgo(int count);
 
+  /// No description provided for @giveawayAnalyticsChooseParticipantTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose participant'**
+  String get giveawayAnalyticsChooseParticipantTooltip;
+
+  /// No description provided for @giveawayAnalyticsPendingSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Manually targeting {code} · {name}'**
+  String giveawayAnalyticsPendingSelection(String code, String name);
+
+  /// No description provided for @giveawayAnalyticsClearSelectionTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear selection'**
+  String get giveawayAnalyticsClearSelectionTooltip;
+
+  /// No description provided for @giveawayAnalyticsSelecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Selecting winner…'**
+  String get giveawayAnalyticsSelecting;
+
+  /// No description provided for @giveawayAnalyticsWheelErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t select a winner'**
+  String get giveawayAnalyticsWheelErrorTitle;
+
+  /// No description provided for @giveawayAnalyticsWheelDoneAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get giveawayAnalyticsWheelDoneAction;
+
+  /// No description provided for @giveawayAnalyticsDeleteGiveawayTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete giveaway'**
+  String get giveawayAnalyticsDeleteGiveawayTooltip;
+
+  /// No description provided for @giveawayAnalyticsDeleteGiveawayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Giveaway?'**
+  String get giveawayAnalyticsDeleteGiveawayTitle;
+
+  /// No description provided for @giveawayAnalyticsDeleteGiveawayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.'**
+  String get giveawayAnalyticsDeleteGiveawayBody;
+
+  /// No description provided for @giveawayAnalyticsGiveawayDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Giveaway deleted.'**
+  String get giveawayAnalyticsGiveawayDeleted;
+
   /// No description provided for @adminProfileTitle.
   ///
   /// In en, this message translates to:
@@ -956,6 +1226,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Administrator'**
   String get adminProfileAdministrator;
+
+  /// No description provided for @adminProfileSignOutConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll return to the role selection screen.'**
+  String get adminProfileSignOutConfirmBody;
+
+  /// No description provided for @adminAnalysisTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis'**
+  String get adminAnalysisTitle;
+
+  /// No description provided for @adminAnalysisTotalGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'TOTAL GIVEAWAYS'**
+  String get adminAnalysisTotalGiveaways;
+
+  /// No description provided for @adminAnalysisActiveGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE'**
+  String get adminAnalysisActiveGiveaways;
+
+  /// No description provided for @adminAnalysisFinishedGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'FINISHED'**
+  String get adminAnalysisFinishedGiveaways;
+
+  /// No description provided for @adminAnalysisTotalParticipants.
+  ///
+  /// In en, this message translates to:
+  /// **'TOTAL PARTICIPANTS'**
+  String get adminAnalysisTotalParticipants;
+
+  /// No description provided for @adminAnalysisTotalWinners.
+  ///
+  /// In en, this message translates to:
+  /// **'WINNERS SELECTED'**
+  String get adminAnalysisTotalWinners;
+
+  /// No description provided for @adminAnalysisGrowthTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Participation Growth (Last 7 Days)'**
+  String get adminAnalysisGrowthTrend;
+
+  /// No description provided for @adminAnalysisCouldNotLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load analysis.'**
+  String get adminAnalysisCouldNotLoad;
+
+  /// No description provided for @adminAnalysisNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No giveaways yet — create one to see analysis here.'**
+  String get adminAnalysisNoData;
 
   /// No description provided for @winnerCelebrationTitle.
   ///
@@ -1029,11 +1359,17 @@ abstract class AppLocalizations {
   /// **'You are not authorized to do that.'**
   String get failureUnauthorized;
 
-  /// No description provided for @failureDuplicatePhone.
+  /// No description provided for @failurePhoneAlreadyRegisteredElsewhere.
   ///
   /// In en, this message translates to:
-  /// **'This phone number is already registered.'**
-  String get failureDuplicatePhone;
+  /// **'This phone number is already registered on another device.'**
+  String get failurePhoneAlreadyRegisteredElsewhere;
+
+  /// No description provided for @failurePhoneAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone number is already used by another account.'**
+  String get failurePhoneAlreadyInUse;
 
   /// No description provided for @failureDuplicateParticipation.
   ///
@@ -1058,6 +1394,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Too many attempts. Please wait a moment and try again.'**
   String get failureRateLimited;
+
+  /// No description provided for @settingsEditProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get settingsEditProfile;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfileTitle;
+
+  /// No description provided for @editProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your name and phone number up to date.'**
+  String get editProfileSubtitle;
+
+  /// No description provided for @editProfileSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get editProfileSaveAction;
+
+  /// No description provided for @editProfileUpdateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated'**
+  String get editProfileUpdateSuccess;
+
+  /// No description provided for @browseAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get browseAll;
+
+  /// No description provided for @browseClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get browseClearSearch;
+
+  /// No description provided for @browseUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get browseUpcoming;
+
+  /// No description provided for @browseEndingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Ending Soon'**
+  String get browseEndingSoon;
+
+  /// No description provided for @browseStartsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts'**
+  String get browseStartsIn;
+
+  /// No description provided for @browseDayShort.
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get browseDayShort;
+
+  /// No description provided for @browseHourShort.
+  ///
+  /// In en, this message translates to:
+  /// **'h left'**
+  String get browseHourShort;
+
+  /// No description provided for @browseJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'joined'**
+  String get browseJoined;
+
+  /// No description provided for @browseNoGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'No giveaways found'**
+  String get browseNoGiveaways;
+
+  /// No description provided for @browseSearchResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Results'**
+  String get browseSearchResults;
+
+  /// No description provided for @browseLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get browseLoadMore;
+
+  /// No description provided for @browseCategoriesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry loading categories'**
+  String get browseCategoriesRetry;
+
+  /// No description provided for @browseUpcomingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts on {date}. Participation opens at the scheduled time.'**
+  String browseUpcomingMessage(String date);
+
+  /// No description provided for @categoryManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Category Management'**
+  String get categoryManagement;
+
+  /// No description provided for @categoryCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Category'**
+  String get categoryCreate;
+
+  /// No description provided for @categoryEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Category'**
+  String get categoryEdit;
+
+  /// No description provided for @categorySelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get categorySelect;
+
+  /// No description provided for @categoryNameEn.
+  ///
+  /// In en, this message translates to:
+  /// **'English name'**
+  String get categoryNameEn;
+
+  /// No description provided for @categoryNameAr.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic name'**
+  String get categoryNameAr;
+
+  /// No description provided for @categoryIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional emoji icon'**
+  String get categoryIcon;
+
+  /// No description provided for @categoryOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort order'**
+  String get categoryOrder;
+
+  /// No description provided for @categoryEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get categoryEnabled;
+
+  /// No description provided for @categoryDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get categoryDisabled;
+
+  /// No description provided for @categoryRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid value'**
+  String get categoryRequired;
+
+  /// No description provided for @categorySave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get categorySave;
+
+  /// No description provided for @categoryUnauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Category management requires a super administrator.'**
+  String get categoryUnauthorized;
+
+  /// No description provided for @categoryUncategorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncategorized'**
+  String get categoryUncategorized;
+
+  /// No description provided for @categoryInactiveKept.
+  ///
+  /// In en, this message translates to:
+  /// **'The existing inactive category is kept until you select a replacement.'**
+  String get categoryInactiveKept;
+
+  /// No description provided for @categoryEditGiveaway.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit giveaway'**
+  String get categoryEditGiveaway;
+
+  /// No description provided for @scheduleStartTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Start time'**
+  String get scheduleStartTime;
+
+  /// No description provided for @scheduleLocalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Times use this device\'s local timezone and are saved in UTC.'**
+  String get scheduleLocalTime;
+
+  /// No description provided for @adsPrivacyChoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Advertising privacy choices'**
+  String get adsPrivacyChoices;
+
+  /// No description provided for @scheduleInvalidDates.
+  ///
+  /// In en, this message translates to:
+  /// **'End time must be after start time.'**
+  String get scheduleInvalidDates;
+
+  /// No description provided for @adminDashboardScheduleSection.
+  ///
+  /// In en, this message translates to:
+  /// **'GIVEAWAY SCHEDULE'**
+  String get adminDashboardScheduleSection;
+
+  /// No description provided for @adminFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get adminFilterAll;
+
+  /// No description provided for @adminNoFilteredGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'No giveaways in this group yet.'**
+  String get adminNoFilteredGiveaways;
+
+  /// No description provided for @createGiveawayEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Giveaway'**
+  String get createGiveawayEditTitle;
+
+  /// No description provided for @adminScheduleEditLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'This schedule cannot be changed after a giveaway starts or receives participants.'**
+  String get adminScheduleEditLocked;
+
+  /// No description provided for @rewardFrameDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make your entry special!'**
+  String get rewardFrameDialogTitle;
+
+  /// No description provided for @rewardFrameDialogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch an ad to get a special frame around your participation number in the app.'**
+  String get rewardFrameDialogDescription;
+
+  /// No description provided for @rewardFrameWatchAd.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ad'**
+  String get rewardFrameWatchAd;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

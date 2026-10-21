@@ -34,6 +34,9 @@ class Giveaway extends Equatable {
     required this.numberDigitWidth,
     required this.maxParticipants,
     required this.participantCount,
+    this.categoryId,
+    this.startsAtUtc,
+    this.endsAtUtc,
   });
 
   final String id;
@@ -49,13 +52,31 @@ class Giveaway extends Equatable {
   final int numberDigitWidth;
   final int? maxParticipants;
   final int participantCount;
+  final String? categoryId;
+  final DateTime? startsAtUtc;
+  final DateTime? endsAtUtc;
+  DateTime get startsAt =>
+      (startsAtUtc ?? DateTime.utc(startDate.year, startDate.month, startDate.day)).toLocal();
+  GiveawayStatus effectiveStatusAt(DateTime now) {
+    if (status == GiveawayStatus.draft ||
+        status == GiveawayStatus.archived ||
+        status == GiveawayStatus.unknown) {
+      return status;
+    }
+    if (!now.isBefore(endsAt)) return GiveawayStatus.ended;
+    if (status == GiveawayStatus.ended) return status;
+    return now.isBefore(startsAt) ? GiveawayStatus.scheduled : GiveawayStatus.active;
+  }
+
+  GiveawayStatus get effectiveStatus => effectiveStatusAt(DateTime.now());
 
   /// Combines end_date + end_time into a single instant for countdowns.
   DateTime get endsAt {
+    if (endsAtUtc != null) return endsAtUtc!.toLocal();
     final parts = endTime.split(':');
     final hour = int.tryParse(parts.elementAtOrNull(0) ?? '') ?? 0;
     final minute = int.tryParse(parts.elementAtOrNull(1) ?? '') ?? 0;
-    return DateTime(endDate.year, endDate.month, endDate.day, hour, minute);
+    return DateTime.utc(endDate.year, endDate.month, endDate.day, hour, minute).toLocal();
   }
 
   Duration get timeRemaining {
@@ -63,7 +84,7 @@ class Giveaway extends Equatable {
     return remaining.isNegative ? Duration.zero : remaining;
   }
 
-  bool get isJoinable => status == GiveawayStatus.active && timeRemaining > Duration.zero;
+  bool get isJoinable => effectiveStatus == GiveawayStatus.active;
 
   factory Giveaway.fromJson(Map<String, dynamic> json) {
     return Giveaway(
@@ -80,6 +101,9 @@ class Giveaway extends Equatable {
       numberDigitWidth: json['number_digit_width'] as int? ?? 4,
       maxParticipants: json['max_participants'] as int?,
       participantCount: json['participant_count'] as int? ?? 0,
+      categoryId: json['category_id'] as String?,
+      startsAtUtc: DateTime.tryParse(json['starts_at'] as String? ?? '')?.toUtc(),
+      endsAtUtc: DateTime.tryParse(json['ends_at'] as String? ?? '')?.toUtc(),
     );
   }
 
@@ -97,6 +121,9 @@ class Giveaway extends Equatable {
     'number_digit_width': numberDigitWidth,
     'max_participants': maxParticipants,
     'participant_count': participantCount,
+    'category_id': categoryId,
+    'starts_at': startsAtUtc?.toIso8601String(),
+    'ends_at': endsAtUtc?.toIso8601String(),
   };
 
   @override
@@ -114,6 +141,9 @@ class Giveaway extends Equatable {
     numberDigitWidth,
     maxParticipants,
     participantCount,
+    categoryId,
+    startsAtUtc,
+    endsAtUtc,
   ];
 }
 

@@ -1,0 +1,16 @@
+---
+import { copy, pageUrl, site, type Lang } from '../content/site';
+const { lang } = Astro.props as { lang: Lang };
+const t = copy[lang];
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><a class="brand" href={pageUrl(lang)}><img class="brand-mark" src="/app-logo.png" width="38" height="38" alt=""/><span>Creative Rewards App</span></a><p>{t.home.lead}</p></div>
+      <nav class="footer-links" aria-label={lang === 'ar' ? 'روابط قانونية ودعم' : 'Legal and support links'}>
+        <a href={pageUrl(lang, 'privacy')}>{t.nav.privacy}</a><a href={pageUrl(lang, 'terms')}>{t.nav.terms}</a><a href={pageUrl(lang, 'delete-account')}>{lang === 'ar' ? 'حذف البيانات' : 'Data deletion'}</a><a href={pageUrl(lang, 'contact')}>{t.nav.contact}</a><a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>
+      </nav>
+    </div>
+    <div class="copyright">© {new Date().getFullYear()} Creative Rewards App · <a href={site.playUrl} target="_blank" rel="noopener noreferrer">{t.labels.external}</a></div>
+  </div>
+</footer>

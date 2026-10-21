@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.1.1+5
 
 environment:
   sdk: ^3.12.2
@@ -78,6 +78,8 @@ dependencies:
 
   # Opening mailto: / external Privacy-Policy-Terms links
   url_launcher: ^6.3.1
+  google_mobile_ads: 9.1.0
+  lucide_icons_flutter: 3.1.24
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +93,10 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   mocktail: ^1.0.4
   bloc_test: ^10.0.0
+  # Test-only: lets widget tests fake the url_launcher platform channel (Part
+  # 1's WhatsApp deep link) instead of hitting a real platform implementation.
+  url_launcher_platform_interface: ^2.3.2
+  plugin_platform_interface: ^2.1.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -109,6 +115,14 @@ flutter:
 
   assets:
     - assets/img/
+    - assets/img/redesign/
+    - assets/Creative_Rewards_Assets/01_category_banners/
+    - assets/Creative_Rewards_Assets/02_home_categories/
+    - assets/Creative_Rewards_Assets/04_reward_product_art/
+    - assets/Creative_Rewards_Assets/05_pubg_uc_packages/
+    - assets/Creative_Rewards_Assets/06_category_details/
+    - assets/Creative_Rewards_Assets/07_profile/
+    - assets/Creative_Rewards_Assets/08_generated_category_art/
     - assets/lottie/
 
   # Plus Jakarta Sans / Manrope, bundled locally from the official

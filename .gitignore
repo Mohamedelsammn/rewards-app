@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+/artifacts/
 android/build/
 android/.gradle/
 ios/Flutter/ephemeral/

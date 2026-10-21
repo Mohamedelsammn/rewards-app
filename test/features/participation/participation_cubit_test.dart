@@ -1,4 +1,5 @@
-import 'package:bloc_test/bloc_test.dart';
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:rewardsapp/core/error/failure.dart';
@@ -6,44 +7,25 @@ import 'package:rewardsapp/core/error/result.dart';
 import 'package:rewardsapp/features/participation/presentation/bloc/participation_cubit.dart';
 import 'package:rewardsapp/features/participation/presentation/bloc/participation_state.dart';
 import 'package:rewardsapp/services/secure_storage_service.dart';
+import 'package:rewardsapp/shared/models/giveaway.dart';
 import 'package:rewardsapp/shared/models/participation.dart';
-import 'package:rewardsapp/shared/models/user_profile.dart';
 import 'package:rewardsapp/shared/repositories/giveaway_repository.dart';
 import 'package:rewardsapp/shared/repositories/participation_repository.dart';
 import 'package:rewardsapp/shared/repositories/user_repository.dart';
 
-class MockSecureStorageService extends Mock implements SecureStorageService {}
+class _Storage extends Mock implements SecureStorageService {}
 
-class MockUserRepository extends Mock implements UserRepository {}
+class _Users extends Mock implements UserRepository {}
 
-class MockParticipationRepository extends Mock implements ParticipationRepository {}
+class _Participations extends Mock implements ParticipationRepository {}
 
-class MockGiveawayRepository extends Mock implements GiveawayRepository {}
+class _Giveaways extends Mock implements GiveawayRepository {}
 
-/// V1 has no advertisement system -- participation is a single direct
-/// server call once identity is confirmed, with no ad-gating stage.
 void main() {
-  late MockSecureStorageService secureStorage;
-  late MockUserRepository userRepository;
-  late MockParticipationRepository participationRepository;
-  late MockGiveawayRepository giveawayRepository;
-
-  ParticipationCubit buildCubit() => ParticipationCubit(
-    giveawayId: 'g1',
-    secureStorage: secureStorage,
-    userRepository: userRepository,
-    participationRepository: participationRepository,
-    giveawayRepository: giveawayRepository,
-  );
-
-  setUp(() {
-    secureStorage = MockSecureStorageService();
-    userRepository = MockUserRepository();
-    participationRepository = MockParticipationRepository();
-    giveawayRepository = MockGiveawayRepository();
-
-    when(() => giveawayRepository.invalidateAfterParticipation('g1')).thenAnswer((_) async {});
-  });
+  late _Storage storage;
+  late _Users users;
+  late _Participations participations;
+  late _Giveaways giveaways;
 
   final participation = Participation(
     id: 'p1',
@@ -51,144 +33,206 @@ void main() {
     participationSequence: 1,
     participationNumber: 4821,
     scratchRevealedAt: null,
-    createdAt: DateTime(2026, 1, 1),
+    createdAt: DateTime(2026),
   );
 
-  group('ParticipationCubit', () {
-    blocTest<ParticipationCubit, ParticipationState>(
-      'start() with no cached identity asks for registration',
-      build: buildCubit,
-      setUp: () => when(() => secureStorage.cachedUserId).thenAnswer((_) async => null),
-      act: (cubit) => cubit.start(),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.checkingIdentity),
-        const ParticipationState(step: ParticipationStep.needsRegistration),
-      ],
-    );
+  ParticipationCubit build({Future<bool> Function()? watch}) => ParticipationCubit(
+    giveawayId: 'g1',
+    secureStorage: storage,
+    userRepository: users,
+    participationRepository: participations,
+    giveawayRepository: giveaways,
+    showRewardedAd: watch ?? () async => false,
+  );
 
-    blocTest<ParticipationCubit, ParticipationState>(
-      'start() with a cached identity creates the participation directly (no ad step)',
-      build: buildCubit,
-      setUp: () {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        when(
-          () => participationRepository.createParticipation(giveawayId: 'g1'),
-        ).thenAnswer((_) async => Result.success(participation));
-      },
-      act: (cubit) => cubit.start(),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.checkingIdentity),
-        const ParticipationState(step: ParticipationStep.creatingParticipation),
-        ParticipationState(
-          step: ParticipationStep.success,
+  setUp(() {
+    storage = _Storage();
+    users = _Users();
+    participations = _Participations();
+    giveaways = _Giveaways();
+    when(() => storage.cachedUserId).thenAnswer((_) async => 'profile-1');
+    when(
+      () => participations.getMyParticipationForGiveaway('g1'),
+    ).thenAnswer((_) async => const Result.success(null));
+    when(() => giveaways.getGiveawayById('g1', forceRefresh: true)).thenAnswer(
+      (_) async => Result.success(
+        Giveaway(
+          id: 'g1',
+          title: 'G',
+          organizerName: 'O',
+          prizeDescription: '',
+          descriptionRules: '',
+          imageUrl: null,
+          startDate: DateTime.now().subtract(const Duration(days: 1)),
+          endDate: DateTime.now().add(const Duration(days: 1)),
+          endTime: '23:59',
+          status: GiveawayStatus.active,
+          numberDigitWidth: 4,
+          maxParticipants: null,
+          participantCount: 0,
+        ),
+      ),
+    );
+    when(() => giveaways.invalidateAfterParticipation('g1')).thenAnswer((_) async {});
+    when(() => participations.markRewardFrameEarned('g1')).thenAnswer((_) async {});
+    when(
+      () => participations.attachRewardFrameToParticipation(
+        giveawayId: any(named: 'giveawayId'),
+        participationId: any(named: 'participationId'),
+      ),
+    ).thenAnswer((_) async {});
+    when(() => participations.hasPendingRewardFrame('g1')).thenReturn(false);
+    when(
+      () => participations.hasRewardFrameEntitlement(
+        giveawayId: any(named: 'giveawayId'),
+        participationId: any(named: 'participationId'),
+      ),
+    ).thenReturn(false);
+  });
+
+  test('existing participant resolves directly without preparing or showing an ad', () async {
+    when(
+      () => participations.getMyParticipationForGiveaway('g1'),
+    ).thenAnswer((_) async => Result.success(participation));
+    final cubit = build(watch: () async => fail('not called'));
+    await cubit.start();
+    expect(cubit.state.step, ParticipationStep.alreadyParticipating);
+    expect(cubit.state.participationNumber, 4821);
+    verifyNever(() => participations.markRewardFrameEarned(any()));
+    verifyNever(() => participations.createParticipation(giveawayId: any(named: 'giveawayId')));
+    await cubit.close();
+  });
+
+  test('closing the choice joins freely without showing or recording a rewarded ad', () async {
+    when(
+      () => participations.createParticipation(giveawayId: 'g1'),
+    ).thenAnswer((_) async => Result.success(participation));
+    final cubit = build();
+    await cubit.start();
+    expect(cubit.state.step, ParticipationStep.readyToJoin);
+    await cubit.joinWithoutAd();
+    expect(cubit.state.step, ParticipationStep.success);
+    expect(cubit.state.participationNumber, 4821);
+    expect(cubit.state.rewardedFrameUnlocked, isFalse);
+    verifyNever(() => participations.markRewardFrameEarned(any()));
+    verify(() => participations.createParticipation(giveawayId: 'g1')).called(1);
+    await cubit.close();
+  });
+
+  test(
+    'client reward callback success persists cosmetic entitlement and creates one entry',
+    () async {
+      when(
+        () => participations.createParticipation(giveawayId: 'g1'),
+      ).thenAnswer((_) async => Result.success(participation));
+      var adCalls = 0;
+      final cubit = build(
+        watch: () async {
+          adCalls++;
+          return true;
+        },
+      );
+      await cubit.start();
+      await cubit.joinWithRewardedAd();
+      expect(adCalls, 1);
+      expect(cubit.state.step, ParticipationStep.success);
+      expect(cubit.state.participationNumber, 4821);
+      expect(cubit.state.rewardedFrameUnlocked, isTrue);
+      verify(() => participations.createParticipation(giveawayId: 'g1')).called(1);
+      verify(() => participations.markRewardFrameEarned('g1')).called(1);
+      verify(
+        () => participations.attachRewardFrameToParticipation(
+          giveawayId: 'g1',
           participationId: 'p1',
-          participationNumber: 4821,
         ),
-      ],
-      verify: (_) {
-        verify(() => giveawayRepository.invalidateAfterParticipation('g1')).called(1);
+      ).called(1);
+      await cubit.close();
+    },
+  );
+
+  test('unavailable or failed rewarded ad falls through to free participation', () async {
+    when(
+      () => participations.createParticipation(giveawayId: 'g1'),
+    ).thenAnswer((_) async => Result.success(participation));
+    final cubit = build(watch: () async => false);
+    await cubit.start();
+    await cubit.joinWithRewardedAd();
+    expect(cubit.state.step, ParticipationStep.success);
+    verifyNever(() => participations.markRewardFrameEarned(any()));
+    verifyNever(
+      () => participations.attachRewardFrameToParticipation(
+        giveawayId: any(named: 'giveawayId'),
+        participationId: any(named: 'participationId'),
+      ),
+    );
+    verify(() => participations.createParticipation(giveawayId: 'g1')).called(1);
+    await cubit.close();
+  });
+
+  test('repeated taps cannot issue duplicate participation requests', () async {
+    final gate = Completer<Result<Participation>>();
+    when(() => participations.createParticipation(giveawayId: 'g1')).thenAnswer((_) => gate.future);
+    final cubit = build();
+    await cubit.start();
+    final first = cubit.joinWithoutAd();
+    final duplicate = cubit.joinWithoutAd();
+    gate.complete(Result.success(participation));
+    await Future.wait([first, duplicate]);
+    verify(() => participations.createParticipation(giveawayId: 'g1')).called(1);
+    await cubit.close();
+  });
+
+  test('participation backend failures remain retryable and do not invent a number', () async {
+    when(
+      () => participations.createParticipation(giveawayId: 'g1'),
+    ).thenAnswer((_) async => const Result.failure(NetworkFailure()));
+    final cubit = build();
+    await cubit.start();
+    await cubit.joinWithoutAd();
+    expect(cubit.state.step, ParticipationStep.failure);
+    expect(cubit.state.participationNumber, isNull);
+    await cubit.close();
+  });
+
+  test('earned local frame survives a backend failure and is attached after retry', () async {
+    var attempts = 0;
+    when(() => participations.createParticipation(giveawayId: 'g1')).thenAnswer((_) async {
+      attempts++;
+      return attempts == 1 ? const Result.failure(NetworkFailure()) : Result.success(participation);
+    });
+    final cubit = build(watch: () async => true);
+    await cubit.start();
+    await cubit.joinWithRewardedAd();
+    expect(cubit.state.step, ParticipationStep.failure);
+    await cubit.retry();
+    expect(cubit.state.step, ParticipationStep.success);
+    verify(() => participations.markRewardFrameEarned('g1')).called(1);
+    verify(
+      () =>
+          participations.attachRewardFrameToParticipation(giveawayId: 'g1', participationId: 'p1'),
+    ).called(1);
+    await cubit.close();
+  });
+
+  test('a persisted pending reward resumes join without a second ad prompt', () async {
+    when(() => participations.hasPendingRewardFrame('g1')).thenReturn(true);
+    when(
+      () => participations.createParticipation(giveawayId: 'g1'),
+    ).thenAnswer((_) async => Result.success(participation));
+    var adCalls = 0;
+    final cubit = build(
+      watch: () async {
+        adCalls++;
+        return true;
       },
     );
 
-    blocTest<ParticipationCubit, ParticipationState>(
-      'submitRegistration failure surfaces the mapped Failure',
-      build: buildCubit,
-      setUp: () {
-        when(
-          () => userRepository.registerOrLink(
-            fullName: any(named: 'fullName'),
-            phone: any(named: 'phone'),
-            countryCode: any(named: 'countryCode'),
-          ),
-        ).thenAnswer((_) async => const Result.failure(DuplicatePhoneFailure()));
-      },
-      act: (cubit) =>
-          cubit.submitRegistration(fullName: 'Jane', phone: '+12025550190', countryCode: 'US'),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.submittingRegistration),
-        const ParticipationState(step: ParticipationStep.failure, failure: DuplicatePhoneFailure()),
-      ],
-    );
+    await cubit.start();
 
-    blocTest<ParticipationCubit, ParticipationState>(
-      'submitRegistration success saves identity and creates the participation',
-      build: buildCubit,
-      setUp: () {
-        when(
-          () => userRepository.registerOrLink(
-            fullName: any(named: 'fullName'),
-            phone: any(named: 'phone'),
-            countryCode: any(named: 'countryCode'),
-          ),
-        ).thenAnswer(
-          (_) async => const Result.success(
-            UserProfile(
-              id: 'user-1',
-              fullName: 'Jane',
-              phoneE164: '+12025550190',
-              countryCode: 'US',
-            ),
-          ),
-        );
-        when(
-          () => secureStorage.saveIdentity(userId: 'user-1', fullName: 'Jane'),
-        ).thenAnswer((_) async {});
-        when(
-          () => participationRepository.createParticipation(giveawayId: 'g1'),
-        ).thenAnswer((_) async => const Result.failure(GiveawayFullFailure()));
-      },
-      act: (cubit) =>
-          cubit.submitRegistration(fullName: 'Jane', phone: '+12025550190', countryCode: 'US'),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.submittingRegistration),
-        const ParticipationState(step: ParticipationStep.creatingParticipation),
-        const ParticipationState(step: ParticipationStep.failure, failure: GiveawayFullFailure()),
-      ],
-      verify: (_) {
-        verify(() => secureStorage.saveIdentity(userId: 'user-1', fullName: 'Jane')).called(1);
-      },
-    );
-
-    blocTest<ParticipationCubit, ParticipationState>(
-      'createParticipation failure (already joined) surfaces DuplicateParticipationFailure',
-      build: buildCubit,
-      setUp: () {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        when(
-          () => participationRepository.createParticipation(giveawayId: 'g1'),
-        ).thenAnswer((_) async => const Result.failure(DuplicateParticipationFailure()));
-      },
-      act: (cubit) => cubit.start(),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.checkingIdentity),
-        const ParticipationState(step: ParticipationStep.creatingParticipation),
-        const ParticipationState(
-          step: ParticipationStep.failure,
-          failure: DuplicateParticipationFailure(),
-        ),
-      ],
-    );
-
-    blocTest<ParticipationCubit, ParticipationState>(
-      'retry() with a cached identity re-attempts participation creation',
-      build: buildCubit,
-      seed: () =>
-          const ParticipationState(step: ParticipationStep.failure, failure: NetworkFailure()),
-      setUp: () {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        when(
-          () => participationRepository.createParticipation(giveawayId: 'g1'),
-        ).thenAnswer((_) async => Result.success(participation));
-      },
-      act: (cubit) => cubit.retry(),
-      expect: () => [
-        const ParticipationState(step: ParticipationStep.creatingParticipation),
-        ParticipationState(
-          step: ParticipationStep.success,
-          participationId: 'p1',
-          participationNumber: 4821,
-        ),
-      ],
-    );
+    expect(adCalls, 0);
+    expect(cubit.state.step, ParticipationStep.success);
+    expect(cubit.state.rewardedFrameUnlocked, isTrue);
+    verify(() => participations.createParticipation(giveawayId: 'g1')).called(1);
+    await cubit.close();
   });
 }
