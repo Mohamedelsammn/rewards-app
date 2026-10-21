@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "PRICE_CHANGED",
+    "message": "The price has changed.",
+    "details": {
+      "pointsPrice": 500
+    }
+  },
+  "requestId": "<request-id>"
+}

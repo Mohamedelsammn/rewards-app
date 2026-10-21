@@ -105,7 +105,9 @@ class _WinnerWheelState extends State<WinnerWheel> with SingleTickerProviderStat
                 child: DecoratedBox(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 20, offset: Offset(0, 8))],
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26, blurRadius: 20, offset: Offset(0, 8)),
+                    ],
                   ),
                   child: CustomPaint(
                     size: Size(size, size),
@@ -184,7 +186,8 @@ class _WheelPainter extends CustomPainter {
       }
 
       final labelAngle = startAngle + segmentAngle / 2;
-      final labelPos = center + Offset(math.cos(labelAngle), math.sin(labelAngle)) * (radius * 0.68);
+      final labelPos =
+          center + Offset(math.cos(labelAngle), math.sin(labelAngle)) * (radius * 0.68);
       final textPainter = TextPainter(
         text: TextSpan(
           text: segments[i],

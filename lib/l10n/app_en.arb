@@ -1,383 +1,609 @@
 {
   "@@locale": "en",
-  "appName": "Reward Giveaway",
-  "@appName": {
-    "description": "App name shown on the splash screen"
-  },
+  "appTitle": "Creative Rewards",
   "commonRetry": "Retry",
   "commonCancel": "Cancel",
-  "commonConfirm": "Confirm",
-  "commonDismiss": "Dismiss",
-  "commonDelete": "Delete",
-  "commonSomethingWrong": "Something went wrong. Please try again.",
-  "commonRequired": "Required",
-  "navHome": "Home",
-  "navDashboard": "Dashboard",
-  "roleSelectionWelcome": "Welcome 👋",
-  "roleSelectionChooseHow": "Choose how you'd like to continue.",
-  "roleSelectionContinueAsUser": "Continue as User",
-  "roleSelectionContinueAsUserSubtitle": "Join exciting giveaways and win amazing prizes.",
-  "roleSelectionContinueAsAdmin": "Continue as Admin",
-  "roleSelectionContinueAsAdminSubtitle": "Create and manage giveaway campaigns.",
-  "roleSelectionSwitchAnytime": "YOU CAN SWITCH YOUR ROLE ANYTIME.",
-  "userHomeWelcomeBack": "Welcome back 👋",
-  "userHomeGuest": "Guest",
-  "userHomeSearchHint": "Search giveaways…",
-  "userHomePopularGiveaways": "Popular Giveaways",
-  "userHomeAllGiveaways": "All Giveaways",
-  "userHomeFeaturedGiveaway": "Featured Giveaway",
-  "userHomeJoinedCount": "{count} joined",
-  "@userHomeJoinedCount": {
+  "commonOk": "OK",
+  "commonDone": "Done",
+  "commonSave": "Save",
+  "commonContinue": "Continue",
+  "commonSeeAll": "See all",
+  "commonCopy": "Copy",
+  "commonCopied": "Copied",
+  "commonLoadMore": "Load more",
+  "pointsAmount": "{points} PTS",
+  "@pointsAmount": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingStep": "Onboarding step {step} of {total}",
+  "@onboardingStep": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "errorReference": "Reference: {id}",
+  "@errorReference": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "errUnknown": "Something went wrong. Please try again.",
+  "errServer": "The service is having trouble. Please try again shortly.",
+  "errNetwork": "No internet connection. Check your connection and try again.",
+  "errTimeout": "The request took too long. Please try again.",
+  "errInvalidCredentials": "Incorrect email or password",
+  "errSessionExpired": "Your session expired. Please sign in again.",
+  "errAccountSuspended": "This account is suspended. Contact support for help.",
+  "errFeatureDisabled": "This feature isn't available right now.",
+  "errNotFound": "This item is no longer available.",
+  "errEmailTaken": "This email already has an account.",
+  "errInsufficientPoints": "You don't have enough points for this reward.",
+  "errOutOfStock": "This reward is out of stock.",
+  "errPriceChanged": "The price of this reward has changed.",
+  "errInvalidTransition": "This order can no longer be changed.",
+  "errRequestInProgress": "Your request is still being processed. Please wait.",
+  "errGiveawayNotStarted": "This giveaway hasn't started yet.",
+  "errGiveawayEnded": "This giveaway has ended.",
+  "errGiveawayNotActive": "This giveaway isn't open right now.",
+  "errGiveawayFull": "This giveaway is full.",
+  "errStepsIncomplete": "Complete the required steps first.",
+  "errClaimNotAllowed": "This prize can no longer be claimed.",
+  "errValidation": "Check the information you entered.",
+  "errOtpInvalid": "The code is incorrect.",
+  "errOtpExpired": "This code expired. Request a new one.",
+  "errOtpAttemptsExceeded": "Too many wrong attempts. Request a new code.",
+  "errOtpVerificationInvalid": "Your email verification expired. Please start again.",
+  "errOtpResendCooldown": "Please wait {seconds} seconds before requesting another code.",
+  "@errOtpResendCooldown": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "errOtpSendLimit": "Too many codes were requested. Try again later.",
+  "errOtpLocked": "Verification is temporarily locked. Try again in an hour or sign in with your password.",
+  "errEmailNotConfigured": "Email delivery is unavailable right now. Try again later.",
+  "errInvalidPassword": "The password is incorrect.",
+  "errInvalidAvatar": "Choose another character.",
+  "errProofRequired": "Add a short proof to submit this step.",
+  "errRateLimited": "Too many attempts. Please wait a moment.",
+  "errDailyLimit": "You've reached today's limit. Come back tomorrow.",
+  "errDeviceLimit": "This device reached today's limit.",
+  "errCooldown": "Wait {seconds} seconds before the next ad.",
+  "@errCooldown": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "errTooManyPending": "Earlier ads are still being verified. Try again shortly.",
+  "errNumberAllocation": "We couldn't assign your number. Please try again.",
+  "errInvalidCursor": "The list changed. Pull to refresh.",
+  "splashTagline": "Play · Earn · Redeem",
+  "maintenanceTitle": "We'll be right back",
+  "maintenanceBody": "Creative Rewards is under maintenance. Please try again soon.",
+  "updateTitle": "Update required",
+  "updateBody": "Please update Creative Rewards to keep using it.",
+  "updateButton": "Update now",
+  "offlineTitle": "Can't connect",
+  "offlineBody": "Check your internet connection and try again.",
+  "serviceUnavailableTitle": "Service not connected",
+  "serviceUnavailableBody": "Creative Rewards is unavailable until the service is connected.",
+  "serviceInsecureBody": "This build can't use an insecure connection.",
+  "welcomeTitleTop": "Your Rewards",
+  "welcomeTitleBottom": "Journey Starts Here",
+  "welcomeSubtitle": "Play, earn, and redeem amazing rewards with ease.",
+  "welcomeGetStarted": "Get Started",
+  "welcomeHaveAccount": "Already have an account? ",
+  "welcomeLogin": "Login",
+  "authInvalidEmail": "Enter a valid email address",
+  "emailTitleStart": "What’s your ",
+  "emailTitleAccent": "email?",
+  "emailSubtitle": "We’ll send you a verification code to confirm your account.",
+  "emailSendCode": "Send Code",
+  "emailLoginInstead": "Already have an account? Log in",
+  "otpTitleStart": "Check your ",
+  "otpTitleAccent": "email",
+  "otpSentTo": "We’ve sent a 6-digit code to",
+  "otpResendIn": "Resend in {time}",
+  "@otpResendIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "otpResend": "Resend code",
+  "otpResent": "A new code was sent.",
+  "otpEnterSix": "Enter six digits",
+  "otpAttemptsLeft": "{count} attempts left",
+  "@otpAttemptsLeft": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "userHomeViewDetails": "View Details",
-  "userHomeNoActiveGiveaways": "No active giveaways right now",
-  "userHomeCouldNotLoad": "Couldn't load giveaways.",
-  "statusActive": "Active",
-  "statusEnded": "Ended",
-  "statusDraft": "Draft",
-  "statusScheduled": "Scheduled",
-  "statusArchived": "Archived",
-  "giveawayDetailsAboutPrize": "About this prize",
-  "giveawayDetailsHowToParticipate": "How to Participate",
-  "giveawayDetailsRules": "Rules",
-  "giveawayDetailsGenerateNumber": "Generate My Number",
-  "giveawayDetailsNotActive": "Giveaway Not Active",
-  "giveawayDetailsYoureIn": "You're in!",
-  "giveawayDetailsYoureInWithNumber": "You're in! #{number}",
-  "@giveawayDetailsYoureInWithNumber": {
+  "otpSpamHint": "Didn’t get it? Check your spam folder, then resend after the countdown.",
+  "otpCodeLabel": "6-digit verification code",
+  "passwordTitleStart": "Create a ",
+  "passwordTitleAccent": "password",
+  "passwordResetTitleStart": "Reset ",
+  "passwordResetTitleAccent": "password",
+  "passwordSubtitle": "Set a secure password for your account.",
+  "passwordLabel": "Password",
+  "passwordConfirmLabel": "Confirm password",
+  "passwordRuleLength": "At least 8 characters",
+  "passwordRuleLettersNumbers": "Include letters and numbers",
+  "passwordRuleStrong": "Use a strong password",
+  "passwordTooWeak": "Use 10 or more characters with uppercase, lowercase, and numbers",
+  "passwordMismatch": "Passwords do not match",
+  "passwordSave": "Save Password",
+  "passwordResetDone": "Password updated. Sign in with your new password.",
+  "characterTitle": "Choose Your Character",
+  "characterSubtitle": "Pick a character to represent you in the app.",
+  "characterOption": "Character {number}",
+  "@characterOption": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "loginTitle": "Welcome back",
+  "loginSubtitle": "Sign in to continue your rewards journey.",
+  "loginEmailHint": "Email address",
+  "loginPasswordHint": "Password",
+  "loginForgot": "Forgot password?",
+  "loginButton": "Login",
+  "loginBusy": "Signing in...",
+  "loginInvalidInput": "Enter a valid email and password",
+  "loginEnterEmailFirst": "Enter your email first",
+  "loginCreateAccount": "New here? Create an account",
+  "navHome": "Home",
+  "navCategories": "Categories",
+  "navWallet": "Wallet",
+  "navProfile": "Profile",
+  "notificationsTooltip": "Notifications",
+  "homeYourPoints": "Your Points",
+  "homeSearchHint": "Search rewards, giveaways...",
+  "homeAvailableRewards": "Available Rewards",
+  "homeFeaturedRewards": "Featured Rewards",
+  "homeGiveaways": "Giveaways",
+  "homeNoResults": "No rewards found",
+  "homeEmpty": "New rewards are on the way. Check back soon.",
+  "homeClearSearch": "Clear search",
+  "giveawayAvailable": "Available",
+  "giveawayUpcoming": "Coming soon",
+  "giveawayEnded": "Ended",
+  "giveawayWinnersSelected": "Winners announced",
+  "giveawayCancelled": "Cancelled",
+  "giveawayEndsOn": "Ends {date}",
+  "@giveawayEndsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "giveawayStartsOn": "Starts {date}",
+  "@giveawayStartsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "giveawayParticipants": "{count, plural, =0{No participants yet} =1{1 participant} other{{count} participants}}",
+  "@giveawayParticipants": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "categoriesTitle": "Categories",
+  "categoriesEmpty": "No categories yet. Check back soon.",
+  "categoryProductsEmpty": "No rewards in this category yet.",
+  "productRedeem": "Redeem",
+  "productOutOfStock": "Out of stock",
+  "redeemTitle": "Redemption details",
+  "redeemBalanceLine": "Balance: {balance} PTS  •  After: {after} PTS",
+  "@redeemBalanceLine": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      },
+      "after": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemConfirm": "Confirm redemption",
+  "redeemFieldRequired": "This field is required",
+  "redeemFieldInvalid": "Check the {label} format",
+  "@redeemFieldInvalid": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemInvalidNumber": "Use digits only",
+  "redeemInvalidUrl": "Enter a valid URL",
+  "redeemInvalidPhone": "Enter a valid phone number",
+  "redeemInvalidOption": "Choose one of the options",
+  "redeemSelectHint": "Choose an option",
+  "redeemPrivacyNote": "We will never ask for your passwords or verification codes.",
+  "redeemPointsNote": "Points are deducted when you confirm and refunded if the order can't be completed.",
+  "redeemSuccessTitle": "Order placed",
+  "redeemSuccessBody": "{points} PTS were deducted. Track your order in My Orders.",
+  "@redeemSuccessBody": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemViewOrders": "View my orders",
+  "redeemInsufficientTitle": "Not enough points",
+  "redeemInsufficientBody": "You have {balance} PTS. This reward needs {required} PTS.",
+  "@redeemInsufficientBody": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemPriceChangedTitle": "Price changed",
+  "redeemPriceChangedBody": "This reward now costs {points} PTS. Do you want to continue?",
+  "@redeemPriceChangedBody": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemConfirmNewPrice": "Redeem for {points} PTS",
+  "@redeemConfirmNewPrice": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "walletTitle": "Your Rewards",
+  "walletPoints": "POINTS",
+  "walletBalance": "BALANCE",
+  "walletFastEarn": "Fast, Earn",
+  "walletPlaceOrder": "Place an Order",
+  "walletPlaceOrderSubtitle": "Browse rewards to redeem",
+  "walletReview": "Write a Review",
+  "walletReviewSubtitle": "Open the app store listing",
+  "walletReviewUnavailable": "Store listing unavailable",
+  "walletRefer": "Refer a Friend",
+  "walletReferSubtitle": "Share Creative Rewards",
+  "walletHistory": "Points History",
+  "walletHistorySubtitle": "Earned, spent and refunded points",
+  "transactionsTitle": "Points History",
+  "transactionsSubtitle": "Every change to your balance",
+  "transactionsEmpty": "No points activity yet",
+  "txSignupBonus": "Welcome bonus",
+  "txAdReward": "Rewarded ad",
+  "txRedemption": "Reward redeemed",
+  "txRefund": "Refund",
+  "txAdminCredit": "Points added",
+  "txAdminDebit": "Points adjusted",
+  "txOther": "Balance update",
+  "txBalanceAfter": "Balance {points} PTS",
+  "@txBalanceAfter": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "earnTitle": "Earn points",
+  "earnHeadline": "Watch & earn",
+  "earnBody": "Watch a short video to earn {points} points. Points are added after Google confirms the view.",
+  "@earnBody": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "earnRemaining": "{count} left today",
+  "@earnRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "earnWatch": "Watch ad",
+  "earnVerifying": "Verifying your reward…",
+  "earnCredited": "+{points} PTS added to your wallet",
+  "@earnCredited": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "earnRejected": "This view wasn't rewarded.",
+  "earnExpired": "The reward session expired. Please try again.",
+  "earnPendingLong": "Your points will appear shortly. Check your wallet in a moment.",
+  "earnDismissedEarly": "Watch the full video to earn points.",
+  "earnAdFailed": "No video is available right now. Try again later.",
+  "earnUnavailable": "Earning with videos is coming soon",
+  "earnUnavailableBody": "We'll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.",
+  "earnCooldown": "Next video available in {time}",
+  "@earnCooldown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "earnDailyLimit": "You've reached today's limit. Come back tomorrow.",
+  "earnUnsupported": "Rewarded videos are available on Android.",
+  "referTitle": "Refer a Friend",
+  "referHeadline": "Invite friends to Creative Rewards",
+  "referBody": "Share the app link with your friends. Referral rewards aren't available yet.",
+  "referCopy": "Copy app link",
+  "referCopied": "Link copied",
+  "profilePoints": "Points",
+  "profileGiveaways": "Giveaways",
+  "profileOrders": "Orders",
+  "profileMyGiveaways": "My Giveaways",
+  "profileMyOrders": "My Orders",
+  "profileNotifications": "Notifications",
+  "profileLanguage": "Language",
+  "profileSettings": "Account Settings",
+  "profileAbout": "About",
+  "profilePrivacy": "Privacy Policy",
+  "profileTerms": "Terms & Conditions",
+  "profileSignOut": "Sign Out",
+  "profileEditTooltip": "Edit profile",
+  "signOutTitle": "Sign out?",
+  "signOutMessage": "Are you sure you want to sign out of your account?",
+  "languageTitle": "Choose Language",
+  "editProfileTitle": "Edit Profile",
+  "editProfileName": "Display name",
+  "editProfileNameInvalid": "Use 2–60 characters",
+  "editProfileSaved": "Profile updated",
+  "settingsTitle": "Account Settings",
+  "settingsSubtitle": "Security and preferences",
+  "settingsChangePassword": "Change password",
+  "settingsSessions": "Signed-in devices",
+  "settingsNotifications": "Notification preferences",
+  "settingsAdPrivacy": "Ad privacy choices",
+  "settingsDeleteAccount": "Delete account",
+  "settingsVersion": "Version {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "changePasswordTitle": "Change password",
+  "changePasswordCurrent": "Current password",
+  "changePasswordNew": "New password",
+  "changePasswordDone": "Password changed. Other devices were signed out.",
+  "sessionsTitle": "Signed-in devices",
+  "sessionsSubtitle": "Devices signed in to your account",
+  "sessionsCurrent": "This device",
+  "sessionsLastUsed": "Last active {date}",
+  "@sessionsLastUsed": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionsRevoke": "Sign out",
+  "sessionsRevoked": "Device signed out",
+  "sessionsLogoutAll": "Sign out of all devices",
+  "sessionsLogoutAllMessage": "You'll need to sign in again on every device, including this one.",
+  "sessionsUnknownDevice": "Unknown device",
+  "notificationPrefsTitle": "Notification preferences",
+  "notificationPrefsSubtitle": "Choose what we notify you about",
+  "prefOrders": "Order updates",
+  "prefOrdersSubtitle": "Processing, delivery and refunds",
+  "prefGiveaways": "Giveaway results",
+  "prefGiveawaysSubtitle": "Winners and draw results",
+  "prefAnnouncements": "Announcements",
+  "prefAnnouncementsSubtitle": "New rewards and offers",
+  "deleteAccountTitle": "Delete account",
+  "deleteAccountBody": "Your account is deleted after a 14-day grace period. Signing in again during that time cancels the request. Points, orders and entries are removed with the account.",
+  "deleteAccountPassword": "Confirm with your password",
+  "deleteAccountButton": "Delete my account",
+  "deleteAccountConfirmTitle": "Delete your account?",
+  "deleteAccountConfirmMessage": "This can't be undone after the grace period.",
+  "deleteAccountDone": "Deletion requested. Your account will be removed in {days} days.",
+  "@deleteAccountDone": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutTitle": "About",
+  "aboutBody": "Creative Rewards lets you redeem points for rewards and join free giveaways.",
+  "privacyTitle": "Privacy Policy",
+  "termsTitle": "Terms & Conditions",
+  "legalUnavailable": "This document will be available soon.",
+  "legalOpen": "Open document",
+  "ordersTitle": "My Orders",
+  "ordersSubtitle": "Track and manage your orders",
+  "ordersAll": "All",
+  "ordersInProgress": "In progress",
+  "ordersCompleted": "Completed",
+  "ordersUnsuccessful": "Unsuccessful",
+  "ordersEmpty": "No orders yet",
+  "ordersEmptyFiltered": "No orders in this status",
+  "orderNumber": "Order #{number}",
+  "@orderNumber": {
     "placeholders": {
       "number": {
         "type": "String"
       }
     }
   },
-  "giveawayDetailsCouldNotLoad": "Couldn't load this giveaway.",
-  "giveawayDetailsEnded": "Ended",
-  "giveawayDetailsHoursLeft": "{hours} h left",
-  "@giveawayDetailsHoursLeft": {
+  "orderPending": "Pending",
+  "orderProcessing": "Processing",
+  "orderShipped": "Shipped",
+  "orderDelivered": "Delivered",
+  "orderCompleted": "Completed",
+  "orderRejected": "Rejected",
+  "orderCancelled": "Cancelled",
+  "orderFailed": "Failed",
+  "orderDetailsTitle": "Order details",
+  "orderSubmittedDetails": "Your details",
+  "orderDeliveredCode": "Your code",
+  "orderTracking": "Tracking",
+  "orderReason": "Reason",
+  "orderTimeline": "Status history",
+  "orderRefunded": "{points} PTS were refunded to your wallet.",
+  "@orderRefunded": {
     "placeholders": {
-      "hours": {
-        "type": "int"
-      }
-    }
-  },
-  "giveawayDetailsDaysHoursLeft": "{days} d {hours} h left",
-  "@giveawayDetailsDaysHoursLeft": {
-    "placeholders": {
-      "days": {
-        "type": "int"
-      },
-      "hours": {
-        "type": "int"
-      }
-    }
-  },
-  "registrationTitle": "Create Your Account",
-  "registrationSubtitle": "Enter your information to start participating.",
-  "registrationFullNameLabel": "FULL NAME",
-  "registrationFullNameHint": "Jane Doe",
-  "registrationFullNameError": "Enter your full name",
-  "registrationCountryLabel": "COUNTRY",
-  "registrationPhoneLabel": "PHONE NUMBER",
-  "registrationPhoneHint": "(555) 000-0000",
-  "registrationPhoneRequiredError": "Enter your phone number",
-  "registrationPhoneInvalidError": "Enter a valid phone number",
-  "registrationContinue": "CONTINUE",
-  "registrationAgreeTerms": "By continuing you agree to our Privacy Policy and Terms.",
-  "participationJoinGiveaway": "Join Giveaway",
-  "participationGeneratingNumber": "Generating your number…",
-  "participationSuccessOpening": "Success! Revealing your code…",
-  "participationTryAgain": "Try Again",
-  "numberRevealTitle": "Your Participation Code",
-  "numberRevealSubtitle": "Generated just for you",
-  "numberRevealViewInMyGiveaways": "View in My Giveaways",
-  "myGiveawaysTitle": "My Giveaways",
-  "myGiveawaysEmpty": "You haven't joined any giveaways yet",
-  "myGiveawaysCouldNotLoad": "Couldn't load your giveaways.",
-  "myGiveawaysGiveawayFallback": "Giveaway",
-  "myGiveawaysWinner": "You Won This Giveaway!",
-  "myGiveawaysNotSelected": "Not selected as the winner this time",
-  "notificationsTitle": "Notifications",
-  "notificationsEmpty": "You're all caught up — no notifications yet.",
-  "notificationsCouldNotLoad": "Couldn't load notifications.",
-  "notificationsMarkAllRead": "Mark all read",
-  "settingsTitle": "Settings",
-  "settingsLanguage": "Language",
-  "settingsAbout": "About",
-  "settingsPrivacyPolicy": "Privacy Policy",
-  "settingsTermsConditions": "Terms & Conditions",
-  "settingsSignOut": "Sign Out",
-  "settingsSignOutConfirmTitle": "Sign Out?",
-  "settingsSignOutConfirmBody": "You'll return to the role selection screen. Your saved giveaways and history stay on this device.",
-  "settingsAboutBody": "Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.",
-  "settingsSectionGeneral": "GENERAL",
-  "settingsSectionInformation": "INFORMATION",
-  "settingsSectionAccount": "ACCOUNT",
-  "settingsGuestSubtitle": "Join a giveaway to create your profile",
-  "adminAuthTitle": "Admin",
-  "adminAuthCreateAccount": "Create Admin Account",
-  "adminAuthSignInTitle": "Admin Sign In",
-  "adminAuthSignUpSubtitle": "Register a new admin account to manage giveaway campaigns.",
-  "adminAuthSignInSubtitle": "Sign in to manage giveaway campaigns.",
-  "adminAuthSignIn": "Sign In",
-  "adminAuthSignUp": "Sign Up",
-  "adminAuthFullNameLabel": "FULL NAME",
-  "adminAuthFullNameError": "Enter your full name",
-  "adminAuthFullNameHint": "Your full name",
-  "adminAuthEmailLabel": "EMAIL",
-  "adminAuthEmailError": "Enter a valid email",
-  "adminAuthEmailHint": "example@gmail.com",
-  "adminAuthPasswordLabel": "PASSWORD",
-  "adminAuthPasswordEmptyError": "Enter your password",
-  "adminAuthPasswordLengthError": "Password must be at least 8 characters",
-  "adminAuthPasswordHint": "••••••••",
-  "adminAuthPasswordRequirementHelper": "Minimum 8 characters",
-  "adminAuthConfirmPasswordLabel": "CONFIRM PASSWORD",
-  "adminAuthPasswordsNoMatch": "Passwords do not match",
-  "adminAuthAccessCodeLabel": "ADMIN ACCESS CODE",
-  "adminAuthAccessCodeError": "Enter your admin access code",
-  "adminAuthAccessCodeHint": "Enter the access code provided to you",
-  "adminAuthCreateAccountButton": "CREATE ACCOUNT",
-  "adminAuthSignInButton": "SIGN IN",
-  "adminAuthNoAccessCodeQuestion": "Don't have an Admin Access Code?",
-  "adminAuthContactWhatsAppSubtitle": "Contact us on WhatsApp to request access.",
-  "adminAuthWhatsAppPrefilledMessage": "Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.",
-  "adminAuthWhatsAppOpenFailed": "Could not open WhatsApp. Please try again.",
-  "commonShowPassword": "Show password",
-  "commonHidePassword": "Hide password",
-  "adminDashboardGoodDay": "Good day 👋",
-  "adminDashboardAdministrator": "Administrator",
-  "adminDashboardActiveGiveaways": "ACTIVE GIVEAWAYS",
-  "adminDashboardTotalParticipants": "TOTAL PARTICIPANTS",
-  "adminDashboardFinished": "FINISHED",
-  "adminDashboardWinnersSelected": "WINNERS SELECTED",
-  "adminDashboardActiveCampaign": "Active Campaigns",
-  "adminDashboardNoActiveCampaigns": "No active campaigns yet. Tap + to create one.",
-  "adminDashboardEndedCampaign": "Ended Campaigns",
-  "adminDashboardViewAnalytics": "View Analytics",
-  "adminDashboardCouldNotLoad": "Couldn't load dashboard.",
-  "adminDashboardParticipantsCount": "{count} participants",
-  "@adminDashboardParticipantsCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "adminGiveawaysTitle": "Giveaways",
-  "adminGiveawaysEmpty": "No giveaways yet.",
-  "adminGiveawaysParticipantsCount": "{count} participants",
-  "@adminGiveawaysParticipantsCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "createGiveawayTitle": "Create Giveaway",
-  "createGiveawayGiveawayTitle": "GIVEAWAY TITLE",
-  "createGiveawayGiveawayTitleHint": "e.g. iPhone 17 Pro Max",
-  "createGiveawayOrganizerName": "ORGANIZER NAME",
-  "createGiveawayOrganizerNameHint": "e.g. TechCorp Inc.",
-  "createGiveawayPrizeDescription": "PRIZE DESCRIPTION (OPTIONAL)",
-  "createGiveawayPrizeDescriptionHint": "Briefly describe what the winner will receive.",
-  "createGiveawayRules": "GIVEAWAY DESCRIPTION & RULES (OPTIONAL)",
-  "createGiveawayRulesHint": "Detail the full terms, conditions, and extra info.",
-  "createGiveawayImage": "GIVEAWAY IMAGE",
-  "createGiveawayTapToBrowse": "Tap to browse from device",
-  "createGiveawayImageSizeHint": "JPG, PNG, GIF up to 5MB",
-  "createGiveawayImageTooLarge": "Image must be 5MB or smaller.",
-  "createGiveawayStartDate": "START DATE",
-  "createGiveawayEndDate": "END DATE",
-  "createGiveawayEndTime": "END TIME",
-  "createGiveawayDatePlaceholder": "mm/dd/yyyy",
-  "createGiveawayTimePlaceholder": "--:--",
-  "createGiveawayMissingDates": "Please set the start date and time, and the end date and time.",
-  "createGiveawayEndBeforeStart": "End date must be on or after the start date.",
-  "createGiveawayPublish": "Publish Giveaway",
-  "giveawayAnalyticsTitle": "Giveaway Analytics",
-  "giveawayAnalyticsSelectParticipantTitle": "Select a Participant",
-  "giveawayAnalyticsConfirmWinnerTitle": "Confirm Winner",
-  "giveawayAnalyticsConfirmWinnerBody": "Select participant {code} ({name}) as the winner?",
-  "@giveawayAnalyticsConfirmWinnerBody": {
-    "placeholders": {
-      "code": {
+      "points": {
         "type": "String"
-      },
+      }
+    }
+  },
+  "orderCancel": "Cancel order",
+  "orderCancelTitle": "Cancel this order?",
+  "orderCancelMessage": "Your points will be refunded to your wallet.",
+  "orderCancelDone": "Order cancelled. Points refunded.",
+  "notificationsTitle": "Notifications",
+  "notificationsEmpty": "No notifications yet",
+  "notificationsMarkAll": "Mark all as read",
+  "notifNow": "Now",
+  "notifMinutes": "{count}m ago",
+  "@notifMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notifHours": "{count}h ago",
+  "@notifHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notifYesterday": "Yesterday",
+  "notifEarlier": "Earlier",
+  "notificationOpen": "Open",
+  "giveawaysTitle": "Giveaways",
+  "giveawaysSubtitle": "Join free giveaways and win prizes",
+  "giveawaysEmpty": "No giveaways here yet",
+  "giveawayDetailsTitle": "Giveaway Details",
+  "giveawayOrganizer": "By {name}",
+  "@giveawayOrganizer": {
+    "placeholders": {
       "name": {
         "type": "String"
       }
     }
   },
-  "giveawayAnalyticsSelectWinnerAction": "Select Winner",
-  "giveawayAnalyticsSelectAnotherWinnerAction": "Select Another Winner",
-  "giveawayAnalyticsWinnerSelected": "Winner selected! A notification was sent.",
-  "giveawayAnalyticsNoEligibleParticipants": "Every participant has already won.",
-  "giveawayAnalyticsTotalJoined": "Total Joined",
-  "giveawayAnalyticsActiveToday": "Active Today",
-  "giveawayAnalyticsParticipationGrowth": "Participation Growth",
-  "giveawayAnalyticsRecentParticipants": "Recent Participants",
-  "giveawayAnalyticsNoParticipants": "No participants yet.",
-  "giveawayAnalyticsParticipationCode": "Code {code}",
-  "@giveawayAnalyticsParticipationCode": {
-    "placeholders": {
-      "code": {
-        "type": "String"
-      }
-    }
-  },
-  "giveawayAnalyticsWinnersSectionTitle": "Winner",
-  "giveawayAnalyticsViewWinners": "View Winner",
-  "giveawayAnalyticsNoWinners": "No winners yet.",
-  "giveawayAnalyticsRemoveFromView": "Remove from view",
-  "giveawayAnalyticsWinnerLabel": "Winner",
-  "giveawayAnalyticsWinnerRank": "Winner #{rank}",
-  "@giveawayAnalyticsWinnerRank": {
+  "giveawayPrize": "Prize",
+  "giveawayRules": "Rules",
+  "giveawaySteps": "Steps to join",
+  "giveawayStepOptional": "Optional",
+  "giveawayStepDone": "Done",
+  "giveawayStepSubmitted": "Under review",
+  "giveawayStepApproved": "Approved",
+  "giveawayStepRejected": "Not approved — try again",
+  "giveawayStepComplete": "Complete",
+  "giveawayStepProofTitle": "Submit proof",
+  "giveawayStepProofHint": "Your username or a short note",
+  "giveawayStepSubmit": "Submit",
+  "giveawayJoin": "Join Giveaway",
+  "giveawayViewTicket": "View your number",
+  "giveawayClosed": "This giveaway has ended",
+  "giveawayDisqualified": "Your entry was disqualified",
+  "giveawayFreeNote": "Entering is free. Points are never deducted.",
+  "giveawayResults": "Winners",
+  "giveawayWinnerRow": "#{rank} · Number {number}",
+  "@giveawayWinnerRow": {
     "placeholders": {
       "rank": {
         "type": "int"
-      }
-    }
-  },
-  "giveawayAnalyticsSelectedAtLabel": "Selected At",
-  "giveawayAnalyticsJustNow": "Just now",
-  "giveawayAnalyticsMinsAgo": "{count} mins ago",
-  "@giveawayAnalyticsMinsAgo": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "giveawayAnalyticsHoursAgo": "{count} hours ago",
-  "@giveawayAnalyticsHoursAgo": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "giveawayAnalyticsDaysAgo": "{count} days ago",
-  "@giveawayAnalyticsDaysAgo": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "giveawayAnalyticsChooseParticipantTooltip": "Choose participant",
-  "giveawayAnalyticsPendingSelection": "Manually targeting {code} · {name}",
-  "@giveawayAnalyticsPendingSelection": {
-    "placeholders": {
-      "code": {
-        "type": "String"
       },
-      "name": {
+      "number": {
         "type": "String"
       }
     }
   },
-  "giveawayAnalyticsClearSelectionTooltip": "Clear selection",
-  "giveawayAnalyticsSelecting": "Selecting winner…",
-  "giveawayAnalyticsWheelErrorTitle": "Couldn't select a winner",
-  "giveawayAnalyticsWheelDoneAction": "Done",
-  "giveawayAnalyticsDeleteGiveawayTooltip": "Delete giveaway",
-  "giveawayAnalyticsDeleteGiveawayTitle": "Delete Giveaway?",
-  "giveawayAnalyticsDeleteGiveawayBody": "This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.",
-  "giveawayAnalyticsGiveawayDeleted": "Giveaway deleted.",
-  "adminProfileTitle": "Admin Profile",
-  "adminProfileAdministrator": "Administrator",
-  "adminProfileSignOutConfirmBody": "You'll return to the role selection screen.",
-  "adminAnalysisTitle": "Analysis",
-  "adminAnalysisTotalGiveaways": "TOTAL GIVEAWAYS",
-  "adminAnalysisActiveGiveaways": "ACTIVE",
-  "adminAnalysisFinishedGiveaways": "FINISHED",
-  "adminAnalysisTotalParticipants": "TOTAL PARTICIPANTS",
-  "adminAnalysisTotalWinners": "WINNERS SELECTED",
-  "adminAnalysisGrowthTrend": "Participation Growth (Last 7 Days)",
-  "adminAnalysisCouldNotLoad": "Couldn't load analysis.",
-  "adminAnalysisNoData": "No giveaways yet — create one to see analysis here.",
-  "winnerCelebrationTitle": "WINNER",
-  "winnerCelebrationCongratulations": "Congratulations! You've won:",
-  "winnerCelebrationViewPrize": "View Prize",
-  "winnerCelebrationDismiss": "Dismiss",
-  "winnerCelebrationYourPrize": "Your prize",
-  "privacyPolicyTitle": "Privacy Policy",
-  "termsConditionsTitle": "Terms & Conditions",
-  "legalLastUpdated": "Last updated: {date}",
-  "@legalLastUpdated": {
+  "giveawayCompleteSteps": "Complete the required steps to join",
+  "giveawaySignInToJoin": "Sign in to join",
+  "ticketTitle": "Your Ticket",
+  "ticketPreparing": "Preparing your ticket…",
+  "ticketCopy": "Copy ticket",
+  "ticketCopied": "Ticket number copied",
+  "ticketNote": "Keep this number. Winners are announced after the giveaway ends.",
+  "myGiveawaysTitle": "My Giveaways",
+  "myGiveawaysSubtitle": "Check the giveaways you've joined",
+  "myGiveawaysEmpty": "You haven't joined a giveaway yet",
+  "resultAll": "All",
+  "resultPending": "Pending draw",
+  "resultWon": "You won!",
+  "resultNotSelected": "Not selected",
+  "entryDisqualified": "Disqualified",
+  "celebrationTitle": "Congratulations!",
+  "celebrationBody": "You won {prize}",
+  "@celebrationBody": {
+    "placeholders": {
+      "prize": {
+        "type": "String"
+      }
+    }
+  },
+  "celebrationNumber": "Winning number {number}",
+  "@celebrationNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "celebrationClaim": "Claim your prize",
+  "celebrationLater": "Later",
+  "claimHint": "Phone number and city, or other contact details",
+  "claimInvalid": "Enter 3–500 characters",
+  "claimSubmit": "Send",
+  "claimDone": "Thanks! We'll contact you to deliver your prize.",
+  "claimDeadline": "Claim before {date}",
+  "@claimDeadline": {
     "placeholders": {
       "date": {
         "type": "String"
       }
     }
-  },
-  "legalContactUs": "Contact us",
-  "failureNoInternet": "No internet connection.",
-  "failureServer": "Something went wrong. Please try again.",
-  "failureUnauthorized": "You are not authorized to do that.",
-  "failurePhoneAlreadyRegisteredElsewhere": "This phone number is already registered on another device.",
-  "failurePhoneAlreadyInUse": "This phone number is already used by another account.",
-  "failureDuplicateParticipation": "You've already joined this giveaway.",
-  "failureGiveawayFull": "This giveaway has reached its participant limit.",
-  "failureGiveawayEnded": "This giveaway is no longer active.",
-  "failureRateLimited": "Too many attempts. Please wait a moment and try again.",
-  "settingsEditProfile": "Edit Profile",
-  "editProfileTitle": "Edit Profile",
-  "editProfileSubtitle": "Keep your name and phone number up to date.",
-  "editProfileSaveAction": "Save Changes",
-  "editProfileUpdateSuccess": "Profile updated",
-  "browseAll": "All",
-  "browseClearSearch": "Clear search",
-  "browseUpcoming": "Upcoming",
-  "browseEndingSoon": "Ending Soon",
-  "browseStartsIn": "Starts",
-  "browseDayShort": "d",
-  "browseHourShort": "h left",
-  "browseJoined": "joined",
-  "browseNoGiveaways": "No giveaways found",
-  "browseSearchResults": "Search Results",
-  "browseLoadMore": "Load more",
-  "browseCategoriesRetry": "Retry loading categories",
-  "browseUpcomingMessage": "Starts on {date}. Participation opens at the scheduled time.",
-  "categoryManagement": "Category Management",
-  "categoryCreate": "Create Category",
-  "categoryEdit": "Edit Category",
-  "categorySelect": "Select Category",
-  "categoryNameEn": "English name",
-  "categoryNameAr": "Arabic name",
-  "categoryIcon": "Optional emoji icon",
-  "categoryOrder": "Sort order",
-  "categoryEnabled": "Enabled",
-  "categoryDisabled": "Disabled",
-  "categoryRequired": "Enter a valid value",
-  "categorySave": "Save",
-  "categoryUnauthorized": "Category management requires a super administrator.",
-  "categoryUncategorized": "Uncategorized",
-  "categoryInactiveKept": "The existing inactive category is kept until you select a replacement.",
-  "categoryEditGiveaway": "Edit giveaway",
-  "scheduleStartTime": "Start time",
-  "scheduleLocalTime": "Times use this device's local timezone and are saved in UTC.",
-  "adsPrivacyChoices": "Advertising privacy choices",
-  "@browseUpcomingMessage": {
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
-  "scheduleInvalidDates": "End time must be after start time.",
-  "adminDashboardScheduleSection": "GIVEAWAY SCHEDULE",
-  "adminFilterAll": "All",
-  "adminNoFilteredGiveaways": "No giveaways in this group yet.",
-  "createGiveawayEditTitle": "Edit Giveaway",
-  "adminScheduleEditLocked": "This schedule cannot be changed after a giveaway starts or receives participants."
-  ,"rewardFrameDialogTitle": "Make your entry special!"
-  ,"rewardFrameDialogDescription": "Watch an ad to get a special frame around your participation number in the app."
-  ,"rewardFrameWatchAd": "Watch Ad"
+  }
 }

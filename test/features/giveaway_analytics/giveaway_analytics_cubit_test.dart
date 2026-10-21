@@ -142,11 +142,8 @@ void main() {
       seed: () => GiveawayAnalyticsState(manualTarget: _alice),
       setUp: () {
         when(
-          () => winnerRepository.selectWinner(
-            giveawayId: 'g1',
-            participationId: 'p-alice',
-            rank: 1,
-          ),
+          () =>
+              winnerRepository.selectWinner(giveawayId: 'g1', participationId: 'p-alice', rank: 1),
         ).thenAnswer((_) async => Result.success(_winner));
         when(
           () => giveawayRepository.getGiveawayById('g1', forceRefresh: true),
@@ -165,11 +162,8 @@ void main() {
       seed: () => GiveawayAnalyticsState(manualTarget: _alice),
       setUp: () {
         when(
-          () => winnerRepository.selectWinner(
-            giveawayId: 'g1',
-            participationId: 'p-alice',
-            rank: 1,
-          ),
+          () =>
+              winnerRepository.selectWinner(giveawayId: 'g1', participationId: 'p-alice', rank: 1),
         ).thenAnswer((_) async => const Result.failure(NetworkFailure()));
       },
       act: (cubit) => cubit.selectWinner('g1', participationId: 'p-alice'),
@@ -186,10 +180,8 @@ void main() {
     blocTest<GiveawayAnalyticsCubit, GiveawayAnalyticsState>(
       'requests the next rank (existing winners + 1) when selecting another winner',
       build: buildCubit,
-      seed: () => GiveawayAnalyticsState(
-        status: GiveawayAnalyticsStatus.loaded,
-        winners: [_winner],
-      ),
+      seed: () =>
+          GiveawayAnalyticsState(status: GiveawayAnalyticsStatus.loaded, winners: [_winner]),
       setUp: () {
         when(
           () => winnerRepository.selectWinner(giveawayId: 'g1', participationId: null, rank: 2),
@@ -219,7 +211,12 @@ void main() {
     );
 
     test('returns true only once the server confirms the winner was persisted', () async {
-      final cubit = GiveawayAnalyticsCubit(giveawayRepository, winnerRepository, client, storageRepository);
+      final cubit = GiveawayAnalyticsCubit(
+        giveawayRepository,
+        winnerRepository,
+        client,
+        storageRepository,
+      );
       when(
         () => winnerRepository.selectWinner(giveawayId: 'g1', participationId: null, rank: 1),
       ).thenAnswer((_) async => Result.success(_winner));
@@ -236,7 +233,12 @@ void main() {
     });
 
     test('returns false and never signals success when the server rejects the selection', () async {
-      final cubit = GiveawayAnalyticsCubit(giveawayRepository, winnerRepository, client, storageRepository);
+      final cubit = GiveawayAnalyticsCubit(
+        giveawayRepository,
+        winnerRepository,
+        client,
+        storageRepository,
+      );
       when(
         () => winnerRepository.selectWinner(giveawayId: 'g1', participationId: null, rank: 1),
       ).thenAnswer(
@@ -254,8 +256,10 @@ void main() {
       'best-effort forwards the CURRENT giveaway image to Storage cleanup -- never touches '
       'WinnerRepository / winner-selection logic',
       build: buildCubit,
-      seed: () =>
-          GiveawayAnalyticsState(status: GiveawayAnalyticsStatus.loaded, giveaway: _giveawayWithImage),
+      seed: () => GiveawayAnalyticsState(
+        status: GiveawayAnalyticsStatus.loaded,
+        giveaway: _giveawayWithImage,
+      ),
       setUp: () {
         when(
           () => giveawayRepository.deleteGiveaway('g1'),

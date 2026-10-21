@@ -9,7 +9,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 /// inline winner-card list: tapping it opens the dedicated `WinnersPage`
 /// instead of showing every winner directly on the main Analytics page.
 class ViewWinnersButton extends StatelessWidget {
-  const ViewWinnersButton({super.key,  required this.onTap});
+  const ViewWinnersButton({super.key, required this.onTap});
 
   // final int winnerCount;
   final VoidCallback onTap;
@@ -40,7 +40,10 @@ class ViewWinnersButton extends StatelessWidget {
             Expanded(
               child: Text(
                 l10n.giveawayAnalyticsViewWinners,
-                style: AppTypography.bodyLg.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+                style: AppTypography.bodyLg.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             const Icon(Icons.chevron_right_rounded, color: Colors.white),

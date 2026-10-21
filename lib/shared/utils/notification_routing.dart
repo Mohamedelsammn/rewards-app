@@ -24,9 +24,12 @@ Future<void> routeNotificationTap(BuildContext context, Map<String, dynamic> dat
     case 'giveaway_reminder':
       final giveawayId = data['giveawayId'] as String?;
       if (giveawayId != null && context.mounted) {
-        Navigator.of(
-          context,
-        ).push(MaterialPageRoute(settings: giveawayDetailsSettings(giveawayId), builder: (_) => GiveawayDetailsPage(giveawayId: giveawayId)));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            settings: giveawayDetailsSettings(giveawayId),
+            builder: (_) => GiveawayDetailsPage(giveawayId: giveawayId),
+          ),
+        );
       }
     case 'winner_announcement':
     default:

@@ -126,9 +126,8 @@ void main() {
           () => repository.peekCachedParticipations(),
         ).thenReturn([_participation('p1', 'g1', status: 'active')]);
         when(() => repository.getMyParticipations(forceRefresh: true)).thenAnswer(
-          (_) async => Result.success([
-            _participation('p1', 'g1', status: 'ended', isWinner: true),
-          ]),
+          (_) async =>
+              Result.success([_participation('p1', 'g1', status: 'ended', isWinner: true)]),
         );
       },
       act: (cubit) => cubit.load(),
@@ -148,7 +147,8 @@ void main() {
       'a background (realtime-triggered) refresh with data already on screen never re-shows '
       'the loading state',
       build: () => MyGiveawaysCubit(repository, client, secureStorage),
-      seed: () => MyGiveawaysState(status: MyGiveawaysStatus.loaded, participations: [participation]),
+      seed: () =>
+          MyGiveawaysState(status: MyGiveawaysStatus.loaded, participations: [participation]),
       setUp: () => when(
         () => repository.getMyParticipations(forceRefresh: true),
       ).thenAnswer((_) async => Result.success([participation])),
@@ -158,28 +158,25 @@ void main() {
   });
 
   group('MyGiveawaysCubit local participationCreated signal', () {
-    test(
-      'reloads immediately (no realtime round trip) the moment this device confirms creating '
-      'a participation',
-      () async {
-        final controller = StreamController<Participation>.broadcast();
-        addTearDown(controller.close);
-        when(() => repository.participationCreated).thenAnswer((_) => controller.stream);
-        when(
-          () => repository.getMyParticipations(forceRefresh: true),
-        ).thenAnswer((_) async => Result.success([participation]));
+    test('reloads immediately (no realtime round trip) the moment this device confirms creating '
+        'a participation', () async {
+      final controller = StreamController<Participation>.broadcast();
+      addTearDown(controller.close);
+      when(() => repository.participationCreated).thenAnswer((_) => controller.stream);
+      when(
+        () => repository.getMyParticipations(forceRefresh: true),
+      ).thenAnswer((_) async => Result.success([participation]));
 
-        final cubit = MyGiveawaysCubit(repository, client, secureStorage);
-        controller.add(participation);
-        // No debounce on this path -- a single deterministic local event,
-        // not a realtime burst -- so no artificial delay should be needed
-        // beyond letting the stream's microtask/event-loop turn complete.
-        await Future<void>.delayed(Duration.zero);
+      final cubit = MyGiveawaysCubit(repository, client, secureStorage);
+      controller.add(participation);
+      // No debounce on this path -- a single deterministic local event,
+      // not a realtime burst -- so no artificial delay should be needed
+      // beyond letting the stream's microtask/event-loop turn complete.
+      await Future<void>.delayed(Duration.zero);
 
-        verify(() => repository.getMyParticipations(forceRefresh: true)).called(1);
-        await cubit.close();
-      },
-    );
+      verify(() => repository.getMyParticipations(forceRefresh: true)).called(1);
+      await cubit.close();
+    });
   });
 
   group('MyGiveawaysCubit realtime lifecycle', () {
@@ -239,67 +236,61 @@ void main() {
       await cubit.close();
     });
 
-    test(
-      'a giveaways UPDATE patches just the affected card in place, immediately, with no '
-      'network round trip',
-      () async {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        stubChannels();
+    test('a giveaways UPDATE patches just the affected card in place, immediately, with no '
+        'network round trip', () async {
+      when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
+      stubChannels();
 
-        final cubit = MyGiveawaysCubit(repository, client, secureStorage);
-        // Seed state with an existing participation via a successful load.
-        when(() => repository.peekCachedParticipations()).thenReturn(null);
-        when(
-          () => repository.getMyParticipations(forceRefresh: true),
-        ).thenAnswer((_) async => Result.success([_participation('p1', 'g1', status: 'active')]));
-        await cubit.load();
-        await cubit.subscribeToRealtime();
+      final cubit = MyGiveawaysCubit(repository, client, secureStorage);
+      // Seed state with an existing participation via a successful load.
+      when(() => repository.peekCachedParticipations()).thenReturn(null);
+      when(
+        () => repository.getMyParticipations(forceRefresh: true),
+      ).thenAnswer((_) async => Result.success([_participation('p1', 'g1', status: 'active')]));
+      await cubit.load();
+      await cubit.subscribeToRealtime();
 
-        capturedCallbacks['my-giveaways-status-user-1']!(
-          _payload(
-            table: 'giveaways',
-            eventType: PostgresChangeEvent.update,
-            newRecord: const {'id': 'g1', 'title': 'Prize', 'status': 'ended'},
-          ),
-        );
+      capturedCallbacks['my-giveaways-status-user-1']!(
+        _payload(
+          table: 'giveaways',
+          eventType: PostgresChangeEvent.update,
+          newRecord: const {'id': 'g1', 'title': 'Prize', 'status': 'ended'},
+        ),
+      );
 
-        expect(cubit.state.participations.single.giveaway?['status'], 'ended');
-        verify(() => repository.patchCachedParticipationGiveaway('p1', any())).called(1);
-        await cubit.close();
-      },
-    );
+      expect(cubit.state.participations.single.giveaway?['status'], 'ended');
+      verify(() => repository.patchCachedParticipationGiveaway('p1', any())).called(1);
+      await cubit.close();
+    });
 
-    test(
-      'a winners INSERT for one of my giveaways re-confirms that one participation from the '
-      'server (never trusting the payload alone) and patches just that card',
-      () async {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        stubChannels();
+    test('a winners INSERT for one of my giveaways re-confirms that one participation from the '
+        'server (never trusting the payload alone) and patches just that card', () async {
+      when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
+      stubChannels();
 
-        final cubit = MyGiveawaysCubit(repository, client, secureStorage);
-        when(() => repository.peekCachedParticipations()).thenReturn(null);
-        when(
-          () => repository.getMyParticipations(forceRefresh: true),
-        ).thenAnswer((_) async => Result.success([_participation('p1', 'g1', status: 'active')]));
-        await cubit.load();
-        await cubit.subscribeToRealtime();
+      final cubit = MyGiveawaysCubit(repository, client, secureStorage);
+      when(() => repository.peekCachedParticipations()).thenReturn(null);
+      when(
+        () => repository.getMyParticipations(forceRefresh: true),
+      ).thenAnswer((_) async => Result.success([_participation('p1', 'g1', status: 'active')]));
+      await cubit.load();
+      await cubit.subscribeToRealtime();
 
-        when(() => repository.getMyParticipationWithStatusForGiveaway('g1')).thenAnswer(
-          (_) async => Result.success(_participation('p1', 'g1', status: 'ended', isWinner: true)),
-        );
+      when(() => repository.getMyParticipationWithStatusForGiveaway('g1')).thenAnswer(
+        (_) async => Result.success(_participation('p1', 'g1', status: 'ended', isWinner: true)),
+      );
 
-        capturedCallbacks['my-giveaways-winners-user-1']!(
-          _payload(table: 'winners', newRecord: const {'giveaway_id': 'g1'}),
-        );
+      capturedCallbacks['my-giveaways-winners-user-1']!(
+        _payload(table: 'winners', newRecord: const {'giveaway_id': 'g1'}),
+      );
 
-        verifyNever(() => repository.getMyParticipationWithStatusForGiveaway('g1'));
-        await Future<void>.delayed(const Duration(milliseconds: 600));
+      verifyNever(() => repository.getMyParticipationWithStatusForGiveaway('g1'));
+      await Future<void>.delayed(const Duration(milliseconds: 600));
 
-        verify(() => repository.getMyParticipationWithStatusForGiveaway('g1')).called(1);
-        expect(cubit.state.participations.single.isWinner, isTrue);
-        await cubit.close();
-      },
-    );
+      verify(() => repository.getMyParticipationWithStatusForGiveaway('g1')).called(1);
+      expect(cubit.state.participations.single.isWinner, isTrue);
+      await cubit.close();
+    });
 
     test('a winners INSERT for a giveaway that is not mine is ignored', () async {
       when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
@@ -358,30 +349,27 @@ void main() {
       },
     );
 
-    test(
-      'a notification with no parseable giveawayId falls back to a full debounced reload '
-      'rather than doing nothing',
-      () async {
-        when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
-        stubChannels();
+    test('a notification with no parseable giveawayId falls back to a full debounced reload '
+        'rather than doing nothing', () async {
+      when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
+      stubChannels();
 
-        final cubit = MyGiveawaysCubit(repository, client, secureStorage);
-        when(() => repository.peekCachedParticipations()).thenReturn(null);
-        when(
-          () => repository.getMyParticipations(forceRefresh: true),
-        ).thenAnswer((_) async => const Result.success([]));
-        await cubit.load();
-        await cubit.subscribeToRealtime();
+      final cubit = MyGiveawaysCubit(repository, client, secureStorage);
+      when(() => repository.peekCachedParticipations()).thenReturn(null);
+      when(
+        () => repository.getMyParticipations(forceRefresh: true),
+      ).thenAnswer((_) async => const Result.success([]));
+      await cubit.load();
+      await cubit.subscribeToRealtime();
 
-        capturedCallbacks['my-giveaways-winner-notifications-user-1']!(
-          _payload(table: 'notifications', newRecord: const {'type': 'winner_announcement'}),
-        );
-        await Future<void>.delayed(const Duration(milliseconds: 600));
+      capturedCallbacks['my-giveaways-winner-notifications-user-1']!(
+        _payload(table: 'notifications', newRecord: const {'type': 'winner_announcement'}),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 600));
 
-        verify(() => repository.getMyParticipations(forceRefresh: true)).called(2);
-        await cubit.close();
-      },
-    );
+      verify(() => repository.getMyParticipations(forceRefresh: true)).called(2);
+      await cubit.close();
+    });
 
     test('a participations INSERT triggers a single debounced forceRefresh reload', () async {
       when(() => secureStorage.cachedUserId).thenAnswer((_) async => 'user-1');
@@ -392,9 +380,7 @@ void main() {
 
       final cubit = MyGiveawaysCubit(repository, client, secureStorage);
       await cubit.subscribeToRealtime();
-      capturedCallbacks['my-giveaways-participations-user-1']!(
-        _payload(table: 'participations'),
-      );
+      capturedCallbacks['my-giveaways-participations-user-1']!(_payload(table: 'participations'));
 
       verifyNever(() => repository.getMyParticipations(forceRefresh: true));
       await Future<void>.delayed(const Duration(milliseconds: 600));

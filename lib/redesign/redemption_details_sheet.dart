@@ -7,14 +7,22 @@ const _ink = Color(0xff0c123e);
 const _violet = Color(0xff4824fa);
 const _muted = Color(0xff777eaa);
 
-String? validateDemoFulfillmentField(DemoFulfillmentField field, String value, {bool arabic = false}) {
+String? validateDemoFulfillmentField(
+  DemoFulfillmentField field,
+  String value, {
+  bool arabic = false,
+}) {
   final text = value.trim();
   if (text.isEmpty) return arabic ? 'هذا الحقل مطلوب' : 'This field is required';
   if (field.minLength != null && text.length < field.minLength!) {
-    return arabic ? 'أدخل ${field.minLength} أحرف على الأقل' : 'Enter at least ${field.minLength} characters';
+    return arabic
+        ? 'أدخل ${field.minLength} أحرف على الأقل'
+        : 'Enter at least ${field.minLength} characters';
   }
   if (field.maxLength != null && text.length > field.maxLength!) {
-    return arabic ? 'الحد الأقصى ${field.maxLength} حرفًا' : 'Use at most ${field.maxLength} characters';
+    return arabic
+        ? 'الحد الأقصى ${field.maxLength} حرفًا'
+        : 'Use at most ${field.maxLength} characters';
   }
   if (field.pattern != null && !RegExp(field.pattern!).hasMatch(text)) {
     return arabic ? 'تحقق من صيغة ${field.labelAr}' : 'Check the ${field.label} format';
@@ -49,7 +57,11 @@ Future<Map<String, String>?> showRedemptionDetailsSheet(
 );
 
 class _RedemptionDetailsSheet extends StatefulWidget {
-  const _RedemptionDetailsSheet({required this.product, required this.balance, required this.imagePath});
+  const _RedemptionDetailsSheet({
+    required this.product,
+    required this.balance,
+    required this.imagePath,
+  });
   final DemoProduct product;
   final int balance;
   final String imagePath;
@@ -105,29 +117,72 @@ class _RedemptionDetailsSheetState extends State<_RedemptionDetailsSheet> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Center(child: Container(width: 44, height: 5,
-                      decoration: BoxDecoration(color: const Color(0xffd9d3ed), borderRadius: BorderRadius.circular(4)))),
+                  Center(
+                    child: Container(
+                      width: 44,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffd9d3ed),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 20),
-                  Text(arabic ? 'تفاصيل الاستبدال' : 'Redemption details',
-                      style: const TextStyle(color: _ink, fontSize: 24, fontWeight: FontWeight.w800)),
+                  Text(
+                    arabic ? 'تفاصيل الاستبدال' : 'Redemption details',
+                    style: const TextStyle(color: _ink, fontSize: 24, fontWeight: FontWeight.w800),
+                  ),
                   const SizedBox(height: 16),
-                  Row(children: [
-                    ClipRRect(borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(widget.imagePath, width: 68, height: 68, fit: BoxFit.cover)),
-                    const SizedBox(width: 14),
-                    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(widget.product.title, style: const TextStyle(color: _ink, fontSize: 18, fontWeight: FontWeight.w800)),
-                      Text('${widget.product.points} PTS', style: const TextStyle(color: _violet, fontSize: 16, fontWeight: FontWeight.w700)),
-                    ])),
-                  ]),
+                  Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Image.asset(
+                          widget.imagePath,
+                          width: 68,
+                          height: 68,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.product.title,
+                              style: const TextStyle(
+                                color: _ink,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            Text(
+                              '${widget.product.points} PTS',
+                              style: const TextStyle(
+                                color: _violet,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(color: const Color(0xfff0ecff), borderRadius: BorderRadius.circular(16)),
-                    child: Text(arabic
-                        ? 'الرصيد: ${widget.balance} PTS  •  بعد الاستبدال: ${widget.balance - widget.product.points} PTS'
-                        : 'Balance: ${widget.balance} PTS  •  After: ${widget.balance - widget.product.points} PTS',
-                        style: const TextStyle(color: _ink, fontWeight: FontWeight.w700)),
+                    decoration: BoxDecoration(
+                      color: const Color(0xfff0ecff),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Text(
+                      arabic
+                          ? 'الرصيد: ${widget.balance} PTS  •  بعد الاستبدال: ${widget.balance - widget.product.points} PTS'
+                          : 'Balance: ${widget.balance} PTS  •  After: ${widget.balance - widget.product.points} PTS',
+                      style: const TextStyle(color: _ink, fontWeight: FontWeight.w700),
+                    ),
                   ),
                   const SizedBox(height: 14),
                   for (final field in fields) ...[
@@ -135,31 +190,40 @@ class _RedemptionDetailsSheetState extends State<_RedemptionDetailsSheet> {
                     if (field.confirmEntry) _field(field, arabic, confirm: true),
                     const SizedBox(height: 12),
                   ],
-                  Text(arabic
-                      ? 'هذا طلب تجريبي. لن يتم تسليم منتج فعلي.'
-                      : 'This is a demo order. No product will be delivered.',
-                      style: const TextStyle(color: _muted, fontSize: 13)),
+                  Text(
+                    arabic
+                        ? 'هذا طلب تجريبي. لن يتم تسليم منتج فعلي.'
+                        : 'This is a demo order. No product will be delivered.',
+                    style: const TextStyle(color: _muted, fontSize: 13),
+                  ),
                   const SizedBox(height: 18),
                   Container(
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(colors: [Color(0xff4031ff), Color(0xff741af2)]),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xff4031ff), Color(0xff741af2)],
+                      ),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: FilledButton(
-                      onPressed: widget.balance < widget.product.points ? null : () {
-                        if (!formKey.currentState!.validate()) return;
-                        Navigator.of(context).pop({
-                          for (final field in fields) field.key: controllers[field.key]!.text.trim(),
-                        });
-                      },
+                      onPressed: widget.balance < widget.product.points
+                          ? null
+                          : () {
+                              if (!formKey.currentState!.validate()) return;
+                              Navigator.of(context).pop({
+                                for (final field in fields)
+                                  field.key: controllers[field.key]!.text.trim(),
+                              });
+                            },
                       style: FilledButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         disabledBackgroundColor: const Color(0xffbbb5dd),
                         minimumSize: const Size.fromHeight(56),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                       ),
-                      child: Text(arabic ? 'تأكيد الاستبدال' : 'Confirm redemption',
-                          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                      child: Text(
+                        arabic ? 'تأكيد الاستبدال' : 'Confirm redemption',
+                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                      ),
                     ),
                   ),
                 ],
@@ -186,28 +250,36 @@ class _RedemptionDetailsSheetState extends State<_RedemptionDetailsSheet> {
       key: ValueKey('fulfillment-${field.key}${confirm ? '-confirm' : ''}'),
       controller: controller,
       textDirection: field.type == DemoFieldType.number || field.type == DemoFieldType.url
-          ? TextDirection.ltr : null,
+          ? TextDirection.ltr
+          : null,
       keyboardType: keyboardType,
       textInputAction: TextInputAction.next,
       maxLength: field.maxLength,
       decoration: InputDecoration(
         labelText: label,
         hintText: confirm ? null : (arabic ? field.hintAr : field.hint),
-        prefixIcon: Icon(switch (field.type) {
-          DemoFieldType.number => LucideIcons.hash,
-          DemoFieldType.phone => LucideIcons.phone,
-          DemoFieldType.url => LucideIcons.link,
-          _ => LucideIcons.userRound,
-        }, color: _violet, size: 20),
+        prefixIcon: Icon(
+          switch (field.type) {
+            DemoFieldType.number => LucideIcons.hash,
+            DemoFieldType.phone => LucideIcons.phone,
+            DemoFieldType.url => LucideIcons.link,
+            _ => LucideIcons.userRound,
+          },
+          color: _violet,
+          size: 20,
+        ),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(18),
-            borderSide: const BorderSide(color: Color(0xffdddafa))),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: Color(0xffdddafa)),
+        ),
       ),
       validator: (value) {
         if (confirm) {
           return value?.trim() == controllers[field.key]!.text.trim()
-              ? null : (arabic ? 'القيمتان غير متطابقتين' : 'Values do not match');
+              ? null
+              : (arabic ? 'القيمتان غير متطابقتين' : 'Values do not match');
         }
         return validateDemoFulfillmentField(field, value ?? '', arabic: arabic);
       },

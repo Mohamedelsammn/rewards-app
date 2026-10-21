@@ -93,11 +93,11 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ar'), Locale('en')];
 
-  /// App name shown on the splash screen
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Reward Giveaway'**
-  String get appName;
+  /// **'Creative Rewards'**
+  String get appTitle;
 
   /// No description provided for @commonRetry.
   ///
@@ -111,35 +111,683 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get commonCancel;
 
-  /// No description provided for @commonConfirm.
+  /// No description provided for @commonOk.
   ///
   /// In en, this message translates to:
-  /// **'Confirm'**
-  String get commonConfirm;
+  /// **'OK'**
+  String get commonOk;
 
-  /// No description provided for @commonDismiss.
+  /// No description provided for @commonDone.
   ///
   /// In en, this message translates to:
-  /// **'Dismiss'**
-  String get commonDismiss;
+  /// **'Done'**
+  String get commonDone;
 
-  /// No description provided for @commonDelete.
+  /// No description provided for @commonSave.
   ///
   /// In en, this message translates to:
-  /// **'Delete'**
-  String get commonDelete;
+  /// **'Save'**
+  String get commonSave;
 
-  /// No description provided for @commonSomethingWrong.
+  /// No description provided for @commonContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get commonContinue;
+
+  /// No description provided for @commonSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get commonSeeAll;
+
+  /// No description provided for @commonCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get commonCopy;
+
+  /// No description provided for @commonCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get commonCopied;
+
+  /// No description provided for @commonLoadMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get commonLoadMore;
+
+  /// No description provided for @pointsAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} PTS'**
+  String pointsAmount(String points);
+
+  /// No description provided for @onboardingStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding step {step} of {total}'**
+  String onboardingStep(int step, int total);
+
+  /// No description provided for @errorReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference: {id}'**
+  String errorReference(String id);
+
+  /// No description provided for @showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get hidePassword;
+
+  /// No description provided for @errUnknown.
   ///
   /// In en, this message translates to:
   /// **'Something went wrong. Please try again.'**
-  String get commonSomethingWrong;
+  String get errUnknown;
 
-  /// No description provided for @commonRequired.
+  /// No description provided for @errServer.
   ///
   /// In en, this message translates to:
-  /// **'Required'**
-  String get commonRequired;
+  /// **'The service is having trouble. Please try again shortly.'**
+  String get errServer;
+
+  /// No description provided for @errNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Check your connection and try again.'**
+  String get errNetwork;
+
+  /// No description provided for @errTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The request took too long. Please try again.'**
+  String get errTimeout;
+
+  /// No description provided for @errInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password'**
+  String get errInvalidCredentials;
+
+  /// No description provided for @errSessionExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session expired. Please sign in again.'**
+  String get errSessionExpired;
+
+  /// No description provided for @errAccountSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'This account is suspended. Contact support for help.'**
+  String get errAccountSuspended;
+
+  /// No description provided for @errFeatureDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature isn\'t available right now.'**
+  String get errFeatureDisabled;
+
+  /// No description provided for @errNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This item is no longer available.'**
+  String get errNotFound;
+
+  /// No description provided for @errEmailTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'This email already has an account.'**
+  String get errEmailTaken;
+
+  /// No description provided for @errInsufficientPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have enough points for this reward.'**
+  String get errInsufficientPoints;
+
+  /// No description provided for @errOutOfStock.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward is out of stock.'**
+  String get errOutOfStock;
+
+  /// No description provided for @errPriceChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'The price of this reward has changed.'**
+  String get errPriceChanged;
+
+  /// No description provided for @errInvalidTransition.
+  ///
+  /// In en, this message translates to:
+  /// **'This order can no longer be changed.'**
+  String get errInvalidTransition;
+
+  /// No description provided for @errRequestInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your request is still being processed. Please wait.'**
+  String get errRequestInProgress;
+
+  /// No description provided for @errGiveawayNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'This giveaway hasn\'t started yet.'**
+  String get errGiveawayNotStarted;
+
+  /// No description provided for @errGiveawayEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'This giveaway has ended.'**
+  String get errGiveawayEnded;
+
+  /// No description provided for @errGiveawayNotActive.
+  ///
+  /// In en, this message translates to:
+  /// **'This giveaway isn\'t open right now.'**
+  String get errGiveawayNotActive;
+
+  /// No description provided for @errGiveawayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'This giveaway is full.'**
+  String get errGiveawayFull;
+
+  /// No description provided for @errStepsIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the required steps first.'**
+  String get errStepsIncomplete;
+
+  /// No description provided for @errClaimNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This prize can no longer be claimed.'**
+  String get errClaimNotAllowed;
+
+  /// No description provided for @errValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the information you entered.'**
+  String get errValidation;
+
+  /// No description provided for @errOtpInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The code is incorrect.'**
+  String get errOtpInvalid;
+
+  /// No description provided for @errOtpExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This code expired. Request a new one.'**
+  String get errOtpExpired;
+
+  /// No description provided for @errOtpAttemptsExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong attempts. Request a new code.'**
+  String get errOtpAttemptsExceeded;
+
+  /// No description provided for @errOtpVerificationInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email verification expired. Please start again.'**
+  String get errOtpVerificationInvalid;
+
+  /// No description provided for @errOtpResendCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait {seconds} seconds before requesting another code.'**
+  String errOtpResendCooldown(int seconds);
+
+  /// No description provided for @errOtpSendLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many codes were requested. Try again later.'**
+  String get errOtpSendLimit;
+
+  /// No description provided for @errOtpLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification is temporarily locked. Try again in an hour or sign in with your password.'**
+  String get errOtpLocked;
+
+  /// No description provided for @errEmailNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Email delivery is unavailable right now. Try again later.'**
+  String get errEmailNotConfigured;
+
+  /// No description provided for @errInvalidPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is incorrect.'**
+  String get errInvalidPassword;
+
+  /// No description provided for @errInvalidAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose another character.'**
+  String get errInvalidAvatar;
+
+  /// No description provided for @errProofRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a short proof to submit this step.'**
+  String get errProofRequired;
+
+  /// No description provided for @errRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts. Please wait a moment.'**
+  String get errRateLimited;
+
+  /// No description provided for @errDailyLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached today\'s limit. Come back tomorrow.'**
+  String get errDailyLimit;
+
+  /// No description provided for @errDeviceLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'This device reached today\'s limit.'**
+  String get errDeviceLimit;
+
+  /// No description provided for @errCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait {seconds} seconds before the next ad.'**
+  String errCooldown(int seconds);
+
+  /// No description provided for @errTooManyPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier ads are still being verified. Try again shortly.'**
+  String get errTooManyPending;
+
+  /// No description provided for @errNumberAllocation.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t assign your number. Please try again.'**
+  String get errNumberAllocation;
+
+  /// No description provided for @errInvalidCursor.
+  ///
+  /// In en, this message translates to:
+  /// **'The list changed. Pull to refresh.'**
+  String get errInvalidCursor;
+
+  /// No description provided for @splashTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Play · Earn · Redeem'**
+  String get splashTagline;
+
+  /// No description provided for @maintenanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll be right back'**
+  String get maintenanceTitle;
+
+  /// No description provided for @maintenanceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Rewards is under maintenance. Please try again soon.'**
+  String get maintenanceBody;
+
+  /// No description provided for @updateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update required'**
+  String get updateTitle;
+
+  /// No description provided for @updateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Please update Creative Rewards to keep using it.'**
+  String get updateBody;
+
+  /// No description provided for @updateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update now'**
+  String get updateButton;
+
+  /// No description provided for @offlineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t connect'**
+  String get offlineTitle;
+
+  /// No description provided for @offlineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection and try again.'**
+  String get offlineBody;
+
+  /// No description provided for @serviceUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Service not connected'**
+  String get serviceUnavailableTitle;
+
+  /// No description provided for @serviceUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Rewards is unavailable until the service is connected.'**
+  String get serviceUnavailableBody;
+
+  /// No description provided for @serviceInsecureBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This build can\'t use an insecure connection.'**
+  String get serviceInsecureBody;
+
+  /// No description provided for @welcomeTitleTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Rewards'**
+  String get welcomeTitleTop;
+
+  /// No description provided for @welcomeTitleBottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Starts Here'**
+  String get welcomeTitleBottom;
+
+  /// No description provided for @welcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Play, earn, and redeem amazing rewards with ease.'**
+  String get welcomeSubtitle;
+
+  /// No description provided for @welcomeGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get welcomeGetStarted;
+
+  /// No description provided for @welcomeHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get welcomeHaveAccount;
+
+  /// No description provided for @welcomeLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get welcomeLogin;
+
+  /// No description provided for @authInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address'**
+  String get authInvalidEmail;
+
+  /// No description provided for @emailTitleStart.
+  ///
+  /// In en, this message translates to:
+  /// **'What’s your '**
+  String get emailTitleStart;
+
+  /// No description provided for @emailTitleAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'email?'**
+  String get emailTitleAccent;
+
+  /// No description provided for @emailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll send you a verification code to confirm your account.'**
+  String get emailSubtitle;
+
+  /// No description provided for @emailSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Code'**
+  String get emailSendCode;
+
+  /// No description provided for @emailLoginInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Log in'**
+  String get emailLoginInstead;
+
+  /// No description provided for @otpTitleStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your '**
+  String get otpTitleStart;
+
+  /// No description provided for @otpTitleAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'email'**
+  String get otpTitleAccent;
+
+  /// No description provided for @otpSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ve sent a 6-digit code to'**
+  String get otpSentTo;
+
+  /// No description provided for @otpResendIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend in {time}'**
+  String otpResendIn(String time);
+
+  /// No description provided for @otpResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get otpResend;
+
+  /// No description provided for @otpResent.
+  ///
+  /// In en, this message translates to:
+  /// **'A new code was sent.'**
+  String get otpResent;
+
+  /// No description provided for @otpEnterSix.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter six digits'**
+  String get otpEnterSix;
+
+  /// No description provided for @otpAttemptsLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} attempts left'**
+  String otpAttemptsLeft(int count);
+
+  /// No description provided for @otpSpamHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn’t get it? Check your spam folder, then resend after the countdown.'**
+  String get otpSpamHint;
+
+  /// No description provided for @otpCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'6-digit verification code'**
+  String get otpCodeLabel;
+
+  /// No description provided for @passwordTitleStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a '**
+  String get passwordTitleStart;
+
+  /// No description provided for @passwordTitleAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'password'**
+  String get passwordTitleAccent;
+
+  /// No description provided for @passwordResetTitleStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset '**
+  String get passwordResetTitleStart;
+
+  /// No description provided for @passwordResetTitleAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'password'**
+  String get passwordResetTitleAccent;
+
+  /// No description provided for @passwordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a secure password for your account.'**
+  String get passwordSubtitle;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordConfirmLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get passwordConfirmLabel;
+
+  /// No description provided for @passwordRuleLength.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get passwordRuleLength;
+
+  /// No description provided for @passwordRuleLettersNumbers.
+  ///
+  /// In en, this message translates to:
+  /// **'Include letters and numbers'**
+  String get passwordRuleLettersNumbers;
+
+  /// No description provided for @passwordRuleStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a strong password'**
+  String get passwordRuleStrong;
+
+  /// No description provided for @passwordTooWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 10 or more characters with uppercase, lowercase, and numbers'**
+  String get passwordTooWeak;
+
+  /// No description provided for @passwordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordMismatch;
+
+  /// No description provided for @passwordSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Password'**
+  String get passwordSave;
+
+  /// No description provided for @passwordResetDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated. Sign in with your new password.'**
+  String get passwordResetDone;
+
+  /// No description provided for @characterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Your Character'**
+  String get characterTitle;
+
+  /// No description provided for @characterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a character to represent you in the app.'**
+  String get characterSubtitle;
+
+  /// No description provided for @characterOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Character {number}'**
+  String characterOption(int number);
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue your rewards journey.'**
+  String get loginSubtitle;
+
+  /// No description provided for @loginEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get loginEmailHint;
+
+  /// No description provided for @loginPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get loginPasswordHint;
+
+  /// No description provided for @loginForgot.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get loginForgot;
+
+  /// No description provided for @loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginButton;
+
+  /// No description provided for @loginBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing in...'**
+  String get loginBusy;
+
+  /// No description provided for @loginInvalidInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email and password'**
+  String get loginInvalidInput;
+
+  /// No description provided for @loginEnterEmailFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email first'**
+  String get loginEnterEmailFirst;
+
+  /// No description provided for @loginCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'New here? Create an account'**
+  String get loginCreateAccount;
 
   /// No description provided for @navHome.
   ///
@@ -147,359 +795,1091 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get navHome;
 
-  /// No description provided for @navDashboard.
+  /// No description provided for @navCategories.
   ///
   /// In en, this message translates to:
-  /// **'Dashboard'**
-  String get navDashboard;
+  /// **'Categories'**
+  String get navCategories;
 
-  /// No description provided for @roleSelectionWelcome.
+  /// No description provided for @navWallet.
   ///
   /// In en, this message translates to:
-  /// **'Welcome 👋'**
-  String get roleSelectionWelcome;
+  /// **'Wallet'**
+  String get navWallet;
 
-  /// No description provided for @roleSelectionChooseHow.
+  /// No description provided for @navProfile.
   ///
   /// In en, this message translates to:
-  /// **'Choose how you\'d like to continue.'**
-  String get roleSelectionChooseHow;
+  /// **'Profile'**
+  String get navProfile;
 
-  /// No description provided for @roleSelectionContinueAsUser.
+  /// No description provided for @notificationsTooltip.
   ///
   /// In en, this message translates to:
-  /// **'Continue as User'**
-  String get roleSelectionContinueAsUser;
+  /// **'Notifications'**
+  String get notificationsTooltip;
 
-  /// No description provided for @roleSelectionContinueAsUserSubtitle.
+  /// No description provided for @homeYourPoints.
   ///
   /// In en, this message translates to:
-  /// **'Join exciting giveaways and win amazing prizes.'**
-  String get roleSelectionContinueAsUserSubtitle;
+  /// **'Your Points'**
+  String get homeYourPoints;
 
-  /// No description provided for @roleSelectionContinueAsAdmin.
+  /// No description provided for @homeSearchHint.
   ///
   /// In en, this message translates to:
-  /// **'Continue as Admin'**
-  String get roleSelectionContinueAsAdmin;
+  /// **'Search rewards, giveaways...'**
+  String get homeSearchHint;
 
-  /// No description provided for @roleSelectionContinueAsAdminSubtitle.
+  /// No description provided for @homeAvailableRewards.
   ///
   /// In en, this message translates to:
-  /// **'Create and manage giveaway campaigns.'**
-  String get roleSelectionContinueAsAdminSubtitle;
+  /// **'Available Rewards'**
+  String get homeAvailableRewards;
 
-  /// No description provided for @roleSelectionSwitchAnytime.
+  /// No description provided for @homeFeaturedRewards.
   ///
   /// In en, this message translates to:
-  /// **'YOU CAN SWITCH YOUR ROLE ANYTIME.'**
-  String get roleSelectionSwitchAnytime;
+  /// **'Featured Rewards'**
+  String get homeFeaturedRewards;
 
-  /// No description provided for @userHomeWelcomeBack.
+  /// No description provided for @homeGiveaways.
   ///
   /// In en, this message translates to:
-  /// **'Welcome back 👋'**
-  String get userHomeWelcomeBack;
+  /// **'Giveaways'**
+  String get homeGiveaways;
 
-  /// No description provided for @userHomeGuest.
+  /// No description provided for @homeNoResults.
   ///
   /// In en, this message translates to:
-  /// **'Guest'**
-  String get userHomeGuest;
+  /// **'No rewards found'**
+  String get homeNoResults;
 
-  /// No description provided for @userHomeSearchHint.
+  /// No description provided for @homeEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Search giveaways…'**
-  String get userHomeSearchHint;
+  /// **'New rewards are on the way. Check back soon.'**
+  String get homeEmpty;
 
-  /// No description provided for @userHomePopularGiveaways.
+  /// No description provided for @homeClearSearch.
   ///
   /// In en, this message translates to:
-  /// **'Popular Giveaways'**
-  String get userHomePopularGiveaways;
+  /// **'Clear search'**
+  String get homeClearSearch;
 
-  /// No description provided for @userHomeAllGiveaways.
+  /// No description provided for @giveawayAvailable.
   ///
   /// In en, this message translates to:
-  /// **'All Giveaways'**
-  String get userHomeAllGiveaways;
+  /// **'Available'**
+  String get giveawayAvailable;
 
-  /// No description provided for @userHomeFeaturedGiveaway.
+  /// No description provided for @giveawayUpcoming.
   ///
   /// In en, this message translates to:
-  /// **'Featured Giveaway'**
-  String get userHomeFeaturedGiveaway;
+  /// **'Coming soon'**
+  String get giveawayUpcoming;
 
-  /// No description provided for @userHomeJoinedCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} joined'**
-  String userHomeJoinedCount(int count);
-
-  /// No description provided for @userHomeViewDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'View Details'**
-  String get userHomeViewDetails;
-
-  /// No description provided for @userHomeNoActiveGiveaways.
-  ///
-  /// In en, this message translates to:
-  /// **'No active giveaways right now'**
-  String get userHomeNoActiveGiveaways;
-
-  /// No description provided for @userHomeCouldNotLoad.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t load giveaways.'**
-  String get userHomeCouldNotLoad;
-
-  /// No description provided for @statusActive.
-  ///
-  /// In en, this message translates to:
-  /// **'Active'**
-  String get statusActive;
-
-  /// No description provided for @statusEnded.
+  /// No description provided for @giveawayEnded.
   ///
   /// In en, this message translates to:
   /// **'Ended'**
-  String get statusEnded;
+  String get giveawayEnded;
 
-  /// No description provided for @statusDraft.
+  /// No description provided for @giveawayWinnersSelected.
   ///
   /// In en, this message translates to:
-  /// **'Draft'**
-  String get statusDraft;
+  /// **'Winners announced'**
+  String get giveawayWinnersSelected;
 
-  /// No description provided for @statusScheduled.
+  /// No description provided for @giveawayCancelled.
   ///
   /// In en, this message translates to:
-  /// **'Scheduled'**
-  String get statusScheduled;
+  /// **'Cancelled'**
+  String get giveawayCancelled;
 
-  /// No description provided for @statusArchived.
+  /// No description provided for @giveawayEndsOn.
   ///
   /// In en, this message translates to:
-  /// **'Archived'**
-  String get statusArchived;
+  /// **'Ends {date}'**
+  String giveawayEndsOn(String date);
 
-  /// No description provided for @giveawayDetailsAboutPrize.
+  /// No description provided for @giveawayStartsOn.
   ///
   /// In en, this message translates to:
-  /// **'About this prize'**
-  String get giveawayDetailsAboutPrize;
+  /// **'Starts {date}'**
+  String giveawayStartsOn(String date);
 
-  /// No description provided for @giveawayDetailsHowToParticipate.
+  /// No description provided for @giveawayParticipants.
   ///
   /// In en, this message translates to:
-  /// **'How to Participate'**
-  String get giveawayDetailsHowToParticipate;
+  /// **'{count, plural, =0{No participants yet} =1{1 participant} other{{count} participants}}'**
+  String giveawayParticipants(int count);
 
-  /// No description provided for @giveawayDetailsRules.
+  /// No description provided for @categoriesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Rules'**
-  String get giveawayDetailsRules;
+  /// **'Categories'**
+  String get categoriesTitle;
 
-  /// No description provided for @giveawayDetailsGenerateNumber.
+  /// No description provided for @categoriesEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Generate My Number'**
-  String get giveawayDetailsGenerateNumber;
+  /// **'No categories yet. Check back soon.'**
+  String get categoriesEmpty;
 
-  /// No description provided for @giveawayDetailsNotActive.
+  /// No description provided for @categoryProductsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Giveaway Not Active'**
-  String get giveawayDetailsNotActive;
+  /// **'No rewards in this category yet.'**
+  String get categoryProductsEmpty;
 
-  /// No description provided for @giveawayDetailsYoureIn.
+  /// No description provided for @productRedeem.
   ///
   /// In en, this message translates to:
-  /// **'You\'re in!'**
-  String get giveawayDetailsYoureIn;
+  /// **'Redeem'**
+  String get productRedeem;
 
-  /// No description provided for @giveawayDetailsYoureInWithNumber.
+  /// No description provided for @productOutOfStock.
   ///
   /// In en, this message translates to:
-  /// **'You\'re in! #{number}'**
-  String giveawayDetailsYoureInWithNumber(String number);
+  /// **'Out of stock'**
+  String get productOutOfStock;
 
-  /// No description provided for @giveawayDetailsCouldNotLoad.
+  /// No description provided for @redeemTitle.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t load this giveaway.'**
-  String get giveawayDetailsCouldNotLoad;
+  /// **'Redemption details'**
+  String get redeemTitle;
 
-  /// No description provided for @giveawayDetailsEnded.
+  /// No description provided for @redeemBalanceLine.
   ///
   /// In en, this message translates to:
-  /// **'Ended'**
-  String get giveawayDetailsEnded;
+  /// **'Balance: {balance} PTS  •  After: {after} PTS'**
+  String redeemBalanceLine(String balance, String after);
 
-  /// No description provided for @giveawayDetailsHoursLeft.
+  /// No description provided for @redeemConfirm.
   ///
   /// In en, this message translates to:
-  /// **'{hours} h left'**
-  String giveawayDetailsHoursLeft(int hours);
+  /// **'Confirm redemption'**
+  String get redeemConfirm;
 
-  /// No description provided for @giveawayDetailsDaysHoursLeft.
+  /// No description provided for @redeemFieldRequired.
   ///
   /// In en, this message translates to:
-  /// **'{days} d {hours} h left'**
-  String giveawayDetailsDaysHoursLeft(int days, int hours);
+  /// **'This field is required'**
+  String get redeemFieldRequired;
 
-  /// No description provided for @registrationTitle.
+  /// No description provided for @redeemFieldInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Create Your Account'**
-  String get registrationTitle;
+  /// **'Check the {label} format'**
+  String redeemFieldInvalid(String label);
 
-  /// No description provided for @registrationSubtitle.
+  /// No description provided for @redeemInvalidNumber.
   ///
   /// In en, this message translates to:
-  /// **'Enter your information to start participating.'**
-  String get registrationSubtitle;
+  /// **'Use digits only'**
+  String get redeemInvalidNumber;
 
-  /// No description provided for @registrationFullNameLabel.
+  /// No description provided for @redeemInvalidUrl.
   ///
   /// In en, this message translates to:
-  /// **'FULL NAME'**
-  String get registrationFullNameLabel;
+  /// **'Enter a valid URL'**
+  String get redeemInvalidUrl;
 
-  /// No description provided for @registrationFullNameHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Jane Doe'**
-  String get registrationFullNameHint;
-
-  /// No description provided for @registrationFullNameError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your full name'**
-  String get registrationFullNameError;
-
-  /// No description provided for @registrationCountryLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'COUNTRY'**
-  String get registrationCountryLabel;
-
-  /// No description provided for @registrationPhoneLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'PHONE NUMBER'**
-  String get registrationPhoneLabel;
-
-  /// No description provided for @registrationPhoneHint.
-  ///
-  /// In en, this message translates to:
-  /// **'(555) 000-0000'**
-  String get registrationPhoneHint;
-
-  /// No description provided for @registrationPhoneRequiredError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your phone number'**
-  String get registrationPhoneRequiredError;
-
-  /// No description provided for @registrationPhoneInvalidError.
+  /// No description provided for @redeemInvalidPhone.
   ///
   /// In en, this message translates to:
   /// **'Enter a valid phone number'**
-  String get registrationPhoneInvalidError;
+  String get redeemInvalidPhone;
 
-  /// No description provided for @registrationContinue.
+  /// No description provided for @redeemInvalidOption.
   ///
   /// In en, this message translates to:
-  /// **'CONTINUE'**
-  String get registrationContinue;
+  /// **'Choose one of the options'**
+  String get redeemInvalidOption;
 
-  /// No description provided for @registrationAgreeTerms.
+  /// No description provided for @redeemSelectHint.
   ///
   /// In en, this message translates to:
-  /// **'By continuing you agree to our Privacy Policy and Terms.'**
-  String get registrationAgreeTerms;
+  /// **'Choose an option'**
+  String get redeemSelectHint;
 
-  /// No description provided for @participationJoinGiveaway.
+  /// No description provided for @redeemPrivacyNote.
   ///
   /// In en, this message translates to:
-  /// **'Join Giveaway'**
-  String get participationJoinGiveaway;
+  /// **'We will never ask for your passwords or verification codes.'**
+  String get redeemPrivacyNote;
 
-  /// No description provided for @participationGeneratingNumber.
+  /// No description provided for @redeemPointsNote.
   ///
   /// In en, this message translates to:
-  /// **'Generating your number…'**
-  String get participationGeneratingNumber;
+  /// **'Points are deducted when you confirm and refunded if the order can\'t be completed.'**
+  String get redeemPointsNote;
 
-  /// No description provided for @participationSuccessOpening.
+  /// No description provided for @redeemSuccessTitle.
   ///
   /// In en, this message translates to:
-  /// **'Success! Revealing your code…'**
-  String get participationSuccessOpening;
+  /// **'Order placed'**
+  String get redeemSuccessTitle;
 
-  /// No description provided for @participationTryAgain.
+  /// No description provided for @redeemSuccessBody.
   ///
   /// In en, this message translates to:
-  /// **'Try Again'**
-  String get participationTryAgain;
+  /// **'{points} PTS were deducted. Track your order in My Orders.'**
+  String redeemSuccessBody(String points);
 
-  /// No description provided for @numberRevealTitle.
+  /// No description provided for @redeemViewOrders.
   ///
   /// In en, this message translates to:
-  /// **'Your Participation Code'**
-  String get numberRevealTitle;
+  /// **'View my orders'**
+  String get redeemViewOrders;
 
-  /// No description provided for @numberRevealSubtitle.
+  /// No description provided for @redeemInsufficientTitle.
   ///
   /// In en, this message translates to:
-  /// **'Generated just for you'**
-  String get numberRevealSubtitle;
+  /// **'Not enough points'**
+  String get redeemInsufficientTitle;
 
-  /// No description provided for @numberRevealViewInMyGiveaways.
+  /// No description provided for @redeemInsufficientBody.
   ///
   /// In en, this message translates to:
-  /// **'View in My Giveaways'**
-  String get numberRevealViewInMyGiveaways;
+  /// **'You have {balance} PTS. This reward needs {required} PTS.'**
+  String redeemInsufficientBody(String balance, String required);
 
-  /// No description provided for @myGiveawaysTitle.
+  /// No description provided for @redeemPriceChangedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Price changed'**
+  String get redeemPriceChangedTitle;
+
+  /// No description provided for @redeemPriceChangedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward now costs {points} PTS. Do you want to continue?'**
+  String redeemPriceChangedBody(String points);
+
+  /// No description provided for @redeemConfirmNewPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem for {points} PTS'**
+  String redeemConfirmNewPrice(String points);
+
+  /// No description provided for @walletTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Rewards'**
+  String get walletTitle;
+
+  /// No description provided for @walletPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'POINTS'**
+  String get walletPoints;
+
+  /// No description provided for @walletBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'BALANCE'**
+  String get walletBalance;
+
+  /// No description provided for @walletFastEarn.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast, Earn'**
+  String get walletFastEarn;
+
+  /// No description provided for @walletPlaceOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Place an Order'**
+  String get walletPlaceOrder;
+
+  /// No description provided for @walletPlaceOrderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse rewards to redeem'**
+  String get walletPlaceOrderSubtitle;
+
+  /// No description provided for @walletReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a Review'**
+  String get walletReview;
+
+  /// No description provided for @walletReviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the app store listing'**
+  String get walletReviewSubtitle;
+
+  /// No description provided for @walletReviewUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Store listing unavailable'**
+  String get walletReviewUnavailable;
+
+  /// No description provided for @walletRefer.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a Friend'**
+  String get walletRefer;
+
+  /// No description provided for @walletReferSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Creative Rewards'**
+  String get walletReferSubtitle;
+
+  /// No description provided for @walletHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Points History'**
+  String get walletHistory;
+
+  /// No description provided for @walletHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Earned, spent and refunded points'**
+  String get walletHistorySubtitle;
+
+  /// No description provided for @transactionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Points History'**
+  String get transactionsTitle;
+
+  /// No description provided for @transactionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every change to your balance'**
+  String get transactionsSubtitle;
+
+  /// No description provided for @transactionsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No points activity yet'**
+  String get transactionsEmpty;
+
+  /// No description provided for @txSignupBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome bonus'**
+  String get txSignupBonus;
+
+  /// No description provided for @txAdReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewarded ad'**
+  String get txAdReward;
+
+  /// No description provided for @txRedemption.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward redeemed'**
+  String get txRedemption;
+
+  /// No description provided for @txRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get txRefund;
+
+  /// No description provided for @txAdminCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Points added'**
+  String get txAdminCredit;
+
+  /// No description provided for @txAdminDebit.
+  ///
+  /// In en, this message translates to:
+  /// **'Points adjusted'**
+  String get txAdminDebit;
+
+  /// No description provided for @txOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance update'**
+  String get txOther;
+
+  /// No description provided for @txBalanceAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance {points} PTS'**
+  String txBalanceAfter(String points);
+
+  /// No description provided for @earnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn points'**
+  String get earnTitle;
+
+  /// No description provided for @earnHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch & earn'**
+  String get earnHeadline;
+
+  /// No description provided for @earnBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch a short video to earn {points} points. Points are added after Google confirms the view.'**
+  String earnBody(int points);
+
+  /// No description provided for @earnRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left today'**
+  String earnRemaining(int count);
+
+  /// No description provided for @earnWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch ad'**
+  String get earnWatch;
+
+  /// No description provided for @earnVerifying.
+  ///
+  /// In en, this message translates to:
+  /// **'Verifying your reward…'**
+  String get earnVerifying;
+
+  /// No description provided for @earnCredited.
+  ///
+  /// In en, this message translates to:
+  /// **'+{points} PTS added to your wallet'**
+  String earnCredited(String points);
+
+  /// No description provided for @earnRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'This view wasn\'t rewarded.'**
+  String get earnRejected;
+
+  /// No description provided for @earnExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'The reward session expired. Please try again.'**
+  String get earnExpired;
+
+  /// No description provided for @earnPendingLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Your points will appear shortly. Check your wallet in a moment.'**
+  String get earnPendingLong;
+
+  /// No description provided for @earnDismissedEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch the full video to earn points.'**
+  String get earnDismissedEarly;
+
+  /// No description provided for @earnAdFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'No video is available right now. Try again later.'**
+  String get earnAdFailed;
+
+  /// No description provided for @earnUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Earning with videos is coming soon'**
+  String get earnUnavailable;
+
+  /// No description provided for @earnUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.'**
+  String get earnUnavailableBody;
+
+  /// No description provided for @earnCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Next video available in {time}'**
+  String earnCooldown(String time);
+
+  /// No description provided for @earnDailyLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached today\'s limit. Come back tomorrow.'**
+  String get earnDailyLimit;
+
+  /// No description provided for @earnUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewarded videos are available on Android.'**
+  String get earnUnsupported;
+
+  /// No description provided for @referTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Refer a Friend'**
+  String get referTitle;
+
+  /// No description provided for @referHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite friends to Creative Rewards'**
+  String get referHeadline;
+
+  /// No description provided for @referBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the app link with your friends. Referral rewards aren\'t available yet.'**
+  String get referBody;
+
+  /// No description provided for @referCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy app link'**
+  String get referCopy;
+
+  /// No description provided for @referCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied'**
+  String get referCopied;
+
+  /// No description provided for @profilePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Points'**
+  String get profilePoints;
+
+  /// No description provided for @profileGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'Giveaways'**
+  String get profileGiveaways;
+
+  /// No description provided for @profileOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get profileOrders;
+
+  /// No description provided for @profileMyGiveaways.
   ///
   /// In en, this message translates to:
   /// **'My Giveaways'**
-  String get myGiveawaysTitle;
+  String get profileMyGiveaways;
 
-  /// No description provided for @myGiveawaysEmpty.
+  /// No description provided for @profileMyOrders.
   ///
   /// In en, this message translates to:
-  /// **'You haven\'t joined any giveaways yet'**
-  String get myGiveawaysEmpty;
+  /// **'My Orders'**
+  String get profileMyOrders;
 
-  /// No description provided for @myGiveawaysCouldNotLoad.
+  /// No description provided for @profileNotifications.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t load your giveaways.'**
-  String get myGiveawaysCouldNotLoad;
+  /// **'Notifications'**
+  String get profileNotifications;
 
-  /// No description provided for @myGiveawaysGiveawayFallback.
+  /// No description provided for @profileLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Giveaway'**
-  String get myGiveawaysGiveawayFallback;
+  /// **'Language'**
+  String get profileLanguage;
 
-  /// No description provided for @myGiveawaysWinner.
+  /// No description provided for @profileSettings.
   ///
   /// In en, this message translates to:
-  /// **'You Won This Giveaway!'**
-  String get myGiveawaysWinner;
+  /// **'Account Settings'**
+  String get profileSettings;
 
-  /// No description provided for @myGiveawaysNotSelected.
+  /// No description provided for @profileAbout.
   ///
   /// In en, this message translates to:
-  /// **'Not selected as the winner this time'**
-  String get myGiveawaysNotSelected;
+  /// **'About'**
+  String get profileAbout;
+
+  /// No description provided for @profilePrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get profilePrivacy;
+
+  /// No description provided for @profileTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get profileTerms;
+
+  /// No description provided for @profileSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get profileSignOut;
+
+  /// No description provided for @profileEditTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get profileEditTooltip;
+
+  /// No description provided for @signOutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out?'**
+  String get signOutTitle;
+
+  /// No description provided for @signOutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to sign out of your account?'**
+  String get signOutMessage;
+
+  /// No description provided for @languageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Language'**
+  String get languageTitle;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfileTitle;
+
+  /// No description provided for @editProfileName.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get editProfileName;
+
+  /// No description provided for @editProfileNameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Use 2–60 characters'**
+  String get editProfileNameInvalid;
+
+  /// No description provided for @editProfileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated'**
+  String get editProfileSaved;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Security and preferences'**
+  String get settingsSubtitle;
+
+  /// No description provided for @settingsChangePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get settingsChangePassword;
+
+  /// No description provided for @settingsSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed-in devices'**
+  String get settingsSessions;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification preferences'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsAdPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad privacy choices'**
+  String get settingsAdPrivacy;
+
+  /// No description provided for @settingsDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get settingsDeleteAccount;
+
+  /// No description provided for @settingsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String settingsVersion(String version);
+
+  /// No description provided for @changePasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get changePasswordTitle;
+
+  /// No description provided for @changePasswordCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get changePasswordCurrent;
+
+  /// No description provided for @changePasswordNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get changePasswordNew;
+
+  /// No description provided for @changePasswordDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed. Other devices were signed out.'**
+  String get changePasswordDone;
+
+  /// No description provided for @sessionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed-in devices'**
+  String get sessionsTitle;
+
+  /// No description provided for @sessionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Devices signed in to your account'**
+  String get sessionsSubtitle;
+
+  /// No description provided for @sessionsCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'This device'**
+  String get sessionsCurrent;
+
+  /// No description provided for @sessionsLastUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Last active {date}'**
+  String sessionsLastUsed(String date);
+
+  /// No description provided for @sessionsRevoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get sessionsRevoke;
+
+  /// No description provided for @sessionsRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Device signed out'**
+  String get sessionsRevoked;
+
+  /// No description provided for @sessionsLogoutAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out of all devices'**
+  String get sessionsLogoutAll;
+
+  /// No description provided for @sessionsLogoutAllMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll need to sign in again on every device, including this one.'**
+  String get sessionsLogoutAllMessage;
+
+  /// No description provided for @sessionsUnknownDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown device'**
+  String get sessionsUnknownDevice;
+
+  /// No description provided for @notificationPrefsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification preferences'**
+  String get notificationPrefsTitle;
+
+  /// No description provided for @notificationPrefsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what we notify you about'**
+  String get notificationPrefsSubtitle;
+
+  /// No description provided for @prefOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Order updates'**
+  String get prefOrders;
+
+  /// No description provided for @prefOrdersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing, delivery and refunds'**
+  String get prefOrdersSubtitle;
+
+  /// No description provided for @prefGiveaways.
+  ///
+  /// In en, this message translates to:
+  /// **'Giveaway results'**
+  String get prefGiveaways;
+
+  /// No description provided for @prefGiveawaysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Winners and draw results'**
+  String get prefGiveawaysSubtitle;
+
+  /// No description provided for @prefAnnouncements.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcements'**
+  String get prefAnnouncements;
+
+  /// No description provided for @prefAnnouncementsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New rewards and offers'**
+  String get prefAnnouncementsSubtitle;
+
+  /// No description provided for @deleteAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get deleteAccountTitle;
+
+  /// No description provided for @deleteAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is deleted after a 14-day grace period. Signing in again during that time cancels the request. Points, orders and entries are removed with the account.'**
+  String get deleteAccountBody;
+
+  /// No description provided for @deleteAccountPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm with your password'**
+  String get deleteAccountPassword;
+
+  /// No description provided for @deleteAccountButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my account'**
+  String get deleteAccountButton;
+
+  /// No description provided for @deleteAccountConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account?'**
+  String get deleteAccountConfirmTitle;
+
+  /// No description provided for @deleteAccountConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone after the grace period.'**
+  String get deleteAccountConfirmMessage;
+
+  /// No description provided for @deleteAccountDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested. Your account will be removed in {days} days.'**
+  String deleteAccountDone(int days);
+
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutTitle;
+
+  /// No description provided for @aboutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Creative Rewards lets you redeem points for rewards and join free giveaways.'**
+  String get aboutBody;
+
+  /// No description provided for @privacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyTitle;
+
+  /// No description provided for @termsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get termsTitle;
+
+  /// No description provided for @legalUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This document will be available soon.'**
+  String get legalUnavailable;
+
+  /// No description provided for @legalOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open document'**
+  String get legalOpen;
+
+  /// No description provided for @ordersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Orders'**
+  String get ordersTitle;
+
+  /// No description provided for @ordersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track and manage your orders'**
+  String get ordersSubtitle;
+
+  /// No description provided for @ordersAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get ordersAll;
+
+  /// No description provided for @ordersInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get ordersInProgress;
+
+  /// No description provided for @ordersCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get ordersCompleted;
+
+  /// No description provided for @ordersUnsuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsuccessful'**
+  String get ordersUnsuccessful;
+
+  /// No description provided for @ordersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet'**
+  String get ordersEmpty;
+
+  /// No description provided for @ordersEmptyFiltered.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders in this status'**
+  String get ordersEmptyFiltered;
+
+  /// No description provided for @orderNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Order #{number}'**
+  String orderNumber(String number);
+
+  /// No description provided for @orderPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get orderPending;
+
+  /// No description provided for @orderProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing'**
+  String get orderProcessing;
+
+  /// No description provided for @orderShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipped'**
+  String get orderShipped;
+
+  /// No description provided for @orderDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get orderDelivered;
+
+  /// No description provided for @orderCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get orderCompleted;
+
+  /// No description provided for @orderRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get orderRejected;
+
+  /// No description provided for @orderCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get orderCancelled;
+
+  /// No description provided for @orderFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get orderFailed;
+
+  /// No description provided for @orderDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order details'**
+  String get orderDetailsTitle;
+
+  /// No description provided for @orderSubmittedDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details'**
+  String get orderSubmittedDetails;
+
+  /// No description provided for @orderDeliveredCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your code'**
+  String get orderDeliveredCode;
+
+  /// No description provided for @orderTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking'**
+  String get orderTracking;
+
+  /// No description provided for @orderReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get orderReason;
+
+  /// No description provided for @orderTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Status history'**
+  String get orderTimeline;
+
+  /// No description provided for @orderRefunded.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} PTS were refunded to your wallet.'**
+  String orderRefunded(String points);
+
+  /// No description provided for @orderCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel order'**
+  String get orderCancel;
+
+  /// No description provided for @orderCancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this order?'**
+  String get orderCancelTitle;
+
+  /// No description provided for @orderCancelMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your points will be refunded to your wallet.'**
+  String get orderCancelMessage;
+
+  /// No description provided for @orderCancelDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Order cancelled. Points refunded.'**
+  String get orderCancelDone;
 
   /// No description provided for @notificationsTitle.
   ///
@@ -510,1166 +1890,344 @@ abstract class AppLocalizations {
   /// No description provided for @notificationsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'You\'re all caught up — no notifications yet.'**
+  /// **'No notifications yet'**
   String get notificationsEmpty;
 
-  /// No description provided for @notificationsCouldNotLoad.
+  /// No description provided for @notificationsMarkAll.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t load notifications.'**
-  String get notificationsCouldNotLoad;
+  /// **'Mark all as read'**
+  String get notificationsMarkAll;
 
-  /// No description provided for @notificationsMarkAllRead.
+  /// No description provided for @notifNow.
   ///
   /// In en, this message translates to:
-  /// **'Mark all read'**
-  String get notificationsMarkAllRead;
+  /// **'Now'**
+  String get notifNow;
 
-  /// No description provided for @settingsTitle.
+  /// No description provided for @notifMinutes.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
-  String get settingsTitle;
+  /// **'{count}m ago'**
+  String notifMinutes(int count);
 
-  /// No description provided for @settingsLanguage.
+  /// No description provided for @notifHours.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
-  String get settingsLanguage;
+  /// **'{count}h ago'**
+  String notifHours(int count);
 
-  /// No description provided for @settingsAbout.
+  /// No description provided for @notifYesterday.
   ///
   /// In en, this message translates to:
-  /// **'About'**
-  String get settingsAbout;
+  /// **'Yesterday'**
+  String get notifYesterday;
 
-  /// No description provided for @settingsPrivacyPolicy.
+  /// No description provided for @notifEarlier.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get settingsPrivacyPolicy;
+  /// **'Earlier'**
+  String get notifEarlier;
 
-  /// No description provided for @settingsTermsConditions.
+  /// No description provided for @notificationOpen.
   ///
   /// In en, this message translates to:
-  /// **'Terms & Conditions'**
-  String get settingsTermsConditions;
+  /// **'Open'**
+  String get notificationOpen;
 
-  /// No description provided for @settingsSignOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign Out'**
-  String get settingsSignOut;
-
-  /// No description provided for @settingsSignOutConfirmTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign Out?'**
-  String get settingsSignOutConfirmTitle;
-
-  /// No description provided for @settingsSignOutConfirmBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ll return to the role selection screen. Your saved giveaways and history stay on this device.'**
-  String get settingsSignOutConfirmBody;
-
-  /// No description provided for @settingsAboutBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.'**
-  String get settingsAboutBody;
-
-  /// No description provided for @settingsSectionGeneral.
-  ///
-  /// In en, this message translates to:
-  /// **'GENERAL'**
-  String get settingsSectionGeneral;
-
-  /// No description provided for @settingsSectionInformation.
-  ///
-  /// In en, this message translates to:
-  /// **'INFORMATION'**
-  String get settingsSectionInformation;
-
-  /// No description provided for @settingsSectionAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'ACCOUNT'**
-  String get settingsSectionAccount;
-
-  /// No description provided for @settingsGuestSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Join a giveaway to create your profile'**
-  String get settingsGuestSubtitle;
-
-  /// No description provided for @adminAuthTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Admin'**
-  String get adminAuthTitle;
-
-  /// No description provided for @adminAuthCreateAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Create Admin Account'**
-  String get adminAuthCreateAccount;
-
-  /// No description provided for @adminAuthSignInTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Admin Sign In'**
-  String get adminAuthSignInTitle;
-
-  /// No description provided for @adminAuthSignUpSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Register a new admin account to manage giveaway campaigns.'**
-  String get adminAuthSignUpSubtitle;
-
-  /// No description provided for @adminAuthSignInSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in to manage giveaway campaigns.'**
-  String get adminAuthSignInSubtitle;
-
-  /// No description provided for @adminAuthSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign In'**
-  String get adminAuthSignIn;
-
-  /// No description provided for @adminAuthSignUp.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign Up'**
-  String get adminAuthSignUp;
-
-  /// No description provided for @adminAuthFullNameLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'FULL NAME'**
-  String get adminAuthFullNameLabel;
-
-  /// No description provided for @adminAuthFullNameError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your full name'**
-  String get adminAuthFullNameError;
-
-  /// No description provided for @adminAuthFullNameHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Your full name'**
-  String get adminAuthFullNameHint;
-
-  /// No description provided for @adminAuthEmailLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'EMAIL'**
-  String get adminAuthEmailLabel;
-
-  /// No description provided for @adminAuthEmailError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a valid email'**
-  String get adminAuthEmailError;
-
-  /// No description provided for @adminAuthEmailHint.
-  ///
-  /// In en, this message translates to:
-  /// **'example@gmail.com'**
-  String get adminAuthEmailHint;
-
-  /// No description provided for @adminAuthPasswordLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'PASSWORD'**
-  String get adminAuthPasswordLabel;
-
-  /// No description provided for @adminAuthPasswordEmptyError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your password'**
-  String get adminAuthPasswordEmptyError;
-
-  /// No description provided for @adminAuthPasswordLengthError.
-  ///
-  /// In en, this message translates to:
-  /// **'Password must be at least 8 characters'**
-  String get adminAuthPasswordLengthError;
-
-  /// No description provided for @adminAuthPasswordHint.
-  ///
-  /// In en, this message translates to:
-  /// **'••••••••'**
-  String get adminAuthPasswordHint;
-
-  /// No description provided for @adminAuthPasswordRequirementHelper.
-  ///
-  /// In en, this message translates to:
-  /// **'Minimum 8 characters'**
-  String get adminAuthPasswordRequirementHelper;
-
-  /// No description provided for @adminAuthConfirmPasswordLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'CONFIRM PASSWORD'**
-  String get adminAuthConfirmPasswordLabel;
-
-  /// No description provided for @adminAuthPasswordsNoMatch.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get adminAuthPasswordsNoMatch;
-
-  /// No description provided for @adminAuthAccessCodeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'ADMIN ACCESS CODE'**
-  String get adminAuthAccessCodeLabel;
-
-  /// No description provided for @adminAuthAccessCodeError.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your admin access code'**
-  String get adminAuthAccessCodeError;
-
-  /// No description provided for @adminAuthAccessCodeHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the access code provided to you'**
-  String get adminAuthAccessCodeHint;
-
-  /// No description provided for @adminAuthCreateAccountButton.
-  ///
-  /// In en, this message translates to:
-  /// **'CREATE ACCOUNT'**
-  String get adminAuthCreateAccountButton;
-
-  /// No description provided for @adminAuthSignInButton.
-  ///
-  /// In en, this message translates to:
-  /// **'SIGN IN'**
-  String get adminAuthSignInButton;
-
-  /// No description provided for @adminAuthNoAccessCodeQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t have an Admin Access Code?'**
-  String get adminAuthNoAccessCodeQuestion;
-
-  /// No description provided for @adminAuthContactWhatsAppSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact us on WhatsApp to request access.'**
-  String get adminAuthContactWhatsAppSubtitle;
-
-  /// No description provided for @adminAuthWhatsAppPrefilledMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.'**
-  String get adminAuthWhatsAppPrefilledMessage;
-
-  /// No description provided for @adminAuthWhatsAppOpenFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not open WhatsApp. Please try again.'**
-  String get adminAuthWhatsAppOpenFailed;
-
-  /// No description provided for @commonShowPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Show password'**
-  String get commonShowPassword;
-
-  /// No description provided for @commonHidePassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Hide password'**
-  String get commonHidePassword;
-
-  /// No description provided for @adminDashboardGoodDay.
-  ///
-  /// In en, this message translates to:
-  /// **'Good day 👋'**
-  String get adminDashboardGoodDay;
-
-  /// No description provided for @adminDashboardAdministrator.
-  ///
-  /// In en, this message translates to:
-  /// **'Administrator'**
-  String get adminDashboardAdministrator;
-
-  /// No description provided for @adminDashboardActiveGiveaways.
-  ///
-  /// In en, this message translates to:
-  /// **'ACTIVE GIVEAWAYS'**
-  String get adminDashboardActiveGiveaways;
-
-  /// No description provided for @adminDashboardTotalParticipants.
-  ///
-  /// In en, this message translates to:
-  /// **'TOTAL PARTICIPANTS'**
-  String get adminDashboardTotalParticipants;
-
-  /// No description provided for @adminDashboardFinished.
-  ///
-  /// In en, this message translates to:
-  /// **'FINISHED'**
-  String get adminDashboardFinished;
-
-  /// No description provided for @adminDashboardWinnersSelected.
-  ///
-  /// In en, this message translates to:
-  /// **'WINNERS SELECTED'**
-  String get adminDashboardWinnersSelected;
-
-  /// No description provided for @adminDashboardActiveCampaign.
-  ///
-  /// In en, this message translates to:
-  /// **'Active Campaigns'**
-  String get adminDashboardActiveCampaign;
-
-  /// No description provided for @adminDashboardNoActiveCampaigns.
-  ///
-  /// In en, this message translates to:
-  /// **'No active campaigns yet. Tap + to create one.'**
-  String get adminDashboardNoActiveCampaigns;
-
-  /// No description provided for @adminDashboardEndedCampaign.
-  ///
-  /// In en, this message translates to:
-  /// **'Ended Campaigns'**
-  String get adminDashboardEndedCampaign;
-
-  /// No description provided for @adminDashboardViewAnalytics.
-  ///
-  /// In en, this message translates to:
-  /// **'View Analytics'**
-  String get adminDashboardViewAnalytics;
-
-  /// No description provided for @adminDashboardCouldNotLoad.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t load dashboard.'**
-  String get adminDashboardCouldNotLoad;
-
-  /// No description provided for @adminDashboardParticipantsCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} participants'**
-  String adminDashboardParticipantsCount(int count);
-
-  /// No description provided for @adminGiveawaysTitle.
+  /// No description provided for @giveawaysTitle.
   ///
   /// In en, this message translates to:
   /// **'Giveaways'**
-  String get adminGiveawaysTitle;
+  String get giveawaysTitle;
 
-  /// No description provided for @adminGiveawaysEmpty.
+  /// No description provided for @giveawaysSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'No giveaways yet.'**
-  String get adminGiveawaysEmpty;
+  /// **'Join free giveaways and win prizes'**
+  String get giveawaysSubtitle;
 
-  /// No description provided for @adminGiveawaysParticipantsCount.
+  /// No description provided for @giveawaysEmpty.
   ///
   /// In en, this message translates to:
-  /// **'{count} participants'**
-  String adminGiveawaysParticipantsCount(int count);
+  /// **'No giveaways here yet'**
+  String get giveawaysEmpty;
 
-  /// No description provided for @createGiveawayTitle.
+  /// No description provided for @giveawayDetailsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create Giveaway'**
-  String get createGiveawayTitle;
+  /// **'Giveaway Details'**
+  String get giveawayDetailsTitle;
 
-  /// No description provided for @createGiveawayGiveawayTitle.
+  /// No description provided for @giveawayOrganizer.
   ///
   /// In en, this message translates to:
-  /// **'GIVEAWAY TITLE'**
-  String get createGiveawayGiveawayTitle;
+  /// **'By {name}'**
+  String giveawayOrganizer(String name);
 
-  /// No description provided for @createGiveawayGiveawayTitleHint.
+  /// No description provided for @giveawayPrize.
   ///
   /// In en, this message translates to:
-  /// **'e.g. iPhone 17 Pro Max'**
-  String get createGiveawayGiveawayTitleHint;
+  /// **'Prize'**
+  String get giveawayPrize;
 
-  /// No description provided for @createGiveawayOrganizerName.
+  /// No description provided for @giveawayRules.
   ///
   /// In en, this message translates to:
-  /// **'ORGANIZER NAME'**
-  String get createGiveawayOrganizerName;
+  /// **'Rules'**
+  String get giveawayRules;
 
-  /// No description provided for @createGiveawayOrganizerNameHint.
+  /// No description provided for @giveawaySteps.
   ///
   /// In en, this message translates to:
-  /// **'e.g. TechCorp Inc.'**
-  String get createGiveawayOrganizerNameHint;
+  /// **'Steps to join'**
+  String get giveawaySteps;
 
-  /// No description provided for @createGiveawayPrizeDescription.
+  /// No description provided for @giveawayStepOptional.
   ///
   /// In en, this message translates to:
-  /// **'PRIZE DESCRIPTION (OPTIONAL)'**
-  String get createGiveawayPrizeDescription;
+  /// **'Optional'**
+  String get giveawayStepOptional;
 
-  /// No description provided for @createGiveawayPrizeDescriptionHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Briefly describe what the winner will receive.'**
-  String get createGiveawayPrizeDescriptionHint;
-
-  /// No description provided for @createGiveawayRules.
-  ///
-  /// In en, this message translates to:
-  /// **'GIVEAWAY DESCRIPTION & RULES (OPTIONAL)'**
-  String get createGiveawayRules;
-
-  /// No description provided for @createGiveawayRulesHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Detail the full terms, conditions, and extra info.'**
-  String get createGiveawayRulesHint;
-
-  /// No description provided for @createGiveawayImage.
-  ///
-  /// In en, this message translates to:
-  /// **'GIVEAWAY IMAGE'**
-  String get createGiveawayImage;
-
-  /// No description provided for @createGiveawayTapToBrowse.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap to browse from device'**
-  String get createGiveawayTapToBrowse;
-
-  /// No description provided for @createGiveawayImageSizeHint.
-  ///
-  /// In en, this message translates to:
-  /// **'JPG, PNG, GIF up to 5MB'**
-  String get createGiveawayImageSizeHint;
-
-  /// No description provided for @createGiveawayImageTooLarge.
-  ///
-  /// In en, this message translates to:
-  /// **'Image must be 5MB or smaller.'**
-  String get createGiveawayImageTooLarge;
-
-  /// No description provided for @createGiveawayStartDate.
-  ///
-  /// In en, this message translates to:
-  /// **'START DATE'**
-  String get createGiveawayStartDate;
-
-  /// No description provided for @createGiveawayEndDate.
-  ///
-  /// In en, this message translates to:
-  /// **'END DATE'**
-  String get createGiveawayEndDate;
-
-  /// No description provided for @createGiveawayEndTime.
-  ///
-  /// In en, this message translates to:
-  /// **'END TIME'**
-  String get createGiveawayEndTime;
-
-  /// No description provided for @createGiveawayDatePlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'mm/dd/yyyy'**
-  String get createGiveawayDatePlaceholder;
-
-  /// No description provided for @createGiveawayTimePlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'--:--'**
-  String get createGiveawayTimePlaceholder;
-
-  /// No description provided for @createGiveawayMissingDates.
-  ///
-  /// In en, this message translates to:
-  /// **'Please set the start date and time, and the end date and time.'**
-  String get createGiveawayMissingDates;
-
-  /// No description provided for @createGiveawayEndBeforeStart.
-  ///
-  /// In en, this message translates to:
-  /// **'End date must be on or after the start date.'**
-  String get createGiveawayEndBeforeStart;
-
-  /// No description provided for @createGiveawayPublish.
-  ///
-  /// In en, this message translates to:
-  /// **'Publish Giveaway'**
-  String get createGiveawayPublish;
-
-  /// No description provided for @giveawayAnalyticsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Giveaway Analytics'**
-  String get giveawayAnalyticsTitle;
-
-  /// No description provided for @giveawayAnalyticsSelectParticipantTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a Participant'**
-  String get giveawayAnalyticsSelectParticipantTitle;
-
-  /// No description provided for @giveawayAnalyticsConfirmWinnerTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm Winner'**
-  String get giveawayAnalyticsConfirmWinnerTitle;
-
-  /// No description provided for @giveawayAnalyticsConfirmWinnerBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Select participant {code} ({name}) as the winner?'**
-  String giveawayAnalyticsConfirmWinnerBody(String code, String name);
-
-  /// No description provided for @giveawayAnalyticsSelectWinnerAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Winner'**
-  String get giveawayAnalyticsSelectWinnerAction;
-
-  /// No description provided for @giveawayAnalyticsSelectAnotherWinnerAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Another Winner'**
-  String get giveawayAnalyticsSelectAnotherWinnerAction;
-
-  /// No description provided for @giveawayAnalyticsWinnerSelected.
-  ///
-  /// In en, this message translates to:
-  /// **'Winner selected! A notification was sent.'**
-  String get giveawayAnalyticsWinnerSelected;
-
-  /// No description provided for @giveawayAnalyticsNoEligibleParticipants.
-  ///
-  /// In en, this message translates to:
-  /// **'Every participant has already won.'**
-  String get giveawayAnalyticsNoEligibleParticipants;
-
-  /// No description provided for @giveawayAnalyticsTotalJoined.
-  ///
-  /// In en, this message translates to:
-  /// **'Total Joined'**
-  String get giveawayAnalyticsTotalJoined;
-
-  /// No description provided for @giveawayAnalyticsActiveToday.
-  ///
-  /// In en, this message translates to:
-  /// **'Active Today'**
-  String get giveawayAnalyticsActiveToday;
-
-  /// No description provided for @giveawayAnalyticsParticipationGrowth.
-  ///
-  /// In en, this message translates to:
-  /// **'Participation Growth'**
-  String get giveawayAnalyticsParticipationGrowth;
-
-  /// No description provided for @giveawayAnalyticsRecentParticipants.
-  ///
-  /// In en, this message translates to:
-  /// **'Recent Participants'**
-  String get giveawayAnalyticsRecentParticipants;
-
-  /// No description provided for @giveawayAnalyticsNoParticipants.
-  ///
-  /// In en, this message translates to:
-  /// **'No participants yet.'**
-  String get giveawayAnalyticsNoParticipants;
-
-  /// No description provided for @giveawayAnalyticsParticipationCode.
-  ///
-  /// In en, this message translates to:
-  /// **'Code {code}'**
-  String giveawayAnalyticsParticipationCode(String code);
-
-  /// No description provided for @giveawayAnalyticsWinnersSectionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Winner'**
-  String get giveawayAnalyticsWinnersSectionTitle;
-
-  /// No description provided for @giveawayAnalyticsViewWinners.
-  ///
-  /// In en, this message translates to:
-  /// **'View Winner'**
-  String get giveawayAnalyticsViewWinners;
-
-  /// No description provided for @giveawayAnalyticsNoWinners.
-  ///
-  /// In en, this message translates to:
-  /// **'No winners yet.'**
-  String get giveawayAnalyticsNoWinners;
-
-  /// No description provided for @giveawayAnalyticsRemoveFromView.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove from view'**
-  String get giveawayAnalyticsRemoveFromView;
-
-  /// No description provided for @giveawayAnalyticsWinnerLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Winner'**
-  String get giveawayAnalyticsWinnerLabel;
-
-  /// No description provided for @giveawayAnalyticsWinnerRank.
-  ///
-  /// In en, this message translates to:
-  /// **'Winner #{rank}'**
-  String giveawayAnalyticsWinnerRank(int rank);
-
-  /// No description provided for @giveawayAnalyticsSelectedAtLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Selected At'**
-  String get giveawayAnalyticsSelectedAtLabel;
-
-  /// No description provided for @giveawayAnalyticsJustNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Just now'**
-  String get giveawayAnalyticsJustNow;
-
-  /// No description provided for @giveawayAnalyticsMinsAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} mins ago'**
-  String giveawayAnalyticsMinsAgo(int count);
-
-  /// No description provided for @giveawayAnalyticsHoursAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} hours ago'**
-  String giveawayAnalyticsHoursAgo(int count);
-
-  /// No description provided for @giveawayAnalyticsDaysAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} days ago'**
-  String giveawayAnalyticsDaysAgo(int count);
-
-  /// No description provided for @giveawayAnalyticsChooseParticipantTooltip.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose participant'**
-  String get giveawayAnalyticsChooseParticipantTooltip;
-
-  /// No description provided for @giveawayAnalyticsPendingSelection.
-  ///
-  /// In en, this message translates to:
-  /// **'Manually targeting {code} · {name}'**
-  String giveawayAnalyticsPendingSelection(String code, String name);
-
-  /// No description provided for @giveawayAnalyticsClearSelectionTooltip.
-  ///
-  /// In en, this message translates to:
-  /// **'Clear selection'**
-  String get giveawayAnalyticsClearSelectionTooltip;
-
-  /// No description provided for @giveawayAnalyticsSelecting.
-  ///
-  /// In en, this message translates to:
-  /// **'Selecting winner…'**
-  String get giveawayAnalyticsSelecting;
-
-  /// No description provided for @giveawayAnalyticsWheelErrorTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t select a winner'**
-  String get giveawayAnalyticsWheelErrorTitle;
-
-  /// No description provided for @giveawayAnalyticsWheelDoneAction.
+  /// No description provided for @giveawayStepDone.
   ///
   /// In en, this message translates to:
   /// **'Done'**
-  String get giveawayAnalyticsWheelDoneAction;
+  String get giveawayStepDone;
 
-  /// No description provided for @giveawayAnalyticsDeleteGiveawayTooltip.
+  /// No description provided for @giveawayStepSubmitted.
   ///
   /// In en, this message translates to:
-  /// **'Delete giveaway'**
-  String get giveawayAnalyticsDeleteGiveawayTooltip;
+  /// **'Under review'**
+  String get giveawayStepSubmitted;
 
-  /// No description provided for @giveawayAnalyticsDeleteGiveawayTitle.
+  /// No description provided for @giveawayStepApproved.
   ///
   /// In en, this message translates to:
-  /// **'Delete Giveaway?'**
-  String get giveawayAnalyticsDeleteGiveawayTitle;
+  /// **'Approved'**
+  String get giveawayStepApproved;
 
-  /// No description provided for @giveawayAnalyticsDeleteGiveawayBody.
+  /// No description provided for @giveawayStepRejected.
   ///
   /// In en, this message translates to:
-  /// **'This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.'**
-  String get giveawayAnalyticsDeleteGiveawayBody;
+  /// **'Not approved — try again'**
+  String get giveawayStepRejected;
 
-  /// No description provided for @giveawayAnalyticsGiveawayDeleted.
+  /// No description provided for @giveawayStepComplete.
   ///
   /// In en, this message translates to:
-  /// **'Giveaway deleted.'**
-  String get giveawayAnalyticsGiveawayDeleted;
+  /// **'Complete'**
+  String get giveawayStepComplete;
 
-  /// No description provided for @adminProfileTitle.
+  /// No description provided for @giveawayStepProofTitle.
   ///
   /// In en, this message translates to:
-  /// **'Admin Profile'**
-  String get adminProfileTitle;
+  /// **'Submit proof'**
+  String get giveawayStepProofTitle;
 
-  /// No description provided for @adminProfileAdministrator.
+  /// No description provided for @giveawayStepProofHint.
   ///
   /// In en, this message translates to:
-  /// **'Administrator'**
-  String get adminProfileAdministrator;
+  /// **'Your username or a short note'**
+  String get giveawayStepProofHint;
 
-  /// No description provided for @adminProfileSignOutConfirmBody.
+  /// No description provided for @giveawayStepSubmit.
   ///
   /// In en, this message translates to:
-  /// **'You\'ll return to the role selection screen.'**
-  String get adminProfileSignOutConfirmBody;
+  /// **'Submit'**
+  String get giveawayStepSubmit;
 
-  /// No description provided for @adminAnalysisTitle.
+  /// No description provided for @giveawayJoin.
   ///
   /// In en, this message translates to:
-  /// **'Analysis'**
-  String get adminAnalysisTitle;
+  /// **'Join Giveaway'**
+  String get giveawayJoin;
 
-  /// No description provided for @adminAnalysisTotalGiveaways.
+  /// No description provided for @giveawayViewTicket.
   ///
   /// In en, this message translates to:
-  /// **'TOTAL GIVEAWAYS'**
-  String get adminAnalysisTotalGiveaways;
+  /// **'View your number'**
+  String get giveawayViewTicket;
 
-  /// No description provided for @adminAnalysisActiveGiveaways.
+  /// No description provided for @giveawayClosed.
   ///
   /// In en, this message translates to:
-  /// **'ACTIVE'**
-  String get adminAnalysisActiveGiveaways;
+  /// **'This giveaway has ended'**
+  String get giveawayClosed;
 
-  /// No description provided for @adminAnalysisFinishedGiveaways.
+  /// No description provided for @giveawayDisqualified.
   ///
   /// In en, this message translates to:
-  /// **'FINISHED'**
-  String get adminAnalysisFinishedGiveaways;
+  /// **'Your entry was disqualified'**
+  String get giveawayDisqualified;
 
-  /// No description provided for @adminAnalysisTotalParticipants.
+  /// No description provided for @giveawayFreeNote.
   ///
   /// In en, this message translates to:
-  /// **'TOTAL PARTICIPANTS'**
-  String get adminAnalysisTotalParticipants;
+  /// **'Entering is free. Points are never deducted.'**
+  String get giveawayFreeNote;
 
-  /// No description provided for @adminAnalysisTotalWinners.
+  /// No description provided for @giveawayResults.
   ///
   /// In en, this message translates to:
-  /// **'WINNERS SELECTED'**
-  String get adminAnalysisTotalWinners;
+  /// **'Winners'**
+  String get giveawayResults;
 
-  /// No description provided for @adminAnalysisGrowthTrend.
+  /// No description provided for @giveawayWinnerRow.
   ///
   /// In en, this message translates to:
-  /// **'Participation Growth (Last 7 Days)'**
-  String get adminAnalysisGrowthTrend;
+  /// **'#{rank} · Number {number}'**
+  String giveawayWinnerRow(int rank, String number);
 
-  /// No description provided for @adminAnalysisCouldNotLoad.
+  /// No description provided for @giveawayCompleteSteps.
   ///
   /// In en, this message translates to:
-  /// **'Couldn\'t load analysis.'**
-  String get adminAnalysisCouldNotLoad;
+  /// **'Complete the required steps to join'**
+  String get giveawayCompleteSteps;
 
-  /// No description provided for @adminAnalysisNoData.
+  /// No description provided for @giveawaySignInToJoin.
   ///
   /// In en, this message translates to:
-  /// **'No giveaways yet — create one to see analysis here.'**
-  String get adminAnalysisNoData;
+  /// **'Sign in to join'**
+  String get giveawaySignInToJoin;
 
-  /// No description provided for @winnerCelebrationTitle.
+  /// No description provided for @ticketTitle.
   ///
   /// In en, this message translates to:
-  /// **'WINNER'**
-  String get winnerCelebrationTitle;
+  /// **'Your Ticket'**
+  String get ticketTitle;
 
-  /// No description provided for @winnerCelebrationCongratulations.
+  /// No description provided for @ticketPreparing.
   ///
   /// In en, this message translates to:
-  /// **'Congratulations! You\'ve won:'**
-  String get winnerCelebrationCongratulations;
+  /// **'Preparing your ticket…'**
+  String get ticketPreparing;
 
-  /// No description provided for @winnerCelebrationViewPrize.
+  /// No description provided for @ticketCopy.
   ///
   /// In en, this message translates to:
-  /// **'View Prize'**
-  String get winnerCelebrationViewPrize;
+  /// **'Copy ticket'**
+  String get ticketCopy;
 
-  /// No description provided for @winnerCelebrationDismiss.
+  /// No description provided for @ticketCopied.
   ///
   /// In en, this message translates to:
-  /// **'Dismiss'**
-  String get winnerCelebrationDismiss;
+  /// **'Ticket number copied'**
+  String get ticketCopied;
 
-  /// No description provided for @winnerCelebrationYourPrize.
+  /// No description provided for @ticketNote.
   ///
   /// In en, this message translates to:
-  /// **'Your prize'**
-  String get winnerCelebrationYourPrize;
+  /// **'Keep this number. Winners are announced after the giveaway ends.'**
+  String get ticketNote;
 
-  /// No description provided for @privacyPolicyTitle.
+  /// No description provided for @myGiveawaysTitle.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get privacyPolicyTitle;
+  /// **'My Giveaways'**
+  String get myGiveawaysTitle;
 
-  /// No description provided for @termsConditionsTitle.
+  /// No description provided for @myGiveawaysSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Terms & Conditions'**
-  String get termsConditionsTitle;
+  /// **'Check the giveaways you\'ve joined'**
+  String get myGiveawaysSubtitle;
 
-  /// No description provided for @legalLastUpdated.
+  /// No description provided for @myGiveawaysEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Last updated: {date}'**
-  String legalLastUpdated(String date);
+  /// **'You haven\'t joined a giveaway yet'**
+  String get myGiveawaysEmpty;
 
-  /// No description provided for @legalContactUs.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact us'**
-  String get legalContactUs;
-
-  /// No description provided for @failureNoInternet.
-  ///
-  /// In en, this message translates to:
-  /// **'No internet connection.'**
-  String get failureNoInternet;
-
-  /// No description provided for @failureServer.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong. Please try again.'**
-  String get failureServer;
-
-  /// No description provided for @failureUnauthorized.
-  ///
-  /// In en, this message translates to:
-  /// **'You are not authorized to do that.'**
-  String get failureUnauthorized;
-
-  /// No description provided for @failurePhoneAlreadyRegisteredElsewhere.
-  ///
-  /// In en, this message translates to:
-  /// **'This phone number is already registered on another device.'**
-  String get failurePhoneAlreadyRegisteredElsewhere;
-
-  /// No description provided for @failurePhoneAlreadyInUse.
-  ///
-  /// In en, this message translates to:
-  /// **'This phone number is already used by another account.'**
-  String get failurePhoneAlreadyInUse;
-
-  /// No description provided for @failureDuplicateParticipation.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ve already joined this giveaway.'**
-  String get failureDuplicateParticipation;
-
-  /// No description provided for @failureGiveawayFull.
-  ///
-  /// In en, this message translates to:
-  /// **'This giveaway has reached its participant limit.'**
-  String get failureGiveawayFull;
-
-  /// No description provided for @failureGiveawayEnded.
-  ///
-  /// In en, this message translates to:
-  /// **'This giveaway is no longer active.'**
-  String get failureGiveawayEnded;
-
-  /// No description provided for @failureRateLimited.
-  ///
-  /// In en, this message translates to:
-  /// **'Too many attempts. Please wait a moment and try again.'**
-  String get failureRateLimited;
-
-  /// No description provided for @settingsEditProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Profile'**
-  String get settingsEditProfile;
-
-  /// No description provided for @editProfileTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Profile'**
-  String get editProfileTitle;
-
-  /// No description provided for @editProfileSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep your name and phone number up to date.'**
-  String get editProfileSubtitle;
-
-  /// No description provided for @editProfileSaveAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Changes'**
-  String get editProfileSaveAction;
-
-  /// No description provided for @editProfileUpdateSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile updated'**
-  String get editProfileUpdateSuccess;
-
-  /// No description provided for @browseAll.
+  /// No description provided for @resultAll.
   ///
   /// In en, this message translates to:
   /// **'All'**
-  String get browseAll;
+  String get resultAll;
 
-  /// No description provided for @browseClearSearch.
+  /// No description provided for @resultPending.
   ///
   /// In en, this message translates to:
-  /// **'Clear search'**
-  String get browseClearSearch;
+  /// **'Pending draw'**
+  String get resultPending;
 
-  /// No description provided for @browseUpcoming.
+  /// No description provided for @resultWon.
   ///
   /// In en, this message translates to:
-  /// **'Upcoming'**
-  String get browseUpcoming;
+  /// **'You won!'**
+  String get resultWon;
 
-  /// No description provided for @browseEndingSoon.
+  /// No description provided for @resultNotSelected.
   ///
   /// In en, this message translates to:
-  /// **'Ending Soon'**
-  String get browseEndingSoon;
+  /// **'Not selected'**
+  String get resultNotSelected;
 
-  /// No description provided for @browseStartsIn.
+  /// No description provided for @entryDisqualified.
   ///
   /// In en, this message translates to:
-  /// **'Starts'**
-  String get browseStartsIn;
+  /// **'Disqualified'**
+  String get entryDisqualified;
 
-  /// No description provided for @browseDayShort.
+  /// No description provided for @celebrationTitle.
   ///
   /// In en, this message translates to:
-  /// **'d'**
-  String get browseDayShort;
+  /// **'Congratulations!'**
+  String get celebrationTitle;
 
-  /// No description provided for @browseHourShort.
+  /// No description provided for @celebrationBody.
   ///
   /// In en, this message translates to:
-  /// **'h left'**
-  String get browseHourShort;
+  /// **'You won {prize}'**
+  String celebrationBody(String prize);
 
-  /// No description provided for @browseJoined.
+  /// No description provided for @celebrationNumber.
   ///
   /// In en, this message translates to:
-  /// **'joined'**
-  String get browseJoined;
+  /// **'Winning number {number}'**
+  String celebrationNumber(String number);
 
-  /// No description provided for @browseNoGiveaways.
+  /// No description provided for @celebrationClaim.
   ///
   /// In en, this message translates to:
-  /// **'No giveaways found'**
-  String get browseNoGiveaways;
+  /// **'Claim your prize'**
+  String get celebrationClaim;
 
-  /// No description provided for @browseSearchResults.
+  /// No description provided for @celebrationLater.
   ///
   /// In en, this message translates to:
-  /// **'Search Results'**
-  String get browseSearchResults;
+  /// **'Later'**
+  String get celebrationLater;
 
-  /// No description provided for @browseLoadMore.
+  /// No description provided for @claimHint.
   ///
   /// In en, this message translates to:
-  /// **'Load more'**
-  String get browseLoadMore;
+  /// **'Phone number and city, or other contact details'**
+  String get claimHint;
 
-  /// No description provided for @browseCategoriesRetry.
+  /// No description provided for @claimInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Retry loading categories'**
-  String get browseCategoriesRetry;
+  /// **'Enter 3–500 characters'**
+  String get claimInvalid;
 
-  /// No description provided for @browseUpcomingMessage.
+  /// No description provided for @claimSubmit.
   ///
   /// In en, this message translates to:
-  /// **'Starts on {date}. Participation opens at the scheduled time.'**
-  String browseUpcomingMessage(String date);
+  /// **'Send'**
+  String get claimSubmit;
 
-  /// No description provided for @categoryManagement.
+  /// No description provided for @claimDone.
   ///
   /// In en, this message translates to:
-  /// **'Category Management'**
-  String get categoryManagement;
+  /// **'Thanks! We\'ll contact you to deliver your prize.'**
+  String get claimDone;
 
-  /// No description provided for @categoryCreate.
+  /// No description provided for @claimDeadline.
   ///
   /// In en, this message translates to:
-  /// **'Create Category'**
-  String get categoryCreate;
-
-  /// No description provided for @categoryEdit.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Category'**
-  String get categoryEdit;
-
-  /// No description provided for @categorySelect.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Category'**
-  String get categorySelect;
-
-  /// No description provided for @categoryNameEn.
-  ///
-  /// In en, this message translates to:
-  /// **'English name'**
-  String get categoryNameEn;
-
-  /// No description provided for @categoryNameAr.
-  ///
-  /// In en, this message translates to:
-  /// **'Arabic name'**
-  String get categoryNameAr;
-
-  /// No description provided for @categoryIcon.
-  ///
-  /// In en, this message translates to:
-  /// **'Optional emoji icon'**
-  String get categoryIcon;
-
-  /// No description provided for @categoryOrder.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort order'**
-  String get categoryOrder;
-
-  /// No description provided for @categoryEnabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Enabled'**
-  String get categoryEnabled;
-
-  /// No description provided for @categoryDisabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Disabled'**
-  String get categoryDisabled;
-
-  /// No description provided for @categoryRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a valid value'**
-  String get categoryRequired;
-
-  /// No description provided for @categorySave.
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get categorySave;
-
-  /// No description provided for @categoryUnauthorized.
-  ///
-  /// In en, this message translates to:
-  /// **'Category management requires a super administrator.'**
-  String get categoryUnauthorized;
-
-  /// No description provided for @categoryUncategorized.
-  ///
-  /// In en, this message translates to:
-  /// **'Uncategorized'**
-  String get categoryUncategorized;
-
-  /// No description provided for @categoryInactiveKept.
-  ///
-  /// In en, this message translates to:
-  /// **'The existing inactive category is kept until you select a replacement.'**
-  String get categoryInactiveKept;
-
-  /// No description provided for @categoryEditGiveaway.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit giveaway'**
-  String get categoryEditGiveaway;
-
-  /// No description provided for @scheduleStartTime.
-  ///
-  /// In en, this message translates to:
-  /// **'Start time'**
-  String get scheduleStartTime;
-
-  /// No description provided for @scheduleLocalTime.
-  ///
-  /// In en, this message translates to:
-  /// **'Times use this device\'s local timezone and are saved in UTC.'**
-  String get scheduleLocalTime;
-
-  /// No description provided for @adsPrivacyChoices.
-  ///
-  /// In en, this message translates to:
-  /// **'Advertising privacy choices'**
-  String get adsPrivacyChoices;
-
-  /// No description provided for @scheduleInvalidDates.
-  ///
-  /// In en, this message translates to:
-  /// **'End time must be after start time.'**
-  String get scheduleInvalidDates;
-
-  /// No description provided for @adminDashboardScheduleSection.
-  ///
-  /// In en, this message translates to:
-  /// **'GIVEAWAY SCHEDULE'**
-  String get adminDashboardScheduleSection;
-
-  /// No description provided for @adminFilterAll.
-  ///
-  /// In en, this message translates to:
-  /// **'All'**
-  String get adminFilterAll;
-
-  /// No description provided for @adminNoFilteredGiveaways.
-  ///
-  /// In en, this message translates to:
-  /// **'No giveaways in this group yet.'**
-  String get adminNoFilteredGiveaways;
-
-  /// No description provided for @createGiveawayEditTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Giveaway'**
-  String get createGiveawayEditTitle;
-
-  /// No description provided for @adminScheduleEditLocked.
-  ///
-  /// In en, this message translates to:
-  /// **'This schedule cannot be changed after a giveaway starts or receives participants.'**
-  String get adminScheduleEditLocked;
-
-  /// No description provided for @rewardFrameDialogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Make your entry special!'**
-  String get rewardFrameDialogTitle;
-
-  /// No description provided for @rewardFrameDialogDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Watch an ad to get a special frame around your participation number in the app.'**
-  String get rewardFrameDialogDescription;
-
-  /// No description provided for @rewardFrameWatchAd.
-  ///
-  /// In en, this message translates to:
-  /// **'Watch Ad'**
-  String get rewardFrameWatchAd;
+  /// **'Claim before {date}'**
+  String claimDeadline(String date);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

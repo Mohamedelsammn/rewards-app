@@ -1,0 +1,13 @@
+{
+  "error": {
+    "code": "VALIDATION_FAILED",
+    "message": "Check the required fields.",
+    "details": {
+      "fields": {
+        "playerId": "INVALID_FORMAT",
+        "password": "UNKNOWN_FIELD"
+      }
+    }
+  },
+  "requestId": "<request-id>"
+}

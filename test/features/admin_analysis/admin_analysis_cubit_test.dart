@@ -129,25 +129,22 @@ void main() {
   });
 
   group('AdminAnalysisCubit local create/winner signals', () {
-    test(
-      'reloads immediately the moment THIS admin session confirms creating a giveaway '
-      '(the exact bug this fix targets)',
-      () async {
-        final giveawayCreated = StreamController<Giveaway>.broadcast();
-        addTearDown(giveawayCreated.close);
-        when(() => giveawayRepository.giveawayCreated).thenAnswer((_) => giveawayCreated.stream);
-        when(
-          () => giveawayRepository.getMyAdminGiveaways(),
-        ).thenAnswer((_) async => const Result.success([]));
+    test('reloads immediately the moment THIS admin session confirms creating a giveaway '
+        '(the exact bug this fix targets)', () async {
+      final giveawayCreated = StreamController<Giveaway>.broadcast();
+      addTearDown(giveawayCreated.close);
+      when(() => giveawayRepository.giveawayCreated).thenAnswer((_) => giveawayCreated.stream);
+      when(
+        () => giveawayRepository.getMyAdminGiveaways(),
+      ).thenAnswer((_) async => const Result.success([]));
 
-        final cubit = AdminAnalysisCubit(giveawayRepository, client, winnerRepository);
-        giveawayCreated.add(_giveaway('g1', GiveawayStatus.active, 0));
-        await Future<void>.delayed(Duration.zero);
+      final cubit = AdminAnalysisCubit(giveawayRepository, client, winnerRepository);
+      giveawayCreated.add(_giveaway('g1', GiveawayStatus.active, 0));
+      await Future<void>.delayed(Duration.zero);
 
-        verify(() => giveawayRepository.getMyAdminGiveaways()).called(1);
-        await cubit.close();
-      },
-    );
+      verify(() => giveawayRepository.getMyAdminGiveaways()).called(1);
+      await cubit.close();
+    });
 
     test('reloads immediately the moment THIS admin session confirms selecting a winner', () async {
       final winnerSelected = StreamController<Winner>.broadcast();

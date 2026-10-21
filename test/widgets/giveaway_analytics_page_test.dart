@@ -141,23 +141,22 @@ void main() {
   }
 
   group('manual participant picker (top app bar)', () {
-    testWidgets(
-      'opens from the top-bar icon, showing the four-digit code, never "Ticket #1"',
-      (tester) async {
-        when(
-          () => winnerRepository.getEligibleParticipants('g1'),
-        ).thenAnswer((_) async => Result.success([_alice]));
+    testWidgets('opens from the top-bar icon, showing the four-digit code, never "Ticket #1"', (
+      tester,
+    ) async {
+      when(
+        () => winnerRepository.getEligibleParticipants('g1'),
+      ).thenAnswer((_) async => Result.success([_alice]));
 
-        await pumpAnalytics(tester);
-        await tester.tap(find.byIcon(Icons.tune_rounded));
-        await tester.pumpAndSettle();
+      await pumpAnalytics(tester);
+      await tester.tap(find.byIcon(Icons.tune_rounded));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Select a Participant'), findsOneWidget);
-        expect(find.text('1111'), findsOneWidget);
-        expect(find.text('Alice QA'), findsOneWidget);
-        expect(find.textContaining('Ticket'), findsNothing);
-      },
-    );
+      expect(find.text('Select a Participant'), findsOneWidget);
+      expect(find.text('1111'), findsOneWidget);
+      expect(find.text('Alice QA'), findsOneWidget);
+      expect(find.textContaining('Ticket'), findsNothing);
+    });
 
     testWidgets(
       'choosing a participant only marks them as pending -- it does NOT call selectWinner, '
@@ -188,7 +187,9 @@ void main() {
         expect(find.textContaining('Alice QA'), findsNothing);
         expect(find.textContaining('Manual'), findsNothing);
         // The pending target is still tracked internally -- just not shown.
-        final cubit = tester.element(find.byIcon(Icons.tune_rounded)).read<GiveawayAnalyticsCubit>();
+        final cubit = tester
+            .element(find.byIcon(Icons.tune_rounded))
+            .read<GiveawayAnalyticsCubit>();
         expect(cubit.state.manualTarget, _alice);
       },
     );
@@ -257,11 +258,8 @@ void main() {
           () => winnerRepository.getEligibleParticipants('g1'),
         ).thenAnswer((_) async => Result.success([_alice]));
         when(
-          () => winnerRepository.selectWinner(
-            giveawayId: 'g1',
-            participationId: 'p-alice',
-            rank: 1,
-          ),
+          () =>
+              winnerRepository.selectWinner(giveawayId: 'g1', participationId: 'p-alice', rank: 1),
         ).thenAnswer(
           (_) async => Result.success(
             Winner(
@@ -289,11 +287,8 @@ void main() {
 
         expect(find.byType(WinnerWheelOverlay), findsOneWidget);
         verify(
-          () => winnerRepository.selectWinner(
-            giveawayId: 'g1',
-            participationId: 'p-alice',
-            rank: 1,
-          ),
+          () =>
+              winnerRepository.selectWinner(giveawayId: 'g1', participationId: 'p-alice', rank: 1),
         ).called(1);
       },
     );
@@ -365,18 +360,15 @@ void main() {
     // rendering/removal is covered directly in winners_page_test.dart and
     // view_winners_button_test.dart; this guards the wiring on THIS page --
     // no entry point, no stray winner-card content when there are none.
-    testWidgets(
-      'no winner cards and no "View Winners" entry point render inline when the giveaway '
-      'has no winners yet',
-      (tester) async {
-        await pumpAnalytics(tester);
+    testWidgets('no winner cards and no "View Winners" entry point render inline when the giveaway '
+        'has no winners yet', (tester) async {
+      await pumpAnalytics(tester);
 
-        expect(find.byType(ViewWinnersButton), findsNothing);
-        expect(find.byType(WinnersPage), findsNothing);
-        expect(find.textContaining('View Winners'), findsNothing);
-        expect(find.text('WINNER'), findsNothing);
-      },
-    );
+      expect(find.byType(ViewWinnersButton), findsNothing);
+      expect(find.byType(WinnersPage), findsNothing);
+      expect(find.textContaining('View Winners'), findsNothing);
+      expect(find.text('WINNER'), findsNothing);
+    });
   });
 
   group('Delete Giveaway', () {
@@ -404,7 +396,9 @@ void main() {
               body: Center(
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const GiveawayAnalyticsPage(giveawayId: 'g1')),
+                    MaterialPageRoute(
+                      builder: (_) => const GiveawayAnalyticsPage(giveawayId: 'g1'),
+                    ),
                   ),
                   child: const Text('Open Analytics'),
                 ),
@@ -417,20 +411,17 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    testWidgets(
-      'tapping the delete icon shows a confirmation dialog explaining the action is '
-      'permanent, and does NOT call deleteGiveaway until confirmed',
-      (tester) async {
-        await pumpAnalyticsWithBackStack(tester);
+    testWidgets('tapping the delete icon shows a confirmation dialog explaining the action is '
+        'permanent, and does NOT call deleteGiveaway until confirmed', (tester) async {
+      await pumpAnalyticsWithBackStack(tester);
 
-        await tester.tap(find.byIcon(Icons.delete_outline_rounded));
-        await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.delete_outline_rounded));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Delete Giveaway?'), findsOneWidget);
-        expect(find.textContaining('permanently delete'), findsOneWidget);
-        verifyNever(() => giveawayRepository.deleteGiveaway(any()));
-      },
-    );
+      expect(find.text('Delete Giveaway?'), findsOneWidget);
+      expect(find.textContaining('permanently delete'), findsOneWidget);
+      verifyNever(() => giveawayRepository.deleteGiveaway(any()));
+    });
 
     testWidgets('Cancel dismisses the dialog and never calls deleteGiveaway', (tester) async {
       await pumpAnalyticsWithBackStack(tester);

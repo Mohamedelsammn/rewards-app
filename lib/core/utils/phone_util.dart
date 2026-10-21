@@ -18,9 +18,7 @@ class PhoneUtil {
     // code is prefixed -- strip exactly one, never more, so a genuine
     // leading '0' that's part of the actual subscriber number elsewhere
     // isn't eaten too.
-    final withoutTrunkZero = localDigits.startsWith('0')
-        ? localDigits.substring(1)
-        : localDigits;
+    final withoutTrunkZero = localDigits.startsWith('0') ? localDigits.substring(1) : localDigits;
 
     if (country != null) {
       if (withoutTrunkZero.length < country.minNationalDigits ||

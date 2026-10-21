@@ -52,22 +52,21 @@ void main() {
       expect(find.text('No winners yet.'), findsOneWidget);
     });
 
-    testWidgets(
-      'displays every existing winner -- rank, participation number, name, phone, and '
-      'selected date/time -- exactly as loaded from WinnerRepository via the state passed in',
-      (tester) async {
-        await _pump(tester, [_winner1, _winner2]);
+    testWidgets('displays every existing winner -- rank, participation number, name, phone, and '
+        'selected date/time -- exactly as loaded from WinnerRepository via the state passed in', (
+      tester,
+    ) async {
+      await _pump(tester, [_winner1, _winner2]);
 
-        expect(find.text('WINNER'), findsOneWidget); // rank 1
-        expect(find.text('WINNER #2'), findsOneWidget); // rank 2
-        expect(find.text('4821'), findsOneWidget);
-        expect(find.text('1173'), findsOneWidget);
-        expect(find.text('Ahmed Farouk'), findsOneWidget);
-        expect(find.text('Sara Kamel'), findsOneWidget);
-        expect(find.text('+201555075289'), findsOneWidget);
-        expect(find.textContaining('Selected At'), findsNWidgets(2));
-      },
-    );
+      expect(find.text('WINNER'), findsOneWidget); // rank 1
+      expect(find.text('WINNER #2'), findsOneWidget); // rank 2
+      expect(find.text('4821'), findsOneWidget);
+      expect(find.text('1173'), findsOneWidget);
+      expect(find.text('Ahmed Farouk'), findsOneWidget);
+      expect(find.text('Sara Kamel'), findsOneWidget);
+      expect(find.text('+201555075289'), findsOneWidget);
+      expect(find.textContaining('Selected At'), findsNWidgets(2));
+    });
 
     testWidgets(
       'swiping a winner removes it from the displayed list ONLY -- this is pure local page '

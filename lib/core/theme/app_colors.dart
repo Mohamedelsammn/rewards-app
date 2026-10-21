@@ -1,65 +1,115 @@
 import 'package:flutter/material.dart';
 
-/// Color tokens lifted directly from DESIGN.md (Lumina Rewards design system).
+/// Color tokens of the Creative Rewards redesign.
 class AppColors {
   const AppColors._();
 
-  static const surface = Color(0xFFFFFFFF);
-  static const surfaceDim = Color(0xFFDBD8E5);
-  static const surfaceContainerLowest = Color(0xFFFFFFFF);
-  static const surfaceContainerLow = Color(0xFFF5F2FF);
-  static const surfaceContainer = Color(0xFFEFECF9);
-  static const surfaceContainerHigh = Color(0xFFE9E6F4);
-  static const surfaceContainerHighest = Color(0xFFE4E1EE);
+  static const ink = Color(0xff0c123e);
+  static const violet = Color(0xff4824fa);
+  static const muted = Color(0xff777eaa);
+  static const pale = Color(0xfff6f4ff);
+  static const surface = Color(0xfffaf9ff);
+  static const sheet = Color(0xfffbfaff);
+  static const white = Colors.white;
 
-  static const onSurface = Color(0xFF1B1B24);
-  static const onSurfaceVariant = Color(0xFF454555);
-  static const inverseSurface = Color(0xFF302F39);
-  static const inverseOnSurface = Color(0xFFF2EFFC);
+  static const headerPoints = Color(0xff4d45ad);
+  static const ptsLabel = Color(0xff8857ee);
+  static const walletPtsLabel = Color(0xffe5dcff);
+  static const walletSubtitle = Color(0xffdbd6ff);
 
-  static const outline = Color(0xFF767587);
-  static const outlineVariant = Color(0xFFC6C4D8);
+  static const fieldBorder = Color(0xffdedbfc);
+  static const otpBorder = Color(0xffddd9fc);
+  static const progressInactive = Color(0xffd6cff9);
+  static const divider = Color(0xffdddafa);
+  static const navBorder = Color(0xffecebfa);
+  static const navBackground = Color(0xf8ffffff);
+  static const segmentTrack = Color(0xfff0eff9);
+  static const segmentInactiveText = Color(0xff555e91);
+  static const chipTrack = Color(0xfff0eef9);
+  static const tint = Color(0xffeeeaff);
+  static const tintStrong = Color(0xffe9e5ff);
+  static const tintSoft = Color(0xfff1eefb);
+  static const balanceNote = Color(0xfff0ecff);
+  static const avatarRing = Color(0xffe7dcff);
+  static const handle = Color(0xffd9d3ed);
+  static const selectedTile = Color(0xffede8ff);
+  static const circleArrow = Color(0xfff1edff);
+  static const backButton = Color(0xffefebff);
 
-  static const primary = Color(0xFF4042E1);
-  static const onPrimary = Color(0xFFFFFFFF);
-  static const primaryContainer = Color(0xFF5B5FFB);
-  static const onPrimaryContainer = Color(0xFFFEFAFF);
-  static const inversePrimary = Color(0xFFC0C1FF);
+  static const success = Color(0xff0cb95f);
+  static const warning = Color(0xffd98a00);
+  static const danger = Color(0xffd83a53);
+  static const dangerText = Color(0xffc82e48);
+  static const dangerButton = Color(0xffdb4058);
+  static const dangerSurface = Color(0xffffedf0);
+  static const dangerBorder = Color(0xffffd7de);
+  static const dangerIconSurface = Color(0xffffe9ec);
+  static const error = Color(0xffc82e48);
+  static const badge = Color(0xffff4c49);
+  static const badgeProfile = Color(0xfff23b3b);
+  static const star = Color(0xffffce4d);
 
-  static const secondary = Color(0xFF712AE2);
-  static const onSecondary = Color(0xFFFFFFFF);
-  static const secondaryContainer = Color(0xFF8A4CFC);
-  static const onSecondaryContainer = Color(0xFFFFFBFF);
+  /// Pastel card backgrounds cycled by the giveaway grid.
+  static const giveawayCards = [
+    Color(0xffe7e3ff),
+    Color(0xffffe1ef),
+    Color(0xffdfeeff),
+    Color(0xffffe8dc),
+  ];
+}
 
-  static const tertiary = Color(0xFF964200);
-  static const onTertiary = Color(0xFFFFFFFF);
-  static const tertiaryContainer = Color(0xFFBD5500);
+class AppGradients {
+  const AppGradients._();
 
-  static const error = Color(0xFFBA1A1A);
-  static const onError = Color(0xFFFFFFFF);
-  static const errorContainer = Color(0xFFFFDAD6);
-  static const onErrorContainer = Color(0xFF93000A);
+  static const primaryButton = LinearGradient(colors: [Color(0xff3927ff), Color(0xff6921f2)]);
+  static const darkButton = LinearGradient(colors: [Color(0xff080b2e), Color(0xff2c075e)]);
+  static const confirmButton = LinearGradient(colors: [Color(0xff4031ff), Color(0xff741af2)]);
+  static const headline = LinearGradient(colors: [Color(0xff6921f2), Color(0xffb024ec)]);
 
-  static const background = Color(0xFFFFFFFF);
-  static const onBackground = Color(0xFF1B1B24);
-  static const surfaceVariant = Color(0xFFE4E1EE);
-
-  /// Success color for reward-claim positive reinforcement (not in the raw
-  /// token list but referenced throughout DESIGN.md's component section).
-  static const success = Color(0xFF1DB876);
-
-  /// Gold accent reserved strictly for high-value reward / "win" states.
-  static const goldAccent = Color(0xFFFFD54A);
-
-  static const gradientPrimary = LinearGradient(
+  static const splash = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [primaryContainer, secondary],
+    colors: [Color(0xffe9e5ff), Color(0xffffeaf8), Color(0xffd6d8ff)],
   );
 
-  static const gradientGold = LinearGradient(
+  static const welcome = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFFFFD54A), Color(0xFFBD5500)],
+    colors: [Color(0xffede3ff), Color(0xffffe7f6), Color(0xfff7f6ff)],
   );
+
+  static const character = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xffeee9ff), Color(0xfffff5fc), Color(0xffe5ecff)],
+  );
+
+  static const notificationIcon = LinearGradient(colors: [Color(0xffcbbaff), Color(0xffeee8ff)]);
+
+  static const categoryDetailScrim = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.transparent, Color(0xaa070c39)],
+    stops: [.45, 1],
+  );
+}
+
+class AppShadows {
+  const AppShadows._();
+
+  static const button = [
+    BoxShadow(color: Color(0x33552cff), blurRadius: 22, offset: Offset(0, 10)),
+  ];
+  static const productCard = [BoxShadow(color: Color(0x139493c9), blurRadius: 16)];
+  static const listCard = [
+    BoxShadow(color: Color(0x0f7765bc), blurRadius: 20, offset: Offset(0, 8)),
+  ];
+  static const notificationCard = [
+    BoxShadow(color: Color(0x147661ae), blurRadius: 22, offset: Offset(0, 8)),
+  ];
+  static const entryCard = [
+    BoxShadow(color: Color(0x127965b5), blurRadius: 21, offset: Offset(0, 8)),
+  ];
+  static const sheet = [BoxShadow(color: Color(0x208073bd), blurRadius: 24, offset: Offset(0, -5))];
+  static const redemptionSheet = [BoxShadow(color: Color(0x26806ed8), blurRadius: 30)];
 }

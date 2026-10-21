@@ -41,10 +41,7 @@ void main() {
       await _pump(tester, const RecentParticipantsList(participants: []));
 
       expect(
-        find.descendant(
-          of: find.byType(RecentParticipantsList),
-          matching: find.byType(ListView),
-        ),
+        find.descendant(of: find.byType(RecentParticipantsList), matching: find.byType(ListView)),
         findsNothing,
       );
     });

@@ -189,10 +189,8 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    Finder badgeText() => find.descendant(
-      of: find.byType(UnreadNotificationButton),
-      matching: find.text('1'),
-    );
+    Finder badgeText() =>
+        find.descendant(of: find.byType(UnreadNotificationButton), matching: find.text('1'));
     expect(badgeText(), findsOneWidget);
     await tester.tap(find.text('Wallet').last);
     await tester.pumpAndSettle();

@@ -117,9 +117,7 @@ class NotificationService {
       }
 
       _tokenRefreshSub = messaging.onTokenRefresh.listen(_persistToken);
-      _identityChangedSub = _secureStorage.identityChanged.listen(
-        (_) => registerDeviceToken(),
-      );
+      _identityChangedSub = _secureStorage.identityChanged.listen((_) => registerDeviceToken());
 
       await registerDeviceToken();
     } catch (_) {

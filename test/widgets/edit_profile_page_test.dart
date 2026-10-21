@@ -93,37 +93,31 @@ void main() {
     expect(fields[1].controller?.text, '2025550190');
   });
 
-  testWidgets(
-    'a duplicate phone is rejected with a clean message, the form stays open, and the '
-    'local identity cache is never touched',
-    (tester) async {
-      when(
-        () => userRepository.updateProfile(
-          fullName: any(named: 'fullName'),
-          phone: any(named: 'phone'),
-          countryCode: any(named: 'countryCode'),
-        ),
-      ).thenAnswer((_) async => const Result.failure(PhoneAlreadyInUseFailure()));
+  testWidgets('a duplicate phone is rejected with a clean message, the form stays open, and the '
+      'local identity cache is never touched', (tester) async {
+    when(
+      () => userRepository.updateProfile(
+        fullName: any(named: 'fullName'),
+        phone: any(named: 'phone'),
+        countryCode: any(named: 'countryCode'),
+      ),
+    ).thenAnswer((_) async => const Result.failure(PhoneAlreadyInUseFailure()));
 
-      await pumpPushedEditProfile(tester);
-      await tester.tap(find.text('Save Changes'));
-      await tester.pumpAndSettle();
+    await pumpPushedEditProfile(tester);
+    await tester.tap(find.text('Save Changes'));
+    await tester.pumpAndSettle();
 
-      expect(
-        find.text('This phone number is already used by another account.'),
-        findsOneWidget,
-      );
-      expect(find.byType(EditProfilePage), findsOneWidget);
-      verifyNever(
-        () => secureStorage.saveIdentity(
-          userId: any(named: 'userId'),
-          fullName: any(named: 'fullName'),
-          phone: any(named: 'phone'),
-          countryCode: any(named: 'countryCode'),
-        ),
-      );
-    },
-  );
+    expect(find.text('This phone number is already used by another account.'), findsOneWidget);
+    expect(find.byType(EditProfilePage), findsOneWidget);
+    verifyNever(
+      () => secureStorage.saveIdentity(
+        userId: any(named: 'userId'),
+        fullName: any(named: 'fullName'),
+        phone: any(named: 'phone'),
+        countryCode: any(named: 'countryCode'),
+      ),
+    );
+  });
 
   testWidgets('a successful edit updates the cached identity and returns to the caller', (
     tester,
@@ -136,12 +130,7 @@ void main() {
       ),
     ).thenAnswer(
       (_) async => const Result.success(
-        UserProfile(
-          id: 'u1',
-          fullName: 'Jane Doe',
-          phoneE164: '+12025550190',
-          countryCode: 'US',
-        ),
+        UserProfile(id: 'u1', fullName: 'Jane Doe', phoneE164: '+12025550190', countryCode: 'US'),
       ),
     );
 

@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appName => 'روارد جيف أواي';
+  String get appTitle => 'كريتيف ريواردز';
 
   @override
   String get commonRetry => 'إعادة المحاولة';
@@ -18,820 +18,1144 @@ class AppLocalizationsAr extends AppLocalizations {
   String get commonCancel => 'إلغاء';
 
   @override
-  String get commonConfirm => 'تأكيد';
+  String get commonOk => 'حسنًا';
 
   @override
-  String get commonDismiss => 'إغلاق';
+  String get commonDone => 'تم';
 
   @override
-  String get commonDelete => 'حذف';
+  String get commonSave => 'حفظ';
 
   @override
-  String get commonSomethingWrong => 'حدث خطأ ما. حاول مرة أخرى.';
+  String get commonContinue => 'متابعة';
 
   @override
-  String get commonRequired => 'مطلوب';
+  String get commonSeeAll => 'عرض الكل';
+
+  @override
+  String get commonCopy => 'نسخ';
+
+  @override
+  String get commonCopied => 'تم النسخ';
+
+  @override
+  String get commonLoadMore => 'تحميل المزيد';
+
+  @override
+  String pointsAmount(String points) {
+    return '$points PTS';
+  }
+
+  @override
+  String onboardingStep(int step, int total) {
+    return 'الخطوة $step من $total';
+  }
+
+  @override
+  String errorReference(String id) {
+    return 'المرجع: $id';
+  }
+
+  @override
+  String get showPassword => 'إظهار كلمة المرور';
+
+  @override
+  String get hidePassword => 'إخفاء كلمة المرور';
+
+  @override
+  String get errUnknown => 'حدث خطأ ما. حاول مرة أخرى.';
+
+  @override
+  String get errServer => 'الخدمة تواجه مشكلة. حاول مرة أخرى بعد قليل.';
+
+  @override
+  String get errNetwork => 'لا يوجد اتصال بالإنترنت. تحقق من الاتصال وحاول مرة أخرى.';
+
+  @override
+  String get errTimeout => 'استغرق الطلب وقتًا طويلًا. حاول مرة أخرى.';
+
+  @override
+  String get errInvalidCredentials => 'البريد أو كلمة المرور غير صحيحة';
+
+  @override
+  String get errSessionExpired => 'انتهت جلستك. سجّل الدخول مرة أخرى.';
+
+  @override
+  String get errAccountSuspended => 'هذا الحساب موقوف. تواصل مع الدعم للمساعدة.';
+
+  @override
+  String get errFeatureDisabled => 'هذه الميزة غير متاحة حاليًا.';
+
+  @override
+  String get errNotFound => 'هذا العنصر لم يعد متاحًا.';
+
+  @override
+  String get errEmailTaken => 'هذا البريد مسجل بالفعل.';
+
+  @override
+  String get errInsufficientPoints => 'نقاطك غير كافية لهذه المكافأة.';
+
+  @override
+  String get errOutOfStock => 'نفدت كمية هذه المكافأة.';
+
+  @override
+  String get errPriceChanged => 'تغيّر سعر هذه المكافأة.';
+
+  @override
+  String get errInvalidTransition => 'لم يعد بالإمكان تعديل هذا الطلب.';
+
+  @override
+  String get errRequestInProgress => 'طلبك قيد المعالجة. يرجى الانتظار.';
+
+  @override
+  String get errGiveawayNotStarted => 'لم يبدأ هذا السحب بعد.';
+
+  @override
+  String get errGiveawayEnded => 'انتهى هذا السحب.';
+
+  @override
+  String get errGiveawayNotActive => 'هذا السحب غير متاح حاليًا.';
+
+  @override
+  String get errGiveawayFull => 'اكتمل عدد المشاركين في هذا السحب.';
+
+  @override
+  String get errStepsIncomplete => 'أكمل الخطوات المطلوبة أولًا.';
+
+  @override
+  String get errClaimNotAllowed => 'لم يعد بالإمكان المطالبة بهذه الجائزة.';
+
+  @override
+  String get errValidation => 'تحقق من البيانات التي أدخلتها.';
+
+  @override
+  String get errOtpInvalid => 'الرمز غير صحيح.';
+
+  @override
+  String get errOtpExpired => 'انتهت صلاحية الرمز. اطلب رمزًا جديدًا.';
+
+  @override
+  String get errOtpAttemptsExceeded => 'محاولات خاطئة كثيرة. اطلب رمزًا جديدًا.';
+
+  @override
+  String get errOtpVerificationInvalid => 'انتهى التحقق من بريدك. يرجى البدء من جديد.';
+
+  @override
+  String errOtpResendCooldown(int seconds) {
+    return 'انتظر $seconds ثانية قبل طلب رمز آخر.';
+  }
+
+  @override
+  String get errOtpSendLimit => 'تم طلب رموز كثيرة. حاول لاحقًا.';
+
+  @override
+  String get errOtpLocked => 'التحقق مقفل مؤقتًا. حاول بعد ساعة أو سجّل الدخول بكلمة المرور.';
+
+  @override
+  String get errEmailNotConfigured => 'إرسال البريد غير متاح حاليًا. حاول لاحقًا.';
+
+  @override
+  String get errInvalidPassword => 'كلمة المرور غير صحيحة.';
+
+  @override
+  String get errInvalidAvatar => 'اختر شخصية أخرى.';
+
+  @override
+  String get errProofRequired => 'أضف إثباتًا قصيرًا لإرسال هذه الخطوة.';
+
+  @override
+  String get errRateLimited => 'محاولات كثيرة. انتظر قليلًا.';
+
+  @override
+  String get errDailyLimit => 'وصلت إلى حد اليوم. عد غدًا.';
+
+  @override
+  String get errDeviceLimit => 'وصل هذا الجهاز إلى حد اليوم.';
+
+  @override
+  String errCooldown(int seconds) {
+    return 'انتظر $seconds ثانية قبل الإعلان التالي.';
+  }
+
+  @override
+  String get errTooManyPending => 'لا يزال التحقق من إعلانات سابقة جاريًا. حاول بعد قليل.';
+
+  @override
+  String get errNumberAllocation => 'تعذر تخصيص رقمك. حاول مرة أخرى.';
+
+  @override
+  String get errInvalidCursor => 'تغيّرت القائمة. اسحب للتحديث.';
+
+  @override
+  String get splashTagline => 'العب · اكسب · استبدل';
+
+  @override
+  String get maintenanceTitle => 'سنعود قريبًا';
+
+  @override
+  String get maintenanceBody => 'كريتيف ريواردز قيد الصيانة. حاول مرة أخرى قريبًا.';
+
+  @override
+  String get updateTitle => 'التحديث مطلوب';
+
+  @override
+  String get updateBody => 'يرجى تحديث كريتيف ريواردز لمتابعة استخدامه.';
+
+  @override
+  String get updateButton => 'حدّث الآن';
+
+  @override
+  String get offlineTitle => 'تعذر الاتصال';
+
+  @override
+  String get offlineBody => 'تحقق من اتصالك بالإنترنت وحاول مرة أخرى.';
+
+  @override
+  String get serviceUnavailableTitle => 'الخدمة غير متصلة';
+
+  @override
+  String get serviceUnavailableBody => 'كريتيف ريواردز غير متاح حتى يتم توصيل الخدمة.';
+
+  @override
+  String get serviceInsecureBody => 'لا يمكن لهذا الإصدار استخدام اتصال غير آمن.';
+
+  @override
+  String get welcomeTitleTop => 'رحلتك مع المكافآت';
+
+  @override
+  String get welcomeTitleBottom => 'تبدأ هنا';
+
+  @override
+  String get welcomeSubtitle => 'العب واكسب واستبدل مكافآت رائعة بسهولة.';
+
+  @override
+  String get welcomeGetStarted => 'ابدأ الآن';
+
+  @override
+  String get welcomeHaveAccount => 'لديك حساب؟ ';
+
+  @override
+  String get welcomeLogin => 'سجّل الدخول';
+
+  @override
+  String get authInvalidEmail => 'أدخل بريدًا إلكترونيًا صحيحًا';
+
+  @override
+  String get emailTitleStart => 'ما بريدك ';
+
+  @override
+  String get emailTitleAccent => 'الإلكتروني؟';
+
+  @override
+  String get emailSubtitle => 'سنرسل رمز تحقق لتأكيد حسابك.';
+
+  @override
+  String get emailSendCode => 'أرسل الرمز';
+
+  @override
+  String get emailLoginInstead => 'لديك حساب؟ سجّل الدخول';
+
+  @override
+  String get otpTitleStart => 'تحقق من ';
+
+  @override
+  String get otpTitleAccent => 'بريدك';
+
+  @override
+  String get otpSentTo => 'أرسلنا رمزًا من ٦ أرقام إلى';
+
+  @override
+  String otpResendIn(String time) {
+    return 'إعادة الإرسال خلال $time';
+  }
+
+  @override
+  String get otpResend => 'إعادة إرسال الرمز';
+
+  @override
+  String get otpResent => 'تم إرسال رمز جديد.';
+
+  @override
+  String get otpEnterSix => 'أدخل ستة أرقام';
+
+  @override
+  String otpAttemptsLeft(int count) {
+    return 'المحاولات المتبقية: $count';
+  }
+
+  @override
+  String get otpSpamHint =>
+      'لم يصلك الرمز؟ تحقق من البريد غير المرغوب ثم أعد الإرسال بعد انتهاء العد.';
+
+  @override
+  String get otpCodeLabel => 'رمز التحقق المكوّن من ٦ أرقام';
+
+  @override
+  String get passwordTitleStart => 'أنشئ ';
+
+  @override
+  String get passwordTitleAccent => 'كلمة مرور';
+
+  @override
+  String get passwordResetTitleStart => 'إعادة تعيين ';
+
+  @override
+  String get passwordResetTitleAccent => 'كلمة المرور';
+
+  @override
+  String get passwordSubtitle => 'اختر كلمة مرور آمنة لحسابك.';
+
+  @override
+  String get passwordLabel => 'كلمة المرور';
+
+  @override
+  String get passwordConfirmLabel => 'تأكيد كلمة المرور';
+
+  @override
+  String get passwordRuleLength => '٨ أحرف على الأقل';
+
+  @override
+  String get passwordRuleLettersNumbers => 'حروف وأرقام';
+
+  @override
+  String get passwordRuleStrong => 'استخدم كلمة مرور قوية';
+
+  @override
+  String get passwordTooWeak => 'استخدم ١٠ أحرف أو أكثر مع أحرف كبيرة وصغيرة وأرقام';
+
+  @override
+  String get passwordMismatch => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get passwordSave => 'حفظ كلمة المرور';
+
+  @override
+  String get passwordResetDone => 'تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة.';
+
+  @override
+  String get characterTitle => 'اختر شخصيتك';
+
+  @override
+  String get characterSubtitle => 'اختر شخصية تمثلك في التطبيق.';
+
+  @override
+  String characterOption(int number) {
+    return 'الشخصية $number';
+  }
+
+  @override
+  String get loginTitle => 'مرحبًا بعودتك';
+
+  @override
+  String get loginSubtitle => 'سجّل الدخول لمتابعة رحلتك مع المكافآت.';
+
+  @override
+  String get loginEmailHint => 'البريد الإلكتروني';
+
+  @override
+  String get loginPasswordHint => 'كلمة المرور';
+
+  @override
+  String get loginForgot => 'نسيت كلمة المرور؟';
+
+  @override
+  String get loginButton => 'تسجيل الدخول';
+
+  @override
+  String get loginBusy => 'جارٍ الدخول...';
+
+  @override
+  String get loginInvalidInput => 'أدخل بريدًا إلكترونيًا وكلمة مرور صالحين';
+
+  @override
+  String get loginEnterEmailFirst => 'أدخل بريدك أولًا';
+
+  @override
+  String get loginCreateAccount => 'جديد هنا؟ أنشئ حسابًا';
 
   @override
   String get navHome => 'الرئيسية';
 
   @override
-  String get navDashboard => 'لوحة التحكم';
+  String get navCategories => 'الفئات';
 
   @override
-  String get roleSelectionWelcome => 'أهلاً بك 👋';
+  String get navWallet => 'المحفظة';
 
   @override
-  String get roleSelectionChooseHow => 'اختر كيف تريد المتابعة.';
+  String get navProfile => 'الملف';
 
   @override
-  String get roleSelectionContinueAsUser => 'المتابعة كمستخدم';
+  String get notificationsTooltip => 'الإشعارات';
 
   @override
-  String get roleSelectionContinueAsUserSubtitle => 'انضم إلى السحوبات المثيرة واربح جوائز رائعة.';
+  String get homeYourPoints => 'نقاطك';
 
   @override
-  String get roleSelectionContinueAsAdmin => 'المتابعة كمسؤول';
+  String get homeSearchHint => 'ابحث عن المكافآت والسحوبات...';
 
   @override
-  String get roleSelectionContinueAsAdminSubtitle => 'أنشئ وأدر حملات السحب على الجوائز.';
+  String get homeAvailableRewards => 'المكافآت المتاحة';
 
   @override
-  String get roleSelectionSwitchAnytime => 'يمكنك تبديل دورك في أي وقت.';
+  String get homeFeaturedRewards => 'مكافآت مميزة';
 
   @override
-  String get userHomeWelcomeBack => 'مرحبًا بعودتك 👋';
+  String get homeGiveaways => 'السحوبات';
 
   @override
-  String get userHomeGuest => 'زائر';
+  String get homeNoResults => 'لم يتم العثور على مكافآت';
 
   @override
-  String get userHomeSearchHint => 'ابحث عن سحوبات…';
+  String get homeEmpty => 'مكافآت جديدة في الطريق. عد قريبًا.';
 
   @override
-  String get userHomePopularGiveaways => 'السحوبات الأكثر رواجاً';
+  String get homeClearSearch => 'مسح البحث';
 
   @override
-  String get userHomeAllGiveaways => 'جميع السحوبات';
+  String get giveawayAvailable => 'متاح';
 
   @override
-  String get userHomeFeaturedGiveaway => 'سحب مميز';
+  String get giveawayUpcoming => 'قريبًا';
 
   @override
-  String userHomeJoinedCount(int count) {
-    return '$count مشارك';
+  String get giveawayEnded => 'انتهى';
+
+  @override
+  String get giveawayWinnersSelected => 'تم إعلان الفائزين';
+
+  @override
+  String get giveawayCancelled => 'أُلغي';
+
+  @override
+  String giveawayEndsOn(String date) {
+    return 'ينتهي $date';
   }
 
   @override
-  String get userHomeViewDetails => 'عرض التفاصيل';
-
-  @override
-  String get userHomeNoActiveGiveaways => 'لا توجد سحوبات نشطة الآن — تحقق لاحقاً';
-
-  @override
-  String get userHomeCouldNotLoad => 'تعذّر تحميل السحوبات.';
-
-  @override
-  String get statusActive => 'نشط';
-
-  @override
-  String get statusEnded => 'منتهٍ';
-
-  @override
-  String get statusDraft => 'مسودة';
-
-  @override
-  String get statusScheduled => 'مجدوَل';
-
-  @override
-  String get statusArchived => 'مؤرشف';
-
-  @override
-  String get giveawayDetailsAboutPrize => 'عن هذه الجائزة';
-
-  @override
-  String get giveawayDetailsHowToParticipate => 'كيفية المشاركة';
-
-  @override
-  String get giveawayDetailsRules => 'القواعد';
-
-  @override
-  String get giveawayDetailsGenerateNumber => 'إنشاء رقمي';
-
-  @override
-  String get giveawayDetailsNotActive => 'السحب غير نشط';
-
-  @override
-  String get giveawayDetailsYoureIn => 'أنت مشارك بالفعل!';
-
-  @override
-  String giveawayDetailsYoureInWithNumber(String number) {
-    return 'أنت مشارك بالفعل! ‎#$number';
+  String giveawayStartsOn(String date) {
+    return 'يبدأ $date';
   }
 
   @override
-  String get giveawayDetailsCouldNotLoad => 'تعذّر تحميل هذا السحب.';
-
-  @override
-  String get giveawayDetailsEnded => 'انتهى';
-
-  @override
-  String giveawayDetailsHoursLeft(int hours) {
-    return 'باقي $hours ساعة';
+  String giveawayParticipants(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count مشارك',
+      many: '$count مشاركًا',
+      few: '$count مشاركين',
+      two: 'مشاركان',
+      one: 'مشارك واحد',
+      zero: 'لا مشاركين بعد',
+    );
+    return '$_temp0';
   }
 
   @override
-  String giveawayDetailsDaysHoursLeft(int days, int hours) {
-    return 'باقي $days يوم و$hours ساعة';
+  String get categoriesTitle => 'الفئات';
+
+  @override
+  String get categoriesEmpty => 'لا توجد فئات بعد. عد قريبًا.';
+
+  @override
+  String get categoryProductsEmpty => 'لا توجد مكافآت في هذه الفئة بعد.';
+
+  @override
+  String get productRedeem => 'استبدل';
+
+  @override
+  String get productOutOfStock => 'نفدت الكمية';
+
+  @override
+  String get redeemTitle => 'تفاصيل الاستبدال';
+
+  @override
+  String redeemBalanceLine(String balance, String after) {
+    return 'الرصيد: $balance PTS  •  بعد الاستبدال: $after PTS';
   }
 
   @override
-  String get registrationTitle => 'إنشاء حسابك';
+  String get redeemConfirm => 'تأكيد الاستبدال';
 
   @override
-  String get registrationSubtitle => 'أدخل بياناتك لبدء المشاركة.';
+  String get redeemFieldRequired => 'هذا الحقل مطلوب';
 
   @override
-  String get registrationFullNameLabel => 'الاسم الكامل';
+  String redeemFieldInvalid(String label) {
+    return 'تحقق من صيغة $label';
+  }
 
   @override
-  String get registrationFullNameHint => 'مثال: سارة أحمد';
+  String get redeemInvalidNumber => 'استخدم الأرقام فقط';
 
   @override
-  String get registrationFullNameError => 'أدخل اسمك الكامل';
+  String get redeemInvalidUrl => 'أدخل رابطًا صالحًا';
 
   @override
-  String get registrationCountryLabel => 'الدولة';
+  String get redeemInvalidPhone => 'أدخل رقم هاتف صالحًا';
 
   @override
-  String get registrationPhoneLabel => 'رقم الهاتف';
+  String get redeemInvalidOption => 'اختر أحد الخيارات';
 
   @override
-  String get registrationPhoneHint => '٥٥٥ ٠٠٠ ٠٠٠٠';
+  String get redeemSelectHint => 'اختر خيارًا';
 
   @override
-  String get registrationPhoneRequiredError => 'أدخل رقم هاتفك';
+  String get redeemPrivacyNote => 'لن نطلب منك أبدًا كلمات المرور أو رموز التحقق.';
 
   @override
-  String get registrationPhoneInvalidError => 'أدخل رقم هاتف صحيح';
+  String get redeemPointsNote => 'تُخصم النقاط عند التأكيد وتُعاد إذا تعذر إكمال الطلب.';
 
   @override
-  String get registrationContinue => 'متابعة';
+  String get redeemSuccessTitle => 'تم إرسال الطلب';
 
   @override
-  String get registrationAgreeTerms => 'بالمتابعة، أنت توافق على سياسة الخصوصية والشروط والأحكام.';
+  String redeemSuccessBody(String points) {
+    return 'تم خصم $points PTS. تابع طلبك في طلباتي.';
+  }
 
   @override
-  String get participationJoinGiveaway => 'الانضمام إلى السحب';
+  String get redeemViewOrders => 'عرض طلباتي';
 
   @override
-  String get participationGeneratingNumber => 'جارٍ إنشاء رقمك…';
+  String get redeemInsufficientTitle => 'النقاط غير كافية';
 
   @override
-  String get participationSuccessOpening => 'تم بنجاح! جارٍ الكشف عن رمزك…';
+  String redeemInsufficientBody(String balance, String required) {
+    return 'لديك $balance PTS. تحتاج هذه المكافأة إلى $required PTS.';
+  }
 
   @override
-  String get participationTryAgain => 'حاول مرة أخرى';
+  String get redeemPriceChangedTitle => 'تغيّر السعر';
 
   @override
-  String get numberRevealTitle => 'رمز مشاركتك';
+  String redeemPriceChangedBody(String points) {
+    return 'أصبحت تكلفة هذه المكافأة $points PTS. هل تريد المتابعة؟';
+  }
 
   @override
-  String get numberRevealSubtitle => 'تم إنشاؤه خصيصًا لك';
+  String redeemConfirmNewPrice(String points) {
+    return 'استبدل مقابل $points PTS';
+  }
 
   @override
-  String get numberRevealViewInMyGiveaways => 'عرضه في سحوباتي';
+  String get walletTitle => 'مكافآتك';
 
   @override
-  String get myGiveawaysTitle => 'سحوباتي';
+  String get walletPoints => 'النقاط';
 
   @override
-  String get myGiveawaysEmpty => 'لم تنضم إلى أي سحب بعد';
+  String get walletBalance => 'الرصيد';
 
   @override
-  String get myGiveawaysCouldNotLoad => 'تعذّر تحميل سحوباتك.';
+  String get walletFastEarn => 'اكسب بسرعة';
 
   @override
-  String get myGiveawaysGiveawayFallback => 'سحب';
+  String get walletPlaceOrder => 'تصفح المكافآت';
 
   @override
-  String get myGiveawaysWinner => 'لقد فزت بهذا السحب!';
+  String get walletPlaceOrderSubtitle => 'تصفح المكافآت لاستبدالها';
 
   @override
-  String get myGiveawaysNotSelected => 'لم يتم اختيارك كفائز هذه المرة';
+  String get walletReview => 'اكتب تقييمًا';
+
+  @override
+  String get walletReviewSubtitle => 'افتح صفحة التطبيق في المتجر';
+
+  @override
+  String get walletReviewUnavailable => 'صفحة المتجر غير متاحة';
+
+  @override
+  String get walletRefer => 'ادع صديقًا';
+
+  @override
+  String get walletReferSubtitle => 'شارك التطبيق مع أصدقائك';
+
+  @override
+  String get walletHistory => 'سجل النقاط';
+
+  @override
+  String get walletHistorySubtitle => 'النقاط المكتسبة والمستخدمة والمستردة';
+
+  @override
+  String get transactionsTitle => 'سجل النقاط';
+
+  @override
+  String get transactionsSubtitle => 'كل تغيير في رصيدك';
+
+  @override
+  String get transactionsEmpty => 'لا يوجد نشاط للنقاط بعد';
+
+  @override
+  String get txSignupBonus => 'مكافأة الترحيب';
+
+  @override
+  String get txAdReward => 'إعلان بمكافأة';
+
+  @override
+  String get txRedemption => 'استبدال مكافأة';
+
+  @override
+  String get txRefund => 'استرداد';
+
+  @override
+  String get txAdminCredit => 'نقاط مضافة';
+
+  @override
+  String get txAdminDebit => 'تعديل النقاط';
+
+  @override
+  String get txOther => 'تحديث الرصيد';
+
+  @override
+  String txBalanceAfter(String points) {
+    return 'الرصيد $points PTS';
+  }
+
+  @override
+  String get earnTitle => 'اكسب نقاطًا';
+
+  @override
+  String get earnHeadline => 'شاهد واكسب';
+
+  @override
+  String earnBody(int points) {
+    return 'شاهد فيديو قصيرًا لتكسب $points نقطة. تُضاف النقاط بعد أن تؤكد Google المشاهدة.';
+  }
+
+  @override
+  String earnRemaining(int count) {
+    return 'المتبقي اليوم: $count';
+  }
+
+  @override
+  String get earnWatch => 'شاهد الإعلان';
+
+  @override
+  String get earnVerifying => 'جارٍ التحقق من مكافأتك…';
+
+  @override
+  String earnCredited(String points) {
+    return 'تمت إضافة $points PTS إلى محفظتك';
+  }
+
+  @override
+  String get earnRejected => 'لم تُحتسب هذه المشاهدة.';
+
+  @override
+  String get earnExpired => 'انتهت جلسة المكافأة. حاول مرة أخرى.';
+
+  @override
+  String get earnPendingLong => 'ستظهر نقاطك قريبًا. تحقق من محفظتك بعد لحظات.';
+
+  @override
+  String get earnDismissedEarly => 'شاهد الفيديو كاملًا لتكسب النقاط.';
+
+  @override
+  String get earnAdFailed => 'لا يتوفر فيديو حاليًا. حاول لاحقًا.';
+
+  @override
+  String get earnUnavailable => 'الكسب عبر مشاهدة الفيديو قريبًا';
+
+  @override
+  String get earnUnavailableBody =>
+      'سنخبرك عندما يصبح بإمكانك كسب النقاط بمشاهدة الفيديو. لا يزال بإمكانك استبدال النقاط والمشاركة في السحوبات.';
+
+  @override
+  String earnCooldown(String time) {
+    return 'الفيديو التالي متاح خلال $time';
+  }
+
+  @override
+  String get earnDailyLimit => 'وصلت إلى حد اليوم. عد غدًا.';
+
+  @override
+  String get earnUnsupported => 'الفيديو بمكافأة متاح على أندرويد.';
+
+  @override
+  String get referTitle => 'ادع صديقًا';
+
+  @override
+  String get referHeadline => 'ادع أصدقاءك إلى كريتيف ريواردز';
+
+  @override
+  String get referBody => 'شارك رابط التطبيق مع أصدقائك. مكافآت الإحالة غير متاحة بعد.';
+
+  @override
+  String get referCopy => 'نسخ رابط التطبيق';
+
+  @override
+  String get referCopied => 'تم نسخ الرابط';
+
+  @override
+  String get profilePoints => 'نقاط';
+
+  @override
+  String get profileGiveaways => 'سحوبات';
+
+  @override
+  String get profileOrders => 'طلبات';
+
+  @override
+  String get profileMyGiveaways => 'سحوباتي';
+
+  @override
+  String get profileMyOrders => 'طلباتي';
+
+  @override
+  String get profileNotifications => 'الإشعارات';
+
+  @override
+  String get profileLanguage => 'اللغة';
+
+  @override
+  String get profileSettings => 'إعدادات الحساب';
+
+  @override
+  String get profileAbout => 'حول التطبيق';
+
+  @override
+  String get profilePrivacy => 'سياسة الخصوصية';
+
+  @override
+  String get profileTerms => 'الشروط والأحكام';
+
+  @override
+  String get profileSignOut => 'تسجيل الخروج';
+
+  @override
+  String get profileEditTooltip => 'تعديل الملف';
+
+  @override
+  String get signOutTitle => 'تسجيل الخروج؟';
+
+  @override
+  String get signOutMessage => 'هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟';
+
+  @override
+  String get languageTitle => 'اختر اللغة';
+
+  @override
+  String get editProfileTitle => 'تعديل الملف';
+
+  @override
+  String get editProfileName => 'الاسم الظاهر';
+
+  @override
+  String get editProfileNameInvalid => 'استخدم من ٢ إلى ٦٠ حرفًا';
+
+  @override
+  String get editProfileSaved => 'تم تحديث الملف';
+
+  @override
+  String get settingsTitle => 'إعدادات الحساب';
+
+  @override
+  String get settingsSubtitle => 'الأمان والتفضيلات';
+
+  @override
+  String get settingsChangePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get settingsSessions => 'الأجهزة المسجّل دخولها';
+
+  @override
+  String get settingsNotifications => 'تفضيلات الإشعارات';
+
+  @override
+  String get settingsAdPrivacy => 'خيارات خصوصية الإعلانات';
+
+  @override
+  String get settingsDeleteAccount => 'حذف الحساب';
+
+  @override
+  String settingsVersion(String version) {
+    return 'الإصدار $version';
+  }
+
+  @override
+  String get changePasswordTitle => 'تغيير كلمة المرور';
+
+  @override
+  String get changePasswordCurrent => 'كلمة المرور الحالية';
+
+  @override
+  String get changePasswordNew => 'كلمة المرور الجديدة';
+
+  @override
+  String get changePasswordDone => 'تم تغيير كلمة المرور. تم تسجيل الخروج من الأجهزة الأخرى.';
+
+  @override
+  String get sessionsTitle => 'الأجهزة المسجّل دخولها';
+
+  @override
+  String get sessionsSubtitle => 'الأجهزة المسجّل دخولها إلى حسابك';
+
+  @override
+  String get sessionsCurrent => 'هذا الجهاز';
+
+  @override
+  String sessionsLastUsed(String date) {
+    return 'آخر نشاط $date';
+  }
+
+  @override
+  String get sessionsRevoke => 'تسجيل الخروج';
+
+  @override
+  String get sessionsRevoked => 'تم تسجيل خروج الجهاز';
+
+  @override
+  String get sessionsLogoutAll => 'تسجيل الخروج من كل الأجهزة';
+
+  @override
+  String get sessionsLogoutAllMessage =>
+      'ستحتاج إلى تسجيل الدخول مجددًا على كل الأجهزة، بما فيها هذا الجهاز.';
+
+  @override
+  String get sessionsUnknownDevice => 'جهاز غير معروف';
+
+  @override
+  String get notificationPrefsTitle => 'تفضيلات الإشعارات';
+
+  @override
+  String get notificationPrefsSubtitle => 'اختر ما نُعلمك به';
+
+  @override
+  String get prefOrders => 'تحديثات الطلبات';
+
+  @override
+  String get prefOrdersSubtitle => 'المعالجة والتسليم والاسترداد';
+
+  @override
+  String get prefGiveaways => 'نتائج السحوبات';
+
+  @override
+  String get prefGiveawaysSubtitle => 'الفائزون ونتائج السحب';
+
+  @override
+  String get prefAnnouncements => 'الإعلانات';
+
+  @override
+  String get prefAnnouncementsSubtitle => 'مكافآت وعروض جديدة';
+
+  @override
+  String get deleteAccountTitle => 'حذف الحساب';
+
+  @override
+  String get deleteAccountBody =>
+      'يُحذف حسابك بعد فترة سماح مدتها ١٤ يومًا. يؤدي تسجيل الدخول خلالها إلى إلغاء الطلب. تُحذف النقاط والطلبات والمشاركات مع الحساب.';
+
+  @override
+  String get deleteAccountPassword => 'أكّد بكلمة المرور';
+
+  @override
+  String get deleteAccountButton => 'احذف حسابي';
+
+  @override
+  String get deleteAccountConfirmTitle => 'حذف حسابك؟';
+
+  @override
+  String get deleteAccountConfirmMessage => 'لا يمكن التراجع عن ذلك بعد انتهاء فترة السماح.';
+
+  @override
+  String deleteAccountDone(int days) {
+    return 'تم طلب الحذف. سيُحذف حسابك خلال $days يومًا.';
+  }
+
+  @override
+  String get aboutTitle => 'حول التطبيق';
+
+  @override
+  String get aboutBody =>
+      'يتيح لك كريتيف ريواردز استبدال النقاط بالمكافآت والمشاركة في السحوبات المجانية.';
+
+  @override
+  String get privacyTitle => 'سياسة الخصوصية';
+
+  @override
+  String get termsTitle => 'الشروط والأحكام';
+
+  @override
+  String get legalUnavailable => 'سيتوفر هذا المستند قريبًا.';
+
+  @override
+  String get legalOpen => 'فتح المستند';
+
+  @override
+  String get ordersTitle => 'طلباتي';
+
+  @override
+  String get ordersSubtitle => 'تابع طلباتك وأدرها';
+
+  @override
+  String get ordersAll => 'الكل';
+
+  @override
+  String get ordersInProgress => 'قيد التنفيذ';
+
+  @override
+  String get ordersCompleted => 'مكتملة';
+
+  @override
+  String get ordersUnsuccessful => 'غير ناجحة';
+
+  @override
+  String get ordersEmpty => 'لا توجد طلبات بعد';
+
+  @override
+  String get ordersEmptyFiltered => 'لا توجد طلبات في هذه الحالة';
+
+  @override
+  String orderNumber(String number) {
+    return 'طلب رقم $number';
+  }
+
+  @override
+  String get orderPending => 'قيد الانتظار';
+
+  @override
+  String get orderProcessing => 'قيد المعالجة';
+
+  @override
+  String get orderShipped => 'تم الشحن';
+
+  @override
+  String get orderDelivered => 'تم التسليم';
+
+  @override
+  String get orderCompleted => 'مكتمل';
+
+  @override
+  String get orderRejected => 'مرفوض';
+
+  @override
+  String get orderCancelled => 'ملغي';
+
+  @override
+  String get orderFailed => 'فشل';
+
+  @override
+  String get orderDetailsTitle => 'تفاصيل الطلب';
+
+  @override
+  String get orderSubmittedDetails => 'بياناتك';
+
+  @override
+  String get orderDeliveredCode => 'رمزك';
+
+  @override
+  String get orderTracking => 'التتبع';
+
+  @override
+  String get orderReason => 'السبب';
+
+  @override
+  String get orderTimeline => 'سجل الحالة';
+
+  @override
+  String orderRefunded(String points) {
+    return 'تمت إعادة $points PTS إلى محفظتك.';
+  }
+
+  @override
+  String get orderCancel => 'إلغاء الطلب';
+
+  @override
+  String get orderCancelTitle => 'إلغاء هذا الطلب؟';
+
+  @override
+  String get orderCancelMessage => 'ستُعاد نقاطك إلى محفظتك.';
+
+  @override
+  String get orderCancelDone => 'تم إلغاء الطلب وإعادة النقاط.';
 
   @override
   String get notificationsTitle => 'الإشعارات';
 
   @override
-  String get notificationsEmpty => 'لا توجد إشعارات جديدة حتى الآن.';
+  String get notificationsEmpty => 'لا توجد إشعارات بعد';
 
   @override
-  String get notificationsCouldNotLoad => 'تعذّر تحميل الإشعارات.';
+  String get notificationsMarkAll => 'تحديد الكل كمقروء';
 
   @override
-  String get notificationsMarkAllRead => 'تعليم الكل كمقروء';
+  String get notifNow => 'الآن';
 
   @override
-  String get settingsTitle => 'الإعدادات';
-
-  @override
-  String get settingsLanguage => 'اللغة';
-
-  @override
-  String get settingsAbout => 'حول التطبيق';
-
-  @override
-  String get settingsPrivacyPolicy => 'سياسة الخصوصية';
-
-  @override
-  String get settingsTermsConditions => 'الشروط والأحكام';
-
-  @override
-  String get settingsSignOut => 'تسجيل الخروج';
-
-  @override
-  String get settingsSignOutConfirmTitle => 'تسجيل الخروج؟';
-
-  @override
-  String get settingsSignOutConfirmBody =>
-      'ستعود إلى شاشة اختيار الدور. سحوباتك وسجلّك المحفوظ سيبقيان على هذا الجهاز.';
-
-  @override
-  String get settingsAboutBody =>
-      'يتيح لك تطبيق Reward Giveaway الانضمام إلى سحوبات الجوائز المثيرة وإدارتها. تم بناؤه باستخدام Flutter وSupabase.';
-
-  @override
-  String get settingsSectionGeneral => 'عام';
-
-  @override
-  String get settingsSectionInformation => 'معلومات';
-
-  @override
-  String get settingsSectionAccount => 'الحساب';
-
-  @override
-  String get settingsGuestSubtitle => 'انضم إلى سحب لإنشاء ملفك الشخصي';
-
-  @override
-  String get adminAuthTitle => 'المسؤول';
-
-  @override
-  String get adminAuthCreateAccount => 'إنشاء حساب مسؤول';
-
-  @override
-  String get adminAuthSignInTitle => 'تسجيل دخول المسؤول';
-
-  @override
-  String get adminAuthSignUpSubtitle => 'سجّل حساب مسؤول جديد لإدارة حملات السحب.';
-
-  @override
-  String get adminAuthSignInSubtitle => 'سجّل الدخول لإدارة حملات السحب.';
-
-  @override
-  String get adminAuthSignIn => 'تسجيل الدخول';
-
-  @override
-  String get adminAuthSignUp => 'إنشاء حساب';
-
-  @override
-  String get adminAuthFullNameLabel => 'الاسم الكامل';
-
-  @override
-  String get adminAuthFullNameError => 'أدخل اسمك الكامل';
-
-  @override
-  String get adminAuthFullNameHint => 'اسمك الكامل';
-
-  @override
-  String get adminAuthEmailLabel => 'البريد الإلكتروني';
-
-  @override
-  String get adminAuthEmailError => 'أدخل بريداً إلكترونياً صحيحاً';
-
-  @override
-  String get adminAuthEmailHint => 'example@gmail.com';
-
-  @override
-  String get adminAuthPasswordLabel => 'كلمة المرور';
-
-  @override
-  String get adminAuthPasswordEmptyError => 'أدخل كلمة المرور';
-
-  @override
-  String get adminAuthPasswordLengthError => 'يجب ألا تقل كلمة المرور عن 8 أحرف';
-
-  @override
-  String get adminAuthPasswordHint => '••••••••';
-
-  @override
-  String get adminAuthPasswordRequirementHelper => '8 أحرف على الأقل';
-
-  @override
-  String get adminAuthConfirmPasswordLabel => 'تأكيد كلمة المرور';
-
-  @override
-  String get adminAuthPasswordsNoMatch => 'كلمتا المرور غير متطابقتين';
-
-  @override
-  String get adminAuthAccessCodeLabel => 'رمز دخول المسؤول';
-
-  @override
-  String get adminAuthAccessCodeError => 'أدخل رمز دخول المسؤول';
-
-  @override
-  String get adminAuthAccessCodeHint => 'أدخل الرمز الذي زُوّدت به';
-
-  @override
-  String get adminAuthCreateAccountButton => 'إنشاء الحساب';
-
-  @override
-  String get adminAuthSignInButton => 'تسجيل الدخول';
-
-  @override
-  String get adminAuthNoAccessCodeQuestion => 'ليس لديك كود دخول المسؤول؟';
-
-  @override
-  String get adminAuthContactWhatsAppSubtitle => 'تواصل معنا عبر واتساب لطلب الوصول.';
-
-  @override
-  String get adminAuthWhatsAppPrefilledMessage =>
-      'مرحباً، أريد الانضمام إلى المسابقات الخاصة بكم وأحتاج إلى كود دخول المسؤول لإنشاء حساب Admin.';
-
-  @override
-  String get adminAuthWhatsAppOpenFailed => 'تعذّر فتح واتساب. يُرجى المحاولة مرة أخرى.';
-
-  @override
-  String get commonShowPassword => 'إظهار كلمة المرور';
-
-  @override
-  String get commonHidePassword => 'إخفاء كلمة المرور';
-
-  @override
-  String get adminDashboardGoodDay => 'يوم سعيد 👋';
-
-  @override
-  String get adminDashboardAdministrator => 'المسؤول';
-
-  @override
-  String get adminDashboardActiveGiveaways => 'السحوبات النشطة';
-
-  @override
-  String get adminDashboardTotalParticipants => 'إجمالي المشاركين';
-
-  @override
-  String get adminDashboardFinished => 'المنتهية';
-
-  @override
-  String get adminDashboardWinnersSelected => 'الفائزون المختارون';
-
-  @override
-  String get adminDashboardActiveCampaign => 'الحملات النشطة';
-
-  @override
-  String get adminDashboardNoActiveCampaigns => 'لا توجد حملات نشطة بعد. اضغط + لإنشاء واحدة.';
-
-  @override
-  String get adminDashboardEndedCampaign => 'الحملات المنتهية';
-
-  @override
-  String get adminDashboardViewAnalytics => 'عرض التحليلات';
-
-  @override
-  String get adminDashboardCouldNotLoad => 'تعذّر تحميل لوحة التحكم.';
-
-  @override
-  String adminDashboardParticipantsCount(int count) {
-    return '$count مشارك';
+  String notifMinutes(int count) {
+    return 'قبل $count د';
   }
 
   @override
-  String get adminGiveawaysTitle => 'السحوبات';
-
-  @override
-  String get adminGiveawaysEmpty => 'لا توجد سحوبات بعد.';
-
-  @override
-  String adminGiveawaysParticipantsCount(int count) {
-    return '$count مشارك';
+  String notifHours(int count) {
+    return 'قبل $count س';
   }
 
   @override
-  String get createGiveawayTitle => 'إنشاء سحب';
+  String get notifYesterday => 'أمس';
 
   @override
-  String get createGiveawayGiveawayTitle => 'عنوان السحب';
+  String get notifEarlier => 'سابقًا';
 
   @override
-  String get createGiveawayGiveawayTitleHint => 'مثال: آيفون 17 برو ماكس';
+  String get notificationOpen => 'فتح';
 
   @override
-  String get createGiveawayOrganizerName => 'اسم الجهة المنظمة';
+  String get giveawaysTitle => 'السحوبات';
 
   @override
-  String get createGiveawayOrganizerNameHint => 'مثال: شركة التقنية المتحدة';
+  String get giveawaysSubtitle => 'شارك في سحوبات مجانية واربح جوائز';
 
   @override
-  String get createGiveawayPrizeDescription => 'وصف الجائزة (اختياري)';
+  String get giveawaysEmpty => 'لا توجد سحوبات هنا بعد';
 
   @override
-  String get createGiveawayPrizeDescriptionHint => 'صف بإيجاز ما سيحصل عليه الفائز.';
+  String get giveawayDetailsTitle => 'تفاصيل السحب';
 
   @override
-  String get createGiveawayRules => 'وصف السحب وقواعده (اختياري)';
-
-  @override
-  String get createGiveawayRulesHint => 'اذكر جميع الشروط والأحكام والتفاصيل الإضافية.';
-
-  @override
-  String get createGiveawayImage => 'صورة السحب';
-
-  @override
-  String get createGiveawayTapToBrowse => 'اضغط للاختيار من الجهاز';
-
-  @override
-  String get createGiveawayImageSizeHint => 'JPG أو PNG أو GIF بحد أقصى 5 ميجابايت';
-
-  @override
-  String get createGiveawayImageTooLarge => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.';
-
-  @override
-  String get createGiveawayStartDate => 'تاريخ البدء';
-
-  @override
-  String get createGiveawayEndDate => 'تاريخ الانتهاء';
-
-  @override
-  String get createGiveawayEndTime => 'وقت الانتهاء';
-
-  @override
-  String get createGiveawayDatePlaceholder => 'شهر/يوم/سنة';
-
-  @override
-  String get createGiveawayTimePlaceholder => '--:--';
-
-  @override
-  String get createGiveawayMissingDates => 'يرجى تحديد تاريخ ووقت البدء والانتهاء.';
-
-  @override
-  String get createGiveawayEndBeforeStart =>
-      'يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء أو مساوياً له.';
-
-  @override
-  String get createGiveawayPublish => 'نشر السحب';
-
-  @override
-  String get giveawayAnalyticsTitle => 'تحليلات السحب';
-
-  @override
-  String get giveawayAnalyticsSelectParticipantTitle => 'اختر مشاركًا';
-
-  @override
-  String get giveawayAnalyticsConfirmWinnerTitle => 'تأكيد الفائز';
-
-  @override
-  String giveawayAnalyticsConfirmWinnerBody(String code, String name) {
-    return 'هل تريد اختيار المشارك $code ($name) كفائز؟';
+  String giveawayOrganizer(String name) {
+    return 'بواسطة $name';
   }
 
   @override
-  String get giveawayAnalyticsSelectWinnerAction => 'اختيار الفائز';
+  String get giveawayPrize => 'الجائزة';
 
   @override
-  String get giveawayAnalyticsSelectAnotherWinnerAction => 'اختيار فائز آخر';
+  String get giveawayRules => 'القواعد';
 
   @override
-  String get giveawayAnalyticsWinnerSelected => 'تم اختيار الفائز! تم إرسال إشعار.';
+  String get giveawaySteps => 'خطوات المشاركة';
 
   @override
-  String get giveawayAnalyticsNoEligibleParticipants => 'جميع المشاركين فازوا بالفعل.';
+  String get giveawayStepOptional => 'اختياري';
 
   @override
-  String get giveawayAnalyticsTotalJoined => 'إجمالي المنضمين';
+  String get giveawayStepDone => 'تم';
 
   @override
-  String get giveawayAnalyticsActiveToday => 'نشط اليوم';
+  String get giveawayStepSubmitted => 'قيد المراجعة';
 
   @override
-  String get giveawayAnalyticsParticipationGrowth => 'نمو المشاركة';
+  String get giveawayStepApproved => 'مقبول';
 
   @override
-  String get giveawayAnalyticsRecentParticipants => 'المشاركون الأخيرون';
+  String get giveawayStepRejected => 'غير مقبول — حاول مرة أخرى';
 
   @override
-  String get giveawayAnalyticsNoParticipants => 'لا يوجد مشاركون بعد.';
+  String get giveawayStepComplete => 'إكمال';
 
   @override
-  String giveawayAnalyticsParticipationCode(String code) {
-    return 'الرمز $code';
+  String get giveawayStepProofTitle => 'إرسال إثبات';
+
+  @override
+  String get giveawayStepProofHint => 'اسم المستخدم أو ملاحظة قصيرة';
+
+  @override
+  String get giveawayStepSubmit => 'إرسال';
+
+  @override
+  String get giveawayJoin => 'شارك في السحب';
+
+  @override
+  String get giveawayViewTicket => 'اعرض رقمك';
+
+  @override
+  String get giveawayClosed => 'انتهى هذا السحب';
+
+  @override
+  String get giveawayDisqualified => 'تم استبعاد مشاركتك';
+
+  @override
+  String get giveawayFreeNote => 'المشاركة مجانية. لا تُخصم أي نقاط.';
+
+  @override
+  String get giveawayResults => 'الفائزون';
+
+  @override
+  String giveawayWinnerRow(int rank, String number) {
+    return '#$rank · الرقم $number';
   }
 
   @override
-  String get giveawayAnalyticsWinnersSectionTitle => 'الفائزون';
+  String get giveawayCompleteSteps => 'أكمل الخطوات المطلوبة للمشاركة';
 
   @override
-  String get giveawayAnalyticsViewWinners => 'عرض الفائز';
+  String get giveawaySignInToJoin => 'سجّل الدخول للمشاركة';
 
   @override
-  String get giveawayAnalyticsNoWinners => 'لا يوجد فائزون بعد.';
+  String get ticketTitle => 'تذكرتك';
 
   @override
-  String get giveawayAnalyticsRemoveFromView => 'إخفاء من العرض';
+  String get ticketPreparing => 'جارٍ تجهيز تذكرتك…';
 
   @override
-  String get giveawayAnalyticsWinnerLabel => 'الفائز';
+  String get ticketCopy => 'نسخ التذكرة';
 
   @override
-  String giveawayAnalyticsWinnerRank(int rank) {
-    return 'الفائز رقم $rank';
+  String get ticketCopied => 'تم نسخ رقم التذكرة';
+
+  @override
+  String get ticketNote => 'احتفظ بهذا الرقم. يُعلن الفائزون بعد انتهاء السحب.';
+
+  @override
+  String get myGiveawaysTitle => 'سحوباتي';
+
+  @override
+  String get myGiveawaysSubtitle => 'تعرّف على السحوبات التي شاركت فيها';
+
+  @override
+  String get myGiveawaysEmpty => 'لم تشارك في أي سحب بعد';
+
+  @override
+  String get resultAll => 'الكل';
+
+  @override
+  String get resultPending => 'بانتظار السحب';
+
+  @override
+  String get resultWon => 'لقد فزت!';
+
+  @override
+  String get resultNotSelected => 'لم يتم اختيارك';
+
+  @override
+  String get entryDisqualified => 'مستبعد';
+
+  @override
+  String get celebrationTitle => 'مبروك!';
+
+  @override
+  String celebrationBody(String prize) {
+    return 'لقد فزت بـ $prize';
   }
 
   @override
-  String get giveawayAnalyticsSelectedAtLabel => 'وقت الاختيار';
-
-  @override
-  String get giveawayAnalyticsJustNow => 'الآن';
-
-  @override
-  String giveawayAnalyticsMinsAgo(int count) {
-    return 'منذ $count دقيقة';
+  String celebrationNumber(String number) {
+    return 'الرقم الفائز $number';
   }
 
   @override
-  String giveawayAnalyticsHoursAgo(int count) {
-    return 'منذ $count ساعة';
+  String get celebrationClaim => 'اطلب جائزتك';
+
+  @override
+  String get celebrationLater => 'لاحقًا';
+
+  @override
+  String get claimHint => 'رقم الهاتف والمدينة أو وسيلة تواصل أخرى';
+
+  @override
+  String get claimInvalid => 'أدخل من ٣ إلى ٥٠٠ حرف';
+
+  @override
+  String get claimSubmit => 'إرسال';
+
+  @override
+  String get claimDone => 'شكرًا! سنتواصل معك لتسليم جائزتك.';
+
+  @override
+  String claimDeadline(String date) {
+    return 'اطلبها قبل $date';
   }
-
-  @override
-  String giveawayAnalyticsDaysAgo(int count) {
-    return 'منذ $count يوم';
-  }
-
-  @override
-  String get giveawayAnalyticsChooseParticipantTooltip => 'اختيار مشارك';
-
-  @override
-  String giveawayAnalyticsPendingSelection(String code, String name) {
-    return 'الاستهداف اليدوي: $code · $name';
-  }
-
-  @override
-  String get giveawayAnalyticsClearSelectionTooltip => 'إلغاء الاختيار';
-
-  @override
-  String get giveawayAnalyticsSelecting => 'جارٍ اختيار الفائز…';
-
-  @override
-  String get giveawayAnalyticsWheelErrorTitle => 'تعذر اختيار فائز';
-
-  @override
-  String get giveawayAnalyticsWheelDoneAction => 'تم';
-
-  @override
-  String get giveawayAnalyticsDeleteGiveawayTooltip => 'حذف السحب';
-
-  @override
-  String get giveawayAnalyticsDeleteGiveawayTitle => 'حذف السحب؟';
-
-  @override
-  String get giveawayAnalyticsDeleteGiveawayBody =>
-      'سيؤدي هذا إلى حذف هذا السحب نهائيًا مع كل بياناته الخاصة به، بما في ذلك المشاركين والفائزين. لا يمكن التراجع عن هذا الإجراء.';
-
-  @override
-  String get giveawayAnalyticsGiveawayDeleted => 'تم حذف السحب.';
-
-  @override
-  String get adminProfileTitle => 'الملف الشخصي للمسؤول';
-
-  @override
-  String get adminProfileAdministrator => 'المسؤول';
-
-  @override
-  String get adminProfileSignOutConfirmBody => 'ستعود إلى شاشة اختيار الدور.';
-
-  @override
-  String get adminAnalysisTitle => 'التحليلات';
-
-  @override
-  String get adminAnalysisTotalGiveaways => 'إجمالي السحوبات';
-
-  @override
-  String get adminAnalysisActiveGiveaways => 'نشطة';
-
-  @override
-  String get adminAnalysisFinishedGiveaways => 'منتهية';
-
-  @override
-  String get adminAnalysisTotalParticipants => 'إجمالي المشاركين';
-
-  @override
-  String get adminAnalysisTotalWinners => 'الفائزون المختارون';
-
-  @override
-  String get adminAnalysisGrowthTrend => 'نمو المشاركة (آخر 7 أيام)';
-
-  @override
-  String get adminAnalysisCouldNotLoad => 'تعذّر تحميل التحليلات.';
-
-  @override
-  String get adminAnalysisNoData => 'لا توجد سحوبات بعد — أنشئ واحدًا لعرض التحليلات هنا.';
-
-  @override
-  String get winnerCelebrationTitle => 'فائز';
-
-  @override
-  String get winnerCelebrationCongratulations => 'تهانينا! لقد فزت بـ:';
-
-  @override
-  String get winnerCelebrationViewPrize => 'عرض الجائزة';
-
-  @override
-  String get winnerCelebrationDismiss => 'إغلاق';
-
-  @override
-  String get winnerCelebrationYourPrize => 'جائزتك';
-
-  @override
-  String get privacyPolicyTitle => 'سياسة الخصوصية';
-
-  @override
-  String get termsConditionsTitle => 'الشروط والأحكام';
-
-  @override
-  String legalLastUpdated(String date) {
-    return 'آخر تحديث: $date';
-  }
-
-  @override
-  String get legalContactUs => 'تواصل معنا';
-
-  @override
-  String get failureNoInternet => 'لا يوجد اتصال بالإنترنت.';
-
-  @override
-  String get failureServer => 'حدث خطأ ما. حاول مرة أخرى.';
-
-  @override
-  String get failureUnauthorized => 'غير مصرح لك بالقيام بذلك.';
-
-  @override
-  String get failurePhoneAlreadyRegisteredElsewhere => 'رقم الهاتف هذا مسجّل بالفعل على جهاز آخر.';
-
-  @override
-  String get failurePhoneAlreadyInUse => 'رقم الهاتف هذا مستخدم بالفعل من قبل حساب آخر.';
-
-  @override
-  String get failureDuplicateParticipation => 'لقد شاركت بالفعل في هذا السحب.';
-
-  @override
-  String get failureGiveawayFull => 'وصل هذا السحب إلى الحد الأقصى للمشاركين.';
-
-  @override
-  String get failureGiveawayEnded => 'لم يعد هذا السحب نشطاً.';
-
-  @override
-  String get failureRateLimited => 'محاولات كثيرة جداً. يرجى الانتظار قليلاً ثم المحاولة مرة أخرى.';
-
-  @override
-  String get settingsEditProfile => 'تعديل الملف الشخصي';
-
-  @override
-  String get editProfileTitle => 'تعديل الملف الشخصي';
-
-  @override
-  String get editProfileSubtitle => 'حافظ على تحديث اسمك ورقم هاتفك.';
-
-  @override
-  String get editProfileSaveAction => 'حفظ التغييرات';
-
-  @override
-  String get editProfileUpdateSuccess => 'تم تحديث الملف الشخصي';
-
-  @override
-  String get browseAll => 'الكل';
-
-  @override
-  String get browseClearSearch => 'مسح البحث';
-
-  @override
-  String get browseUpcoming => 'قريبًا';
-
-  @override
-  String get browseEndingSoon => 'تنتهي قريبًا';
-
-  @override
-  String get browseStartsIn => 'تبدأ';
-
-  @override
-  String get browseDayShort => 'ي';
-
-  @override
-  String get browseHourShort => 'س متبقية';
-
-  @override
-  String get browseJoined => 'مشارك';
-
-  @override
-  String get browseNoGiveaways => 'لم يتم العثور على مسابقات';
-
-  @override
-  String get browseSearchResults => 'نتائج البحث';
-
-  @override
-  String get browseLoadMore => 'تحميل المزيد';
-
-  @override
-  String get browseCategoriesRetry => 'إعادة تحميل الفئات';
-
-  @override
-  String browseUpcomingMessage(String date) {
-    return 'تبدأ في $date. تتاح المشاركة في الموعد المحدد.';
-  }
-
-  @override
-  String get categoryManagement => 'إدارة الفئات';
-
-  @override
-  String get categoryCreate => 'إنشاء فئة';
-
-  @override
-  String get categoryEdit => 'تعديل الفئة';
-
-  @override
-  String get categorySelect => 'اختر الفئة';
-
-  @override
-  String get categoryNameEn => 'الاسم بالإنجليزية';
-
-  @override
-  String get categoryNameAr => 'الاسم بالعربية';
-
-  @override
-  String get categoryIcon => 'رمز تعبيري اختياري';
-
-  @override
-  String get categoryOrder => 'ترتيب العرض';
-
-  @override
-  String get categoryEnabled => 'مفعّلة';
-
-  @override
-  String get categoryDisabled => 'معطّلة';
-
-  @override
-  String get categoryRequired => 'أدخل قيمة صحيحة';
-
-  @override
-  String get categorySave => 'حفظ';
-
-  @override
-  String get categoryUnauthorized => 'إدارة الفئات تتطلب صلاحية المشرف العام.';
-
-  @override
-  String get categoryUncategorized => 'بدون فئة';
-
-  @override
-  String get categoryInactiveKept => 'تُحفظ الفئة الحالية غير النشطة حتى تختار بديلًا.';
-
-  @override
-  String get categoryEditGiveaway => 'تعديل المسابقة';
-
-  @override
-  String get scheduleStartTime => 'وقت البداية';
-
-  @override
-  String get scheduleLocalTime =>
-      'تُعرض الأوقات بالتوقيت المحلي للجهاز وتُحفظ بالتوقيت العالمي UTC.';
-
-  @override
-  String get adsPrivacyChoices => 'خيارات خصوصية الإعلانات';
-
-  @override
-  String get scheduleInvalidDates => 'يجب أن يكون وقت الانتهاء بعد وقت البدء.';
-
-  @override
-  String get adminDashboardScheduleSection => 'جدول المسابقات';
-
-  @override
-  String get adminFilterAll => 'الكل';
-
-  @override
-  String get adminNoFilteredGiveaways => 'لا توجد مسابقات ضمن هذه المجموعة حاليًا.';
-
-  @override
-  String get createGiveawayEditTitle => 'تعديل المسابقة';
-
-  @override
-  String get adminScheduleEditLocked =>
-      'لا يمكن تغيير الموعد بعد بدء المسابقة أو تسجيل مشاركين فيها.';
-
-  @override
-  String get rewardFrameDialogTitle => 'اجعل مشاركتك مميزة!';
-
-  @override
-  String get rewardFrameDialogDescription =>
-      'شاهد إعلانًا واحصل على إطار مميز لرقم مشاركتك داخل التطبيق.';
-
-  @override
-  String get rewardFrameWatchAd => 'Watch Ad';
 }

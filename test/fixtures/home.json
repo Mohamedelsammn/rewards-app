@@ -1,0 +1,76 @@
+{
+  "categories": [
+    {
+      "id": "5bdb42b9-8e1a-4fa5-8b09-ad4f2c3fd06e",
+      "kind": "GAME",
+      "name": {
+        "ar": "ببجي موبايل",
+        "en": "PUBG Mobile"
+      },
+      "description": {
+        "ar": "شحن شدات ببجي",
+        "en": "PUBG UC top-ups"
+      },
+      "imageUrl": "https://example.com/media/pubg.png",
+      "sortOrder": 0,
+      "status": "PUBLISHED"
+    }
+  ],
+  "featuredProducts": [
+    {
+      "id": "5e9afc7f-3458-4c27-9a31-ee57a8e24d2f",
+      "categoryId": "5bdb42b9-8e1a-4fa5-8b09-ad4f2c3fd06e",
+      "groupId": "1722e06e-914a-4c94-9537-67de82cb6e4c",
+      "name": {
+        "ar": "٦٠ شدة",
+        "en": "60 UC"
+      },
+      "description": {
+        "ar": "شحن مباشر",
+        "en": "Direct top-up"
+      },
+      "deliveryNote": {
+        "ar": "خلال ٢٤ ساعة",
+        "en": "Within 24 hours"
+      },
+      "imageUrl": "https://example.com/media/uc60.png",
+      "pointsPrice": 500,
+      "priceVersion": 1,
+      "inStock": true,
+      "stock": null,
+      "featured": true,
+      "status": "PUBLISHED"
+    }
+  ],
+  "giveaways": [
+    {
+      "id": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+      "title": {
+        "ar": "سحب آيفون",
+        "en": "iPhone giveaway"
+      },
+      "description": {
+        "ar": "ادخل السحب مجانًا",
+        "en": "Enter for free"
+      },
+      "prize": {
+        "ar": "آيفون ١٦",
+        "en": "iPhone 16"
+      },
+      "rules": {
+        "ar": "مشاركة واحدة لكل حساب",
+        "en": "One entry per account"
+      },
+      "organizer": "Creative Hub",
+      "imageUrl": null,
+      "categoryId": null,
+      "startsAt": "2026-10-21T01:42:16.867Z",
+      "endsAt": "2026-10-22T01:43:16.867Z",
+      "status": "ACTIVE",
+      "participants": 0,
+      "maxParticipants": null,
+      "winnersCount": 1,
+      "numberDigits": 6
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "order": {
+    "id": "e9ec9f2e-2911-472a-b27b-cd4958c30e2d",
+    "orderNumber": "CR-2026-000309",
+    "status": "PENDING",
+    "pointsCost": 500,
+    "product": {
+      "id": "5e9afc7f-3458-4c27-9a31-ee57a8e24d2f",
+      "name": {
+        "ar": "٦٠ شدة",
+        "en": "60 UC"
+      },
+      "fields": [
+        {
+          "key": "playerId",
+          "label": {
+            "ar": "معرّف اللاعب",
+            "en": "Player ID"
+          }
+        },
+        {
+          "key": "server",
+          "label": {
+            "ar": "السيرفر",
+            "en": "Server"
+          }
+        }
+      ],
+      "category": {
+        "id": "5bdb42b9-8e1a-4fa5-8b09-ad4f2c3fd06e",
+        "kind": "GAME",
+        "name": {
+          "ar": "ببجي موبايل",
+          "en": "PUBG Mobile"
+        }
+      },
+      "imageUrl": "https://example.com/media/uc60.png",
+      "pointsPrice": 500,
+      "priceVersion": 1
+    },
+    "statusReason": null,
+    "trackingInfo": null,
+    "createdAt": "2026-10-21T01:43:17.319Z",
+    "updatedAt": "2026-10-21T01:43:17.319Z"
+  },
+  "balance": 700
+}

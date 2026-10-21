@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Reward Giveaway';
+  String get appTitle => 'Creative Rewards';
 
   @override
   String get commonRetry => 'Retry';
@@ -18,823 +18,1145 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCancel => 'Cancel';
 
   @override
-  String get commonConfirm => 'Confirm';
+  String get commonOk => 'OK';
 
   @override
-  String get commonDismiss => 'Dismiss';
+  String get commonDone => 'Done';
 
   @override
-  String get commonDelete => 'Delete';
+  String get commonSave => 'Save';
 
   @override
-  String get commonSomethingWrong => 'Something went wrong. Please try again.';
+  String get commonContinue => 'Continue';
 
   @override
-  String get commonRequired => 'Required';
+  String get commonSeeAll => 'See all';
+
+  @override
+  String get commonCopy => 'Copy';
+
+  @override
+  String get commonCopied => 'Copied';
+
+  @override
+  String get commonLoadMore => 'Load more';
+
+  @override
+  String pointsAmount(String points) {
+    return '$points PTS';
+  }
+
+  @override
+  String onboardingStep(int step, int total) {
+    return 'Onboarding step $step of $total';
+  }
+
+  @override
+  String errorReference(String id) {
+    return 'Reference: $id';
+  }
+
+  @override
+  String get showPassword => 'Show password';
+
+  @override
+  String get hidePassword => 'Hide password';
+
+  @override
+  String get errUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get errServer => 'The service is having trouble. Please try again shortly.';
+
+  @override
+  String get errNetwork => 'No internet connection. Check your connection and try again.';
+
+  @override
+  String get errTimeout => 'The request took too long. Please try again.';
+
+  @override
+  String get errInvalidCredentials => 'Incorrect email or password';
+
+  @override
+  String get errSessionExpired => 'Your session expired. Please sign in again.';
+
+  @override
+  String get errAccountSuspended => 'This account is suspended. Contact support for help.';
+
+  @override
+  String get errFeatureDisabled => 'This feature isn\'t available right now.';
+
+  @override
+  String get errNotFound => 'This item is no longer available.';
+
+  @override
+  String get errEmailTaken => 'This email already has an account.';
+
+  @override
+  String get errInsufficientPoints => 'You don\'t have enough points for this reward.';
+
+  @override
+  String get errOutOfStock => 'This reward is out of stock.';
+
+  @override
+  String get errPriceChanged => 'The price of this reward has changed.';
+
+  @override
+  String get errInvalidTransition => 'This order can no longer be changed.';
+
+  @override
+  String get errRequestInProgress => 'Your request is still being processed. Please wait.';
+
+  @override
+  String get errGiveawayNotStarted => 'This giveaway hasn\'t started yet.';
+
+  @override
+  String get errGiveawayEnded => 'This giveaway has ended.';
+
+  @override
+  String get errGiveawayNotActive => 'This giveaway isn\'t open right now.';
+
+  @override
+  String get errGiveawayFull => 'This giveaway is full.';
+
+  @override
+  String get errStepsIncomplete => 'Complete the required steps first.';
+
+  @override
+  String get errClaimNotAllowed => 'This prize can no longer be claimed.';
+
+  @override
+  String get errValidation => 'Check the information you entered.';
+
+  @override
+  String get errOtpInvalid => 'The code is incorrect.';
+
+  @override
+  String get errOtpExpired => 'This code expired. Request a new one.';
+
+  @override
+  String get errOtpAttemptsExceeded => 'Too many wrong attempts. Request a new code.';
+
+  @override
+  String get errOtpVerificationInvalid => 'Your email verification expired. Please start again.';
+
+  @override
+  String errOtpResendCooldown(int seconds) {
+    return 'Please wait $seconds seconds before requesting another code.';
+  }
+
+  @override
+  String get errOtpSendLimit => 'Too many codes were requested. Try again later.';
+
+  @override
+  String get errOtpLocked =>
+      'Verification is temporarily locked. Try again in an hour or sign in with your password.';
+
+  @override
+  String get errEmailNotConfigured => 'Email delivery is unavailable right now. Try again later.';
+
+  @override
+  String get errInvalidPassword => 'The password is incorrect.';
+
+  @override
+  String get errInvalidAvatar => 'Choose another character.';
+
+  @override
+  String get errProofRequired => 'Add a short proof to submit this step.';
+
+  @override
+  String get errRateLimited => 'Too many attempts. Please wait a moment.';
+
+  @override
+  String get errDailyLimit => 'You\'ve reached today\'s limit. Come back tomorrow.';
+
+  @override
+  String get errDeviceLimit => 'This device reached today\'s limit.';
+
+  @override
+  String errCooldown(int seconds) {
+    return 'Wait $seconds seconds before the next ad.';
+  }
+
+  @override
+  String get errTooManyPending => 'Earlier ads are still being verified. Try again shortly.';
+
+  @override
+  String get errNumberAllocation => 'We couldn\'t assign your number. Please try again.';
+
+  @override
+  String get errInvalidCursor => 'The list changed. Pull to refresh.';
+
+  @override
+  String get splashTagline => 'Play · Earn · Redeem';
+
+  @override
+  String get maintenanceTitle => 'We\'ll be right back';
+
+  @override
+  String get maintenanceBody => 'Creative Rewards is under maintenance. Please try again soon.';
+
+  @override
+  String get updateTitle => 'Update required';
+
+  @override
+  String get updateBody => 'Please update Creative Rewards to keep using it.';
+
+  @override
+  String get updateButton => 'Update now';
+
+  @override
+  String get offlineTitle => 'Can\'t connect';
+
+  @override
+  String get offlineBody => 'Check your internet connection and try again.';
+
+  @override
+  String get serviceUnavailableTitle => 'Service not connected';
+
+  @override
+  String get serviceUnavailableBody =>
+      'Creative Rewards is unavailable until the service is connected.';
+
+  @override
+  String get serviceInsecureBody => 'This build can\'t use an insecure connection.';
+
+  @override
+  String get welcomeTitleTop => 'Your Rewards';
+
+  @override
+  String get welcomeTitleBottom => 'Journey Starts Here';
+
+  @override
+  String get welcomeSubtitle => 'Play, earn, and redeem amazing rewards with ease.';
+
+  @override
+  String get welcomeGetStarted => 'Get Started';
+
+  @override
+  String get welcomeHaveAccount => 'Already have an account? ';
+
+  @override
+  String get welcomeLogin => 'Login';
+
+  @override
+  String get authInvalidEmail => 'Enter a valid email address';
+
+  @override
+  String get emailTitleStart => 'What’s your ';
+
+  @override
+  String get emailTitleAccent => 'email?';
+
+  @override
+  String get emailSubtitle => 'We’ll send you a verification code to confirm your account.';
+
+  @override
+  String get emailSendCode => 'Send Code';
+
+  @override
+  String get emailLoginInstead => 'Already have an account? Log in';
+
+  @override
+  String get otpTitleStart => 'Check your ';
+
+  @override
+  String get otpTitleAccent => 'email';
+
+  @override
+  String get otpSentTo => 'We’ve sent a 6-digit code to';
+
+  @override
+  String otpResendIn(String time) {
+    return 'Resend in $time';
+  }
+
+  @override
+  String get otpResend => 'Resend code';
+
+  @override
+  String get otpResent => 'A new code was sent.';
+
+  @override
+  String get otpEnterSix => 'Enter six digits';
+
+  @override
+  String otpAttemptsLeft(int count) {
+    return '$count attempts left';
+  }
+
+  @override
+  String get otpSpamHint =>
+      'Didn’t get it? Check your spam folder, then resend after the countdown.';
+
+  @override
+  String get otpCodeLabel => '6-digit verification code';
+
+  @override
+  String get passwordTitleStart => 'Create a ';
+
+  @override
+  String get passwordTitleAccent => 'password';
+
+  @override
+  String get passwordResetTitleStart => 'Reset ';
+
+  @override
+  String get passwordResetTitleAccent => 'password';
+
+  @override
+  String get passwordSubtitle => 'Set a secure password for your account.';
+
+  @override
+  String get passwordLabel => 'Password';
+
+  @override
+  String get passwordConfirmLabel => 'Confirm password';
+
+  @override
+  String get passwordRuleLength => 'At least 8 characters';
+
+  @override
+  String get passwordRuleLettersNumbers => 'Include letters and numbers';
+
+  @override
+  String get passwordRuleStrong => 'Use a strong password';
+
+  @override
+  String get passwordTooWeak => 'Use 10 or more characters with uppercase, lowercase, and numbers';
+
+  @override
+  String get passwordMismatch => 'Passwords do not match';
+
+  @override
+  String get passwordSave => 'Save Password';
+
+  @override
+  String get passwordResetDone => 'Password updated. Sign in with your new password.';
+
+  @override
+  String get characterTitle => 'Choose Your Character';
+
+  @override
+  String get characterSubtitle => 'Pick a character to represent you in the app.';
+
+  @override
+  String characterOption(int number) {
+    return 'Character $number';
+  }
+
+  @override
+  String get loginTitle => 'Welcome back';
+
+  @override
+  String get loginSubtitle => 'Sign in to continue your rewards journey.';
+
+  @override
+  String get loginEmailHint => 'Email address';
+
+  @override
+  String get loginPasswordHint => 'Password';
+
+  @override
+  String get loginForgot => 'Forgot password?';
+
+  @override
+  String get loginButton => 'Login';
+
+  @override
+  String get loginBusy => 'Signing in...';
+
+  @override
+  String get loginInvalidInput => 'Enter a valid email and password';
+
+  @override
+  String get loginEnterEmailFirst => 'Enter your email first';
+
+  @override
+  String get loginCreateAccount => 'New here? Create an account';
 
   @override
   String get navHome => 'Home';
 
   @override
-  String get navDashboard => 'Dashboard';
+  String get navCategories => 'Categories';
 
   @override
-  String get roleSelectionWelcome => 'Welcome 👋';
+  String get navWallet => 'Wallet';
 
   @override
-  String get roleSelectionChooseHow => 'Choose how you\'d like to continue.';
+  String get navProfile => 'Profile';
 
   @override
-  String get roleSelectionContinueAsUser => 'Continue as User';
+  String get notificationsTooltip => 'Notifications';
 
   @override
-  String get roleSelectionContinueAsUserSubtitle =>
-      'Join exciting giveaways and win amazing prizes.';
+  String get homeYourPoints => 'Your Points';
 
   @override
-  String get roleSelectionContinueAsAdmin => 'Continue as Admin';
+  String get homeSearchHint => 'Search rewards, giveaways...';
 
   @override
-  String get roleSelectionContinueAsAdminSubtitle => 'Create and manage giveaway campaigns.';
+  String get homeAvailableRewards => 'Available Rewards';
 
   @override
-  String get roleSelectionSwitchAnytime => 'YOU CAN SWITCH YOUR ROLE ANYTIME.';
+  String get homeFeaturedRewards => 'Featured Rewards';
 
   @override
-  String get userHomeWelcomeBack => 'Welcome back 👋';
+  String get homeGiveaways => 'Giveaways';
 
   @override
-  String get userHomeGuest => 'Guest';
+  String get homeNoResults => 'No rewards found';
 
   @override
-  String get userHomeSearchHint => 'Search giveaways…';
+  String get homeEmpty => 'New rewards are on the way. Check back soon.';
 
   @override
-  String get userHomePopularGiveaways => 'Popular Giveaways';
+  String get homeClearSearch => 'Clear search';
 
   @override
-  String get userHomeAllGiveaways => 'All Giveaways';
+  String get giveawayAvailable => 'Available';
 
   @override
-  String get userHomeFeaturedGiveaway => 'Featured Giveaway';
+  String get giveawayUpcoming => 'Coming soon';
 
   @override
-  String userHomeJoinedCount(int count) {
-    return '$count joined';
+  String get giveawayEnded => 'Ended';
+
+  @override
+  String get giveawayWinnersSelected => 'Winners announced';
+
+  @override
+  String get giveawayCancelled => 'Cancelled';
+
+  @override
+  String giveawayEndsOn(String date) {
+    return 'Ends $date';
   }
 
   @override
-  String get userHomeViewDetails => 'View Details';
-
-  @override
-  String get userHomeNoActiveGiveaways => 'No active giveaways right now';
-
-  @override
-  String get userHomeCouldNotLoad => 'Couldn\'t load giveaways.';
-
-  @override
-  String get statusActive => 'Active';
-
-  @override
-  String get statusEnded => 'Ended';
-
-  @override
-  String get statusDraft => 'Draft';
-
-  @override
-  String get statusScheduled => 'Scheduled';
-
-  @override
-  String get statusArchived => 'Archived';
-
-  @override
-  String get giveawayDetailsAboutPrize => 'About this prize';
-
-  @override
-  String get giveawayDetailsHowToParticipate => 'How to Participate';
-
-  @override
-  String get giveawayDetailsRules => 'Rules';
-
-  @override
-  String get giveawayDetailsGenerateNumber => 'Generate My Number';
-
-  @override
-  String get giveawayDetailsNotActive => 'Giveaway Not Active';
-
-  @override
-  String get giveawayDetailsYoureIn => 'You\'re in!';
-
-  @override
-  String giveawayDetailsYoureInWithNumber(String number) {
-    return 'You\'re in! #$number';
+  String giveawayStartsOn(String date) {
+    return 'Starts $date';
   }
 
   @override
-  String get giveawayDetailsCouldNotLoad => 'Couldn\'t load this giveaway.';
-
-  @override
-  String get giveawayDetailsEnded => 'Ended';
-
-  @override
-  String giveawayDetailsHoursLeft(int hours) {
-    return '$hours h left';
+  String giveawayParticipants(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count participants',
+      one: '1 participant',
+      zero: 'No participants yet',
+    );
+    return '$_temp0';
   }
 
   @override
-  String giveawayDetailsDaysHoursLeft(int days, int hours) {
-    return '$days d $hours h left';
+  String get categoriesTitle => 'Categories';
+
+  @override
+  String get categoriesEmpty => 'No categories yet. Check back soon.';
+
+  @override
+  String get categoryProductsEmpty => 'No rewards in this category yet.';
+
+  @override
+  String get productRedeem => 'Redeem';
+
+  @override
+  String get productOutOfStock => 'Out of stock';
+
+  @override
+  String get redeemTitle => 'Redemption details';
+
+  @override
+  String redeemBalanceLine(String balance, String after) {
+    return 'Balance: $balance PTS  •  After: $after PTS';
   }
 
   @override
-  String get registrationTitle => 'Create Your Account';
+  String get redeemConfirm => 'Confirm redemption';
 
   @override
-  String get registrationSubtitle => 'Enter your information to start participating.';
+  String get redeemFieldRequired => 'This field is required';
 
   @override
-  String get registrationFullNameLabel => 'FULL NAME';
-
-  @override
-  String get registrationFullNameHint => 'Jane Doe';
-
-  @override
-  String get registrationFullNameError => 'Enter your full name';
-
-  @override
-  String get registrationCountryLabel => 'COUNTRY';
-
-  @override
-  String get registrationPhoneLabel => 'PHONE NUMBER';
-
-  @override
-  String get registrationPhoneHint => '(555) 000-0000';
-
-  @override
-  String get registrationPhoneRequiredError => 'Enter your phone number';
-
-  @override
-  String get registrationPhoneInvalidError => 'Enter a valid phone number';
-
-  @override
-  String get registrationContinue => 'CONTINUE';
-
-  @override
-  String get registrationAgreeTerms => 'By continuing you agree to our Privacy Policy and Terms.';
-
-  @override
-  String get participationJoinGiveaway => 'Join Giveaway';
-
-  @override
-  String get participationGeneratingNumber => 'Generating your number…';
-
-  @override
-  String get participationSuccessOpening => 'Success! Revealing your code…';
-
-  @override
-  String get participationTryAgain => 'Try Again';
-
-  @override
-  String get numberRevealTitle => 'Your Participation Code';
-
-  @override
-  String get numberRevealSubtitle => 'Generated just for you';
-
-  @override
-  String get numberRevealViewInMyGiveaways => 'View in My Giveaways';
-
-  @override
-  String get myGiveawaysTitle => 'My Giveaways';
-
-  @override
-  String get myGiveawaysEmpty => 'You haven\'t joined any giveaways yet';
-
-  @override
-  String get myGiveawaysCouldNotLoad => 'Couldn\'t load your giveaways.';
-
-  @override
-  String get myGiveawaysGiveawayFallback => 'Giveaway';
-
-  @override
-  String get myGiveawaysWinner => 'You Won This Giveaway!';
-
-  @override
-  String get myGiveawaysNotSelected => 'Not selected as the winner this time';
-
-  @override
-  String get notificationsTitle => 'Notifications';
-
-  @override
-  String get notificationsEmpty => 'You\'re all caught up — no notifications yet.';
-
-  @override
-  String get notificationsCouldNotLoad => 'Couldn\'t load notifications.';
-
-  @override
-  String get notificationsMarkAllRead => 'Mark all read';
-
-  @override
-  String get settingsTitle => 'Settings';
-
-  @override
-  String get settingsLanguage => 'Language';
-
-  @override
-  String get settingsAbout => 'About';
-
-  @override
-  String get settingsPrivacyPolicy => 'Privacy Policy';
-
-  @override
-  String get settingsTermsConditions => 'Terms & Conditions';
-
-  @override
-  String get settingsSignOut => 'Sign Out';
-
-  @override
-  String get settingsSignOutConfirmTitle => 'Sign Out?';
-
-  @override
-  String get settingsSignOutConfirmBody =>
-      'You\'ll return to the role selection screen. Your saved giveaways and history stay on this device.';
-
-  @override
-  String get settingsAboutBody =>
-      'Reward Giveaway lets you join and manage exciting prize giveaways. Built with Flutter and Supabase.';
-
-  @override
-  String get settingsSectionGeneral => 'GENERAL';
-
-  @override
-  String get settingsSectionInformation => 'INFORMATION';
-
-  @override
-  String get settingsSectionAccount => 'ACCOUNT';
-
-  @override
-  String get settingsGuestSubtitle => 'Join a giveaway to create your profile';
-
-  @override
-  String get adminAuthTitle => 'Admin';
-
-  @override
-  String get adminAuthCreateAccount => 'Create Admin Account';
-
-  @override
-  String get adminAuthSignInTitle => 'Admin Sign In';
-
-  @override
-  String get adminAuthSignUpSubtitle =>
-      'Register a new admin account to manage giveaway campaigns.';
-
-  @override
-  String get adminAuthSignInSubtitle => 'Sign in to manage giveaway campaigns.';
-
-  @override
-  String get adminAuthSignIn => 'Sign In';
-
-  @override
-  String get adminAuthSignUp => 'Sign Up';
-
-  @override
-  String get adminAuthFullNameLabel => 'FULL NAME';
-
-  @override
-  String get adminAuthFullNameError => 'Enter your full name';
-
-  @override
-  String get adminAuthFullNameHint => 'Your full name';
-
-  @override
-  String get adminAuthEmailLabel => 'EMAIL';
-
-  @override
-  String get adminAuthEmailError => 'Enter a valid email';
-
-  @override
-  String get adminAuthEmailHint => 'example@gmail.com';
-
-  @override
-  String get adminAuthPasswordLabel => 'PASSWORD';
-
-  @override
-  String get adminAuthPasswordEmptyError => 'Enter your password';
-
-  @override
-  String get adminAuthPasswordLengthError => 'Password must be at least 8 characters';
-
-  @override
-  String get adminAuthPasswordHint => '••••••••';
-
-  @override
-  String get adminAuthPasswordRequirementHelper => 'Minimum 8 characters';
-
-  @override
-  String get adminAuthConfirmPasswordLabel => 'CONFIRM PASSWORD';
-
-  @override
-  String get adminAuthPasswordsNoMatch => 'Passwords do not match';
-
-  @override
-  String get adminAuthAccessCodeLabel => 'ADMIN ACCESS CODE';
-
-  @override
-  String get adminAuthAccessCodeError => 'Enter your admin access code';
-
-  @override
-  String get adminAuthAccessCodeHint => 'Enter the access code provided to you';
-
-  @override
-  String get adminAuthCreateAccountButton => 'CREATE ACCOUNT';
-
-  @override
-  String get adminAuthSignInButton => 'SIGN IN';
-
-  @override
-  String get adminAuthNoAccessCodeQuestion => 'Don\'t have an Admin Access Code?';
-
-  @override
-  String get adminAuthContactWhatsAppSubtitle => 'Contact us on WhatsApp to request access.';
-
-  @override
-  String get adminAuthWhatsAppPrefilledMessage =>
-      'Hello, I would like to join your giveaways. I need an Admin Access Code to create an admin account.';
-
-  @override
-  String get adminAuthWhatsAppOpenFailed => 'Could not open WhatsApp. Please try again.';
-
-  @override
-  String get commonShowPassword => 'Show password';
-
-  @override
-  String get commonHidePassword => 'Hide password';
-
-  @override
-  String get adminDashboardGoodDay => 'Good day 👋';
-
-  @override
-  String get adminDashboardAdministrator => 'Administrator';
-
-  @override
-  String get adminDashboardActiveGiveaways => 'ACTIVE GIVEAWAYS';
-
-  @override
-  String get adminDashboardTotalParticipants => 'TOTAL PARTICIPANTS';
-
-  @override
-  String get adminDashboardFinished => 'FINISHED';
-
-  @override
-  String get adminDashboardWinnersSelected => 'WINNERS SELECTED';
-
-  @override
-  String get adminDashboardActiveCampaign => 'Active Campaigns';
-
-  @override
-  String get adminDashboardNoActiveCampaigns => 'No active campaigns yet. Tap + to create one.';
-
-  @override
-  String get adminDashboardEndedCampaign => 'Ended Campaigns';
-
-  @override
-  String get adminDashboardViewAnalytics => 'View Analytics';
-
-  @override
-  String get adminDashboardCouldNotLoad => 'Couldn\'t load dashboard.';
-
-  @override
-  String adminDashboardParticipantsCount(int count) {
-    return '$count participants';
+  String redeemFieldInvalid(String label) {
+    return 'Check the $label format';
   }
 
   @override
-  String get adminGiveawaysTitle => 'Giveaways';
+  String get redeemInvalidNumber => 'Use digits only';
 
   @override
-  String get adminGiveawaysEmpty => 'No giveaways yet.';
+  String get redeemInvalidUrl => 'Enter a valid URL';
 
   @override
-  String adminGiveawaysParticipantsCount(int count) {
-    return '$count participants';
+  String get redeemInvalidPhone => 'Enter a valid phone number';
+
+  @override
+  String get redeemInvalidOption => 'Choose one of the options';
+
+  @override
+  String get redeemSelectHint => 'Choose an option';
+
+  @override
+  String get redeemPrivacyNote => 'We will never ask for your passwords or verification codes.';
+
+  @override
+  String get redeemPointsNote =>
+      'Points are deducted when you confirm and refunded if the order can\'t be completed.';
+
+  @override
+  String get redeemSuccessTitle => 'Order placed';
+
+  @override
+  String redeemSuccessBody(String points) {
+    return '$points PTS were deducted. Track your order in My Orders.';
   }
 
   @override
-  String get createGiveawayTitle => 'Create Giveaway';
+  String get redeemViewOrders => 'View my orders';
 
   @override
-  String get createGiveawayGiveawayTitle => 'GIVEAWAY TITLE';
+  String get redeemInsufficientTitle => 'Not enough points';
 
   @override
-  String get createGiveawayGiveawayTitleHint => 'e.g. iPhone 17 Pro Max';
-
-  @override
-  String get createGiveawayOrganizerName => 'ORGANIZER NAME';
-
-  @override
-  String get createGiveawayOrganizerNameHint => 'e.g. TechCorp Inc.';
-
-  @override
-  String get createGiveawayPrizeDescription => 'PRIZE DESCRIPTION (OPTIONAL)';
-
-  @override
-  String get createGiveawayPrizeDescriptionHint => 'Briefly describe what the winner will receive.';
-
-  @override
-  String get createGiveawayRules => 'GIVEAWAY DESCRIPTION & RULES (OPTIONAL)';
-
-  @override
-  String get createGiveawayRulesHint => 'Detail the full terms, conditions, and extra info.';
-
-  @override
-  String get createGiveawayImage => 'GIVEAWAY IMAGE';
-
-  @override
-  String get createGiveawayTapToBrowse => 'Tap to browse from device';
-
-  @override
-  String get createGiveawayImageSizeHint => 'JPG, PNG, GIF up to 5MB';
-
-  @override
-  String get createGiveawayImageTooLarge => 'Image must be 5MB or smaller.';
-
-  @override
-  String get createGiveawayStartDate => 'START DATE';
-
-  @override
-  String get createGiveawayEndDate => 'END DATE';
-
-  @override
-  String get createGiveawayEndTime => 'END TIME';
-
-  @override
-  String get createGiveawayDatePlaceholder => 'mm/dd/yyyy';
-
-  @override
-  String get createGiveawayTimePlaceholder => '--:--';
-
-  @override
-  String get createGiveawayMissingDates =>
-      'Please set the start date and time, and the end date and time.';
-
-  @override
-  String get createGiveawayEndBeforeStart => 'End date must be on or after the start date.';
-
-  @override
-  String get createGiveawayPublish => 'Publish Giveaway';
-
-  @override
-  String get giveawayAnalyticsTitle => 'Giveaway Analytics';
-
-  @override
-  String get giveawayAnalyticsSelectParticipantTitle => 'Select a Participant';
-
-  @override
-  String get giveawayAnalyticsConfirmWinnerTitle => 'Confirm Winner';
-
-  @override
-  String giveawayAnalyticsConfirmWinnerBody(String code, String name) {
-    return 'Select participant $code ($name) as the winner?';
+  String redeemInsufficientBody(String balance, String required) {
+    return 'You have $balance PTS. This reward needs $required PTS.';
   }
 
   @override
-  String get giveawayAnalyticsSelectWinnerAction => 'Select Winner';
+  String get redeemPriceChangedTitle => 'Price changed';
 
   @override
-  String get giveawayAnalyticsSelectAnotherWinnerAction => 'Select Another Winner';
-
-  @override
-  String get giveawayAnalyticsWinnerSelected => 'Winner selected! A notification was sent.';
-
-  @override
-  String get giveawayAnalyticsNoEligibleParticipants => 'Every participant has already won.';
-
-  @override
-  String get giveawayAnalyticsTotalJoined => 'Total Joined';
-
-  @override
-  String get giveawayAnalyticsActiveToday => 'Active Today';
-
-  @override
-  String get giveawayAnalyticsParticipationGrowth => 'Participation Growth';
-
-  @override
-  String get giveawayAnalyticsRecentParticipants => 'Recent Participants';
-
-  @override
-  String get giveawayAnalyticsNoParticipants => 'No participants yet.';
-
-  @override
-  String giveawayAnalyticsParticipationCode(String code) {
-    return 'Code $code';
+  String redeemPriceChangedBody(String points) {
+    return 'This reward now costs $points PTS. Do you want to continue?';
   }
 
   @override
-  String get giveawayAnalyticsWinnersSectionTitle => 'Winner';
-
-  @override
-  String get giveawayAnalyticsViewWinners => 'View Winner';
-
-  @override
-  String get giveawayAnalyticsNoWinners => 'No winners yet.';
-
-  @override
-  String get giveawayAnalyticsRemoveFromView => 'Remove from view';
-
-  @override
-  String get giveawayAnalyticsWinnerLabel => 'Winner';
-
-  @override
-  String giveawayAnalyticsWinnerRank(int rank) {
-    return 'Winner #$rank';
+  String redeemConfirmNewPrice(String points) {
+    return 'Redeem for $points PTS';
   }
 
   @override
-  String get giveawayAnalyticsSelectedAtLabel => 'Selected At';
+  String get walletTitle => 'Your Rewards';
 
   @override
-  String get giveawayAnalyticsJustNow => 'Just now';
+  String get walletPoints => 'POINTS';
 
   @override
-  String giveawayAnalyticsMinsAgo(int count) {
-    return '$count mins ago';
+  String get walletBalance => 'BALANCE';
+
+  @override
+  String get walletFastEarn => 'Fast, Earn';
+
+  @override
+  String get walletPlaceOrder => 'Place an Order';
+
+  @override
+  String get walletPlaceOrderSubtitle => 'Browse rewards to redeem';
+
+  @override
+  String get walletReview => 'Write a Review';
+
+  @override
+  String get walletReviewSubtitle => 'Open the app store listing';
+
+  @override
+  String get walletReviewUnavailable => 'Store listing unavailable';
+
+  @override
+  String get walletRefer => 'Refer a Friend';
+
+  @override
+  String get walletReferSubtitle => 'Share Creative Rewards';
+
+  @override
+  String get walletHistory => 'Points History';
+
+  @override
+  String get walletHistorySubtitle => 'Earned, spent and refunded points';
+
+  @override
+  String get transactionsTitle => 'Points History';
+
+  @override
+  String get transactionsSubtitle => 'Every change to your balance';
+
+  @override
+  String get transactionsEmpty => 'No points activity yet';
+
+  @override
+  String get txSignupBonus => 'Welcome bonus';
+
+  @override
+  String get txAdReward => 'Rewarded ad';
+
+  @override
+  String get txRedemption => 'Reward redeemed';
+
+  @override
+  String get txRefund => 'Refund';
+
+  @override
+  String get txAdminCredit => 'Points added';
+
+  @override
+  String get txAdminDebit => 'Points adjusted';
+
+  @override
+  String get txOther => 'Balance update';
+
+  @override
+  String txBalanceAfter(String points) {
+    return 'Balance $points PTS';
   }
 
   @override
-  String giveawayAnalyticsHoursAgo(int count) {
-    return '$count hours ago';
+  String get earnTitle => 'Earn points';
+
+  @override
+  String get earnHeadline => 'Watch & earn';
+
+  @override
+  String earnBody(int points) {
+    return 'Watch a short video to earn $points points. Points are added after Google confirms the view.';
   }
 
   @override
-  String giveawayAnalyticsDaysAgo(int count) {
-    return '$count days ago';
+  String earnRemaining(int count) {
+    return '$count left today';
   }
 
   @override
-  String get giveawayAnalyticsChooseParticipantTooltip => 'Choose participant';
+  String get earnWatch => 'Watch ad';
 
   @override
-  String giveawayAnalyticsPendingSelection(String code, String name) {
-    return 'Manually targeting $code · $name';
+  String get earnVerifying => 'Verifying your reward…';
+
+  @override
+  String earnCredited(String points) {
+    return '+$points PTS added to your wallet';
   }
 
   @override
-  String get giveawayAnalyticsClearSelectionTooltip => 'Clear selection';
+  String get earnRejected => 'This view wasn\'t rewarded.';
 
   @override
-  String get giveawayAnalyticsSelecting => 'Selecting winner…';
+  String get earnExpired => 'The reward session expired. Please try again.';
 
   @override
-  String get giveawayAnalyticsWheelErrorTitle => 'Couldn\'t select a winner';
+  String get earnPendingLong => 'Your points will appear shortly. Check your wallet in a moment.';
 
   @override
-  String get giveawayAnalyticsWheelDoneAction => 'Done';
+  String get earnDismissedEarly => 'Watch the full video to earn points.';
 
   @override
-  String get giveawayAnalyticsDeleteGiveawayTooltip => 'Delete giveaway';
+  String get earnAdFailed => 'No video is available right now. Try again later.';
 
   @override
-  String get giveawayAnalyticsDeleteGiveawayTitle => 'Delete Giveaway?';
+  String get earnUnavailable => 'Earning with videos is coming soon';
 
   @override
-  String get giveawayAnalyticsDeleteGiveawayBody =>
-      'This will permanently delete this giveaway and all of its giveaway-specific data, including participants and winners. This action cannot be undone.';
+  String get earnUnavailableBody =>
+      'We\'ll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.';
 
   @override
-  String get giveawayAnalyticsGiveawayDeleted => 'Giveaway deleted.';
-
-  @override
-  String get adminProfileTitle => 'Admin Profile';
-
-  @override
-  String get adminProfileAdministrator => 'Administrator';
-
-  @override
-  String get adminProfileSignOutConfirmBody => 'You\'ll return to the role selection screen.';
-
-  @override
-  String get adminAnalysisTitle => 'Analysis';
-
-  @override
-  String get adminAnalysisTotalGiveaways => 'TOTAL GIVEAWAYS';
-
-  @override
-  String get adminAnalysisActiveGiveaways => 'ACTIVE';
-
-  @override
-  String get adminAnalysisFinishedGiveaways => 'FINISHED';
-
-  @override
-  String get adminAnalysisTotalParticipants => 'TOTAL PARTICIPANTS';
-
-  @override
-  String get adminAnalysisTotalWinners => 'WINNERS SELECTED';
-
-  @override
-  String get adminAnalysisGrowthTrend => 'Participation Growth (Last 7 Days)';
-
-  @override
-  String get adminAnalysisCouldNotLoad => 'Couldn\'t load analysis.';
-
-  @override
-  String get adminAnalysisNoData => 'No giveaways yet — create one to see analysis here.';
-
-  @override
-  String get winnerCelebrationTitle => 'WINNER';
-
-  @override
-  String get winnerCelebrationCongratulations => 'Congratulations! You\'ve won:';
-
-  @override
-  String get winnerCelebrationViewPrize => 'View Prize';
-
-  @override
-  String get winnerCelebrationDismiss => 'Dismiss';
-
-  @override
-  String get winnerCelebrationYourPrize => 'Your prize';
-
-  @override
-  String get privacyPolicyTitle => 'Privacy Policy';
-
-  @override
-  String get termsConditionsTitle => 'Terms & Conditions';
-
-  @override
-  String legalLastUpdated(String date) {
-    return 'Last updated: $date';
+  String earnCooldown(String time) {
+    return 'Next video available in $time';
   }
 
   @override
-  String get legalContactUs => 'Contact us';
+  String get earnDailyLimit => 'You\'ve reached today\'s limit. Come back tomorrow.';
 
   @override
-  String get failureNoInternet => 'No internet connection.';
+  String get earnUnsupported => 'Rewarded videos are available on Android.';
 
   @override
-  String get failureServer => 'Something went wrong. Please try again.';
+  String get referTitle => 'Refer a Friend';
 
   @override
-  String get failureUnauthorized => 'You are not authorized to do that.';
+  String get referHeadline => 'Invite friends to Creative Rewards';
 
   @override
-  String get failurePhoneAlreadyRegisteredElsewhere =>
-      'This phone number is already registered on another device.';
+  String get referBody =>
+      'Share the app link with your friends. Referral rewards aren\'t available yet.';
 
   @override
-  String get failurePhoneAlreadyInUse => 'This phone number is already used by another account.';
+  String get referCopy => 'Copy app link';
 
   @override
-  String get failureDuplicateParticipation => 'You\'ve already joined this giveaway.';
+  String get referCopied => 'Link copied';
 
   @override
-  String get failureGiveawayFull => 'This giveaway has reached its participant limit.';
+  String get profilePoints => 'Points';
 
   @override
-  String get failureGiveawayEnded => 'This giveaway is no longer active.';
+  String get profileGiveaways => 'Giveaways';
 
   @override
-  String get failureRateLimited => 'Too many attempts. Please wait a moment and try again.';
+  String get profileOrders => 'Orders';
 
   @override
-  String get settingsEditProfile => 'Edit Profile';
+  String get profileMyGiveaways => 'My Giveaways';
+
+  @override
+  String get profileMyOrders => 'My Orders';
+
+  @override
+  String get profileNotifications => 'Notifications';
+
+  @override
+  String get profileLanguage => 'Language';
+
+  @override
+  String get profileSettings => 'Account Settings';
+
+  @override
+  String get profileAbout => 'About';
+
+  @override
+  String get profilePrivacy => 'Privacy Policy';
+
+  @override
+  String get profileTerms => 'Terms & Conditions';
+
+  @override
+  String get profileSignOut => 'Sign Out';
+
+  @override
+  String get profileEditTooltip => 'Edit profile';
+
+  @override
+  String get signOutTitle => 'Sign out?';
+
+  @override
+  String get signOutMessage => 'Are you sure you want to sign out of your account?';
+
+  @override
+  String get languageTitle => 'Choose Language';
 
   @override
   String get editProfileTitle => 'Edit Profile';
 
   @override
-  String get editProfileSubtitle => 'Keep your name and phone number up to date.';
+  String get editProfileName => 'Display name';
 
   @override
-  String get editProfileSaveAction => 'Save Changes';
+  String get editProfileNameInvalid => 'Use 2–60 characters';
 
   @override
-  String get editProfileUpdateSuccess => 'Profile updated';
+  String get editProfileSaved => 'Profile updated';
 
   @override
-  String get browseAll => 'All';
+  String get settingsTitle => 'Account Settings';
 
   @override
-  String get browseClearSearch => 'Clear search';
+  String get settingsSubtitle => 'Security and preferences';
 
   @override
-  String get browseUpcoming => 'Upcoming';
+  String get settingsChangePassword => 'Change password';
 
   @override
-  String get browseEndingSoon => 'Ending Soon';
+  String get settingsSessions => 'Signed-in devices';
 
   @override
-  String get browseStartsIn => 'Starts';
+  String get settingsNotifications => 'Notification preferences';
 
   @override
-  String get browseDayShort => 'd';
+  String get settingsAdPrivacy => 'Ad privacy choices';
 
   @override
-  String get browseHourShort => 'h left';
+  String get settingsDeleteAccount => 'Delete account';
 
   @override
-  String get browseJoined => 'joined';
-
-  @override
-  String get browseNoGiveaways => 'No giveaways found';
-
-  @override
-  String get browseSearchResults => 'Search Results';
-
-  @override
-  String get browseLoadMore => 'Load more';
-
-  @override
-  String get browseCategoriesRetry => 'Retry loading categories';
-
-  @override
-  String browseUpcomingMessage(String date) {
-    return 'Starts on $date. Participation opens at the scheduled time.';
+  String settingsVersion(String version) {
+    return 'Version $version';
   }
 
   @override
-  String get categoryManagement => 'Category Management';
+  String get changePasswordTitle => 'Change password';
 
   @override
-  String get categoryCreate => 'Create Category';
+  String get changePasswordCurrent => 'Current password';
 
   @override
-  String get categoryEdit => 'Edit Category';
+  String get changePasswordNew => 'New password';
 
   @override
-  String get categorySelect => 'Select Category';
+  String get changePasswordDone => 'Password changed. Other devices were signed out.';
 
   @override
-  String get categoryNameEn => 'English name';
+  String get sessionsTitle => 'Signed-in devices';
 
   @override
-  String get categoryNameAr => 'Arabic name';
+  String get sessionsSubtitle => 'Devices signed in to your account';
 
   @override
-  String get categoryIcon => 'Optional emoji icon';
+  String get sessionsCurrent => 'This device';
 
   @override
-  String get categoryOrder => 'Sort order';
+  String sessionsLastUsed(String date) {
+    return 'Last active $date';
+  }
 
   @override
-  String get categoryEnabled => 'Enabled';
+  String get sessionsRevoke => 'Sign out';
 
   @override
-  String get categoryDisabled => 'Disabled';
+  String get sessionsRevoked => 'Device signed out';
 
   @override
-  String get categoryRequired => 'Enter a valid value';
+  String get sessionsLogoutAll => 'Sign out of all devices';
 
   @override
-  String get categorySave => 'Save';
+  String get sessionsLogoutAllMessage =>
+      'You\'ll need to sign in again on every device, including this one.';
 
   @override
-  String get categoryUnauthorized => 'Category management requires a super administrator.';
+  String get sessionsUnknownDevice => 'Unknown device';
 
   @override
-  String get categoryUncategorized => 'Uncategorized';
+  String get notificationPrefsTitle => 'Notification preferences';
 
   @override
-  String get categoryInactiveKept =>
-      'The existing inactive category is kept until you select a replacement.';
+  String get notificationPrefsSubtitle => 'Choose what we notify you about';
 
   @override
-  String get categoryEditGiveaway => 'Edit giveaway';
+  String get prefOrders => 'Order updates';
 
   @override
-  String get scheduleStartTime => 'Start time';
+  String get prefOrdersSubtitle => 'Processing, delivery and refunds';
 
   @override
-  String get scheduleLocalTime => 'Times use this device\'s local timezone and are saved in UTC.';
+  String get prefGiveaways => 'Giveaway results';
 
   @override
-  String get adsPrivacyChoices => 'Advertising privacy choices';
+  String get prefGiveawaysSubtitle => 'Winners and draw results';
 
   @override
-  String get scheduleInvalidDates => 'End time must be after start time.';
+  String get prefAnnouncements => 'Announcements';
 
   @override
-  String get adminDashboardScheduleSection => 'GIVEAWAY SCHEDULE';
+  String get prefAnnouncementsSubtitle => 'New rewards and offers';
 
   @override
-  String get adminFilterAll => 'All';
+  String get deleteAccountTitle => 'Delete account';
 
   @override
-  String get adminNoFilteredGiveaways => 'No giveaways in this group yet.';
+  String get deleteAccountBody =>
+      'Your account is deleted after a 14-day grace period. Signing in again during that time cancels the request. Points, orders and entries are removed with the account.';
 
   @override
-  String get createGiveawayEditTitle => 'Edit Giveaway';
+  String get deleteAccountPassword => 'Confirm with your password';
 
   @override
-  String get adminScheduleEditLocked =>
-      'This schedule cannot be changed after a giveaway starts or receives participants.';
+  String get deleteAccountButton => 'Delete my account';
 
   @override
-  String get rewardFrameDialogTitle => 'Make your entry special!';
+  String get deleteAccountConfirmTitle => 'Delete your account?';
 
   @override
-  String get rewardFrameDialogDescription =>
-      'Watch an ad to get a special frame around your participation number in the app.';
+  String get deleteAccountConfirmMessage => 'This can\'t be undone after the grace period.';
 
   @override
-  String get rewardFrameWatchAd => 'Watch Ad';
+  String deleteAccountDone(int days) {
+    return 'Deletion requested. Your account will be removed in $days days.';
+  }
+
+  @override
+  String get aboutTitle => 'About';
+
+  @override
+  String get aboutBody =>
+      'Creative Rewards lets you redeem points for rewards and join free giveaways.';
+
+  @override
+  String get privacyTitle => 'Privacy Policy';
+
+  @override
+  String get termsTitle => 'Terms & Conditions';
+
+  @override
+  String get legalUnavailable => 'This document will be available soon.';
+
+  @override
+  String get legalOpen => 'Open document';
+
+  @override
+  String get ordersTitle => 'My Orders';
+
+  @override
+  String get ordersSubtitle => 'Track and manage your orders';
+
+  @override
+  String get ordersAll => 'All';
+
+  @override
+  String get ordersInProgress => 'In progress';
+
+  @override
+  String get ordersCompleted => 'Completed';
+
+  @override
+  String get ordersUnsuccessful => 'Unsuccessful';
+
+  @override
+  String get ordersEmpty => 'No orders yet';
+
+  @override
+  String get ordersEmptyFiltered => 'No orders in this status';
+
+  @override
+  String orderNumber(String number) {
+    return 'Order #$number';
+  }
+
+  @override
+  String get orderPending => 'Pending';
+
+  @override
+  String get orderProcessing => 'Processing';
+
+  @override
+  String get orderShipped => 'Shipped';
+
+  @override
+  String get orderDelivered => 'Delivered';
+
+  @override
+  String get orderCompleted => 'Completed';
+
+  @override
+  String get orderRejected => 'Rejected';
+
+  @override
+  String get orderCancelled => 'Cancelled';
+
+  @override
+  String get orderFailed => 'Failed';
+
+  @override
+  String get orderDetailsTitle => 'Order details';
+
+  @override
+  String get orderSubmittedDetails => 'Your details';
+
+  @override
+  String get orderDeliveredCode => 'Your code';
+
+  @override
+  String get orderTracking => 'Tracking';
+
+  @override
+  String get orderReason => 'Reason';
+
+  @override
+  String get orderTimeline => 'Status history';
+
+  @override
+  String orderRefunded(String points) {
+    return '$points PTS were refunded to your wallet.';
+  }
+
+  @override
+  String get orderCancel => 'Cancel order';
+
+  @override
+  String get orderCancelTitle => 'Cancel this order?';
+
+  @override
+  String get orderCancelMessage => 'Your points will be refunded to your wallet.';
+
+  @override
+  String get orderCancelDone => 'Order cancelled. Points refunded.';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get notificationsEmpty => 'No notifications yet';
+
+  @override
+  String get notificationsMarkAll => 'Mark all as read';
+
+  @override
+  String get notifNow => 'Now';
+
+  @override
+  String notifMinutes(int count) {
+    return '${count}m ago';
+  }
+
+  @override
+  String notifHours(int count) {
+    return '${count}h ago';
+  }
+
+  @override
+  String get notifYesterday => 'Yesterday';
+
+  @override
+  String get notifEarlier => 'Earlier';
+
+  @override
+  String get notificationOpen => 'Open';
+
+  @override
+  String get giveawaysTitle => 'Giveaways';
+
+  @override
+  String get giveawaysSubtitle => 'Join free giveaways and win prizes';
+
+  @override
+  String get giveawaysEmpty => 'No giveaways here yet';
+
+  @override
+  String get giveawayDetailsTitle => 'Giveaway Details';
+
+  @override
+  String giveawayOrganizer(String name) {
+    return 'By $name';
+  }
+
+  @override
+  String get giveawayPrize => 'Prize';
+
+  @override
+  String get giveawayRules => 'Rules';
+
+  @override
+  String get giveawaySteps => 'Steps to join';
+
+  @override
+  String get giveawayStepOptional => 'Optional';
+
+  @override
+  String get giveawayStepDone => 'Done';
+
+  @override
+  String get giveawayStepSubmitted => 'Under review';
+
+  @override
+  String get giveawayStepApproved => 'Approved';
+
+  @override
+  String get giveawayStepRejected => 'Not approved — try again';
+
+  @override
+  String get giveawayStepComplete => 'Complete';
+
+  @override
+  String get giveawayStepProofTitle => 'Submit proof';
+
+  @override
+  String get giveawayStepProofHint => 'Your username or a short note';
+
+  @override
+  String get giveawayStepSubmit => 'Submit';
+
+  @override
+  String get giveawayJoin => 'Join Giveaway';
+
+  @override
+  String get giveawayViewTicket => 'View your number';
+
+  @override
+  String get giveawayClosed => 'This giveaway has ended';
+
+  @override
+  String get giveawayDisqualified => 'Your entry was disqualified';
+
+  @override
+  String get giveawayFreeNote => 'Entering is free. Points are never deducted.';
+
+  @override
+  String get giveawayResults => 'Winners';
+
+  @override
+  String giveawayWinnerRow(int rank, String number) {
+    return '#$rank · Number $number';
+  }
+
+  @override
+  String get giveawayCompleteSteps => 'Complete the required steps to join';
+
+  @override
+  String get giveawaySignInToJoin => 'Sign in to join';
+
+  @override
+  String get ticketTitle => 'Your Ticket';
+
+  @override
+  String get ticketPreparing => 'Preparing your ticket…';
+
+  @override
+  String get ticketCopy => 'Copy ticket';
+
+  @override
+  String get ticketCopied => 'Ticket number copied';
+
+  @override
+  String get ticketNote => 'Keep this number. Winners are announced after the giveaway ends.';
+
+  @override
+  String get myGiveawaysTitle => 'My Giveaways';
+
+  @override
+  String get myGiveawaysSubtitle => 'Check the giveaways you\'ve joined';
+
+  @override
+  String get myGiveawaysEmpty => 'You haven\'t joined a giveaway yet';
+
+  @override
+  String get resultAll => 'All';
+
+  @override
+  String get resultPending => 'Pending draw';
+
+  @override
+  String get resultWon => 'You won!';
+
+  @override
+  String get resultNotSelected => 'Not selected';
+
+  @override
+  String get entryDisqualified => 'Disqualified';
+
+  @override
+  String get celebrationTitle => 'Congratulations!';
+
+  @override
+  String celebrationBody(String prize) {
+    return 'You won $prize';
+  }
+
+  @override
+  String celebrationNumber(String number) {
+    return 'Winning number $number';
+  }
+
+  @override
+  String get celebrationClaim => 'Claim your prize';
+
+  @override
+  String get celebrationLater => 'Later';
+
+  @override
+  String get claimHint => 'Phone number and city, or other contact details';
+
+  @override
+  String get claimInvalid => 'Enter 3–500 characters';
+
+  @override
+  String get claimSubmit => 'Send';
+
+  @override
+  String get claimDone => 'Thanks! We\'ll contact you to deliver your prize.';
+
+  @override
+  String claimDeadline(String date) {
+    return 'Claim before $date';
+  }
 }

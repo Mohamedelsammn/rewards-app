@@ -59,16 +59,40 @@ class DemoProduct {
   /// A catalog adapter can supply product-specific definitions later.
   List<DemoFulfillmentField> get fulfillmentFields => switch (categoryId) {
     'battle' => const [
-      DemoFulfillmentField('player_id', 'PUBG Player ID', 'معرّف لاعب ببجي',
-          type: DemoFieldType.number, minLength: 5, maxLength: 12, confirmEntry: true),
+      DemoFulfillmentField(
+        'player_id',
+        'PUBG Player ID',
+        'معرّف لاعب ببجي',
+        type: DemoFieldType.number,
+        minLength: 5,
+        maxLength: 12,
+        confirmEntry: true,
+      ),
     ],
     'tactical' => const [
-      DemoFulfillmentField('riot_id', 'Riot ID', 'معرّف رايوت',
-          hint: 'Player#TAG', hintAr: 'اللاعب#الرمز', pattern: r'^.{3,16}#[A-Za-z0-9]{3,5}$'),
+      DemoFulfillmentField(
+        'riot_id',
+        'Riot ID',
+        'معرّف رايوت',
+        hint: 'Player#TAG',
+        hintAr: 'اللاعب#الرمز',
+        pattern: r'^.{3,16}#[A-Za-z0-9]{3,5}$',
+      ),
     ],
-    'social' => const [DemoFulfillmentField('profile', 'Instagram username or URL', 'اسم مستخدم إنستغرام أو الرابط')],
-    'video' => const [DemoFulfillmentField('profile', 'TikTok username or URL', 'اسم مستخدم تيك توك أو الرابط')],
-    'community' => const [DemoFulfillmentField('profile', 'Facebook profile URL', 'رابط ملف فيسبوك', type: DemoFieldType.url)],
+    'social' => const [
+      DemoFulfillmentField('profile', 'Instagram username or URL', 'اسم مستخدم إنستغرام أو الرابط'),
+    ],
+    'video' => const [
+      DemoFulfillmentField('profile', 'TikTok username or URL', 'اسم مستخدم تيك توك أو الرابط'),
+    ],
+    'community' => const [
+      DemoFulfillmentField(
+        'profile',
+        'Facebook profile URL',
+        'رابط ملف فيسبوك',
+        type: DemoFieldType.url,
+      ),
+    ],
     'phones' => const [
       DemoFulfillmentField('full_name', 'Recipient name', 'اسم المستلم'),
       DemoFulfillmentField('phone', 'Phone number', 'رقم الهاتف', type: DemoFieldType.phone),
@@ -82,9 +106,18 @@ class DemoProduct {
 enum DemoFieldType { text, number, url, phone }
 
 class DemoFulfillmentField {
-  const DemoFulfillmentField(this.key, this.label, this.labelAr,
-      {this.hint, this.hintAr, this.type = DemoFieldType.text,
-      this.minLength, this.maxLength, this.pattern, this.confirmEntry = false});
+  const DemoFulfillmentField(
+    this.key,
+    this.label,
+    this.labelAr, {
+    this.hint,
+    this.hintAr,
+    this.type = DemoFieldType.text,
+    this.minLength,
+    this.maxLength,
+    this.pattern,
+    this.confirmEntry = false,
+  });
   final String key;
   final String label;
   final String labelAr;
@@ -272,37 +305,36 @@ class LocalRewardsRepository extends RewardsRepository {
   }
 
   @override
-  Future<bool> redeem(DemoProduct product, {Map<String, String> fulfillmentDetails = const {}}) => _serialize(() async {
-    if (_email == null || balance < product.points) return false;
-    final updatedOrders = orders;
-    updatedOrders.insert(0, {
-      'id': 'DEMO-${DateTime.now().microsecondsSinceEpoch}',
-      'title': product.title,
-      'points': product.points,
-      'fulfillmentDetails': Map<String, String>.from(fulfillmentDetails),
-      'fulfillmentFields': product.fulfillmentFields.map((field) => {
-        'key': field.key,
-        'label': field.label,
-        'labelAr': field.labelAr,
-      }).toList(),
-      'date': DateTime.now().toIso8601String(),
-      'status': 'Demo order • no fulfillment',
-    });
-    final updatedNotifications = notifications;
-    updatedNotifications.insert(0, {
-      'title': 'Demo order created',
-      'body': '${product.title} was redeemed for ${product.points} points.',
-      'createdAt': DateTime.now().toIso8601String(),
-      'read': false,
-    });
-    await _box.putAll({
-      '${_prefix}balance': balance - product.points,
-      '${_prefix}orders': updatedOrders,
-      '${_prefix}notifications': updatedNotifications,
-    });
-    notifyListeners();
-    return true;
-  });
+  Future<bool> redeem(DemoProduct product, {Map<String, String> fulfillmentDetails = const {}}) =>
+      _serialize(() async {
+        if (_email == null || balance < product.points) return false;
+        final updatedOrders = orders;
+        updatedOrders.insert(0, {
+          'id': 'DEMO-${DateTime.now().microsecondsSinceEpoch}',
+          'title': product.title,
+          'points': product.points,
+          'fulfillmentDetails': Map<String, String>.from(fulfillmentDetails),
+          'fulfillmentFields': product.fulfillmentFields
+              .map((field) => {'key': field.key, 'label': field.label, 'labelAr': field.labelAr})
+              .toList(),
+          'date': DateTime.now().toIso8601String(),
+          'status': 'Demo order • no fulfillment',
+        });
+        final updatedNotifications = notifications;
+        updatedNotifications.insert(0, {
+          'title': 'Demo order created',
+          'body': '${product.title} was redeemed for ${product.points} points.',
+          'createdAt': DateTime.now().toIso8601String(),
+          'read': false,
+        });
+        await _box.putAll({
+          '${_prefix}balance': balance - product.points,
+          '${_prefix}orders': updatedOrders,
+          '${_prefix}notifications': updatedNotifications,
+        });
+        notifyListeners();
+        return true;
+      });
 
   @override
   Future<String?> enterGiveaway(DemoGiveaway giveaway) => _serialize(() async {

@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "4d6181db-5b35-4b59-9896-8d64307d5958",
+      "giveawayId": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+      "rank": 1,
+      "status": "ANNOUNCED",
+      "claimDeadline": "2026-11-04T01:43:17.714Z",
+      "claimedAt": null,
+      "giveaway": {
+        "title": {
+          "ar": "سحب آيفون",
+          "en": "iPhone giveaway"
+        },
+        "prize": {
+          "ar": "آيفون ١٦",
+          "en": "iPhone 16"
+        },
+        "imageUrl": null
+      },
+      "participationNumber": "424869"
+    }
+  ]
+}

@@ -44,9 +44,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('renders correctly with only a single segment (no decoys available)', (
-    tester,
-  ) async {
+  testWidgets('renders correctly with only a single segment (no decoys available)', (tester) async {
     var completed = false;
     await pumpWheel(
       tester,

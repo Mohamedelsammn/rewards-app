@@ -18,8 +18,7 @@ const muted = Color(0xff777eaa);
 const pale = Color(0xfff6f4ff);
 const designAssetRoot = 'assets/Creative_Rewards_Assets/';
 
-String characterAsset(int id) =>
-    'assets/img/redesign/character_${id == 1 ? '1_clean' : id}.png';
+String characterAsset(int id) => 'assets/img/redesign/character_${id == 1 ? '1_clean' : id}.png';
 
 String categoryBanner(String id) =>
     '$designAssetRoot'
@@ -114,13 +113,17 @@ Future<void> openOnboardingPage(BuildContext context, Widget page) {
         return FadeTransition(
           opacity: Tween<double>(begin: 1, end: .9).animate(leave),
           child: SlideTransition(
-            position: Tween<Offset>(begin: Offset.zero, end: Offset(-.035 * direction, 0))
-                .animate(leave),
+            position: Tween<Offset>(
+              begin: Offset.zero,
+              end: Offset(-.035 * direction, 0),
+            ).animate(leave),
             child: FadeTransition(
               opacity: enter,
               child: SlideTransition(
-                position: Tween<Offset>(begin: Offset(.055 * direction, 0), end: Offset.zero)
-                    .animate(enter),
+                position: Tween<Offset>(
+                  begin: Offset(.055 * direction, 0),
+                  end: Offset.zero,
+                ).animate(enter),
                 child: child,
               ),
             ),
@@ -523,7 +526,11 @@ class OnboardingProgress extends StatelessWidget {
     const inactive = Color(0xffd6cff9);
     final marks = <(double, bool)>[(0, false), (0, true), (1, false), (2, true), (3, false)];
     return Semantics(
-      label: tr(context, 'Onboarding step ${step.round() + 1} of 4', 'الخطوة ${step.round() + 1} من ٤'),
+      label: tr(
+        context,
+        'Onboarding step ${step.round() + 1} of 4',
+        'الخطوة ${step.round() + 1} من ٤',
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -990,7 +997,10 @@ class _PasswordPageState extends State<PasswordPage> {
     } else {
       await DemoScope.of(context).saveOnboarding(widget.email, 2);
       if (!mounted) return;
-      await openOnboardingPage(context, CharacterPage(email: widget.email, password: password.text));
+      await openOnboardingPage(
+        context,
+        CharacterPage(email: widget.email, password: password.text),
+      );
       if (mounted) setState(() => advancing = false);
     }
   }
@@ -1070,10 +1080,7 @@ class _CharacterPageState extends State<CharacterPage> {
                               padding: const EdgeInsets.all(3),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(17),
-                                child: Image.asset(
-                                  characterAsset(id),
-                                  fit: BoxFit.cover,
-                                ),
+                                child: Image.asset(characterAsset(id), fit: BoxFit.cover),
                               ),
                             ),
                           ),
@@ -1477,74 +1484,74 @@ class _HomePanelState extends State<HomePanel> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(22, MediaQuery.paddingOf(context).top + 9, 22, 16),
                   child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        tr(context, 'Your Points', 'نقاطك'),
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff4d45ad),
-                        ),
-                      ),
-                    ),
-                    const UnreadNotificationButton(filled: true),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${repo.balance}',
-                        style: const TextStyle(
-                          fontSize: 58,
-                          fontWeight: FontWeight.w800,
-                          color: violet,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              tr(context, 'Your Points', 'نقاطك'),
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xff4d45ad),
+                              ),
+                            ),
+                          ),
+                          const UnreadNotificationButton(filled: true),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              '${repo.balance}',
+                              style: const TextStyle(
+                                fontSize: 58,
+                                fontWeight: FontWeight.w800,
+                                color: violet,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              'PTS',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xff8857ee),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'PTS',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff8857ee),
+                      const Spacer(),
+                      TextField(
+                        onChanged: (value) => setState(() => query = value),
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(AppIcons.search),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                          hintText: tr(
+                            context,
+                            'Search rewards, giveaways...',
+                            'ابحث عن المكافآت والسحوبات...',
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                const Spacer(),
-                TextField(
-                  onChanged: (value) => setState(() => query = value),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(AppIcons.search),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-                    hintText: tr(
-                      context,
-                      'Search rewards, giveaways...',
-                      'ابحث عن المكافآت والسحوبات...',
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(40),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-                  ],
-                ),
                 ),
               ],
             ),
@@ -2021,10 +2028,17 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
       ok = await repo.redeem(product, fulfillmentDetails: details);
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(tr(context, 'Could not create the demo order. Try again.',
-              'تعذر إنشاء الطلب التجريبي. حاول مرة أخرى.')),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              tr(
+                context,
+                'Could not create the demo order. Try again.',
+                'تعذر إنشاء الطلب التجريبي. حاول مرة أخرى.',
+              ),
+            ),
+          ),
+        );
       }
       return;
     } finally {
@@ -2228,9 +2242,10 @@ class WalletPanel extends StatelessWidget {
     IconData icon,
     String title,
     String subtitle,
-    VoidCallback onTap,
-    {required Color iconBackground, required Color iconColor}
-  ) => Padding(
+    VoidCallback onTap, {
+    required Color iconBackground,
+    required Color iconColor,
+  }) => Padding(
     padding: const EdgeInsets.only(bottom: 10),
     child: Material(
       color: Colors.white.withValues(alpha: .84),
@@ -2570,8 +2585,13 @@ class ProfilePanel extends StatelessWidget {
       ],
     ),
   );
-  Widget _row(BuildContext context, IconData icon, String label, VoidCallback onTap,
-      {int unreadCount = 0}) => Padding(
+  Widget _row(
+    BuildContext context,
+    IconData icon,
+    String label,
+    VoidCallback onTap, {
+    int unreadCount = 0,
+  }) => Padding(
     padding: const EdgeInsets.only(bottom: 8),
     child: ListTile(
       tileColor: Colors.white,
@@ -2588,8 +2608,14 @@ class ProfilePanel extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: const BoxDecoration(color: Color(0xfff23b3b), shape: BoxShape.circle),
               alignment: Alignment.center,
-              child: Text(unreadCount > 99 ? '99+' : '$unreadCount',
-                  style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w800)),
+              child: Text(
+                unreadCount > 99 ? '99+' : '$unreadCount',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
             const SizedBox(width: 5),
           ],
@@ -2861,14 +2887,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     border: Border.all(
                       color: character == index + 1 ? violet : Colors.transparent,
                       width: 3,
-                    ), 
+                    ),
                     borderRadius: BorderRadius.circular(18),
                   ),
                   clipBehavior: Clip.antiAlias,
-                  child: Image.asset(
-                    characterAsset(index + 1),
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset(characterAsset(index + 1), fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -3537,15 +3560,21 @@ class _GiveawayDetailsPageState extends State<GiveawayDetailsPage> {
       if (number != null) {
         await openPage(context, NumberRevealPage(title: widget.giveaway.title, number: number));
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(tr(context, 'This giveaway is unavailable.', '??? ????? ??? ????.')),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(tr(context, 'This giveaway is unavailable.', '??? ????? ??? ????.')),
+          ),
+        );
       }
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(tr(context, 'Could not join. Please try again.', '????? ????????. ???? ??? ????.')),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              tr(context, 'Could not join. Please try again.', '????? ????????. ???? ??? ????.'),
+            ),
+          ),
+        );
       }
     } finally {
       if (mounted) setState(() => busy = false);
@@ -3620,61 +3649,89 @@ class _NumberRevealPageState extends State<NumberRevealPage> with SingleTickerPr
                             animation.forward();
                           }
                         },
-                        errorBuilder: (_, _, _) => const Icon(AppIcons.gift, size: 100, color: violet),
+                        errorBuilder: (_, _, _) =>
+                            const Icon(AppIcons.gift, size: 100, color: violet),
                       ),
               ),
               const SizedBox(height: 22),
-              Text(widget.title, style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center),
+              Text(
+                widget.title,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 22),
               AnimatedSwitcher(
                 duration: MediaQuery.of(context).disableAnimations
-                    ? Duration.zero : const Duration(milliseconds: 360),
+                    ? Duration.zero
+                    : const Duration(milliseconds: 360),
                 transitionBuilder: (child, value) => FadeTransition(
                   opacity: value,
-                  child: ScaleTransition(scale: Tween<double>(begin: .88, end: 1).animate(value), child: child),
+                  child: ScaleTransition(
+                    scale: Tween<double>(begin: .88, end: 1).animate(value),
+                    child: child,
+                  ),
                 ),
                 child: revealed
-                    ? Column(key: const ValueKey('ticket-revealed'), children: [
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: SelectableText(widget.number,
-                            key: const ValueKey('saved-ticket-number'),
-                            style: const TextStyle(color: violet, fontSize: 48,
-                                fontWeight: FontWeight.w800, letterSpacing: 4)),
-                        ),
-                        TextButton.icon(
-                          onPressed: () async {
-                            await Clipboard.setData(ClipboardData(text: widget.number));
-                            if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(tr(context, 'Ticket number copied', '?? ??? ??? ???????')),
-                            ));
-                          },
-                          icon: const Icon(LucideIcons.copy, size: 18),
-                          label: Text(tr(context, 'Copy ticket', '??? ???????')),
-                        ),
-                      ])
-                    : Text(key: const ValueKey('ticket-generating'),
+                    ? Column(
+                        key: const ValueKey('ticket-revealed'),
+                        children: [
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: SelectableText(
+                              widget.number,
+                              key: const ValueKey('saved-ticket-number'),
+                              style: const TextStyle(
+                                color: violet,
+                                fontSize: 48,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 4,
+                              ),
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () async {
+                              await Clipboard.setData(ClipboardData(text: widget.number));
+                              if (context.mounted)
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      tr(context, 'Ticket number copied', '?? ??? ??? ???????'),
+                                    ),
+                                  ),
+                                );
+                            },
+                            icon: const Icon(LucideIcons.copy, size: 18),
+                            label: Text(tr(context, 'Copy ticket', '??? ???????')),
+                          ),
+                        ],
+                      )
+                    : Text(
+                        key: const ValueKey('ticket-generating'),
                         tr(context, 'Preparing your ticket?', '???? ????? ???????'),
-                        style: const TextStyle(color: muted, fontSize: 18)),
+                        style: const TextStyle(color: muted, fontSize: 18),
+                      ),
               ),
               const SizedBox(height: 16),
-              Text(tr(context,
+              Text(
+                tr(
+                  context,
                   'Demo entry only. This does not enter a real draw.',
-                  '?????? ??????? ??? ??? ???? ????? ???????.'),
-                  textAlign: TextAlign.center),
-              const SizedBox(height: 28),
-              if (revealed) GradientButton(
-                tr(context, 'Continue', '??????'),
-                onPressed: () => Navigator.pop(context),
+                  '?????? ??????? ??? ??? ???? ????? ???????.',
+                ),
+                textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 28),
+              if (revealed)
+                GradientButton(
+                  tr(context, 'Continue', '??????'),
+                  onPressed: () => Navigator.pop(context),
+                ),
             ],
           ),
         ),
       ),
     ),
   );
-
 }
 
 class MyGiveawaysPage extends StatelessWidget {

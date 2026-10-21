@@ -41,7 +41,6 @@ class _SplashBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
       backgroundColor: AppColors.surface,
       body: Center(
@@ -49,7 +48,6 @@ class _SplashBody extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(width: 400, child: Lottie.asset('assets/lottie/splash.json', repeat: true)),
-       
           ],
         ),
       ),

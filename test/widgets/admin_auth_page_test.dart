@@ -69,33 +69,30 @@ void main() {
     expect(find.text("Don't have an Admin Access Code?"), findsNothing);
   });
 
-  testWidgets(
-    'appears in Sign Up mode with the centralized contact number, and tapping it opens '
-    'WhatsApp with the correct number and English message',
-    (tester) async {
-      await pumpAdminAuth(tester);
+  testWidgets('appears in Sign Up mode with the centralized contact number, and tapping it opens '
+      'WhatsApp with the correct number and English message', (tester) async {
+    await pumpAdminAuth(tester);
 
-      await tester.tap(find.text('Sign Up'));
-      await tester.pumpAndSettle();
+    await tester.tap(find.text('Sign Up'));
+    await tester.pumpAndSettle();
 
-      expect(find.text("Don't have an Admin Access Code?"), findsOneWidget);
-      expect(find.text('Contact us on WhatsApp to request access.'), findsOneWidget);
-      expect(find.text(AppConfig.adminContactPhone), findsOneWidget);
+    expect(find.text("Don't have an Admin Access Code?"), findsOneWidget);
+    expect(find.text('Contact us on WhatsApp to request access.'), findsOneWidget);
+    expect(find.text(AppConfig.adminContactPhone), findsOneWidget);
 
-      await tester.ensureVisible(find.text(AppConfig.adminContactPhone));
-      await tester.tap(find.text(AppConfig.adminContactPhone));
-      await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text(AppConfig.adminContactPhone));
+    await tester.tap(find.text(AppConfig.adminContactPhone));
+    await tester.pumpAndSettle();
 
-      final launchedUri = Uri.parse(fakeLauncher.lastLaunchedUrl!);
-      expect(launchedUri.host, 'wa.me');
-      expect(launchedUri.path, '/201203433339');
-      expect(
-        launchedUri.queryParameters['text'],
-        'Hello, I would like to join your giveaways. I need an Admin Access Code to '
-        'create an admin account.',
-      );
-    },
-  );
+    final launchedUri = Uri.parse(fakeLauncher.lastLaunchedUrl!);
+    expect(launchedUri.host, 'wa.me');
+    expect(launchedUri.path, '/201203433339');
+    expect(
+      launchedUri.queryParameters['text'],
+      'Hello, I would like to join your giveaways. I need an Admin Access Code to '
+      'create an admin account.',
+    );
+  });
 
   testWidgets('pre-fills the Arabic message when the app language is Arabic', (tester) async {
     await pumpAdminAuth(tester, locale: const Locale('ar'));

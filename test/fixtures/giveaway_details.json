@@ -1,0 +1,60 @@
+{
+  "giveaway": {
+    "id": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+    "title": {
+      "ar": "سحب آيفون",
+      "en": "iPhone giveaway"
+    },
+    "description": {
+      "ar": "ادخل السحب مجانًا",
+      "en": "Enter for free"
+    },
+    "prize": {
+      "ar": "آيفون ١٦",
+      "en": "iPhone 16"
+    },
+    "rules": {
+      "ar": "مشاركة واحدة لكل حساب",
+      "en": "One entry per account"
+    },
+    "organizer": "Creative Hub",
+    "imageUrl": null,
+    "categoryId": null,
+    "startsAt": "2026-10-21T01:42:16.867Z",
+    "endsAt": "2026-10-22T01:43:16.867Z",
+    "status": "ACTIVE",
+    "participants": 1,
+    "maxParticipants": null,
+    "winnersCount": 1,
+    "numberDigits": 6,
+    "steps": [
+      {
+        "id": "c32e3215-28b7-4c96-895b-b7803e0968dc",
+        "kind": "FOLLOW",
+        "title": {
+          "ar": "تابع حسابنا على إنستجرام",
+          "en": "Follow us on Instagram"
+        },
+        "url": "https://instagram.com/example",
+        "verification": "ADMIN_REVIEW",
+        "required": true,
+        "sortOrder": 0
+      }
+    ]
+  },
+  "me": {
+    "entry": {
+      "id": "492706fa-7d1f-4458-bce4-547e82798cf2",
+      "giveawayId": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+      "participationNumber": "424869",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-21T01:43:17.660Z"
+    },
+    "steps": {
+      "c32e3215-28b7-4c96-895b-b7803e0968dc": {
+        "status": "SUBMITTED",
+        "note": null
+      }
+    }
+  }
+}

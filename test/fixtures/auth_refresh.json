@@ -1,0 +1,9 @@
+{
+  "tokens": {
+    "accessToken": "<accessToken>",
+    "refreshToken": "<refreshToken>",
+    "tokenType": "Bearer",
+    "expiresIn": 900,
+    "refreshExpiresIn": 2592000
+  }
+}

@@ -155,23 +155,20 @@ void main() {
     expect(find.text('1111'), findsOneWidget);
   });
 
-  testWidgets(
-    'choosing a long-named participant shows the pending-target chip without overflowing '
-    'at 320dp',
-    (tester) async {
-      when(
-        () => winnerRepository.getEligibleParticipants('g1'),
-      ).thenAnswer((_) async => Result.success([_alice]));
+  testWidgets('choosing a long-named participant shows the pending-target chip without overflowing '
+      'at 320dp', (tester) async {
+    when(
+      () => winnerRepository.getEligibleParticipants('g1'),
+    ).thenAnswer((_) async => Result.success([_alice]));
 
-      await pumpAtSize(tester);
-      await tester.tap(find.byIcon(Icons.tune_rounded));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text(_alice.fullName));
-      await tester.pumpAndSettle();
+    await pumpAtSize(tester);
+    await tester.tap(find.byIcon(Icons.tune_rounded));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(_alice.fullName));
+    await tester.pumpAndSettle();
 
-      expect(tester.takeException(), isNull);
-    },
-  );
+    expect(tester.takeException(), isNull);
+  });
 
   group('WinnerWheelOverlay responsiveness (isolated, no unrelated page sections)', () {
     Future<void> pumpWheelPage(
@@ -243,21 +240,18 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets(
-      'the winner reveal (long name, big code, WINNER text) does not overflow on a small '
-      '320x700 phone',
-      (tester) async {
-        await pumpWheelPage(tester);
-        await tester.pumpAndSettle(const Duration(milliseconds: 200));
-        // Full spin (4200ms) + post-spin pause (350ms) + reveal animation.
-        await tester.pump(const Duration(milliseconds: 5000));
-        await tester.pump(const Duration(milliseconds: 1000));
+    testWidgets('the winner reveal (long name, big code, WINNER text) does not overflow on a small '
+        '320x700 phone', (tester) async {
+      await pumpWheelPage(tester);
+      await tester.pumpAndSettle(const Duration(milliseconds: 200));
+      // Full spin (4200ms) + post-spin pause (350ms) + reveal animation.
+      await tester.pump(const Duration(milliseconds: 5000));
+      await tester.pump(const Duration(milliseconds: 1000));
 
-        expect(tester.takeException(), isNull);
-        expect(find.text('1111'), findsOneWidget);
-        expect(find.text(_alice.fullName), findsOneWidget);
-      },
-    );
+      expect(tester.takeException(), isNull);
+      expect(find.text('1111'), findsOneWidget);
+      expect(find.text(_alice.fullName), findsOneWidget);
+    });
 
     testWidgets('the wheel does not overflow on a very short landscape-ish viewport', (
       tester,

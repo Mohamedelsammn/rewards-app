@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "id": "c46955b7-043f-477a-b648-561000e2a974",
+      "type": "WINNER_SELECTED",
+      "title": {
+        "ar": "مبروك! لقد فزت 🎉",
+        "en": "Congratulations, you won! 🎉"
+      },
+      "body": {
+        "ar": "سحب آيفون",
+        "en": "iPhone giveaway"
+      },
+      "data": {
+        "winnerId": "4d6181db-5b35-4b59-9896-8d64307d5958",
+        "giveawayId": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef"
+      },
+      "read": false,
+      "readAt": null,
+      "createdAt": "2026-10-21T01:43:17.714Z"
+    },
+    {
+      "id": "d90c8e56-7a76-4a65-ae42-4f8f3fd94836",
+      "type": "ORDER_STATUS",
+      "title": {
+        "ar": "تم إكمال طلبك",
+        "en": "Your order is complete"
+      },
+      "body": {
+        "ar": "طلب رقم CR-2026-000309",
+        "en": "Order CR-2026-000309"
+      },
+      "data": {
+        "status": "COMPLETED",
+        "orderId": "e9ec9f2e-2911-472a-b27b-cd4958c30e2d"
+      },
+      "read": false,
+      "readAt": null,
+      "createdAt": "2026-10-21T01:43:17.472Z"
+    },
+    {
+      "id": "4d11ab23-093d-4c00-b5c2-159d629fa32a",
+      "type": "ORDER_STATUS",
+      "title": {
+        "ar": "طلبك قيد التنفيذ",
+        "en": "Your order is being processed"
+      },
+      "body": {
+        "ar": "طلب رقم CR-2026-000309",
+        "en": "Order CR-2026-000309"
+      },
+      "data": {
+        "status": "PROCESSING",
+        "orderId": "e9ec9f2e-2911-472a-b27b-cd4958c30e2d"
+      },
+      "read": false,
+      "readAt": null,
+      "createdAt": "2026-10-21T01:43:17.447Z"
+    }
+  ],
+  "nextCursor": null
+}

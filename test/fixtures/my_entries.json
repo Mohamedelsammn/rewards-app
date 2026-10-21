@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "492706fa-7d1f-4458-bce4-547e82798cf2",
+      "giveawayId": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+      "participationNumber": "424869",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-21T01:43:17.660Z",
+      "result": "WON",
+      "winnerId": "4d6181db-5b35-4b59-9896-8d64307d5958",
+      "giveaway": {
+        "id": "a518620b-467c-4f1f-aaaf-dc1b6c91b0ef",
+        "title": {
+          "ar": "سحب آيفون",
+          "en": "iPhone giveaway"
+        },
+        "imageUrl": null,
+        "endsAt": "2026-10-21T01:43:16.686Z"
+      }
+    }
+  ],
+  "nextCursor": null
+}

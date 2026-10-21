@@ -261,7 +261,7 @@ class _UserHomeViewState extends State<_UserHomeView> {
                                 crossAxisCount: columns,
                                 crossAxisSpacing: 10,
                                 mainAxisSpacing: 12,
-                                 mainAxisExtent: _giveawayCardExtent(width, scale),
+                                mainAxisExtent: _giveawayCardExtent(width, scale),
                               ),
                             );
                           },

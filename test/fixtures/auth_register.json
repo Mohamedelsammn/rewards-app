@@ -1,0 +1,26 @@
+{
+  "tokens": {
+    "accessToken": "<accessToken>",
+    "refreshToken": "<refreshToken>",
+    "tokenType": "Bearer",
+    "expiresIn": 900,
+    "refreshExpiresIn": 2592000
+  },
+  "user": {
+    "id": "022ae672-fd1e-4c32-86ae-64957029f25a",
+    "email": "player@example.test",
+    "name": "player",
+    "language": "ar",
+    "status": "ACTIVE",
+    "createdAt": "2026-10-21T01:43:17.089Z",
+    "avatar": {
+      "id": 3,
+      "imageUrl": null
+    },
+    "stats": {
+      "points": 0,
+      "giveaways": 0,
+      "orders": 0
+    }
+  }
+}

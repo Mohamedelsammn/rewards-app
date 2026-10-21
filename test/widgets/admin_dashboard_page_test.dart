@@ -169,9 +169,7 @@ void main() {
     expect(find.text('الكل'), findsOneWidget);
     expect(find.text('لا توجد مسابقات ضمن هذه المجموعة حاليًا.'), findsOneWidget);
     expect(
-      find.byWidgetPredicate(
-        (widget) => widget is Text && (widget.data ?? '').contains('????'),
-      ),
+      find.byWidgetPredicate((widget) => widget is Text && (widget.data ?? '').contains('????')),
       findsNothing,
     );
     expect(Directionality.of(tester.element(find.text('الكل'))), TextDirection.rtl);

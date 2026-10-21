@@ -1,37 +1,37 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 
-import '../../services/secure_storage_service.dart';
+import '../security/secure_token_storage.dart';
 
 const List<Locale> kSupportedLocales = [Locale('en'), Locale('ar')];
 
-/// Persists the user's language choice and drives `MaterialApp.locale`.
-/// A plain [ValueNotifier] rather than a full Cubit -- there's exactly one
-/// piece of state (the current [Locale]) and one consumer (the app root),
-/// so a Bloc/Cubit would be ceremony without benefit here.
-///
-/// Switching language does not require an app restart: [RewardsApp] listens
-/// via [ValueListenableBuilder] and rebuilds `MaterialApp` (and therefore
-/// every `AppLocalizations.of(context)` lookup) immediately.
+/// Holds and persists the app language. A previously saved preference
+/// (including one saved by earlier app versions under the same key) wins;
+/// a first launch follows the device language (Arabic or English), since
+/// the language picker is only reachable after signing in.
 class LocaleController extends ValueNotifier<Locale> {
-  /// Arabic is the first-run fallback. A previously persisted language is
-  /// loaded by [loadPersisted] during bootstrap and takes precedence, so an
-  /// existing English selection is never overwritten on app updates.
-  LocaleController(this._secureStorage) : super(const Locale('ar'));
+  LocaleController(this._storage) : super(const Locale('en'));
 
-  final SecureStorageService _secureStorage;
+  final SecureTokenStorage _storage;
 
-  Future<void> loadPersisted() async {
-    final code = await _secureStorage.cachedLanguageCode;
-    if (code != null && kSupportedLocales.any((l) => l.languageCode == code)) {
+  Future<void> loadPersisted({Locale? deviceLocale}) async {
+    final code = await _storage.languageCode;
+    if (code != null && kSupportedLocales.any((locale) => locale.languageCode == code)) {
       value = Locale(code);
+      return;
     }
+    final device = deviceLocale ?? PlatformDispatcher.instance.locale;
+    value = device.languageCode == 'ar' ? const Locale('ar') : const Locale('en');
   }
 
   Future<void> setLocale(Locale locale) async {
     if (value == locale) return;
     value = locale;
-    await _secureStorage.saveLanguageCode(locale.languageCode);
+    await _storage.saveLanguageCode(locale.languageCode);
   }
+
+  String get languageCode => value.languageCode;
 
   bool get isRtl => value.languageCode == 'ar';
 }

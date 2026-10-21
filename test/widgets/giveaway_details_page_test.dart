@@ -47,22 +47,21 @@ Giveaway _giveaway({
   required String prizeDescription,
   required String descriptionRules,
   String? imageUrl,
-}) =>
-    Giveaway(
-      id: 'g1',
-      title: 'Win a Car',
-      organizerName: 'Acme Co',
-      prizeDescription: prizeDescription,
-      descriptionRules: descriptionRules,
-      imageUrl: imageUrl,
-      startDate: DateTime(2026, 1, 1),
-      endDate: DateTime(2026, 1, 10),
-      endTime: '18:00',
-      status: GiveawayStatus.active,
-      numberDigitWidth: 4,
-      maxParticipants: null,
-      participantCount: 5,
-    );
+}) => Giveaway(
+  id: 'g1',
+  title: 'Win a Car',
+  organizerName: 'Acme Co',
+  prizeDescription: prizeDescription,
+  descriptionRules: descriptionRules,
+  imageUrl: imageUrl,
+  startDate: DateTime(2026, 1, 1),
+  endDate: DateTime(2026, 1, 10),
+  endTime: '18:00',
+  status: GiveawayStatus.active,
+  numberDigitWidth: 4,
+  maxParticipants: null,
+  participantCount: 5,
+);
 
 /// Covers Phase 9: Prize Description and Giveaway Description & Rules are
 /// optional at creation -- Giveaway Details must hide each section entirely

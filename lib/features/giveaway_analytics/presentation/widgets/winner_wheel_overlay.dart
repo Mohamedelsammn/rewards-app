@@ -151,7 +151,10 @@ class _SelectingView extends StatelessWidget {
       children: [
         const CircularProgressIndicator(color: AppColors.goldAccent),
         const SizedBox(height: AppSpacing.lg),
-        Text(l10n.giveawayAnalyticsSelecting, style: AppTypography.bodyLg.copyWith(color: Colors.white)),
+        Text(
+          l10n.giveawayAnalyticsSelecting,
+          style: AppTypography.bodyLg.copyWith(color: Colors.white),
+        ),
       ],
     );
   }
@@ -172,8 +175,7 @@ class _WinnerRevealView extends StatefulWidget {
   State<_WinnerRevealView> createState() => _WinnerRevealViewState();
 }
 
-class _WinnerRevealViewState extends State<_WinnerRevealView>
-    with SingleTickerProviderStateMixin {
+class _WinnerRevealViewState extends State<_WinnerRevealView> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _titleAnim;
   late final Animation<double> _cardAnim;
@@ -304,7 +306,10 @@ class _WheelWinnerCard extends StatelessWidget {
           if (winner.fullName != null && winner.fullName!.isNotEmpty)
             Text(
               winner.fullName!,
-              style: AppTypography.bodyLg.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+              style: AppTypography.bodyLg.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

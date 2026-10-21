@@ -47,9 +47,7 @@ class _WinnersPageState extends State<WinnersPage> {
       backgroundColor: AppColors.surface,
       appBar: AppBar(title: Text(l10n.giveawayAnalyticsWinnersSectionTitle)),
       body: visibleWinners.isEmpty
-          ? Center(
-              child: Text(l10n.giveawayAnalyticsNoWinners, style: AppTypography.bodyMd),
-            )
+          ? Center(child: Text(l10n.giveawayAnalyticsNoWinners, style: AppTypography.bodyMd))
           : ListView.builder(
               padding: const EdgeInsets.all(AppSpacing.containerPadding),
               itemCount: visibleWinners.length,
@@ -134,7 +132,10 @@ class _WinnerCard extends StatelessWidget {
           if (winner.fullName != null && winner.fullName!.isNotEmpty)
             Text(
               winner.fullName!,
-              style: AppTypography.bodyLg.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+              style: AppTypography.bodyLg.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
