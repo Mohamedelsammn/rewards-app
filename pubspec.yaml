@@ -42,30 +42,19 @@ dependencies:
   # Dependency injection (manual registration, no codegen)
   get_it: ^8.0.0
 
-  # Backend
-  supabase_flutter: ^2.8.0
 
   # Local persistence
   flutter_secure_storage: ^9.2.2
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
 
   # Media
   cached_network_image: ^3.4.1
   lottie: ^3.3.1
-  confetti: ^0.8.0
 
   # Unique ad-reward transaction IDs (replay-protection key)
   uuid: ^4.6.0
 
-  # Liquid Glass bottom navigation
-  liquid_glass_widgets: ^0.29.2
 
-  # Participation Growth chart (Giveaway Analytics)
-  fl_chart: ^0.69.0
 
-  # Giveaway image picking for Create Giveaway
-  image_picker: ^1.1.2
 
   # Localization (English + Arabic, real ARB-based flutter_localizations)
   flutter_localizations:
@@ -94,12 +83,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  mocktail: ^1.0.4
-  bloc_test: ^10.0.0
-  # Test-only: lets widget tests fake the url_launcher platform channel (Part
-  # 1's WhatsApp deep link) instead of hitting a real platform implementation.
-  url_launcher_platform_interface: ^2.3.2
-  plugin_platform_interface: ^2.1.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
