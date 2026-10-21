@@ -8,6 +8,10 @@ class AppColors {
   static const violet = Color(0xff4824fa);
   static const muted = Color(0xff777eaa);
   static const pale = Color(0xfff6f4ff);
+
+  /// [pale] at zero opacity: fade art into the page with this, never with
+  /// [Colors.transparent] (transparent black turns the blend gray).
+  static const paleClear = Color(0x00f6f4ff);
   static const surface = Color(0xfffaf9ff);
   static const sheet = Color(0xfffbfaff);
   static const white = Colors.white;
@@ -23,6 +27,7 @@ class AppColors {
   static const divider = Color(0xffdddafa);
   static const navBorder = Color(0xffecebfa);
   static const navBackground = Color(0xf8ffffff);
+  static const navInactive = Color(0xff74779f);
   static const segmentTrack = Color(0xfff0eff9);
   static const segmentInactiveText = Color(0xff555e91);
   static const chipTrack = Color(0xfff0eef9);
@@ -49,6 +54,32 @@ class AppColors {
   static const badgeProfile = Color(0xfff23b3b);
   static const star = Color(0xffffce4d);
 
+  /// Profile header: status-bar fill matching the art's top edge, a light
+  /// wash that softens the art, and the glass character frame.
+  static const profileHeaderTop = Color(0xffb5adfb);
+  static const profileHeaderTopClear = Color(0x00b5adfb);
+  static const profileHeaderBottom = Color(0xffd4baea);
+  static const profileHeaderBottomClear = Color(0x00d4baea);
+  static const profileArtWash = Color(0x38ffffff);
+  static const profileFrameGlass = Color(0x47ffffff);
+  static const profileFrameBorder = Color(0xe6ffffff);
+  static const profileEditShadow = Color(0x407a62d8);
+  static const profileFrameHaze = Color(0xf2f6f4ff);
+  static const profileFrameHazeClear = Color(0x00f6f4ff);
+  static const profileEmail = Color(0xff8a8fb4);
+
+  /// Skeleton placeholders and their shimmer highlight.
+  /// Home search field: soft lavender glow and placeholder text.
+  static const searchGlow = Color(0x147a6fd0);
+  static const searchHint = Color(0xff9a98c4);
+
+  static const skeletonBase = Color(0xffe9e5fa);
+  static const skeletonHighlight = Color(0xfff8f6ff);
+
+  /// Empty-state halo and the soft lavender behind its icon tile.
+  static const emptyHalo = Color(0xffe4dcff);
+  static const emptyHaloEdge = Color(0x00e4dcff);
+
   /// Pastel card backgrounds cycled by the giveaway grid.
   static const giveawayCards = [
     Color(0xffe7e3ff),
@@ -60,6 +91,13 @@ class AppColors {
 
 class AppGradients {
   const AppGradients._();
+
+  /// Icon tile of [AppEmptyState].
+  static const emptyIcon = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xff6b4dff), Color(0xffa45cf6)],
+  );
 
   static const primaryButton = LinearGradient(colors: [Color(0xff3927ff), Color(0xff6921f2)]);
   static const darkButton = LinearGradient(colors: [Color(0xff080b2e), Color(0xff2c075e)]);
