@@ -5,6 +5,7 @@ import '../../../../core/error/app_exception.dart';
 import '../../../../core/network/auth_interceptor.dart';
 import '../../domain/entities/app_user.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 enum SessionStatus { unknown, authenticated, unauthenticated, offline }
 
@@ -24,25 +25,37 @@ class SessionState extends Equatable {
 }
 
 /// App-wide authentication state. The router redirects on it.
-class SessionCubit extends Cubit<SessionState> {
+class SessionCubit extends Cubit<SessionState> with SafeEmit<SessionState> {
   SessionCubit(this._auth, {this._beforeSignOut}) : super(const SessionState());
 
   final AuthRepository _auth;
   final Future<void> Function()? _beforeSignOut;
 
+  /// Always ends in a terminal state (the splash never waits forever):
+  /// signed in, signed out, or offline with a Retry.
   Future<void> restore() async {
-    if (!await _auth.hasStoredSession()) {
-      emit(const SessionState(status: SessionStatus.unauthenticated));
-      return;
-    }
     try {
+      if (!await _auth.hasStoredSession()) {
+        emit(const SessionState(status: SessionStatus.unauthenticated));
+        return;
+      }
       emit(SessionState(status: SessionStatus.authenticated, user: await _auth.restoreSession()));
     } on AppException catch (error) {
+      if (error.code == AppException.storageReset) {
+        // Unreadable stored session (already discarded): ask to sign in again.
+        emit(
+          const SessionState(
+            status: SessionStatus.unauthenticated,
+            endReason: SessionEndReason.refreshRejected,
+          ),
+        );
+        return;
+      }
       if (error.isConnectivity || (error.statusCode ?? 0) >= 500) {
         emit(const SessionState(status: SessionStatus.offline));
         return;
       }
-      await _auth.clearLocalSession();
+      await _clearLocalQuietly();
       emit(
         SessionState(
           status: SessionStatus.unauthenticated,
@@ -51,7 +64,17 @@ class SessionCubit extends Cubit<SessionState> {
               : SessionEndReason.refreshRejected,
         ),
       );
+    } catch (_) {
+      // Unexpected (e.g. a malformed /me): the stored session may still be
+      // valid, so keep it and offer Retry instead of signing out.
+      emit(const SessionState(status: SessionStatus.offline));
     }
+  }
+
+  Future<void> _clearLocalQuietly() async {
+    try {
+      await _auth.clearLocalSession();
+    } catch (_) {}
   }
 
   void signedIn(AppUser user) =>

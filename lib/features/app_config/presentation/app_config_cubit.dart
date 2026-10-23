@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../domain/app_config.dart';
+import '../../../core/utils/safe_emit.dart';
 
 enum AppConfigStatus { loading, ready, failed }
 
@@ -22,7 +23,7 @@ class AppConfigState extends Equatable {
 
 /// Loads `/app-config` at startup and on resume. The router blocks the app
 /// for maintenance and for versions below `minVersion`.
-class AppConfigCubit extends Cubit<AppConfigState> {
+class AppConfigCubit extends Cubit<AppConfigState> with SafeEmit<AppConfigState> {
   AppConfigCubit(this._repository, {required this.appVersion}) : super(const AppConfigState());
 
   final AppConfigRepository _repository;

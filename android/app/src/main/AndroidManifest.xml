@@ -10,9 +10,11 @@
     <application
         android:label="Rewards App"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules">
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6633902647647422~7562449689" />
+            android:value="ca-app-pub-1922252697897939~1512836641" />
         <!-- The channel an FCM "notification" message displays under while the
              app is backgrounded/terminated (no Dart code runs to pick one)
              must exist before any such message arrives; MainActivity creates it

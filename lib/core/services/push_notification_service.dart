@@ -33,14 +33,20 @@ class PushNotificationService {
 
   bool get _available => Firebase.apps.isNotEmpty;
 
-  Future<void> initialize() async {
+  /// Bounded and failure-safe: push is optional and must never hold up
+  /// startup (it runs before runApp).
+  Future<void> initialize({Duration timeout = const Duration(seconds: 3)}) async {
     if (!_available) return;
-    final messaging = FirebaseMessaging.instance;
-    final initial = await messaging.getInitialMessage();
-    if (initial != null) _initialTap = _data(initial);
-    _subscriptions
-      ..add(FirebaseMessaging.onMessageOpenedApp.listen((message) => _taps.add(_data(message))))
-      ..add(FirebaseMessaging.onMessage.listen((_) => _received.add(null)));
+    try {
+      final messaging = FirebaseMessaging.instance;
+      _subscriptions
+        ..add(FirebaseMessaging.onMessageOpenedApp.listen((message) => _taps.add(_data(message))))
+        ..add(FirebaseMessaging.onMessage.listen((_) => _received.add(null)));
+      final initial = await messaging.getInitialMessage().timeout(timeout, onTimeout: () => null);
+      if (initial != null) _initialTap = _data(initial);
+    } catch (error) {
+      debugPrint('Push initialization skipped: ${error.runtimeType}');
+    }
   }
 
   /// The tap that launched the app, delivered once after sign-in.

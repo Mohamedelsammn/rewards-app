@@ -147,12 +147,13 @@ void main() {
 
     expect(find.text('1,200'), findsOneWidget);
     expect(find.text('3'), findsOneWidget);
-    expect(find.text(l10n.homeEmpty), findsOneWidget);
+    expect(find.text(l10n.homeEmptyTitle), findsOneWidget);
   });
 
   testWidgets('home renders right-to-left in Arabic', (tester) async {
     final session = SessionCubit(auth)..signedIn(_user);
     final wallet = WalletCubit(_Wallet());
+    await wallet.load();
     final unread = UnreadCountCubit(_Notifications());
     await tester.pumpWidget(
       _app(

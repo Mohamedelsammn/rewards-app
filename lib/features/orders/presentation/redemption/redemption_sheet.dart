@@ -6,6 +6,7 @@ import '../../../../core/localization/l10n.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../../../core/widgets/app_dialogs.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../../catalog/domain/entities/catalog_entities.dart';
 import '../../../catalog/presentation/widgets/category_visuals.dart';
@@ -39,13 +40,50 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
     super.dispose();
   }
 
-  void _confirm(Product product) {
+  /// Reviewing the entered account details is shown once per confirm.
+  bool _reviewing = false;
+
+  /// Products of these kinds are delivered to the user's own account (game
+  /// ID, social profile), so they cannot be fulfilled without a required
+  /// field defined by the admin (`product.fields`).
+  static const _accountKinds = {CategoryKind.game, CategoryKind.socialMedia};
+
+  bool _missingAccountFields(Product product) =>
+      _accountKinds.contains(widget.category?.kind) && !product.fields.any((f) => f.required);
+
+  Map<String, String> _values(Product product) => {
+    for (final field in product.fields)
+      if (_controller(field.key).text.trim().isNotEmpty)
+        field.key: _controller(field.key).text.trim(),
+  };
+
+  /// Validates the form; with account fields, shows the entered values for a
+  /// last check (Edit goes back to the form); then creates the order.
+  Future<void> _confirm(Product product, {bool review = true}) async {
+    if (_reviewing || _missingAccountFields(product)) return;
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    context.read<RedeemCubit>().submit({
-      for (final field in product.fields)
-        if (_controller(field.key).text.trim().isNotEmpty)
-          field.key: _controller(field.key).text.trim(),
-    });
+    final values = _values(product);
+    if (review && product.fields.isNotEmpty) {
+      _reviewing = true;
+      final l10n = context.l10n;
+      final cost = l10n.pointsAmount(Formatters.points(product.pointsPrice));
+      final lines = [
+        for (final field in product.fields)
+          if (values[field.key] case final value?) '${field.label.of(context)}: $value',
+      ];
+      final confirmed = await showAppConfirmDialog(
+        context,
+        icon: Icons.fact_check_outlined,
+        title: l10n.redeemReviewTitle,
+        message: '${l10n.redeemReviewBody(product.name.of(context), cost)}\n\n${lines.join('\n')}',
+        confirmLabel: l10n.redeemConfirm,
+        cancelLabel: l10n.redeemReviewEdit,
+      );
+      _reviewing = false;
+      if (!confirmed || !mounted) return;
+    }
+    if (!mounted) return;
+    context.read<RedeemCubit>().submit(values);
   }
 
   Future<void> _onState(BuildContext context, RedeemState state) async {
@@ -64,7 +102,8 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
       );
       if (!context.mounted) return;
       if (accept) {
-        _confirm(state.product!);
+        // The details were reviewed already; only the price changed.
+        await _confirm(state.product!, review: false);
       } else {
         cubit.acknowledgeError();
       }
@@ -122,7 +161,23 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
                       ),
                       const SizedBox(height: 16),
                       if (product != null) ..._details(context, product, balance, state),
-                      if (state.status == RedeemStatus.loadingProduct) const LoadingView(),
+                      if (state.status == RedeemStatus.loadingProduct)
+                        // The fulfilment fields arrive with the product.
+                        const Skeleton(
+                          child: Column(
+                            key: ValueKey('redeem-fields-skeleton'),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SkeletonLine(width: 120, height: 13),
+                              SizedBox(height: 10),
+                              SkeletonBox(height: 56, radius: 22),
+                              SizedBox(height: 16),
+                              SkeletonLine(width: 100, height: 13),
+                              SizedBox(height: 10),
+                              SkeletonBox(height: 56, radius: 22),
+                            ],
+                          ),
+                        ),
                       if (state.status == RedeemStatus.failure && state.fieldErrors.isEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 12),
@@ -152,6 +207,7 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
     final busy = state.status == RedeemStatus.submitting;
     final ready = state.detailsLoaded && state.status != RedeemStatus.loadingProduct;
     final insufficient = balance < product.pointsPrice;
+    final missingFields = ready && _missingAccountFields(product);
     return [
       Row(
         children: [
@@ -223,6 +279,14 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
           ),
           const SizedBox(height: 12),
         ],
+      if (missingFields) ...[
+        Text(
+          l10n.redeemAccountDetailsMissing,
+          key: const ValueKey('redeem-account-fields-missing'),
+          style: const TextStyle(color: AppColors.error, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 12),
+      ],
       Text(l10n.redeemPointsNote, style: const TextStyle(color: AppColors.muted, fontSize: 13)),
       const SizedBox(height: 4),
       Text(l10n.redeemPrivacyNote, style: const TextStyle(color: AppColors.muted, fontSize: 13)),
@@ -233,7 +297,9 @@ class _RedemptionSheetState extends State<RedemptionSheet> {
           borderRadius: BorderRadius.circular(25),
         ),
         child: FilledButton(
-          onPressed: !ready || busy || insufficient ? null : () => _confirm(product),
+          onPressed: !ready || busy || insufficient || missingFields
+              ? null
+              : () => _confirm(product),
           style: FilledButton.styleFrom(
             backgroundColor: Colors.transparent,
             disabledBackgroundColor: const Color(0xffbbb5dd),

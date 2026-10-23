@@ -71,7 +71,9 @@ void main() {
     expect(cubit.state.details?.remainingRequiredSteps, [_step]);
 
     expect(await cubit.enter(), isNull);
-    expect(cubit.state.error, isNull, reason: 'reload after the failure clears the error');
+    // The page reports the refusal; the reload has refreshed the steps.
+    expect((cubit.state.error! as AppException).code, 'STEPS_INCOMPLETE');
+    expect(cubit.state.details?.remainingRequiredSteps, [_step]);
 
     expect(await cubit.submitStep(_step, proofText: '@ahmed'), isTrue);
     expect(repository.proofs, ['@ahmed']);

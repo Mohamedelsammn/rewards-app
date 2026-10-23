@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/wallet_entities.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 class WalletState extends Equatable {
   const WalletState({this.wallet, this.loading = false, this.error});
@@ -19,20 +20,32 @@ class WalletState extends Equatable {
 /// App-scoped balance. `GET /wallet` is the only balance source; responses
 /// of orders, cancellations and ad claims update it via [setBalance] and a
 /// background refresh. The device never computes balances.
-class WalletCubit extends Cubit<WalletState> {
+class WalletCubit extends Cubit<WalletState> with SafeEmit<WalletState> {
   WalletCubit(this._repository) : super(const WalletState());
 
   final WalletRepository _repository;
   Future<void>? _inFlight;
 
-  Future<void> load() => _inFlight ??= _load().whenComplete(() => _inFlight = null);
+  /// Bumped by [clear] (sign-out): answers of requests started for an
+  /// earlier session are dropped, so one account never sees another's
+  /// balance.
+  int _generation = 0;
 
-  Future<void> _load() async {
+  Future<void> load() {
+    final generation = _generation;
+    return _inFlight ??= _load(generation).whenComplete(() {
+      if (generation == _generation) _inFlight = null;
+    });
+  }
+
+  Future<void> _load(int generation) async {
+    bool current() => !isClosed && generation == _generation;
     emit(WalletState(wallet: state.wallet, loading: true));
     try {
-      emit(WalletState(wallet: await _repository.wallet()));
+      final wallet = await _repository.wallet();
+      if (current()) emit(WalletState(wallet: wallet));
     } catch (error) {
-      emit(WalletState(wallet: state.wallet, error: error));
+      if (current()) emit(WalletState(wallet: state.wallet, error: error));
     }
   }
 
@@ -52,5 +65,9 @@ class WalletCubit extends Cubit<WalletState> {
     load();
   }
 
-  void clear() => emit(const WalletState());
+  void clear() {
+    _generation++;
+    _inFlight = null;
+    emit(const WalletState());
+  }
 }

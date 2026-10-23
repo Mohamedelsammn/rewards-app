@@ -4,6 +4,7 @@ import '../../../../app/di/injection_container.dart';
 import '../../../../core/localization/l10n.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/headers.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../domain/notification_entities.dart';
 
@@ -74,7 +75,17 @@ class _NotificationPreferencesPageState extends State<NotificationPreferencesPag
             if (_error != null)
               ErrorStateView(error: _error!, onRetry: _load)
             else if (preferences == null)
-              const Padding(padding: EdgeInsets.all(40), child: LoadingView())
+              // Three preference rows: title, subtitle and the switch.
+              const SkeletonList(
+                count: 3,
+                spacing: 10,
+                row: SkeletonRow(
+                  leadingSize: 0,
+                  lines: [150, 210],
+                  trailingWidth: 46,
+                  trailingHeight: 26,
+                ),
+              )
             else ...[
               _toggle(
                 l10n.prefOrders,

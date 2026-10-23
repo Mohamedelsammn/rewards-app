@@ -9,6 +9,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../../../core/widgets/app_dialogs.dart';
 import '../../../../core/widgets/headers.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../../auth/domain/entities/auth_entities.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
@@ -84,7 +85,17 @@ class _SessionsPageState extends State<SessionsPage> {
                   SecondaryHeader(title: l10n.sessionsTitle, subtitle: l10n.sessionsSubtitle),
                   const SizedBox(height: 20),
                   if (snapshot.connectionState != ConnectionState.done)
-                    const Padding(padding: EdgeInsets.all(40), child: LoadingView())
+                    // Device rows: icon, name, last-used line and the action.
+                    const SkeletonList(
+                      count: 3,
+                      spacing: 10,
+                      row: SkeletonRow(
+                        leadingSize: 28,
+                        leadingRadius: 8,
+                        lines: [140, 110],
+                        trailingWidth: 60,
+                      ),
+                    )
                   else if (snapshot.hasError)
                     ErrorStateView(error: snapshot.error!, onRetry: _reload)
                   else ...[

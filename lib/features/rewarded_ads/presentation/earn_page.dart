@@ -11,6 +11,7 @@ import '../../../core/services/admob_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/skeleton.dart';
 import '../../../core/widgets/state_views.dart';
 import '../../app_config/presentation/app_config_cubit.dart';
 import '../../wallet/presentation/bloc/wallet_cubit.dart';
@@ -33,6 +34,7 @@ class EarnPage extends StatelessWidget {
         deviceId: sl<SecureTokenStorage>().installationId,
         featureEnabled: config.adRewardsEnabled,
         onCredited: wallet.load,
+        pending: sl(),
       )..loadStatus(),
       child: const _EarnView(),
     );
@@ -74,7 +76,30 @@ class _EarnViewState extends State<_EarnView> {
       body: BlocBuilder<RewardedAdsCubit, EarnState>(
         builder: (context, state) {
           final cubit = context.read<RewardedAdsCubit>();
-          if (state.phase == EarnPhase.loading) return const LoadingView();
+          if (state.phase == EarnPhase.loading) {
+            // Icon, headline, explanation, remaining count and the button.
+            return const Skeleton(
+              child: Padding(
+                padding: EdgeInsets.all(24),
+                child: Column(
+                  key: ValueKey('earn-skeleton'),
+                  children: [
+                    SkeletonBox(width: 80, height: 80, circle: true),
+                    SizedBox(height: 24),
+                    SkeletonLine(width: 230, height: 24),
+                    SizedBox(height: 16),
+                    SkeletonLine(width: 280, height: 14),
+                    SizedBox(height: 8),
+                    SkeletonLine(width: 220, height: 14),
+                    SizedBox(height: 14),
+                    SkeletonLine(width: 140, height: 14),
+                    SizedBox(height: 28),
+                    SkeletonBox(height: 62, radius: 31),
+                  ],
+                ),
+              ),
+            );
+          }
           if (state.phase == EarnPhase.disabled) {
             return _message(
               context,
@@ -140,6 +165,15 @@ class _EarnViewState extends State<_EarnView> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+              if (state.phase == EarnPhase.stillPending && state.pendingSessionId != null)
+                Center(
+                  child: TextButton.icon(
+                    key: const ValueKey('earn-check-again'),
+                    onPressed: cubit.reconcile,
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: Text(l10n.earnCheckAgain),
+                  ),
+                ),
             ],
           );
         },
@@ -152,6 +186,8 @@ class _EarnViewState extends State<_EarnView> {
     return switch (state.phase) {
       EarnPhase.verifying => l10n.earnVerifying,
       EarnPhase.credited => l10n.earnCredited(Formatters.points(state.creditedPoints)),
+      // COOLDOWN on the claim: wait, then Check again (same session).
+      EarnPhase.stillPending when state.error != null => errorMessage(context, state.error!),
       EarnPhase.stillPending => l10n.earnPendingLong,
       EarnPhase.failed when state.error != null => errorMessage(context, state.error!),
       EarnPhase.notCredited => switch (state.outcome) {

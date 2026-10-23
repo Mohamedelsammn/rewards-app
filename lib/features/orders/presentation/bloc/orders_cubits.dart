@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/cursor_page.dart';
 import '../../../../core/utils/paged_cubit.dart';
 import '../../domain/order_entities.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 /// Filter value of My Orders; `all` sends no `statusGroup`.
 enum OrdersFilter { all, inProgress, completed, unsuccessful }
@@ -46,7 +47,7 @@ class OrderDetailsState extends Equatable {
   List<Object?> get props => [order, loading, cancelling, error, cancelled];
 }
 
-class OrderDetailsCubit extends Cubit<OrderDetailsState> {
+class OrderDetailsCubit extends Cubit<OrderDetailsState> with SafeEmit<OrderDetailsState> {
   OrderDetailsCubit(this._repository, this.orderId) : super(const OrderDetailsState());
 
   final OrdersRepository _repository;

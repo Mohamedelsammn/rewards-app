@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/error/app_exception.dart';
 import '../../domain/entities/auth_entities.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 class OtpState extends Equatable {
   const OtpState({
@@ -53,7 +54,7 @@ class OtpState extends Equatable {
 }
 
 /// Verifies the 6-digit code and runs the server-driven resend countdown.
-class OtpCubit extends Cubit<OtpState> {
+class OtpCubit extends Cubit<OtpState> with SafeEmit<OtpState> {
   OtpCubit(
     this._auth, {
     required this.email,

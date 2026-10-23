@@ -11,6 +11,22 @@ import 'retry_interceptor.dart';
 
 typedef Json = Map<String, dynamic>;
 
+/// Per-request time budget: timeout of each attempt and how many times a
+/// GET may be retried (see RetryInterceptor).
+class RequestBudget {
+  const RequestBudget({required this.timeout, required this.maxRetries});
+
+  /// Requests that hold the splash (`/app-config`, `/me`): an offline or
+  /// slow start reaches the offline screen in about 12 s instead of ~46 s.
+  static const startup = RequestBudget(timeout: Duration(seconds: 6), maxRetries: 1);
+
+  final Duration timeout;
+  final int maxRetries;
+
+  static const connectTimeoutKey = 'budgetConnectTimeout';
+  static const maxRetriesKey = 'budgetMaxRetries';
+}
+
 /// Thin JSON client over Dio. Every method returns the decoded body (an
 /// empty map for `204`) or throws [AppException]. Feature data sources are
 /// the only callers; presentation never sees Dio.
@@ -49,8 +65,18 @@ class ApiClient {
 
   final Dio _dio;
 
-  Future<Json> get(String path, {Map<String, dynamic>? query, bool auth = true}) =>
-      _send(() => _dio.get<dynamic>(path, queryParameters: _clean(query), options: _options(auth)));
+  Future<Json> get(
+    String path, {
+    Map<String, dynamic>? query,
+    bool auth = true,
+    RequestBudget? budget,
+  }) => _send(
+    () => _dio.get<dynamic>(
+      path,
+      queryParameters: _clean(query),
+      options: _budgeted(_options(auth), budget),
+    ),
+  );
 
   Future<Json> post(String path, {Object? body, bool auth = true, Map<String, String>? headers}) =>
       _send(
@@ -69,6 +95,19 @@ class ApiClient {
   Options _options(bool auth, [Map<String, String>? headers]) {
     final options = Options(headers: headers);
     return auth ? options : publicOptions(options);
+  }
+
+  Options _budgeted(Options options, RequestBudget? budget) {
+    if (budget == null) return options;
+    return options.copyWith(
+      sendTimeout: budget.timeout,
+      receiveTimeout: budget.timeout,
+      extra: {
+        ...?options.extra,
+        RequestBudget.connectTimeoutKey: budget.timeout,
+        RequestBudget.maxRetriesKey: budget.maxRetries,
+      },
+    );
   }
 
   Map<String, dynamic>? _clean(Map<String, dynamic>? query) {

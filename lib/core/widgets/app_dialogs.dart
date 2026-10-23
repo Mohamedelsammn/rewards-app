@@ -12,6 +12,7 @@ Future<bool> showAppConfirmDialog(
   required String message,
   required String confirmLabel,
   bool destructive = false,
+  String? cancelLabel,
 }) async {
   final accent = destructive ? AppColors.danger : AppColors.violet;
   final result = await showDialog<bool>(
@@ -47,7 +48,7 @@ Future<bool> showAppConfirmDialog(
                 Expanded(
                   child: TextButton(
                     onPressed: () => Navigator.pop(dialogContext, false),
-                    child: Text(dialogContext.l10n.commonCancel),
+                    child: Text(cancelLabel ?? dialogContext.l10n.commonCancel),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -92,4 +93,48 @@ Future<void> showAppInfoDialog(
       ),
     ],
   ),
+);
+
+/// Shows [builder] as a rounded, lavender-white dialog card with a soft
+/// fade + scale entrance (instant when animations are disabled). Content is
+/// scrollable on short screens and kept inside the safe area.
+Future<T?> showAppDialog<T>(
+  BuildContext context, {
+  required WidgetBuilder builder,
+  bool barrierDismissible = true,
+}) => showGeneralDialog<T>(
+  context: context,
+  barrierDismissible: barrierDismissible,
+  barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+  barrierColor: AppColors.dialogBarrier,
+  transitionDuration: MediaQuery.disableAnimationsOf(context)
+      ? Duration.zero
+      : const Duration(milliseconds: 240),
+  pageBuilder: (dialogContext, _, _) => SafeArea(
+    child: Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 380),
+          child: Material(
+            color: AppColors.sheet,
+            borderRadius: BorderRadius.circular(30),
+            clipBehavior: Clip.antiAlias,
+            elevation: 0,
+            child: SingleChildScrollView(child: builder(dialogContext)),
+          ),
+        ),
+      ),
+    ),
+  ),
+  transitionBuilder: (_, animation, _, child) {
+    final curved = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+    return FadeTransition(
+      opacity: curved,
+      child: ScaleTransition(
+        scale: Tween<double>(begin: .94, end: 1).animate(curved),
+        child: child,
+      ),
+    );
+  },
 );

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../app/di/injection_container.dart';
 import '../../../../app/router/routes.dart';
 import '../../../../core/localization/l10n.dart';
+import '../../../../core/widgets/empty_state.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../../wallet/presentation/bloc/wallet_cubit.dart';
 import '../../domain/home_feed.dart';
 import '../bloc/home_cubit.dart';
 import '../widgets/home_sections.dart';
+import '../widgets/home_skeleton.dart';
 import '../widgets/points_header.dart';
 
 /// Home tab: balance header, search, categories rail, featured rewards and
@@ -57,6 +60,12 @@ class _HomeViewState extends State<_HomeView> {
             padding: EdgeInsets.zero,
             children: [
               PointsHeader(searchController: _search, onSearch: context.read<HomeCubit>().search),
+              // A failed refresh keeps the feed below and says so here.
+              if (!state.isSearching && state.status == HomeStatus.ready && state.error != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                  child: RefreshErrorBanner(onRetry: context.read<HomeCubit>().load),
+                ),
               ..._content(context, state, feed, l10n),
               const SizedBox(height: 20),
             ],
@@ -84,10 +93,10 @@ class _HomeViewState extends State<_HomeView> {
             ),
           )
         else
-          const LoadingView(),
+          const HomeSkeleton(),
       ];
     }
-    if (!state.isSearching && state.status == HomeStatus.loading) return const [LoadingView()];
+    if (!state.isSearching && state.status == HomeStatus.loading) return const [HomeSkeleton()];
     if (!state.isSearching && state.status == HomeStatus.failed) {
       return [
         Padding(
@@ -99,10 +108,19 @@ class _HomeViewState extends State<_HomeView> {
     final data = feed ?? const HomeFeed();
     if (data.isEmpty) {
       return [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: EmptyCard(state.isSearching ? l10n.homeNoResults : l10n.homeEmpty),
-        ),
+        if (state.isSearching)
+          AppEmptyState(
+            icon: LucideIcons.searchX,
+            title: l10n.homeNoResults,
+            message: l10n.homeNoResultsBody,
+          )
+        else
+          AppEmptyState(
+            key: const ValueKey('home-empty'),
+            icon: LucideIcons.gift,
+            title: l10n.homeEmptyTitle,
+            message: l10n.homeEmptyBody,
+          ),
       ];
     }
     return [

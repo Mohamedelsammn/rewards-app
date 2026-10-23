@@ -11,6 +11,7 @@ import '../../../../core/utils/paged_cubit.dart';
 import '../../../../core/utils/paged_list_state.dart';
 import '../../../../core/widgets/headers.dart';
 import '../../../../core/widgets/paged_list_view.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../domain/wallet_entities.dart';
 
 class TransactionsCubit extends PagedCubit<WalletTransaction, void> {
@@ -43,6 +44,7 @@ class TransactionsPage extends StatelessWidget {
                 onRefresh: cubit.refresh,
                 onLoadMore: cubit.loadMore,
                 emptyMessage: l10n.transactionsEmpty,
+                skeletonRow: const SkeletonRow(lines: [150, 100, 80], trailingWidth: 56),
                 header: [
                   SecondaryHeader(
                     title: l10n.transactionsTitle,

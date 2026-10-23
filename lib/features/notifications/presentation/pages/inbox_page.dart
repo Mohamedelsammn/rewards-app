@@ -10,6 +10,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/paged_list_state.dart';
 import '../../../../core/widgets/headers.dart';
 import '../../../../core/widgets/paged_list_view.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../domain/notification_entities.dart';
 import '../bloc/inbox_cubit.dart';
@@ -79,6 +80,13 @@ class _InboxViewState extends State<_InboxView> {
                 onRefresh: cubit.refresh,
                 onLoadMore: cubit.loadMore,
                 emptyMessage: l10n.notificationsEmpty,
+                skeletonRow: const SkeletonRow(
+                  leadingSize: 70,
+                  leadingRadius: 20,
+                  lines: [180, 240, 150],
+                  trailingWidth: 44,
+                  trailingHeight: 22,
+                ),
                 padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
                 header: [
                   SecondaryHeader(

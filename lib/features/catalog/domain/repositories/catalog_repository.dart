@@ -6,7 +6,8 @@ abstract interface class CatalogRepository {
   /// RewardCategory with its product groups.
   Future<RewardCategory> category(String id);
 
-  Future<List<Product>> products(String categoryId, {String? groupId});
+  /// Published products; [productType] filters on the server (game tabs).
+  Future<List<Product>> products(String categoryId, {String? groupId, ProductType? productType});
 
   /// Product with its fulfilment fields.
   Future<Product> product(String id);

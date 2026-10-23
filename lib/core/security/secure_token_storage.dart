@@ -4,8 +4,11 @@ import 'package:uuid/uuid.dart';
 /// Tokens and the installation id live only in platform secure storage
 /// (Keystore / Keychain). Nothing here is ever written to logs.
 class SecureTokenStorage {
-  SecureTokenStorage([FlutterSecureStorage? storage])
-    : _storage = storage ?? const FlutterSecureStorage();
+  SecureTokenStorage([FlutterSecureStorage? storage]) : _storage = storage ?? secureStorage;
+
+  /// `resetOnError`: data that can no longer be decrypted (its Keystore key
+  /// is gone) is wiped by the plugin instead of failing every read.
+  static const secureStorage = FlutterSecureStorage(aOptions: AndroidOptions(resetOnError: true));
 
   final FlutterSecureStorage _storage;
 
@@ -18,11 +21,38 @@ class SecureTokenStorage {
   String? _cachedRefresh;
   bool _loaded = false;
 
+  /// The stored tokens could not be read and were discarded; reported once
+  /// (see [takeReadFailure]) so the user is told to sign in again.
+  bool _unreportedFailure = false;
+
   Future<void> _load() async {
     if (_loaded) return;
-    _cachedAccess = await _storage.read(key: _accessKey);
-    _cachedRefresh = await _storage.read(key: _refreshKey);
+    try {
+      _cachedAccess = await _storage.read(key: _accessKey);
+      _cachedRefresh = await _storage.read(key: _refreshKey);
+    } catch (_) {
+      // Unreadable storage: never retry in a loop, never keep half a session.
+      // Nothing about the tokens is logged.
+      _cachedAccess = null;
+      _cachedRefresh = null;
+      _unreportedFailure = true;
+      await _quietly(() => _storage.delete(key: _accessKey));
+      await _quietly(() => _storage.delete(key: _refreshKey));
+    }
     _loaded = true;
+  }
+
+  /// Whether a read failure is still to be reported; clears the flag.
+  bool takeReadFailure() {
+    final failed = _unreportedFailure;
+    _unreportedFailure = false;
+    return failed;
+  }
+
+  static Future<void> _quietly(Future<void> Function() action) async {
+    try {
+      await action();
+    } catch (_) {}
   }
 
   Future<String?> get accessToken async {
@@ -69,7 +99,14 @@ class SecureTokenStorage {
     return created;
   }
 
-  Future<String?> get languageCode => _storage.read(key: _languageKey);
+  /// `null` when unset or unreadable (the device language is used then).
+  Future<String?> get languageCode async {
+    try {
+      return await _storage.read(key: _languageKey);
+    } catch (_) {
+      return null;
+    }
+  }
 
   Future<void> saveLanguageCode(String code) => _storage.write(key: _languageKey, value: code);
 }

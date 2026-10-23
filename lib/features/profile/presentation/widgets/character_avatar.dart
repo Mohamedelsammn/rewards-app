@@ -22,7 +22,8 @@ class CharacterImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AppImage(
     url: imageUrl,
-    fallbackAsset: AppAssets.character(avatarId ?? 1),
+    // Avatar ids refer to the bundled characters (design assets).
+    designAsset: AppAssets.character(avatarId ?? 1),
     alignment: alignment,
   );
 }

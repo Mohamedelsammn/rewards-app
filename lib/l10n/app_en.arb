@@ -11,6 +11,9 @@
   "commonCopy": "Copy",
   "commonCopied": "Copied",
   "commonLoadMore": "Load more",
+  "commonLoading": "Loading",
+  "commonGotIt": "Got it",
+  "refreshFailed": "Couldn't refresh. Showing the last loaded content.",
   "pointsAmount": "{points} PTS",
   "@pointsAmount": {
     "placeholders": {
@@ -55,6 +58,7 @@
   "errPriceChanged": "The price of this reward has changed.",
   "errInvalidTransition": "This order can no longer be changed.",
   "errRequestInProgress": "Your request is still being processed. Please wait.",
+  "errPreviousAttemptUncertain": "We couldn't confirm your previous request. Check My Orders before sending again.",
   "errGiveawayNotStarted": "This giveaway hasn't started yet.",
   "errGiveawayEnded": "This giveaway has ended.",
   "errGiveawayNotActive": "This giveaway isn't open right now.",
@@ -91,7 +95,11 @@
       }
     }
   },
-  "errTooManyPending": "Earlier ads are still being verified. Try again shortly.",
+  "errTooManyPending": "You have unfinished video rewards. Try again in a few minutes.",
+  "errAdSessionNotFound": "This reward wasn't found. No points were added.",
+  "errAdSessionNotOwned": "This reward belongs to another account.",
+  "errAccountInactive": "Your account can't earn rewards right now.",
+  "errAdUnitNotAllowed": "Rewarded videos aren't available right now. No points were added.",
   "errNumberAllocation": "We couldn't assign your number. Please try again.",
   "errInvalidCursor": "The list changed. Pull to refresh.",
   "splashTagline": "Play · Earn · Redeem",
@@ -186,7 +194,10 @@
   "homeFeaturedRewards": "Featured Rewards",
   "homeGiveaways": "Giveaways",
   "homeNoResults": "No rewards found",
+  "homeNoResultsBody": "Try a different name or check the spelling.",
   "homeEmpty": "New rewards are on the way. Check back soon.",
+  "homeEmptyTitle": "Rewards are on the way",
+  "homeEmptyBody": "We're preparing new rewards and giveaways for you. Pull down to refresh or check back soon.",
   "homeClearSearch": "Clear search",
   "giveawayAvailable": "Available",
   "giveawayUpcoming": "Coming soon",
@@ -219,7 +230,13 @@
   },
   "categoriesTitle": "Categories",
   "categoriesEmpty": "No categories yet. Check back soon.",
+  "categoriesEmptyTitle": "No categories yet",
+  "categoriesEmptyBody": "Reward categories will appear here as soon as they're added.",
   "categoryProductsEmpty": "No rewards in this category yet.",
+  "productTabTopUps": "UC Top-Ups",
+  "productTabItemsSkins": "Items & Skins",
+  "productTopUpsEmpty": "No top-ups available yet.",
+  "productItemsSkinsEmpty": "No items or skins available yet.",
   "productRedeem": "Redeem",
   "productOutOfStock": "Out of stock",
   "redeemTitle": "Redemption details",
@@ -235,6 +252,20 @@
     }
   },
   "redeemConfirm": "Confirm redemption",
+  "redeemReviewTitle": "Check your details",
+  "redeemReviewBody": "{product} for {points} will be sent to:",
+  "@redeemReviewBody": {
+    "placeholders": {
+      "product": {
+        "type": "String"
+      },
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemReviewEdit": "Edit",
+  "redeemAccountDetailsMissing": "This reward can't be redeemed yet: its account details aren't set up. Please try again later.",
   "redeemFieldRequired": "This field is required",
   "redeemFieldInvalid": "Check the {label} format",
   "@redeemFieldInvalid": {
@@ -262,6 +293,7 @@
   },
   "redeemViewOrders": "View my orders",
   "redeemInsufficientTitle": "Not enough points",
+  "redeemInsufficientTitleCaps": "Not Enough Points",
   "redeemInsufficientBody": "You have {balance} PTS. This reward needs {required} PTS.",
   "@redeemInsufficientBody": {
     "placeholders": {
@@ -273,6 +305,11 @@
       }
     }
   },
+  "redeemInsufficientMessage": "You need more points to redeem this reward.",
+  "redeemYourBalance": "Your balance",
+  "redeemRequired": "Required",
+  "redeemMissing": "Missing",
+  "redeemEarnPoints": "Earn points",
   "redeemPriceChangedTitle": "Price changed",
   "redeemPriceChangedBody": "This reward now costs {points} PTS. Do you want to continue?",
   "@redeemPriceChangedBody": {
@@ -323,7 +360,7 @@
   },
   "earnTitle": "Earn points",
   "earnHeadline": "Watch & earn",
-  "earnBody": "Watch a short video to earn {points} points. Points are added after Google confirms the view.",
+  "earnBody": "Watch a short video to earn {points} points. Points are added once the reward is confirmed.",
   "@earnBody": {
     "placeholders": {
       "points": {
@@ -351,7 +388,8 @@
   },
   "earnRejected": "This view wasn't rewarded.",
   "earnExpired": "The reward session expired. Please try again.",
-  "earnPendingLong": "Your points will appear shortly. Check your wallet in a moment.",
+  "earnPendingLong": "We couldn't confirm your reward yet. Tap Check again.",
+  "earnCheckAgain": "Check again",
   "earnDismissedEarly": "Watch the full video to earn points.",
   "earnAdFailed": "No video is available right now. Try again later.",
   "earnUnavailable": "Earning with videos is coming soon",
@@ -366,6 +404,11 @@
   },
   "earnDailyLimit": "You've reached today's limit. Come back tomorrow.",
   "earnUnsupported": "Rewarded videos are available on Android.",
+  "joinAdTitle": "Watch an Ad to Join",
+  "joinAdBody": "Watch a short advertisement to continue joining this giveaway.",
+  "joinAdWatch": "Watch Ad",
+  "joinAdSkipped": "Watch the full video to join.",
+  "joinAdFailed": "The video couldn't be shown. Please try again.",
   "referTitle": "Refer a Friend",
   "referHeadline": "Invite friends to Creative Rewards",
   "referBody": "Share the app link with your friends. Referral rewards aren't available yet.",
@@ -484,6 +527,21 @@
   "orderTracking": "Tracking",
   "orderReason": "Reason",
   "orderTimeline": "Status history",
+  "orderIdLabel": "Order ID",
+  "orderCost": "Cost",
+  "orderStatusTitle": "Status",
+  "orderAccountDetails": "Account details",
+  "orderStatusHistory": "Status history",
+  "orderRedeemAgain": "Redeem again",
+  "orderOpenLink": "Open link",
+  "orderStepPending": "Your order has been placed.",
+  "orderStepProcessing": "We're processing your order.",
+  "orderStepShipped": "Your order is on the way.",
+  "orderStepDelivered": "Your order has been delivered.",
+  "orderStepCompleted": "Your order has been completed successfully.",
+  "orderStepRejected": "Your order was rejected.",
+  "orderStepCancelled": "Your order was cancelled.",
+  "orderStepFailed": "Your order couldn't be completed.",
   "orderRefunded": "{points} PTS were refunded to your wallet.",
   "@orderRefunded": {
     "placeholders": {
@@ -523,6 +581,12 @@
   "giveawaysSubtitle": "Join free giveaways and win prizes",
   "giveawaysEmpty": "No giveaways here yet",
   "giveawayDetailsTitle": "Giveaway Details",
+  "giveawayBadge": "Giveaway",
+  "giveawayBadgeActive": "Active",
+  "giveawayBadgeComingSoon": "Coming Soon",
+  "giveawayBadgeEnded": "Ended",
+  "giveawayBadgeFull": "Full",
+  "giveawayAboutTitle": "About This Giveaway",
   "giveawayOrganizer": "By {name}",
   "@giveawayOrganizer": {
     "placeholders": {
@@ -546,6 +610,7 @@
   "giveawayJoin": "Join Giveaway",
   "giveawayViewTicket": "View your number",
   "giveawayClosed": "This giveaway has ended",
+  "giveawayFull": "This giveaway is full",
   "giveawayDisqualified": "Your entry was disqualified",
   "giveawayFreeNote": "Entering is free. Points are never deducted.",
   "giveawayResults": "Winners",

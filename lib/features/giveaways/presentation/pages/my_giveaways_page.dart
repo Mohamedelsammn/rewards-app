@@ -6,11 +6,13 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../app/di/injection_container.dart';
 import '../../../../app/router/routes.dart';
+import '../giveaway_navigation.dart';
 import '../../../../core/localization/l10n.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/paged_list_state.dart';
 import '../../../../core/widgets/headers.dart';
 import '../../../../core/widgets/paged_list_view.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/selectors.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../domain/entities/giveaway_entities.dart';
@@ -38,6 +40,13 @@ class MyGiveawaysPage extends StatelessWidget {
                 onRefresh: cubit.refresh,
                 onLoadMore: cubit.loadMore,
                 emptyMessage: l10n.myGiveawaysEmpty,
+                skeletonRow: const SkeletonRow(
+                  leadingSize: 82,
+                  leadingRadius: 19,
+                  lines: [170, 90, 110],
+                  trailingWidth: 32,
+                  trailingHeight: 32,
+                ),
                 padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
                 header: [
                   SecondaryHeader(
@@ -90,7 +99,7 @@ class _EntryCard extends StatelessWidget {
               Routes.ticket,
               extra: TicketArgs(title: title, number: entry.participationNumber),
             )
-          : context.push(Routes.giveaway(entry.giveawayId)),
+          : openGiveawayFromTap(context, entry.giveawayId),
       borderRadius: BorderRadius.circular(25),
       child: Container(
         padding: const EdgeInsets.all(14),

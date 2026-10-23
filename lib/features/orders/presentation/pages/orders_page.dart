@@ -9,6 +9,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/paged_list_state.dart';
 import '../../../../core/widgets/headers.dart';
 import '../../../../core/widgets/paged_list_view.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/selectors.dart';
 import '../../domain/order_entities.dart';
 import '../bloc/orders_cubits.dart';
@@ -40,6 +41,13 @@ class _OrdersView extends StatelessWidget {
             emptyMessage: state.filter == OrdersFilter.all
                 ? l10n.ordersEmpty
                 : l10n.ordersEmptyFiltered,
+            skeletonRow: const SkeletonRow(
+              leadingSize: 78,
+              leadingRadius: 18,
+              lines: [160, 110, 90],
+              trailingWidth: 64,
+              trailingHeight: 24,
+            ),
             header: [
               SecondaryHeader(
                 title: l10n.ordersTitle,

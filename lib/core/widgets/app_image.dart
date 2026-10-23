@@ -2,32 +2,43 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
-import '../theme/app_icons.dart';
+import 'skeleton.dart';
 
-/// Shows a backend image URL, falling back to bundled [fallbackAsset] and
-/// finally to a gradient placeholder with [placeholderIcon]. `null` and failed
-/// URLs never show a broken image.
+/// A backend image. While it loads it shows a shimmer skeleton; when the URL
+/// is missing or fails it shows a neutral placeholder. It never substitutes
+/// an unrelated product picture for API content.
+///
+/// [designAsset] is only for art the app itself owns (e.g. the bundled
+/// characters an avatar id refers to); API-driven rewards, categories and
+/// giveaways must not pass one.
 class AppImage extends StatelessWidget {
   const AppImage({
     required this.url,
-    this.fallbackAsset,
+    this.designAsset,
     this.fit = BoxFit.cover,
     this.alignment = Alignment.center,
     this.width,
     this.height,
-    this.placeholderColors = const [AppColors.tintStrong, AppColors.tint],
-    this.placeholderIcon = AppIcons.gift,
+    this.radius = 0,
+    this.placeholderIcon = Icons.image_outlined,
+    this.cacheWidth,
     super.key,
   });
 
   final String? url;
-  final String? fallbackAsset;
+  final String? designAsset;
   final BoxFit fit;
   final Alignment alignment;
   final double? width;
   final double? height;
-  final List<Color> placeholderColors;
+
+  /// Corner radius of the loading skeleton (match the clip around the image).
+  final double radius;
   final IconData placeholderIcon;
+
+  /// Decode width in physical pixels for images much larger than shown
+  /// (less memory and decode time; the file on disk stays the original).
+  final int? cacheWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +50,15 @@ class AppImage extends StatelessWidget {
         alignment: alignment,
         width: width,
         height: height,
+        memCacheWidth: cacheWidth,
         fadeInDuration: MediaQuery.disableAnimationsOf(context)
             ? Duration.zero
             : const Duration(milliseconds: 180),
-        placeholder: (_, _) => _fallback(),
+        // A cached image appears at once; no placeholder flashes on refresh.
+        fadeOutDuration: Duration.zero,
+        placeholder: (_, _) => Skeleton(
+          child: SkeletonBox(width: width, height: height, radius: radius),
+        ),
         errorWidget: (_, _, _) => _fallback(),
       );
     }
@@ -50,7 +66,7 @@ class AppImage extends StatelessWidget {
   }
 
   Widget _fallback() {
-    final asset = fallbackAsset;
+    final asset = designAsset;
     if (asset != null) {
       return Image.asset(
         asset,
@@ -58,17 +74,35 @@ class AppImage extends StatelessWidget {
         alignment: alignment,
         width: width,
         height: height,
-        errorBuilder: (_, _, _) => _placeholder(),
+        errorBuilder: (_, _, _) =>
+            ImagePlaceholder(width: width, height: height, icon: placeholderIcon),
       );
     }
-    return _placeholder();
+    return ImagePlaceholder(width: width, height: height, icon: placeholderIcon);
   }
+}
 
-  Widget _placeholder() => Container(
+/// Neutral stand-in for a missing or broken image.
+class ImagePlaceholder extends StatelessWidget {
+  const ImagePlaceholder({this.width, this.height, this.icon = Icons.image_outlined, super.key});
+
+  final double? width;
+  final double? height;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    key: const ValueKey('image-placeholder'),
     width: width,
     height: height,
-    decoration: BoxDecoration(gradient: LinearGradient(colors: placeholderColors)),
+    decoration: const BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [AppColors.tintStrong, AppColors.tint],
+      ),
+    ),
     alignment: Alignment.center,
-    child: Icon(placeholderIcon, color: AppColors.violet.withValues(alpha: .7), size: 34),
+    child: Icon(icon, color: AppColors.violet.withValues(alpha: .45), size: 32),
   );
 }

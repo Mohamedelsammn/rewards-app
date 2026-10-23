@@ -41,6 +41,8 @@ import '../../features/wallet/presentation/pages/refer_page.dart';
 import '../../features/wallet/presentation/pages/transactions_page.dart';
 import '../../features/wallet/presentation/pages/wallet_page.dart';
 import '../shell/main_shell.dart';
+import '../startup/animated_splash.dart';
+import '../startup/startup_ads.dart';
 import '../startup/startup_pages.dart';
 import 'routes.dart';
 
@@ -48,13 +50,18 @@ const _blockingPaths = {Routes.splash, Routes.maintenance, Routes.update, Routes
 
 /// Where the app must be, given config and session state; `null` keeps the
 /// requested [location]. Pure so it can be unit tested.
+///
+/// [splashIntroDone] lets the start-up splash finish its short intro before
+/// leaving it, so a fast start transitions gracefully instead of cutting.
 String? resolveRedirect({
   required String location,
   required AppConfigState config,
   required bool updateRequired,
   required SessionState session,
+  bool splashIntroDone = true,
 }) {
   String? to(String path) => location == path ? null : path;
+  if (location == Routes.splash && !splashIntroDone) return null;
 
   switch (config.status) {
     case AppConfigStatus.loading:
@@ -106,7 +113,11 @@ GoRoute _draftRoute(String path, Widget Function(OnboardingDraft draft) build) =
 );
 
 GoRouter createAppRouter({required SessionCubit session, required AppConfigCubit config}) {
-  final refresh = _StreamsListenable([session.stream, config.stream]);
+  final refresh = Listenable.merge([
+    _StreamsListenable([session.stream, config.stream]),
+    splashIntroDone,
+    startupAdDone,
+  ]);
   return GoRouter(
     initialLocation: Routes.splash,
     refreshListenable: refresh,
@@ -115,6 +126,8 @@ GoRouter createAppRouter({required SessionCubit session, required AppConfigCubit
       config: config.state,
       updateRequired: config.updateRequired,
       session: session.state,
+      // The splash also waits for the cold-start App Open ad, if any.
+      splashIntroDone: splashIntroDone.value && startupAdDone.value,
     ),
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashPage()),

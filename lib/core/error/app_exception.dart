@@ -17,6 +17,10 @@ class AppException implements Exception {
   static const unknown = 'UNKNOWN_ERROR';
   static const badResponse = 'BAD_RESPONSE';
 
+  /// The stored session could not be read (e.g. restored from a backup
+  /// without this device's keys) and was discarded; sign-in is needed.
+  static const storageReset = 'SESSION_STORAGE_RESET';
+
   final String code;
   final String message;
   final int? statusCode;

@@ -26,14 +26,28 @@ class CatalogRepositoryImpl implements CatalogRepository {
   );
 
   @override
-  Future<List<Product>> products(String categoryId, {String? groupId}) async => parseList(
-    (await _api.get(
-      '/categories/$categoryId/products',
-      auth: false,
-      query: {'groupId': groupId},
-    ))['items'],
-    CatalogModels.product,
-  );
+  Future<List<Product>> products(
+    String categoryId, {
+    String? groupId,
+    ProductType? productType,
+  }) async {
+    final items = parseList(
+      (await _api.get(
+        '/categories/$categoryId/products',
+        auth: false,
+        query: {'groupId': groupId, 'productType': productType?.apiValue},
+      ))['items'],
+      CatalogModels.product,
+    );
+    // A server that ignored the filter must not put every product in both
+    // game tabs: keep only the requested type (by the returned field).
+    return productType == null
+        ? items
+        : [
+            for (final p in items)
+              if (p.productType == productType) p,
+          ];
+  }
 
   @override
   Future<Product> product(String id) async => CatalogModels.product(

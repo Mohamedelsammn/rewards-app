@@ -1,3 +1,4 @@
+import '../../../core/error/app_exception.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/utils/cursor_page.dart';
 import '../domain/ad_reward_entities.dart';
@@ -12,6 +13,7 @@ class AdRewardsRepositoryImpl implements AdRewardsRepository {
     final json = await _api.get('/ad-rewards/status', query: {'deviceId': deviceId});
     return AdRewardStatus(
       enabled: json['enabled'] == true,
+      verification: '${json['verification'] ?? ''}',
       pointsPerCompletedAd: parseInt(json['pointsPerCompletedAd']),
       dailyLimit: parseInt(json['dailyLimit']),
       usedToday: parseInt(json['usedToday']),
@@ -22,25 +24,30 @@ class AdRewardsRepositoryImpl implements AdRewardsRepository {
   }
 
   @override
-  Future<({AdSession session, SsvOptions ssv})> createSession({
-    required String deviceId,
-    required String adUnitId,
-  }) async {
-    final json = await _api.post(
-      '/ad-rewards/sessions',
-      body: {'deviceId': deviceId, 'adUnitId': adUnitId},
-    );
-    final ssv = Map<String, dynamic>.from(json['ssv'] as Map);
-    return (
-      session: parseAdSession(Map<String, dynamic>.from(json['session'] as Map)),
-      ssv: SsvOptions(userId: '${ssv['userId']}', customData: '${ssv['customData']}'),
-    );
-  }
+  Future<AdSession> createSession({required String deviceId, required String adUnitId}) async =>
+      _session(
+        await _api.post('/ad-rewards/sessions', body: {'deviceId': deviceId, 'adUnitId': adUnitId}),
+      );
 
   @override
-  Future<AdSession> session(String id) async => parseAdSession(
-    Map<String, dynamic>.from((await _api.get('/ad-rewards/sessions/$id'))['session'] as Map),
-  );
+  Future<AdSession> session(String id) async =>
+      _session(await _api.get('/ad-rewards/sessions/$id'));
+
+  @override
+  Future<AdClaim> claim(String sessionId) async {
+    final json = await _api.post('/ad-rewards/claims', body: {'sessionId': sessionId});
+    final balance = json['balance'];
+    return AdClaim(session: _session(json), balance: balance == null ? null : parseInt(balance));
+  }
+
+  /// `{ session: {...} }` with an id, or a bad-response error.
+  static AdSession _session(Json json) {
+    final session = json['session'];
+    if (session is! Map || '${session['id'] ?? ''}'.isEmpty) {
+      throw const AppException(code: AppException.badResponse, message: 'Missing ad session');
+    }
+    return parseAdSession(Map<String, dynamic>.from(session));
+  }
 }
 
 AdSession parseAdSession(Map<String, dynamic> json) => AdSession(
@@ -54,4 +61,5 @@ AdSession parseAdSession(Map<String, dynamic> json) => AdSession(
   points: parseInt(json['points']),
   rejectReason: json['rejectReason'] as String?,
   expiresAt: parseDate(json['expiresAt']),
+  creditedAt: parseDate(json['creditedAt']),
 );

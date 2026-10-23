@@ -6,6 +6,7 @@ import '../../../../core/error/app_exception.dart';
 import '../../../catalog/domain/entities/catalog_entities.dart';
 import '../../../catalog/domain/repositories/catalog_repository.dart';
 import '../../domain/order_entities.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 enum RedeemStatus { loadingProduct, ready, submitting, priceChanged, success, failure }
 
@@ -52,7 +53,7 @@ class RedeemState extends Equatable {
 /// Redemption of one product: loads its fields, creates the order with an
 /// idempotency key and handles `PRICE_CHANGED`. Never touches balances
 /// locally; the server's `balance` is reported back through [RedeemState.result].
-class RedeemCubit extends Cubit<RedeemState> {
+class RedeemCubit extends Cubit<RedeemState> with SafeEmit<RedeemState> {
   RedeemCubit(this._catalog, this._orders, {required this.productId, Product? preview})
     : super(RedeemState(product: preview));
 
@@ -60,8 +61,15 @@ class RedeemCubit extends Cubit<RedeemState> {
   final OrdersRepository _orders;
   final String productId;
 
-  /// One key per confirmation attempt; reused for retries of that attempt.
-  String? _idempotencyKey;
+  /// Code of the refusal to send a changed order while an earlier attempt's
+  /// outcome is unknown (see [submit]).
+  static const previousAttemptUncertain = 'PREVIOUS_ATTEMPT_UNCERTAIN';
+
+  /// The attempt whose outcome is unknown (network error, timeout, 5xx,
+  /// REQUEST_IN_PROGRESS): its key and exact payload. A retry must send
+  /// both unchanged so the server replays it instead of creating a second
+  /// order; the same key with a different body would be refused (409).
+  _Attempt? _uncertain;
 
   Future<void> loadProduct() async {
     emit(state.copyWith(status: RedeemStatus.loadingProduct));
@@ -81,21 +89,46 @@ class RedeemCubit extends Cubit<RedeemState> {
   Future<void> submit(Map<String, String> fields) async {
     final product = state.product;
     if (product == null || state.status == RedeemStatus.submitting) return;
-    _idempotencyKey ??= const Uuid().v4();
+    final payload = _Attempt(
+      key: const Uuid().v4(),
+      productId: product.id,
+      fields: Map.unmodifiable(fields),
+      price: product.pointsPrice,
+    );
+    final uncertain = _uncertain;
+    final _Attempt attempt;
+    if (uncertain == null) {
+      attempt = payload;
+    } else if (uncertain.samePayload(payload)) {
+      attempt = uncertain; // Identical retry: same key, same body.
+    } else {
+      // Changed after an unknown outcome: the first order may exist. Don't
+      // send it under the old key (409) or silently under a new one (a
+      // possible duplicate); ask the user to check first. Their next confirm
+      // is an explicit new attempt.
+      _uncertain = null;
+      emit(
+        state.copyWith(
+          status: RedeemStatus.failure,
+          error: const AppException(code: previousAttemptUncertain),
+        ),
+      );
+      return;
+    }
     emit(state.copyWith(status: RedeemStatus.submitting));
     try {
       final result = await _orders.create(
-        productId: product.id,
-        fields: fields,
-        expectedPointsPrice: product.pointsPrice,
-        idempotencyKey: _idempotencyKey!,
+        productId: attempt.productId,
+        fields: attempt.fields,
+        expectedPointsPrice: attempt.price,
+        idempotencyKey: attempt.key,
       );
-      _idempotencyKey = null;
+      _uncertain = null;
       emit(state.copyWith(status: RedeemStatus.success, result: result));
     } on AppException catch (error) {
       if (error.code == 'PRICE_CHANGED') {
         // A new price is a new decision: the next confirmation uses a new key.
-        _idempotencyKey = null;
+        _uncertain = null;
         final newPrice = error.details['pointsPrice'];
         emit(
           state.copyWith(
@@ -106,11 +139,17 @@ class RedeemCubit extends Cubit<RedeemState> {
         );
         return;
       }
-      // Keep the key only when the outcome is unknown (network/timeout/5xx),
-      // so a retry replays instead of creating a second order.
-      if (!error.isConnectivity && (error.statusCode ?? 0) < 500) _idempotencyKey = null;
+      // Keep the attempt only when the outcome is unknown, so a retry
+      // replays it instead of creating a second order.
+      final unknown =
+          error.isConnectivity ||
+          (error.statusCode ?? 0) >= 500 ||
+          error.code == 'REQUEST_IN_PROGRESS';
+      _uncertain = unknown ? attempt : null;
       emit(state.copyWith(status: RedeemStatus.failure, error: error));
     } catch (error) {
+      // Unexpected (e.g. an unreadable response): the order may exist.
+      _uncertain = attempt;
       emit(state.copyWith(status: RedeemStatus.failure, error: error));
     }
   }
@@ -134,4 +173,25 @@ class RedeemCubit extends Cubit<RedeemState> {
     featured: product.featured,
     fields: product.fields,
   );
+}
+
+/// One order request: its idempotency key and exact body.
+class _Attempt {
+  const _Attempt({
+    required this.key,
+    required this.productId,
+    required this.fields,
+    required this.price,
+  });
+
+  final String key;
+  final String productId;
+  final Map<String, String> fields;
+  final int price;
+
+  bool samePayload(_Attempt other) =>
+      productId == other.productId &&
+      price == other.price &&
+      fields.length == other.fields.length &&
+      fields.entries.every((e) => other.fields[e.key] == e.value);
 }

@@ -7,52 +7,19 @@ import '../../core/config/environment.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/localization/l10n.dart';
 import '../../core/localization/locale_controller.dart';
-import '../../core/theme/app_assets.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/gradient_button.dart';
 import '../../features/app_config/presentation/app_config_cubit.dart';
 import '../../features/auth/presentation/bloc/session_cubit.dart';
+import 'animated_splash.dart';
 
 /// Branded splash shown while `/app-config` and the session load.
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Container(
-      decoration: const BoxDecoration(gradient: AppGradients.splash),
-      child: SafeArea(
-        child: Column(
-          children: [
-            const Spacer(),
-            Expanded(flex: 5, child: Image.asset(AppAssets.splashHero, fit: BoxFit.contain)),
-            const Text(
-              'Creative',
-              style: TextStyle(fontSize: 42, fontWeight: FontWeight.w800, color: AppColors.ink),
-            ),
-            const Text(
-              'Rewards',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.w800, color: AppColors.violet),
-            ),
-            Text(
-              context.l10n.splashTagline,
-              style: const TextStyle(fontSize: 18, color: AppColors.muted),
-            ),
-            const Spacer(),
-            const SizedBox(
-              width: 180,
-              child: LinearProgressIndicator(
-                minHeight: 6,
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-            ),
-            const SizedBox(height: 55),
-          ],
-        ),
-      ),
-    ),
-  );
+  Widget build(BuildContext context) => const AnimatedSplash();
 }
 
 /// Shared layout of the blocking screens.

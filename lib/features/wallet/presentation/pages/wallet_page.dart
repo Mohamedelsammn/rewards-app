@@ -16,6 +16,7 @@ import '../../../../core/widgets/state_views.dart';
 import '../../../app_config/presentation/app_config_cubit.dart';
 import '../../../notifications/presentation/widgets/unread_notification_button.dart';
 import '../bloc/wallet_cubit.dart';
+import '../widgets/wallet_balance_text.dart';
 
 /// Wallet tab: balance card, "Fast, Earn" and the earn/spend shortcuts.
 class WalletPage extends StatelessWidget {
@@ -39,7 +40,7 @@ class WalletPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           children: [
             PanelTitle(l10n.walletTitle, action: const UnreadNotificationButton()),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const _BalanceCard(),
             const SizedBox(height: 18),
             _FastEarnButton(onTap: () => context.push(Routes.earn)),
@@ -95,8 +96,10 @@ class _BalanceCard extends StatelessWidget {
           '${l10n.walletPoints} ${l10n.walletBalance} ${l10n.pointsAmount(Formatters.points(balance))}',
       excludeSemantics: true,
       child: Container(
-        height: 264,
-        padding: const EdgeInsets.fromLTRB(26, 32, 26, 36),
+        // 264 as in the design; taller only when large text needs it.
+        constraints: const BoxConstraints(minHeight: 264),
+        // Offsets and sizes measured from design_references/wallet-page.png.
+        padding: const EdgeInsets.fromLTRB(26, 49, 26, 36),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
           image: const DecorationImage(
@@ -104,54 +107,59 @@ class _BalanceCard extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.walletPoints,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
+        // Intrinsic height keeps the Spacer (balance at the bottom) inside a
+        // card that may grow.
+        child: IntrinsicHeight(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.walletPoints,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            Text(
-              l10n.walletBalance,
-              style: const TextStyle(
-                color: AppColors.walletSubtitle,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+              const SizedBox(height: 4),
+              Text(
+                l10n.walletBalance,
+                style: const TextStyle(
+                  color: AppColors.walletSubtitle,
+                  fontSize: 19.5,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            const Spacer(),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: AlignmentDirectional.centerStart,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: [
-                  Text(
-                    Formatters.points(balance),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 59,
-                      fontWeight: FontWeight.w800,
+              const Spacer(),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    const WalletBalanceText(
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 80,
+                        height: 1.15,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'PTS',
-                    style: TextStyle(
-                      color: AppColors.walletPtsLabel,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
+                    const SizedBox(width: 12),
+                    const Text(
+                      'PTS',
+                      style: TextStyle(
+                        color: AppColors.walletPtsLabel,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

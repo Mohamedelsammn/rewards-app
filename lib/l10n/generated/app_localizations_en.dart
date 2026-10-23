@@ -42,6 +42,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLoadMore => 'Load more';
 
   @override
+  String get commonLoading => 'Loading';
+
+  @override
+  String get commonGotIt => 'Got it';
+
+  @override
+  String get refreshFailed => 'Couldn\'t refresh. Showing the last loaded content.';
+
+  @override
   String pointsAmount(String points) {
     return '$points PTS';
   }
@@ -106,6 +115,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errRequestInProgress => 'Your request is still being processed. Please wait.';
+
+  @override
+  String get errPreviousAttemptUncertain =>
+      'We couldn\'t confirm your previous request. Check My Orders before sending again.';
 
   @override
   String get errGiveawayNotStarted => 'This giveaway hasn\'t started yet.';
@@ -179,7 +192,20 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get errTooManyPending => 'Earlier ads are still being verified. Try again shortly.';
+  String get errTooManyPending => 'You have unfinished video rewards. Try again in a few minutes.';
+
+  @override
+  String get errAdSessionNotFound => 'This reward wasn\'t found. No points were added.';
+
+  @override
+  String get errAdSessionNotOwned => 'This reward belongs to another account.';
+
+  @override
+  String get errAccountInactive => 'Your account can\'t earn rewards right now.';
+
+  @override
+  String get errAdUnitNotAllowed =>
+      'Rewarded videos aren\'t available right now. No points were added.';
 
   @override
   String get errNumberAllocation => 'We couldn\'t assign your number. Please try again.';
@@ -409,7 +435,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeNoResults => 'No rewards found';
 
   @override
+  String get homeNoResultsBody => 'Try a different name or check the spelling.';
+
+  @override
   String get homeEmpty => 'New rewards are on the way. Check back soon.';
+
+  @override
+  String get homeEmptyTitle => 'Rewards are on the way';
+
+  @override
+  String get homeEmptyBody =>
+      'We\'re preparing new rewards and giveaways for you. Pull down to refresh or check back soon.';
 
   @override
   String get homeClearSearch => 'Clear search';
@@ -458,7 +494,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get categoriesEmpty => 'No categories yet. Check back soon.';
 
   @override
+  String get categoriesEmptyTitle => 'No categories yet';
+
+  @override
+  String get categoriesEmptyBody => 'Reward categories will appear here as soon as they\'re added.';
+
+  @override
   String get categoryProductsEmpty => 'No rewards in this category yet.';
+
+  @override
+  String get productTabTopUps => 'UC Top-Ups';
+
+  @override
+  String get productTabItemsSkins => 'Items & Skins';
+
+  @override
+  String get productTopUpsEmpty => 'No top-ups available yet.';
+
+  @override
+  String get productItemsSkinsEmpty => 'No items or skins available yet.';
 
   @override
   String get productRedeem => 'Redeem';
@@ -476,6 +530,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get redeemConfirm => 'Confirm redemption';
+
+  @override
+  String get redeemReviewTitle => 'Check your details';
+
+  @override
+  String redeemReviewBody(String product, String points) {
+    return '$product for $points will be sent to:';
+  }
+
+  @override
+  String get redeemReviewEdit => 'Edit';
+
+  @override
+  String get redeemAccountDetailsMissing =>
+      'This reward can\'t be redeemed yet: its account details aren\'t set up. Please try again later.';
 
   @override
   String get redeemFieldRequired => 'This field is required';
@@ -522,9 +591,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get redeemInsufficientTitle => 'Not enough points';
 
   @override
+  String get redeemInsufficientTitleCaps => 'Not Enough Points';
+
+  @override
   String redeemInsufficientBody(String balance, String required) {
     return 'You have $balance PTS. This reward needs $required PTS.';
   }
+
+  @override
+  String get redeemInsufficientMessage => 'You need more points to redeem this reward.';
+
+  @override
+  String get redeemYourBalance => 'Your balance';
+
+  @override
+  String get redeemRequired => 'Required';
+
+  @override
+  String get redeemMissing => 'Missing';
+
+  @override
+  String get redeemEarnPoints => 'Earn points';
 
   @override
   String get redeemPriceChangedTitle => 'Price changed';
@@ -621,7 +708,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String earnBody(int points) {
-    return 'Watch a short video to earn $points points. Points are added after Google confirms the view.';
+    return 'Watch a short video to earn $points points. Points are added once the reward is confirmed.';
   }
 
   @override
@@ -647,7 +734,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get earnExpired => 'The reward session expired. Please try again.';
 
   @override
-  String get earnPendingLong => 'Your points will appear shortly. Check your wallet in a moment.';
+  String get earnPendingLong => 'We couldn\'t confirm your reward yet. Tap Check again.';
+
+  @override
+  String get earnCheckAgain => 'Check again';
 
   @override
   String get earnDismissedEarly => 'Watch the full video to earn points.';
@@ -672,6 +762,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get earnUnsupported => 'Rewarded videos are available on Android.';
+
+  @override
+  String get joinAdTitle => 'Watch an Ad to Join';
+
+  @override
+  String get joinAdBody => 'Watch a short advertisement to continue joining this giveaway.';
+
+  @override
+  String get joinAdWatch => 'Watch Ad';
+
+  @override
+  String get joinAdSkipped => 'Watch the full video to join.';
+
+  @override
+  String get joinAdFailed => 'The video couldn\'t be shown. Please try again.';
 
   @override
   String get referTitle => 'Refer a Friend';
@@ -956,6 +1061,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderTimeline => 'Status history';
 
   @override
+  String get orderIdLabel => 'Order ID';
+
+  @override
+  String get orderCost => 'Cost';
+
+  @override
+  String get orderStatusTitle => 'Status';
+
+  @override
+  String get orderAccountDetails => 'Account details';
+
+  @override
+  String get orderStatusHistory => 'Status history';
+
+  @override
+  String get orderRedeemAgain => 'Redeem again';
+
+  @override
+  String get orderOpenLink => 'Open link';
+
+  @override
+  String get orderStepPending => 'Your order has been placed.';
+
+  @override
+  String get orderStepProcessing => 'We\'re processing your order.';
+
+  @override
+  String get orderStepShipped => 'Your order is on the way.';
+
+  @override
+  String get orderStepDelivered => 'Your order has been delivered.';
+
+  @override
+  String get orderStepCompleted => 'Your order has been completed successfully.';
+
+  @override
+  String get orderStepRejected => 'Your order was rejected.';
+
+  @override
+  String get orderStepCancelled => 'Your order was cancelled.';
+
+  @override
+  String get orderStepFailed => 'Your order couldn\'t be completed.';
+
+  @override
   String orderRefunded(String points) {
     return '$points PTS were refunded to your wallet.';
   }
@@ -1016,6 +1166,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get giveawayDetailsTitle => 'Giveaway Details';
 
   @override
+  String get giveawayBadge => 'Giveaway';
+
+  @override
+  String get giveawayBadgeActive => 'Active';
+
+  @override
+  String get giveawayBadgeComingSoon => 'Coming Soon';
+
+  @override
+  String get giveawayBadgeEnded => 'Ended';
+
+  @override
+  String get giveawayBadgeFull => 'Full';
+
+  @override
+  String get giveawayAboutTitle => 'About This Giveaway';
+
+  @override
   String giveawayOrganizer(String name) {
     return 'By $name';
   }
@@ -1064,6 +1232,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get giveawayClosed => 'This giveaway has ended';
+
+  @override
+  String get giveawayFull => 'This giveaway is full';
 
   @override
   String get giveawayDisqualified => 'Your entry was disqualified';

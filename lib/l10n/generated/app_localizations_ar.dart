@@ -42,6 +42,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get commonLoadMore => 'تحميل المزيد';
 
   @override
+  String get commonLoading => 'جارٍ التحميل';
+
+  @override
+  String get commonGotIt => 'حسنًا';
+
+  @override
+  String get refreshFailed => 'تعذّر التحديث. يتم عرض آخر محتوى تم تحميله.';
+
+  @override
   String pointsAmount(String points) {
     return '$points PTS';
   }
@@ -106,6 +115,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errRequestInProgress => 'طلبك قيد المعالجة. يرجى الانتظار.';
+
+  @override
+  String get errPreviousAttemptUncertain =>
+      'تعذّر تأكيد طلبك السابق. تحقّق من «طلباتي» قبل الإرسال مرة أخرى.';
 
   @override
   String get errGiveawayNotStarted => 'لم يبدأ هذا السحب بعد.';
@@ -178,7 +191,19 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get errTooManyPending => 'لا يزال التحقق من إعلانات سابقة جاريًا. حاول بعد قليل.';
+  String get errTooManyPending => 'لديك مكافآت فيديو غير مكتملة. حاول بعد بضع دقائق.';
+
+  @override
+  String get errAdSessionNotFound => 'لم يتم العثور على هذه المكافأة. لم تُضف أي نقاط.';
+
+  @override
+  String get errAdSessionNotOwned => 'هذه المكافأة تخص حسابًا آخر.';
+
+  @override
+  String get errAccountInactive => 'لا يمكن لحسابك كسب المكافآت حاليًا.';
+
+  @override
+  String get errAdUnitNotAllowed => 'الفيديو بمكافأة غير متاح حاليًا. لم تُضف أي نقاط.';
 
   @override
   String get errNumberAllocation => 'تعذر تخصيص رقمك. حاول مرة أخرى.';
@@ -407,7 +432,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeNoResults => 'لم يتم العثور على مكافآت';
 
   @override
+  String get homeNoResultsBody => 'جرّب اسمًا آخر أو تحقّق من الكتابة.';
+
+  @override
   String get homeEmpty => 'مكافآت جديدة في الطريق. عد قريبًا.';
+
+  @override
+  String get homeEmptyTitle => 'المكافآت في الطريق';
+
+  @override
+  String get homeEmptyBody => 'نجهّز لك مكافآت وسحوبات جديدة. اسحب للتحديث أو عد قريبًا.';
 
   @override
   String get homeClearSearch => 'مسح البحث';
@@ -459,7 +493,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get categoriesEmpty => 'لا توجد فئات بعد. عد قريبًا.';
 
   @override
+  String get categoriesEmptyTitle => 'لا توجد فئات بعد';
+
+  @override
+  String get categoriesEmptyBody => 'ستظهر فئات المكافآت هنا فور إضافتها.';
+
+  @override
   String get categoryProductsEmpty => 'لا توجد مكافآت في هذه الفئة بعد.';
+
+  @override
+  String get productTabTopUps => 'شحن الشدات';
+
+  @override
+  String get productTabItemsSkins => 'العناصر والسكنات';
+
+  @override
+  String get productTopUpsEmpty => 'لا توجد عمليات شحن متاحة بعد.';
+
+  @override
+  String get productItemsSkinsEmpty => 'لا توجد عناصر أو سكنات متاحة بعد.';
 
   @override
   String get productRedeem => 'استبدل';
@@ -477,6 +529,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get redeemConfirm => 'تأكيد الاستبدال';
+
+  @override
+  String get redeemReviewTitle => 'تحقّق من بياناتك';
+
+  @override
+  String redeemReviewBody(String product, String points) {
+    return 'سيتم إرسال $product مقابل $points إلى:';
+  }
+
+  @override
+  String get redeemReviewEdit => 'تعديل';
+
+  @override
+  String get redeemAccountDetailsMissing =>
+      'لا يمكن استبدال هذه المكافأة حاليًا: بيانات الحساب المطلوبة غير مُعدّة بعد. حاول لاحقًا.';
 
   @override
   String get redeemFieldRequired => 'هذا الحقل مطلوب';
@@ -522,9 +589,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get redeemInsufficientTitle => 'النقاط غير كافية';
 
   @override
+  String get redeemInsufficientTitleCaps => 'النقاط غير كافية';
+
+  @override
   String redeemInsufficientBody(String balance, String required) {
     return 'لديك $balance PTS. تحتاج هذه المكافأة إلى $required PTS.';
   }
+
+  @override
+  String get redeemInsufficientMessage => 'تحتاج إلى نقاط أكثر لاستبدال هذه المكافأة.';
+
+  @override
+  String get redeemYourBalance => 'رصيدك';
+
+  @override
+  String get redeemRequired => 'المطلوب';
+
+  @override
+  String get redeemMissing => 'المتبقي';
+
+  @override
+  String get redeemEarnPoints => 'اكسب نقاطًا';
 
   @override
   String get redeemPriceChangedTitle => 'تغيّر السعر';
@@ -621,7 +706,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String earnBody(int points) {
-    return 'شاهد فيديو قصيرًا لتكسب $points نقطة. تُضاف النقاط بعد أن تؤكد Google المشاهدة.';
+    return 'شاهد فيديو قصيرًا لتكسب $points نقطة. تُضاف النقاط بعد تأكيد المكافأة.';
   }
 
   @override
@@ -647,7 +732,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get earnExpired => 'انتهت جلسة المكافأة. حاول مرة أخرى.';
 
   @override
-  String get earnPendingLong => 'ستظهر نقاطك قريبًا. تحقق من محفظتك بعد لحظات.';
+  String get earnPendingLong => 'تعذّر تأكيد مكافأتك بعد. اضغط تحقق مرة أخرى.';
+
+  @override
+  String get earnCheckAgain => 'تحقق مرة أخرى';
 
   @override
   String get earnDismissedEarly => 'شاهد الفيديو كاملًا لتكسب النقاط.';
@@ -672,6 +760,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get earnUnsupported => 'الفيديو بمكافأة متاح على أندرويد.';
+
+  @override
+  String get joinAdTitle => 'شاهد إعلانًا للمشاركة';
+
+  @override
+  String get joinAdBody => 'يجب مشاهدة إعلان قصير قبل إكمال المشاركة في هذا السحب.';
+
+  @override
+  String get joinAdWatch => 'مشاهدة الإعلان';
+
+  @override
+  String get joinAdSkipped => 'شاهد الفيديو كاملًا للمشاركة.';
+
+  @override
+  String get joinAdFailed => 'تعذّر عرض الفيديو. حاول مرة أخرى.';
 
   @override
   String get referTitle => 'ادع صديقًا';
@@ -955,6 +1058,51 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderTimeline => 'سجل الحالة';
 
   @override
+  String get orderIdLabel => 'رقم الطلب';
+
+  @override
+  String get orderCost => 'التكلفة';
+
+  @override
+  String get orderStatusTitle => 'الحالة';
+
+  @override
+  String get orderAccountDetails => 'بيانات الحساب';
+
+  @override
+  String get orderStatusHistory => 'سجل الحالة';
+
+  @override
+  String get orderRedeemAgain => 'استبدال مرة أخرى';
+
+  @override
+  String get orderOpenLink => 'فتح الرابط';
+
+  @override
+  String get orderStepPending => 'تم تقديم طلبك.';
+
+  @override
+  String get orderStepProcessing => 'نعمل على تجهيز طلبك.';
+
+  @override
+  String get orderStepShipped => 'طلبك في الطريق.';
+
+  @override
+  String get orderStepDelivered => 'تم تسليم طلبك.';
+
+  @override
+  String get orderStepCompleted => 'اكتمل طلبك بنجاح.';
+
+  @override
+  String get orderStepRejected => 'تم رفض طلبك.';
+
+  @override
+  String get orderStepCancelled => 'تم إلغاء طلبك.';
+
+  @override
+  String get orderStepFailed => 'تعذّر إتمام طلبك.';
+
+  @override
   String orderRefunded(String points) {
     return 'تمت إعادة $points PTS إلى محفظتك.';
   }
@@ -1015,6 +1163,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get giveawayDetailsTitle => 'تفاصيل السحب';
 
   @override
+  String get giveawayBadge => 'سحب';
+
+  @override
+  String get giveawayBadgeActive => 'نشط';
+
+  @override
+  String get giveawayBadgeComingSoon => 'قريبًا';
+
+  @override
+  String get giveawayBadgeEnded => 'انتهى';
+
+  @override
+  String get giveawayBadgeFull => 'مكتمل';
+
+  @override
+  String get giveawayAboutTitle => 'عن هذا السحب';
+
+  @override
   String giveawayOrganizer(String name) {
     return 'بواسطة $name';
   }
@@ -1063,6 +1229,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get giveawayClosed => 'انتهى هذا السحب';
+
+  @override
+  String get giveawayFull => 'اكتمل عدد المشاركين';
 
   @override
   String get giveawayDisqualified => 'تم استبعاد مشاركتك';

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/di/injection_container.dart';
 import '../../../../core/localization/l10n.dart';
-import '../../../../core/theme/app_assets.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_image.dart';
 import '../../../../core/widgets/selectors.dart';
@@ -13,6 +12,7 @@ import '../../domain/entities/catalog_entities.dart';
 import '../bloc/catalog_cubits.dart';
 import '../widgets/category_visuals.dart';
 import '../widgets/product_card.dart';
+import '../widgets/product_grid_skeleton.dart';
 
 class CategoryDetailsPage extends StatelessWidget {
   const CategoryDetailsPage({required this.categoryId, this.preview, super.key});
@@ -22,7 +22,9 @@ class CategoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (_) => CategoryDetailsCubit(sl(), categoryId: categoryId, preview: preview)..load(),
+    create: (_) =>
+        CategoryDetailsCubit(sl(), categoryId: categoryId, preview: preview, snapshots: sl())
+          ..open(),
     child: const _CategoryDetailsView(),
   );
 }
@@ -41,6 +43,11 @@ class _CategoryDetailsView extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(child: _Hero(category: category)),
+              if (state.status == LoadStatus.ready && state.error != null)
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                  sliver: SliverToBoxAdapter(child: RefreshErrorBanner(onRetry: cubit.load)),
+                ),
               if (category != null && category.groups.length > 1)
                 SliverToBoxAdapter(
                   child: Padding(
@@ -55,6 +62,21 @@ class _CategoryDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
+              if (category != null && category.isGame)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+                    child: SegmentedTabs<ProductType>(
+                      key: const ValueKey('product-type-tabs'),
+                      options: [
+                        SelectorOption(ProductType.topUp, context.l10n.productTabTopUps),
+                        SelectorOption(ProductType.itemSkin, context.l10n.productTabItemsSkins),
+                      ],
+                      selected: state.productType ?? ProductType.topUp,
+                      onChanged: cubit.selectProductType,
+                    ),
+                  ),
+                ),
               ..._body(context, state),
             ],
           ),
@@ -66,7 +88,7 @@ class _CategoryDetailsView extends StatelessWidget {
   List<Widget> _body(BuildContext context, CategoryDetailsState state) {
     final cubit = context.read<CategoryDetailsCubit>();
     if (state.status == LoadStatus.loading || state.productsLoading) {
-      return const [SliverToBoxAdapter(child: LoadingView())];
+      return const [SliverToBoxAdapter(child: ProductGridSkeleton())];
     }
     if (state.status == LoadStatus.failed) {
       return [
@@ -78,11 +100,19 @@ class _CategoryDetailsView extends StatelessWidget {
         ),
       ];
     }
-    if (state.products.isEmpty) {
+    final products = state.visibleProducts;
+    if (products.isEmpty) {
+      final l10n = context.l10n;
       return [
         SliverPadding(
           padding: const EdgeInsets.all(16),
-          sliver: SliverToBoxAdapter(child: EmptyCard(context.l10n.categoryProductsEmpty)),
+          sliver: SliverToBoxAdapter(
+            child: EmptyCard(switch (state.productType) {
+              ProductType.topUp => l10n.productTopUpsEmpty,
+              ProductType.itemSkin => l10n.productItemsSkinsEmpty,
+              null => l10n.categoryProductsEmpty,
+            }),
+          ),
         ),
       ];
     }
@@ -90,7 +120,7 @@ class _CategoryDetailsView extends StatelessWidget {
       SliverPadding(
         padding: const EdgeInsets.all(16),
         sliver: SliverGrid.builder(
-          itemCount: state.products.length,
+          itemCount: products.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 12,
@@ -98,11 +128,11 @@ class _CategoryDetailsView extends StatelessWidget {
             childAspectRatio: .68,
           ),
           itemBuilder: (_, index) => ProductCard(
-            product: state.products[index],
+            product: products[index],
             category: state.category,
             onRedeem: () => startRedemption(
               context,
-              product: state.products[index],
+              product: products[index],
               category: state.category,
               onFinished: cubit.load,
             ),
@@ -120,7 +150,6 @@ class _Hero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final key = category == null ? null : artworkKeyFor(category!);
     return Stack(
       children: [
         SizedBox(
@@ -129,11 +158,26 @@ class _Hero extends StatelessWidget {
           child: DecoratedBox(
             position: DecorationPosition.foreground,
             decoration: const BoxDecoration(gradient: AppGradients.categoryDetailScrim),
-            child: AppImage(
-              url: category?.imageUrl,
-              fallbackAsset: key == null ? null : CategoryArtwork.detail(key),
-              placeholderColors: CategoryArtwork.gradient(key),
-            ),
+            // The category's banner only: never the home image or a bundled
+            // stand-in. Without one, the brand gradient fills the hero.
+            child: category?.bannerImageUrl == null
+                ? DecoratedBox(
+                    key: const ValueKey('category-banner-placeholder'),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: AlignmentDirectional.topStart,
+                        end: AlignmentDirectional.bottomEnd,
+                        colors: categoryGradient(category),
+                      ),
+                    ),
+                  )
+                // Decoded at screen width: banners are uploaded much wider.
+                : AppImage(
+                    url: category!.bannerImageUrl,
+                    cacheWidth:
+                        (MediaQuery.sizeOf(context).width * MediaQuery.devicePixelRatioOf(context))
+                            .round(),
+                  ),
           ),
         ),
         SafeArea(

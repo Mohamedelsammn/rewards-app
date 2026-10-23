@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/home_feed.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 enum HomeStatus { loading, ready, failed }
 
@@ -54,7 +55,7 @@ class HomeState extends Equatable {
 }
 
 /// `GET /home` plus debounced `GET /search`.
-class HomeCubit extends Cubit<HomeState> {
+class HomeCubit extends Cubit<HomeState> with SafeEmit<HomeState> {
   HomeCubit(this._repository, {this.debounce = const Duration(milliseconds: 350)})
     : super(const HomeState());
 
@@ -63,12 +64,17 @@ class HomeCubit extends Cubit<HomeState> {
   Timer? _debounceTimer;
   int _searchToken = 0;
 
+  /// The skeleton shows only until the first response; a refresh keeps what
+  /// is on screen (including an empty feed). A failed refresh keeps the
+  /// loaded content and sets [HomeState.error] for a non-destructive notice.
   Future<void> load() async {
-    if (state.feed.isEmpty) emit(state.copyWith(status: HomeStatus.loading));
+    final loaded = state.status == HomeStatus.ready;
+    if (!loaded) emit(state.copyWith(status: HomeStatus.loading));
     try {
       emit(state.copyWith(status: HomeStatus.ready, feed: await _repository.home()));
     } catch (error) {
-      emit(state.copyWith(status: HomeStatus.failed, error: error));
+      // A failed refresh keeps the feed and only reports the error.
+      emit(state.copyWith(status: loaded ? HomeStatus.ready : HomeStatus.failed, error: error));
     }
   }
 

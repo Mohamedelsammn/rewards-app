@@ -20,7 +20,13 @@ class AuthRepositoryImpl implements AuthRepository {
   };
 
   @override
-  Future<bool> hasStoredSession() => _tokens.hasSession;
+  Future<bool> hasStoredSession() async {
+    final has = await _tokens.hasSession;
+    if (!has && _tokens.takeReadFailure()) {
+      throw const AppException(code: AppException.storageReset);
+    }
+    return has;
+  }
 
   @override
   Future<AppUser> restoreSession() async {

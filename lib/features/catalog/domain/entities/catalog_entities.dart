@@ -27,7 +27,8 @@ class RewardCategory extends Equatable {
     required this.kind,
     required this.name,
     this.description = const LocalizedText(),
-    this.imageUrl,
+    this.homeImageUrl,
+    this.bannerImageUrl,
     this.sortOrder = 0,
     this.groups = const [],
   });
@@ -36,15 +37,51 @@ class RewardCategory extends Equatable {
   final CategoryKind kind;
   final LocalizedText name;
   final LocalizedText description;
-  final String? imageUrl;
+
+  /// Home rail tiles and category cards.
+  final String? homeImageUrl;
+
+  /// Wide hero of the details page. Never filled from [homeImageUrl]: when
+  /// `null` the hero shows a branded placeholder.
+  final String? bannerImageUrl;
   final int sortOrder;
+
+  bool get isGame => kind == CategoryKind.game;
 
   /// Only filled by `GET /categories/:id`.
   final List<ProductGroup> groups;
 
   @override
-  List<Object?> get props => [id, kind, name, description, imageUrl, sortOrder, groups];
+  List<Object?> get props => [
+    id,
+    kind,
+    name,
+    description,
+    homeImageUrl,
+    bannerImageUrl,
+    sortOrder,
+    groups,
+  ];
 }
+
+/// Product tab of a game: `TOP_UP` (UC, diamonds, credits) or `ITEM_SKIN`
+/// (skins, outfits, bundles). Legacy products have no type and appear in
+/// neither game tab.
+enum ProductType {
+  topUp('TOP_UP'),
+  itemSkin('ITEM_SKIN');
+
+  const ProductType(this.apiValue);
+
+  /// Value of the `productType` field and query parameter.
+  final String apiValue;
+}
+
+ProductType? productTypeFrom(String? value) => switch (value) {
+  'TOP_UP' => ProductType.topUp,
+  'ITEM_SKIN' => ProductType.itemSkin,
+  _ => null,
+};
 
 enum FieldType { text, number, url, phone, email, select }
 
@@ -87,6 +124,7 @@ class Product extends Equatable {
     required this.name,
     required this.pointsPrice,
     this.groupId,
+    this.productType,
     this.description = const LocalizedText(),
     this.deliveryNote = const LocalizedText(),
     this.imageUrl,
@@ -100,6 +138,7 @@ class Product extends Equatable {
   final String id;
   final String categoryId;
   final String? groupId;
+  final ProductType? productType;
   final LocalizedText name;
   final LocalizedText description;
   final LocalizedText deliveryNote;
@@ -116,5 +155,14 @@ class Product extends Equatable {
   final List<ProductField> fields;
 
   @override
-  List<Object?> get props => [id, pointsPrice, priceVersion, inStock, stock, fields, name];
+  List<Object?> get props => [
+    id,
+    productType,
+    pointsPrice,
+    priceVersion,
+    inStock,
+    stock,
+    fields,
+    name,
+  ];
 }

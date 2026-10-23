@@ -54,6 +54,12 @@ class AppColors {
   static const badgeProfile = Color(0xfff23b3b);
   static const star = Color(0xffffce4d);
 
+  // Giveaway status badges (text on the card's white pill, AA contrast).
+  static const giveawayBadgeActive = Color(0xff0a8445);
+  static const giveawayBadgeSoon = violet;
+  static const giveawayBadgeEnded = Color(0xff676d86);
+  static const giveawayBadgeFull = Color(0xffa95f00);
+
   /// Profile header: status-bar fill matching the art's top edge, a light
   /// wash that softens the art, and the glass character frame.
   static const profileHeaderTop = Color(0xffb5adfb);
@@ -67,6 +73,27 @@ class AppColors {
   static const profileFrameHaze = Color(0xf2f6f4ff);
   static const profileFrameHazeClear = Color(0x00f6f4ff);
   static const profileEmail = Color(0xff8a8fb4);
+
+  /// Giveaway Details (design_references "Giveaway Details"): content
+  /// panel, About and Rules cards, body text.
+  static const giveawayPanelOuter = Color(0xfff4f1fd);
+  static const giveawayAboutCard = Color(0xfff5f2ff);
+  static const giveawayAboutIcon = Color(0xffebe3ff);
+  static const giveawayRulesCard = Color(0xffeff2ff);
+  static const giveawayRulesIcon = Color(0xffdfe7ff);
+  static const giveawayRulesNumber = Color(0xffe1e8ff);
+  static const giveawayRulesAccent = Color(0xff3b72ee);
+  static const giveawayBody = Color(0xff4b4f73);
+
+  /// Dim layer behind app dialogs (deep indigo, not black).
+  static const dialogBarrier = Color(0x8c0c123e);
+
+  /// Insufficient-points dialog: soft halo behind the wallet tile and the
+  /// tinted rows of the balance summary.
+  static const shortfallHalo = Color(0xffefe9ff);
+  static const shortfallRow = Color(0xfff3f0ff);
+  static const shortfallMissing = Color(0xffffeef5);
+  static const shortfallMissingText = Color(0xffd6336c);
 
   /// Skeleton placeholders and their shimmer highlight.
   /// Home search field: soft lavender glow and placeholder text.
@@ -91,6 +118,30 @@ class AppColors {
 
 class AppGradients {
   const AppGradients._();
+
+  /// Bottom scrim of a full-image giveaway card (keeps white text readable).
+  static const giveawayCardScrim = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0x00120a3a), Color(0x00120a3a), Color(0xb3120a3a)],
+    stops: [0, .45, 1],
+  );
+
+  /// Pastel backdrop of the Giveaway Details hero (shown while the image
+  /// loads or behind transparent images).
+  static const giveawayHero = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xfff3dcff), Color(0xffdfe1ff), Color(0xffc9d8ff)],
+  );
+
+  /// Join Giveaway call to action (purple to pink, as in the reference).
+  static const giveawayCta = LinearGradient(
+    colors: [Color(0xff3d2bff), Color(0xff8b3cf2), Color(0xffef5fcf)],
+  );
+  static const giveawayCtaShadow = [
+    BoxShadow(color: Color(0x40a04af0), blurRadius: 24, offset: Offset(0, 10)),
+  ];
 
   /// Icon tile of [AppEmptyState].
   static const emptyIcon = LinearGradient(

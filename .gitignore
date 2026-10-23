@@ -48,3 +48,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Built release artifacts (APK/AAB are distributed separately, never committed)
+/release/**/*.apk
+/release/**/*.aab

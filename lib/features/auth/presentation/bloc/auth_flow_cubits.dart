@@ -5,10 +5,12 @@ import '../../../../core/utils/submit_state.dart';
 import '../../domain/entities/app_user.dart';
 import '../../domain/entities/auth_entities.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 /// Email step: `POST /auth/otp/send`. The response is identical whether or
 /// not the email is registered.
-class SendCodeCubit extends Cubit<SubmitState<OtpSendResult>> {
+class SendCodeCubit extends Cubit<SubmitState<OtpSendResult>>
+    with SafeEmit<SubmitState<OtpSendResult>> {
   SendCodeCubit(this._auth) : super(const SubmitState());
 
   final AuthRepository _auth;
@@ -29,7 +31,7 @@ class SendCodeCubit extends Cubit<SubmitState<OtpSendResult>> {
   }
 }
 
-class LoginCubit extends Cubit<SubmitState<AppUser>> {
+class LoginCubit extends Cubit<SubmitState<AppUser>> with SafeEmit<SubmitState<AppUser>> {
   LoginCubit(this._auth) : super(const SubmitState());
 
   final AuthRepository _auth;
@@ -47,7 +49,7 @@ class LoginCubit extends Cubit<SubmitState<AppUser>> {
 }
 
 /// Character step: `POST /auth/register` with the email proof.
-class RegisterCubit extends Cubit<SubmitState<AppUser>> {
+class RegisterCubit extends Cubit<SubmitState<AppUser>> with SafeEmit<SubmitState<AppUser>> {
   RegisterCubit(this._auth) : super(const SubmitState());
 
   final AuthRepository _auth;
@@ -77,7 +79,7 @@ class RegisterCubit extends Cubit<SubmitState<AppUser>> {
 }
 
 /// Forgot-password final step: `POST /auth/password/reset`.
-class ResetPasswordCubit extends Cubit<SubmitState<void>> {
+class ResetPasswordCubit extends Cubit<SubmitState<void>> with SafeEmit<SubmitState<void>> {
   ResetPasswordCubit(this._auth) : super(const SubmitState());
 
   final AuthRepository _auth;

@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../error/app_exception.dart';
 import 'cursor_page.dart';
 import 'paged_list_state.dart';
+import 'safe_emit.dart';
 
 /// Base cubit for cursor-paginated lists with a filter. Subclasses only
 /// provide [fetch]. Requests for a stale filter are discarded.
-abstract class PagedCubit<T, F> extends Cubit<PagedListState<T, F>> {
+abstract class PagedCubit<T, F> extends Cubit<PagedListState<T, F>>
+    with SafeEmit<PagedListState<T, F>> {
   PagedCubit(F initialFilter) : super(PagedListState<T, F>(filter: initialFilter));
 
   Future<CursorPage<T>> fetch(F filter, String? cursor);

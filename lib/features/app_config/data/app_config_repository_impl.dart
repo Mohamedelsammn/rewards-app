@@ -9,7 +9,9 @@ class AppConfigRepositoryImpl implements AppConfigRepository {
   final ApiClient _api;
 
   @override
-  Future<AppConfig> fetch() async => parseAppConfig(await _api.get('/app-config', auth: false));
+  /// Runs while the splash waits (and on resume): startup budget.
+  Future<AppConfig> fetch() async =>
+      parseAppConfig(await _api.get('/app-config', auth: false, budget: RequestBudget.startup));
 }
 
 AppConfig parseAppConfig(Map<String, dynamic> json) {

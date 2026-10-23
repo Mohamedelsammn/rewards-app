@@ -159,6 +159,24 @@ abstract class AppLocalizations {
   /// **'Load more'**
   String get commonLoadMore;
 
+  /// No description provided for @commonLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get commonLoading;
+
+  /// No description provided for @commonGotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get commonGotIt;
+
+  /// No description provided for @refreshFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t refresh. Showing the last loaded content.'**
+  String get refreshFailed;
+
   /// No description provided for @pointsAmount.
   ///
   /// In en, this message translates to:
@@ -278,6 +296,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your request is still being processed. Please wait.'**
   String get errRequestInProgress;
+
+  /// No description provided for @errPreviousAttemptUncertain.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t confirm your previous request. Check My Orders before sending again.'**
+  String get errPreviousAttemptUncertain;
 
   /// No description provided for @errGiveawayNotStarted.
   ///
@@ -414,8 +438,32 @@ abstract class AppLocalizations {
   /// No description provided for @errTooManyPending.
   ///
   /// In en, this message translates to:
-  /// **'Earlier ads are still being verified. Try again shortly.'**
+  /// **'You have unfinished video rewards. Try again in a few minutes.'**
   String get errTooManyPending;
+
+  /// No description provided for @errAdSessionNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward wasn\'t found. No points were added.'**
+  String get errAdSessionNotFound;
+
+  /// No description provided for @errAdSessionNotOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward belongs to another account.'**
+  String get errAdSessionNotOwned;
+
+  /// No description provided for @errAccountInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account can\'t earn rewards right now.'**
+  String get errAccountInactive;
+
+  /// No description provided for @errAdUnitNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewarded videos aren\'t available right now. No points were added.'**
+  String get errAdUnitNotAllowed;
 
   /// No description provided for @errNumberAllocation.
   ///
@@ -855,11 +903,29 @@ abstract class AppLocalizations {
   /// **'No rewards found'**
   String get homeNoResults;
 
+  /// No description provided for @homeNoResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different name or check the spelling.'**
+  String get homeNoResultsBody;
+
   /// No description provided for @homeEmpty.
   ///
   /// In en, this message translates to:
   /// **'New rewards are on the way. Check back soon.'**
   String get homeEmpty;
+
+  /// No description provided for @homeEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards are on the way'**
+  String get homeEmptyTitle;
+
+  /// No description provided for @homeEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re preparing new rewards and giveaways for you. Pull down to refresh or check back soon.'**
+  String get homeEmptyBody;
 
   /// No description provided for @homeClearSearch.
   ///
@@ -927,11 +993,47 @@ abstract class AppLocalizations {
   /// **'No categories yet. Check back soon.'**
   String get categoriesEmpty;
 
+  /// No description provided for @categoriesEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories yet'**
+  String get categoriesEmptyTitle;
+
+  /// No description provided for @categoriesEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward categories will appear here as soon as they\'re added.'**
+  String get categoriesEmptyBody;
+
   /// No description provided for @categoryProductsEmpty.
   ///
   /// In en, this message translates to:
   /// **'No rewards in this category yet.'**
   String get categoryProductsEmpty;
+
+  /// No description provided for @productTabTopUps.
+  ///
+  /// In en, this message translates to:
+  /// **'UC Top-Ups'**
+  String get productTabTopUps;
+
+  /// No description provided for @productTabItemsSkins.
+  ///
+  /// In en, this message translates to:
+  /// **'Items & Skins'**
+  String get productTabItemsSkins;
+
+  /// No description provided for @productTopUpsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No top-ups available yet.'**
+  String get productTopUpsEmpty;
+
+  /// No description provided for @productItemsSkinsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No items or skins available yet.'**
+  String get productItemsSkinsEmpty;
 
   /// No description provided for @productRedeem.
   ///
@@ -962,6 +1064,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm redemption'**
   String get redeemConfirm;
+
+  /// No description provided for @redeemReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your details'**
+  String get redeemReviewTitle;
+
+  /// No description provided for @redeemReviewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{product} for {points} will be sent to:'**
+  String redeemReviewBody(String product, String points);
+
+  /// No description provided for @redeemReviewEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get redeemReviewEdit;
+
+  /// No description provided for @redeemAccountDetailsMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This reward can\'t be redeemed yet: its account details aren\'t set up. Please try again later.'**
+  String get redeemAccountDetailsMissing;
 
   /// No description provided for @redeemFieldRequired.
   ///
@@ -1041,11 +1167,47 @@ abstract class AppLocalizations {
   /// **'Not enough points'**
   String get redeemInsufficientTitle;
 
+  /// No description provided for @redeemInsufficientTitleCaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Enough Points'**
+  String get redeemInsufficientTitleCaps;
+
   /// No description provided for @redeemInsufficientBody.
   ///
   /// In en, this message translates to:
   /// **'You have {balance} PTS. This reward needs {required} PTS.'**
   String redeemInsufficientBody(String balance, String required);
+
+  /// No description provided for @redeemInsufficientMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You need more points to redeem this reward.'**
+  String get redeemInsufficientMessage;
+
+  /// No description provided for @redeemYourBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Your balance'**
+  String get redeemYourBalance;
+
+  /// No description provided for @redeemRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get redeemRequired;
+
+  /// No description provided for @redeemMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing'**
+  String get redeemMissing;
+
+  /// No description provided for @redeemEarnPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn points'**
+  String get redeemEarnPoints;
 
   /// No description provided for @redeemPriceChangedTitle.
   ///
@@ -1224,7 +1386,7 @@ abstract class AppLocalizations {
   /// No description provided for @earnBody.
   ///
   /// In en, this message translates to:
-  /// **'Watch a short video to earn {points} points. Points are added after Google confirms the view.'**
+  /// **'Watch a short video to earn {points} points. Points are added once the reward is confirmed.'**
   String earnBody(int points);
 
   /// No description provided for @earnRemaining.
@@ -1266,8 +1428,14 @@ abstract class AppLocalizations {
   /// No description provided for @earnPendingLong.
   ///
   /// In en, this message translates to:
-  /// **'Your points will appear shortly. Check your wallet in a moment.'**
+  /// **'We couldn\'t confirm your reward yet. Tap Check again.'**
   String get earnPendingLong;
+
+  /// No description provided for @earnCheckAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Check again'**
+  String get earnCheckAgain;
 
   /// No description provided for @earnDismissedEarly.
   ///
@@ -1310,6 +1478,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rewarded videos are available on Android.'**
   String get earnUnsupported;
+
+  /// No description provided for @joinAdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch an Ad to Join'**
+  String get joinAdTitle;
+
+  /// No description provided for @joinAdBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch a short advertisement to continue joining this giveaway.'**
+  String get joinAdBody;
+
+  /// No description provided for @joinAdWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ad'**
+  String get joinAdWatch;
+
+  /// No description provided for @joinAdSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch the full video to join.'**
+  String get joinAdSkipped;
+
+  /// No description provided for @joinAdFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The video couldn\'t be shown. Please try again.'**
+  String get joinAdFailed;
 
   /// No description provided for @referTitle.
   ///
@@ -1851,6 +2049,96 @@ abstract class AppLocalizations {
   /// **'Status history'**
   String get orderTimeline;
 
+  /// No description provided for @orderIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderIdLabel;
+
+  /// No description provided for @orderCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost'**
+  String get orderCost;
+
+  /// No description provided for @orderStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get orderStatusTitle;
+
+  /// No description provided for @orderAccountDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Account details'**
+  String get orderAccountDetails;
+
+  /// No description provided for @orderStatusHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Status history'**
+  String get orderStatusHistory;
+
+  /// No description provided for @orderRedeemAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem again'**
+  String get orderRedeemAgain;
+
+  /// No description provided for @orderOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link'**
+  String get orderOpenLink;
+
+  /// No description provided for @orderStepPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been placed.'**
+  String get orderStepPending;
+
+  /// No description provided for @orderStepProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re processing your order.'**
+  String get orderStepProcessing;
+
+  /// No description provided for @orderStepShipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order is on the way.'**
+  String get orderStepShipped;
+
+  /// No description provided for @orderStepDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been delivered.'**
+  String get orderStepDelivered;
+
+  /// No description provided for @orderStepCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been completed successfully.'**
+  String get orderStepCompleted;
+
+  /// No description provided for @orderStepRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order was rejected.'**
+  String get orderStepRejected;
+
+  /// No description provided for @orderStepCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order was cancelled.'**
+  String get orderStepCancelled;
+
+  /// No description provided for @orderStepFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order couldn\'t be completed.'**
+  String get orderStepFailed;
+
   /// No description provided for @orderRefunded.
   ///
   /// In en, this message translates to:
@@ -1959,6 +2247,42 @@ abstract class AppLocalizations {
   /// **'Giveaway Details'**
   String get giveawayDetailsTitle;
 
+  /// No description provided for @giveawayBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Giveaway'**
+  String get giveawayBadge;
+
+  /// No description provided for @giveawayBadgeActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get giveawayBadgeActive;
+
+  /// No description provided for @giveawayBadgeComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get giveawayBadgeComingSoon;
+
+  /// No description provided for @giveawayBadgeEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get giveawayBadgeEnded;
+
+  /// No description provided for @giveawayBadgeFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full'**
+  String get giveawayBadgeFull;
+
+  /// No description provided for @giveawayAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About This Giveaway'**
+  String get giveawayAboutTitle;
+
   /// No description provided for @giveawayOrganizer.
   ///
   /// In en, this message translates to:
@@ -2054,6 +2378,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This giveaway has ended'**
   String get giveawayClosed;
+
+  /// No description provided for @giveawayFull.
+  ///
+  /// In en, this message translates to:
+  /// **'This giveaway is full'**
+  String get giveawayFull;
 
   /// No description provided for @giveawayDisqualified.
   ///

@@ -7,9 +7,11 @@ import '../../../../app/router/routes.dart';
 import '../../../../core/localization/l10n.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../../../core/widgets/app_dialogs.dart';
+import '../../../app_config/presentation/app_config_cubit.dart';
 import '../../../auth/presentation/bloc/session_cubit.dart';
 import '../../../catalog/domain/entities/catalog_entities.dart';
 import '../../../wallet/presentation/bloc/wallet_cubit.dart';
+import '../../../wallet/presentation/widgets/insufficient_points_dialog.dart';
 import '../../domain/order_entities.dart';
 import 'redeem_cubit.dart';
 import 'redemption_sheet.dart';
@@ -26,13 +28,13 @@ Future<void> startRedemption(
   final wallet = context.read<WalletCubit>();
   final session = context.read<SessionCubit>();
   if (wallet.state.balance < product.pointsPrice) {
-    await showAppInfoDialog(
+    // Earning is offered only while the backend enables rewarded ads.
+    final canEarn = context.read<AppConfigCubit>().state.config.adRewardsEnabled;
+    await showInsufficientPointsDialog(
       context,
-      title: l10n.redeemInsufficientTitle,
-      message: l10n.redeemInsufficientBody(
-        Formatters.points(wallet.state.balance),
-        Formatters.points(product.pointsPrice),
-      ),
+      balance: wallet.state.balance,
+      required: product.pointsPrice,
+      onEarnPoints: canEarn ? () => context.push(Routes.earn) : null,
     );
     return;
   }

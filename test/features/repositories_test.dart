@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:rewardsapp/core/error/app_exception.dart';
 import 'package:rewardsapp/features/app_config/data/app_config_repository_impl.dart';
 import 'package:rewardsapp/features/giveaways/data/giveaways_repository_impl.dart';
 import 'package:rewardsapp/features/giveaways/domain/entities/giveaway_entities.dart';
@@ -90,30 +91,49 @@ void main() {
     ]);
   });
 
-  test('rewarded ads: status, session with SSV options, credited poll', () async {
-    var credited = false;
+  test('rewarded ads (FLUTTER_ADS-1): status, session, claim', () async {
     final api = FakeApi((options) {
       if (options.path == '/ad-rewards/status') return FakeResponse(200, fixture('ad_status'));
-      if (options.method == 'POST') return FakeResponse(201, fixture('ad_session_created'));
-      return FakeResponse(200, fixture(credited ? 'ad_session_credited' : 'ad_session_created'));
+      if (options.path == '/ad-rewards/sessions') {
+        return FakeResponse(201, fixture('ad_session_created'));
+      }
+      if (options.path == '/ad-rewards/claims') {
+        return FakeResponse(200, fixture('ad_session_credited'));
+      }
+      return apiError(404, 'NOT_FOUND');
     });
     final repository = AdRewardsRepositoryImpl(api.client);
 
     final status = await repository.status('install-1');
     expect(api.adapter.requests.single.queryParameters['deviceId'], 'install-1');
     expect(status.enabled, isTrue);
-    expect(status.remainingToday, 9);
+    expect(status.isClientReported, isTrue);
+    expect(status.remainingToday, 8);
     expect(status.cooldownSeconds, 120);
 
-    final created = await repository.createSession(deviceId: 'install-1', adUnitId: 'unit');
-    expect(created.session.status, AdSessionStatus.pending);
-    expect(created.ssv.customData, created.session.id);
-    expect(created.ssv.userId, '022ae672-fd1e-4c32-86ae-64957029f25a');
+    final session = await repository.createSession(deviceId: 'install-1', adUnitId: 'unit');
+    expect(session.status, AdSessionStatus.pending);
+    expect(api.adapter.requests.last.data, {'deviceId': 'install-1', 'adUnitId': 'unit'});
 
-    credited = true;
-    final session = await repository.session(created.session.id);
-    expect(session.status, AdSessionStatus.credited);
-    expect(session.points, 10);
+    final claim = await repository.claim(session.id);
+    expect(api.adapter.requests.last.data, {'sessionId': session.id});
+    expect(claim.session.status, AdSessionStatus.credited);
+    expect(claim.session.points, 10);
+    expect(claim.session.creditedAt, isNotNull);
+    expect(claim.balance, 120);
+  });
+
+  test('rewarded ads: a session response without an id is rejected', () async {
+    final api = FakeApi(
+      (_) => const FakeResponse(201, {
+        'session': {'status': 'PENDING'},
+      }),
+    );
+    final repository = AdRewardsRepositoryImpl(api.client);
+    await expectLater(
+      repository.createSession(deviceId: 'install-1', adUnitId: 'unit'),
+      throwsA(isA<AppException>().having((e) => e.code, 'code', AppException.badResponse)),
+    );
   });
 
   test('giveaway details, entries and celebrations', () async {

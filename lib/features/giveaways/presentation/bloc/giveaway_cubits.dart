@@ -5,6 +5,7 @@ import '../../../../core/utils/cursor_page.dart';
 import '../../../../core/utils/paged_cubit.dart';
 import '../../domain/entities/giveaway_entities.dart';
 import '../../domain/repositories/giveaways_repository.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 /// `GET /giveaways?status=AVAILABLE|UPCOMING|ENDED`.
 class GiveawaysListCubit extends PagedCubit<Giveaway, GiveawayListFilter> {
@@ -72,7 +73,7 @@ class GiveawayDetailsState extends Equatable {
 
 /// Giveaway details, step progress and entry. Participation numbers always
 /// come from the server; re-joining returns the existing entry.
-class GiveawayDetailsCubit extends Cubit<GiveawayDetailsState> {
+class GiveawayDetailsCubit extends Cubit<GiveawayDetailsState> with SafeEmit<GiveawayDetailsState> {
   GiveawayDetailsCubit(this._repository, this.giveawayId) : super(const GiveawayDetailsState());
 
   final GiveawaysRepository _repository;
@@ -154,8 +155,10 @@ class GiveawayDetailsCubit extends Cubit<GiveawayDetailsState> {
       return entry;
     } catch (error) {
       emit(state.copyWith(entering: false, error: error));
-      // STEPS_INCOMPLETE etc. may mean the local progress is stale.
+      // STEPS_INCOMPLETE etc. may mean the local progress is stale. The
+      // reload clears the error, so keep it for the page to report.
       await load();
+      if (!isClosed) emit(state.copyWith(error: error));
       return null;
     }
   }

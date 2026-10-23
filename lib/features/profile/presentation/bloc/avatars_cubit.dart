@@ -2,10 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/app_assets.dart';
 import '../../domain/profile_repository.dart';
+import '../../../../core/utils/safe_emit.dart';
 
 /// Selectable characters. Starts with the bundled 1–9 so onboarding works
 /// offline, then follows the server's active list when it loads.
-class AvatarsCubit extends Cubit<List<Avatar>> {
+class AvatarsCubit extends Cubit<List<Avatar>> with SafeEmit<List<Avatar>> {
   AvatarsCubit(this._repository)
     : super([for (final id in AppAssets.bundledAvatarIds) Avatar(id: id)]);
 

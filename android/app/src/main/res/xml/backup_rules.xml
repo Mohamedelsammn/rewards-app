@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Auto Backup (Android 6–11). The secure-storage files are encrypted with
+     Android Keystore keys, which are never backed up: restored on another
+     device they could not be decrypted. Exclude only them; sign-in is
+     simply requested again after a restore. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="FlutterSecureStorage.xml" />
+    <exclude domain="sharedpref" path="FlutterSecureKeyStorage.xml" />
+</full-backup-content>

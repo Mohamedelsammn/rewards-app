@@ -16,9 +16,24 @@ String? redirect(
   AppConfigState config = _ready,
   bool update = false,
   SessionState session = _signedIn,
-}) => resolveRedirect(location: location, config: config, updateRequired: update, session: session);
+  bool introDone = true,
+}) => resolveRedirect(
+  location: location,
+  config: config,
+  updateRequired: update,
+  session: session,
+  splashIntroDone: introDone,
+);
 
 void main() {
+  test('the splash stays until its intro has played, then routes on', () {
+    expect(redirect(Routes.splash, introDone: false), isNull);
+    expect(redirect(Routes.splash, session: _signedOut, introDone: false), isNull);
+    expect(redirect(Routes.splash), Routes.home);
+    // The gate only holds the splash itself.
+    expect(redirect(Routes.login, session: _signedOut, introDone: false), isNull);
+  });
+
   test('config loading or failing blocks every route', () {
     expect(redirect(Routes.home, config: const AppConfigState()), Routes.splash);
     expect(redirect(Routes.splash, config: const AppConfigState()), isNull);

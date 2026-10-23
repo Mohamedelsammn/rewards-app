@@ -10,7 +10,9 @@ class CatalogModels {
     kind: categoryKindFrom(json['kind'] as String?),
     name: LocalizedText.fromJson(json['name']),
     description: LocalizedText.fromJson(json['description']),
-    imageUrl: json['imageUrl'] as String?,
+    // `imageUrl` is the deprecated alias of `homeImageUrl` (old servers).
+    homeImageUrl: _url(json['homeImageUrl']) ?? _url(json['imageUrl']),
+    bannerImageUrl: _url(json['bannerImageUrl']),
     sortOrder: parseInt(json['sortOrder']),
     groups: parseList(
       json['groups'],
@@ -22,6 +24,7 @@ class CatalogModels {
     id: '${json['id']}',
     categoryId: '${json['categoryId'] ?? ''}',
     groupId: json['groupId'] as String?,
+    productType: productTypeFrom(json['productType'] as String?),
     name: LocalizedText.fromJson(json['name']),
     description: LocalizedText.fromJson(json['description']),
     deliveryNote: LocalizedText.fromJson(json['deliveryNote']),
@@ -33,6 +36,8 @@ class CatalogModels {
     featured: json['featured'] == true,
     fields: parseList(json['fields'], field),
   );
+
+  static String? _url(Object? value) => value is String && value.isNotEmpty ? value : null;
 
   static ProductField field(Map<String, dynamic> json) => ProductField(
     key: '${json['key']}',

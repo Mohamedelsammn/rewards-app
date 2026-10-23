@@ -66,22 +66,22 @@ class OrderCard extends StatelessWidget {
       ),
       child: Row(
         children: [
+          // The product image fills its rounded square (cropped, never
+          // stretched).
           Container(
             width: 78,
             height: 78,
-            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: AppColors.tint,
               borderRadius: BorderRadius.circular(18),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(14),
-              child: AppImage(
-                url: order.productImageUrl,
-                fit: BoxFit.contain,
-                placeholderIcon: LucideIcons.shoppingBag,
-                placeholderColors: const [AppColors.tint, AppColors.tint],
-              ),
+            clipBehavior: Clip.antiAlias,
+            child: AppImage(
+              url: order.productImageUrl,
+              width: 78,
+              height: 78,
+              placeholderIcon: LucideIcons.shoppingBag,
+              radius: 18,
             ),
           ),
           const SizedBox(width: 14),

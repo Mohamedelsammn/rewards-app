@@ -9,6 +9,7 @@ import '../../../../core/utils/formatters.dart';
 import '../../../catalog/domain/entities/catalog_entities.dart';
 import '../../../catalog/presentation/widgets/category_visuals.dart';
 import '../../../giveaways/domain/entities/giveaway_entities.dart';
+import '../../../giveaways/presentation/giveaway_navigation.dart';
 import '../../../giveaways/presentation/widgets/giveaway_visuals.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -37,8 +38,10 @@ class CategoryRail extends StatelessWidget {
   final List<RewardCategory> categories;
 
   @override
+  // 93 px tile + gap, plus two text lines (~37 px at 1.0) that grow with
+  // the system text scale.
   Widget build(BuildContext context) => SizedBox(
-    height: 140,
+    height: 103 + 37 * (MediaQuery.textScalerOf(context).scale(14) / 14),
     child: ListView.separated(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -128,7 +131,7 @@ class HomeGiveaways extends StatelessWidget {
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: GiveawayGrid(
       giveaways: giveaways,
-      onTap: (giveaway) => context.push(Routes.giveaway(giveaway.id)),
+      onTap: (giveaway) => openGiveawayFromTap(context, giveaway.id),
     ),
   );
 }

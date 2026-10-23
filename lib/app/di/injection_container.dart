@@ -5,6 +5,10 @@ import '../../core/localization/locale_controller.dart';
 import '../../core/network/api_client.dart';
 import '../../core/security/secure_token_storage.dart';
 import '../../core/services/admob_service.dart';
+import '../../core/services/ads/ads_launch_store.dart';
+import '../../core/services/ads/ads_manager.dart';
+import '../../core/services/ads/fullscreen_ad.dart';
+import '../../core/services/ads/fullscreen_ad_gate.dart';
 import '../../core/services/push_notification_service.dart';
 import '../../features/app_config/data/app_config_repository_impl.dart';
 import '../../features/app_config/domain/app_config.dart';
@@ -15,6 +19,7 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/presentation/bloc/session_cubit.dart';
 import '../../features/catalog/data/catalog_repository_impl.dart';
 import '../../features/catalog/domain/repositories/catalog_repository.dart';
+import '../../features/catalog/presentation/bloc/catalog_cubits.dart';
 import '../../features/giveaways/data/giveaways_repository_impl.dart';
 import '../../features/giveaways/domain/repositories/giveaways_repository.dart';
 import '../../features/giveaways/presentation/celebration/celebration_coordinator.dart';
@@ -30,6 +35,8 @@ import '../../features/profile/data/profile_repository_impl.dart';
 import '../../features/profile/domain/profile_repository.dart';
 import '../../features/rewarded_ads/data/ad_rewards_repository_impl.dart';
 import '../../features/rewarded_ads/domain/ad_reward_entities.dart';
+import '../../features/giveaways/presentation/join_ad/giveaway_join_ads.dart';
+import '../../features/rewarded_ads/presentation/rewarded_ads_cubit.dart';
 import '../../features/wallet/data/wallet_repository_impl.dart';
 import '../../features/wallet/domain/wallet_entities.dart';
 import '../../features/wallet/presentation/bloc/wallet_cubit.dart';
@@ -63,13 +70,27 @@ Future<void> configureDependencies({required String apiBaseUrl}) async {
     ..registerLazySingleton<AppConfigRepository>(() => AppConfigRepositoryImpl(api))
     ..registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(api))
     ..registerLazySingleton<CatalogRepository>(() => CatalogRepositoryImpl(api))
+    ..registerLazySingleton<CategorySnapshots>(CategorySnapshots.new)
     ..registerLazySingleton<OrdersRepository>(() => OrdersRepositoryImpl(api))
     ..registerLazySingleton<WalletRepository>(() => WalletRepositoryImpl(api))
     ..registerLazySingleton<AdRewardsRepository>(() => AdRewardsRepositoryImpl(api))
     ..registerLazySingleton<GiveawaysRepository>(() => GiveawaysRepositoryImpl(api))
     ..registerLazySingleton<NotificationsRepository>(() => NotificationsRepositoryImpl(api))
     // Platform services
-    ..registerLazySingleton<AdMobService>(AdMobService.new)
+    ..registerLazySingleton<FullscreenAdGate>(FullscreenAdGate.new)
+    ..registerLazySingleton<AdMobService>(() => AdMobService(gate: sl<FullscreenAdGate>()))
+    ..registerLazySingleton<AdsManager>(
+      () => AdsManager(
+        gate: sl<FullscreenAdGate>(),
+        loader: GoogleFullscreenAdLoader(ready: sl<AdMobService>().readyForAds),
+        initializeSdk: sl<AdMobService>().initialize,
+      ),
+    )
+    ..registerLazySingleton<AdsLaunchStore>(AdsLaunchStore.new)
+    ..registerLazySingleton<GiveawayJoinAds>(
+      () => GiveawayJoinAds(show: sl<AdMobService>().showRewarded),
+    )
+    ..registerLazySingleton<PendingAdSessions>(PendingAdSessions.new)
     ..registerLazySingleton<RewardedAdPresenter>(() => sl<AdMobService>())
     ..registerLazySingleton<PushNotificationService>(
       () => PushNotificationService(

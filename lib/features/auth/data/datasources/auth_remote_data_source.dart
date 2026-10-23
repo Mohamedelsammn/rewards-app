@@ -82,8 +82,12 @@ class AuthRemoteDataSource {
 
   Future<void> logoutAll() => _api.post('/auth/logout-all');
 
-  Future<AppUser> me() async =>
-      AuthModels.user(Map<String, dynamic>.from((await _api.get('/me'))['user'] as Map));
+  /// Session restore runs while the splash waits: startup budget.
+  Future<AppUser> me() async => AuthModels.user(
+    Map<String, dynamic>.from(
+      (await _api.get('/me', budget: RequestBudget.startup))['user'] as Map,
+    ),
+  );
 
   AuthResult _authResult(Map<String, dynamic> json) {
     final tokens = AuthModels.tokens(json);

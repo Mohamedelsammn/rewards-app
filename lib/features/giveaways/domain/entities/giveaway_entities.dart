@@ -102,6 +102,9 @@ class Giveaway extends Equatable {
 
   bool get isUpcoming => status == GiveawayStatus.upcoming;
   bool get isActive => status == GiveawayStatus.active;
+
+  /// Every place is taken (`maxParticipants` is `null` when unlimited).
+  bool get isFull => maxParticipants != null && participants >= maxParticipants!;
   bool get hasResults =>
       status == GiveawayStatus.winnersSelected || status == GiveawayStatus.completed;
 

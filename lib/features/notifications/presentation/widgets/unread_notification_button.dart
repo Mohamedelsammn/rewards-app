@@ -23,7 +23,8 @@ class UnreadNotificationButton extends StatelessWidget {
         IconButton(
           tooltip: context.l10n.notificationsTooltip,
           onPressed: () => context.push(Routes.notifications),
-          icon: const Icon(AppIcons.bell),
+          // The filled (Home header) variant uses a solid bell, as in the reference.
+          icon: Icon(filled ? Icons.notifications_rounded : AppIcons.bell),
           style: IconButton.styleFrom(
             backgroundColor: filled ? Colors.white : Colors.transparent,
             foregroundColor: filled ? AppColors.violet : AppColors.ink,

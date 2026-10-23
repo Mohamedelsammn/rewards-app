@@ -22,6 +22,7 @@ String errorMessage(BuildContext context, Object error) {
     'OUT_OF_STOCK' => l10n.errOutOfStock,
     'PRICE_CHANGED' => l10n.errPriceChanged,
     'INVALID_TRANSITION' => l10n.errInvalidTransition,
+    'PREVIOUS_ATTEMPT_UNCERTAIN' => l10n.errPreviousAttemptUncertain,
     'IDEMPOTENCY_KEY_REUSED' ||
     'REQUEST_IN_PROGRESS' ||
     'IDEMPOTENCY_KEY_REQUIRED' => l10n.errRequestInProgress,
@@ -48,6 +49,11 @@ String errorMessage(BuildContext context, Object error) {
     'DEVICE_LIMIT_REACHED' => l10n.errDeviceLimit,
     'COOLDOWN' => l10n.errCooldown(retry ?? 0),
     'TOO_MANY_PENDING' => l10n.errTooManyPending,
+    'SESSION_NOT_FOUND' => l10n.errAdSessionNotFound,
+    'SESSION_NOT_OWNED' => l10n.errAdSessionNotOwned,
+    'SESSION_EXPIRED' => l10n.earnExpired,
+    'ACCOUNT_INACTIVE' => l10n.errAccountInactive,
+    'AD_UNIT_NOT_ALLOWED' => l10n.errAdUnitNotAllowed,
     'NUMBER_ALLOCATION_FAILED' => l10n.errNumberAllocation,
     'INVALID_CURSOR' => l10n.errInvalidCursor,
     _ => l10n.errServer,

@@ -64,6 +64,7 @@ Order parseOrder(Map<String, dynamic> json) {
     productId: product['id'] as String?,
     productName: LocalizedText.fromJson(product['name']),
     productImageUrl: product['imageUrl'] as String?,
+    categoryId: category['id'] as String?,
     categoryName: LocalizedText.fromJson(category['name']),
     categoryKind: categoryKindFrom(category['kind'] as String?),
     fieldLabels: labels,

@@ -53,6 +53,7 @@ class Order extends Equatable {
     required this.productName,
     this.productId,
     this.productImageUrl,
+    this.categoryId,
     this.categoryName = const LocalizedText(),
     this.categoryKind = CategoryKind.other,
     this.fieldLabels = const {},
@@ -74,6 +75,9 @@ class Order extends Equatable {
   final String? productId;
   final LocalizedText productName;
   final String? productImageUrl;
+
+  /// `product.category.id`: "Redeem again" opens this category.
+  final String? categoryId;
   final LocalizedText categoryName;
   final CategoryKind categoryKind;
   final Map<String, LocalizedText> fieldLabels;

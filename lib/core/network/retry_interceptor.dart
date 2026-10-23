@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import 'api_client.dart';
+
 /// Retries idempotent `GET` requests on transient failures (connection
 /// errors, timeouts, 502/503/504) with a short linear backoff. Writes are
 /// never retried automatically; orders use an explicit idempotency key and a
@@ -17,11 +19,21 @@ class RetryInterceptor extends Interceptor {
 
   static const _attemptKey = 'retryAttempt';
 
+  /// Applies a request's [RequestBudget] connect timeout (Dio sets the
+  /// other two through Options).
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final connect = options.extra[RequestBudget.connectTimeoutKey];
+    if (connect is Duration) options.connectTimeout = connect;
+    handler.next(options);
+  }
+
   @override
   Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     final options = err.requestOptions;
     final attempt = (options.extra[_attemptKey] as int?) ?? 0;
-    if (options.method != 'GET' || attempt >= maxRetries || !_isTransient(err)) {
+    final limit = (options.extra[RequestBudget.maxRetriesKey] as int?) ?? maxRetries;
+    if (options.method != 'GET' || attempt >= limit || !_isTransient(err)) {
       return handler.next(err);
     }
     await Future<void>.delayed(baseDelay * (attempt + 1));

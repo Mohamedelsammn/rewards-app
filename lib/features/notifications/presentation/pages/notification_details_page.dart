@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/di/injection_container.dart';
-import '../../../../core/localization/l10n.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../../../core/widgets/headers.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../domain/notification_entities.dart';
 import '../bloc/unread_count_cubit.dart';
@@ -73,11 +73,23 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
                 style: const TextStyle(color: AppColors.muted, fontSize: 17, height: 1.5),
               ),
             ] else
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Semantics(
-                  label: context.l10n.notificationsTitle,
-                  child: const LoadingView(),
+              // Title, date and body lines of the notification.
+              const Skeleton(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SkeletonLine(width: 260, height: 26),
+                    SizedBox(height: 10),
+                    SkeletonLine(width: 170, height: 26),
+                    SizedBox(height: 14),
+                    SkeletonLine(width: 120, height: 12),
+                    SizedBox(height: 20),
+                    SkeletonLine(width: 320, height: 15),
+                    SizedBox(height: 10),
+                    SkeletonLine(width: 300, height: 15),
+                    SizedBox(height: 10),
+                    SkeletonLine(width: 210, height: 15),
+                  ],
                 ),
               ),
           ],

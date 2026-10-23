@@ -33,18 +33,6 @@ class EmptyCard extends StatelessWidget {
   );
 }
 
-class LoadingView extends StatelessWidget {
-  const LoadingView({this.padding = const EdgeInsets.all(40), super.key});
-
-  final EdgeInsets padding;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-    padding: padding,
-    child: const Center(child: CircularProgressIndicator(color: AppColors.violet)),
-  );
-}
-
 /// Error card with a localized message, the support `requestId` when the
 /// server returned one, and a retry action.
 class ErrorStateView extends StatelessWidget {
@@ -94,3 +82,39 @@ void showAppSnackBar(BuildContext context, String message) {
 
 void showErrorSnackBar(BuildContext context, Object error) =>
     showAppSnackBar(context, errorMessage(context, error));
+
+/// Non-destructive notice shown above content that is still on screen when
+/// a refresh failed. The content stays; the action retries.
+class RefreshErrorBanner extends StatelessWidget {
+  const RefreshErrorBanner({required this.onRetry, super.key});
+
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    key: const ValueKey('refresh-error'),
+    padding: const EdgeInsetsDirectional.fromSTEB(14, 6, 6, 6),
+    decoration: BoxDecoration(
+      color: AppColors.dangerSurface,
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: AppColors.dangerBorder),
+    ),
+    child: Row(
+      children: [
+        const Icon(Icons.cloud_off_rounded, size: 18, color: AppColors.dangerText),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            context.l10n.refreshFailed,
+            style: const TextStyle(color: AppColors.dangerText, fontSize: 13, height: 1.3),
+          ),
+        ),
+        TextButton(
+          onPressed: onRetry,
+          style: TextButton.styleFrom(foregroundColor: AppColors.dangerText),
+          child: Text(context.l10n.commonRetry),
+        ),
+      ],
+    ),
+  );
+}
