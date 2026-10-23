@@ -28,13 +28,12 @@ Future<void> startRedemption(
   final wallet = context.read<WalletCubit>();
   final session = context.read<SessionCubit>();
   if (wallet.state.balance < product.pointsPrice) {
-    // Earning is offered only while the backend enables rewarded ads.
-    final canEarn = context.read<AppConfigCubit>().state.config.adRewardsEnabled;
+    // No link to rewarded ads here: ad rewards are tickets and can never
+    // pay for a redemption (AdMob rewarded-ad policy).
     await showInsufficientPointsDialog(
       context,
       balance: wallet.state.balance,
       required: product.pointsPrice,
-      onEarnPoints: canEarn ? () => context.push(Routes.earn) : null,
     );
     return;
   }

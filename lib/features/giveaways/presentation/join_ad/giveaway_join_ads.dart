@@ -21,13 +21,15 @@ enum JoinAdOutcome {
   failed,
 }
 
-/// `ADS_JOIN_GIVEAWAY` (on by default) is the kill switch of the flow. The
+/// `ADS_JOIN_GIVEAWAY` (off by default) is the kill switch of the flow. The
 /// ad unit is the shared rewarded unit (AdUnits.joinGiveawayRewarded): the
 /// Google test unit in debug builds, the production unit in release.
 class JoinAdFlags {
   const JoinAdFlags._();
 
-  static const feature = bool.fromEnvironment('ADS_JOIN_GIVEAWAY', defaultValue: true);
+  // Off by default: a rewarded ad must never be the price of a giveaway entry
+  // with a real prize (AdMob rewarded-ad policy). Joining is free without ads.
+  static const feature = bool.fromEnvironment('ADS_JOIN_GIVEAWAY', defaultValue: false);
 }
 
 typedef RewardedAdShow = Future<RewardedAdOutcome> Function({required String adUnitId});

@@ -102,7 +102,7 @@
   "errAdUnitNotAllowed": "Rewarded videos aren't available right now. No points were added.",
   "errNumberAllocation": "We couldn't assign your number. Please try again.",
   "errInvalidCursor": "The list changed. Pull to refresh.",
-  "splashTagline": "Play · Earn · Redeem",
+  "splashTagline": "Play · Join · Enjoy",
   "maintenanceTitle": "We'll be right back",
   "maintenanceBody": "Creative Rewards is under maintenance. Please try again soon.",
   "updateTitle": "Update required",
@@ -115,7 +115,7 @@
   "serviceInsecureBody": "This build can't use an insecure connection.",
   "welcomeTitleTop": "Your Rewards",
   "welcomeTitleBottom": "Journey Starts Here",
-  "welcomeSubtitle": "Play, earn, and redeem amazing rewards with ease.",
+  "welcomeSubtitle": "A loyalty program with free giveaways.",
   "welcomeGetStarted": "Get Started",
   "welcomeHaveAccount": "Already have an account? ",
   "welcomeLogin": "Login",
@@ -330,7 +330,7 @@
   "walletTitle": "Your Rewards",
   "walletPoints": "POINTS",
   "walletBalance": "BALANCE",
-  "walletFastEarn": "Fast, Earn",
+  "walletFastEarn": "Earn tickets",
   "walletPlaceOrder": "Place an Order",
   "walletPlaceOrderSubtitle": "Browse rewards to redeem",
   "walletReview": "Write a Review",
@@ -358,9 +358,9 @@
       }
     }
   },
-  "earnTitle": "Earn points",
-  "earnHeadline": "Watch & earn",
-  "earnBody": "Watch a short video to earn {points} points. Points are added once the reward is confirmed.",
+  "earnTitle": "Earn tickets",
+  "earnHeadline": "Watch & collect tickets",
+  "earnBody": "Watch a short video to collect {points} tickets. Tickets are for use inside the app only and can't be redeemed for products or converted to points.",
   "@earnBody": {
     "placeholders": {
       "points": {
@@ -378,7 +378,7 @@
   },
   "earnWatch": "Watch ad",
   "earnVerifying": "Verifying your reward…",
-  "earnCredited": "+{points} PTS added to your wallet",
+  "earnCredited": "+{points} tickets added",
   "@earnCredited": {
     "placeholders": {
       "points": {
@@ -390,10 +390,10 @@
   "earnExpired": "The reward session expired. Please try again.",
   "earnPendingLong": "We couldn't confirm your reward yet. Tap Check again.",
   "earnCheckAgain": "Check again",
-  "earnDismissedEarly": "Watch the full video to earn points.",
+  "earnDismissedEarly": "Watch the full video to get tickets.",
   "earnAdFailed": "No video is available right now. Try again later.",
-  "earnUnavailable": "Earning with videos is coming soon",
-  "earnUnavailableBody": "We'll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.",
+  "earnUnavailable": "Collecting tickets with videos is coming soon",
+  "earnUnavailableBody": "We'll let you know when you can collect tickets by watching videos.",
   "earnCooldown": "Next video available in {time}",
   "@earnCooldown": {
     "placeholders": {
@@ -668,6 +668,14 @@
     "placeholders": {
       "date": {
         "type": "String"
+      }
+    }
+  },
+  "walletTickets": "Your tickets: {count} (not redeemable)",
+  "@walletTickets": {
+    "placeholders": {
+      "count": {
+        "type": "int"
       }
     }
   }

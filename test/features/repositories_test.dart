@@ -47,6 +47,7 @@ void main() {
     final repository = WalletRepositoryImpl(api.client);
     final wallet = await repository.wallet();
     expect(wallet.balance, 1200);
+    expect(wallet.tickets, 30);
     expect(wallet.lifetimeEarned, 1200);
 
     final page = await repository.transactions();
@@ -118,9 +119,9 @@ void main() {
     final claim = await repository.claim(session.id);
     expect(api.adapter.requests.last.data, {'sessionId': session.id});
     expect(claim.session.status, AdSessionStatus.credited);
-    expect(claim.session.points, 10);
+    expect(claim.session.tickets, 10);
     expect(claim.session.creditedAt, isNotNull);
-    expect(claim.balance, 120);
+    expect(claim.tickets, 120);
   });
 
   test('rewarded ads: a session response without an id is rejected', () async {

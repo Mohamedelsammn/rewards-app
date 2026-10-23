@@ -27,7 +27,7 @@ AppConfig parseAppConfig(Map<String, dynamic> json) {
     termsUrl: json['termsUrl'] as String? ?? '',
     adRewardsEnabled: features['adRewards'] == true && ads['enabled'] == true,
     socialProductsEnabled: features['socialProducts'] == true,
-    pointsPerCompletedAd: parseInt(ads['pointsPerCompletedAd']),
+    ticketsPerCompletedAd: parseInt(ads['ticketsPerCompletedAd']),
     serverTime: parseDate(json['serverTime']),
   );
 }

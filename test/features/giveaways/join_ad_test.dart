@@ -98,12 +98,12 @@ GoRouter _detailsRouter() => GoRouter(
 
 void main() {
   group('GiveawayJoinAds', () {
-    test('on by default in test builds (Google test unit); kill switch and unit-less off', () {
+    test('off by default (AdMob policy); kill switch and unit-less off', () {
       final ads = _Ads();
       expect(
         GiveawayJoinAds(show: ads.show).requiresAd(_giveaway),
-        isTrue,
-        reason: 'ADS_JOIN_GIVEAWAY defaults to on; tests use the test unit',
+        isFalse,
+        reason: 'ADS_JOIN_GIVEAWAY defaults to off: joining never requires an ad',
       );
       expect(_joinAds(ads, feature: false).requiresAd(_giveaway), isFalse);
       expect(

@@ -2,12 +2,13 @@
   "session": {
     "id": "116d6e4b-9405-48ed-86e3-818a15ab16c5",
     "status": "CREDITED",
-    "points": 10,
+    "rewardType": "TICKETS",
+    "tickets": 10,
     "rejectReason": null,
     "createdAt": "2026-10-22T12:00:00Z",
     "expiresAt": "2026-10-22T12:10:00Z",
     "verifiedAt": null,
     "creditedAt": "2026-10-22T12:01:00Z"
   },
-  "balance": 120
+  "tickets": 120
 }

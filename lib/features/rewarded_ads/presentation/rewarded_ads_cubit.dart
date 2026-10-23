@@ -25,7 +25,7 @@ class EarnState extends Equatable {
   const EarnState({
     this.phase = EarnPhase.loading,
     this.status,
-    this.creditedPoints = 0,
+    this.creditedTickets = 0,
     this.outcome,
     this.rejectReason,
     this.error,
@@ -34,7 +34,7 @@ class EarnState extends Equatable {
 
   final EarnPhase phase;
   final AdRewardStatus? status;
-  final int creditedPoints;
+  final int creditedTickets;
   final RewardedAdOutcome? outcome;
   final String? rejectReason;
   final Object? error;
@@ -48,7 +48,7 @@ class EarnState extends Equatable {
   EarnState copyWith({
     EarnPhase? phase,
     AdRewardStatus? status,
-    int? creditedPoints,
+    int? creditedTickets,
     RewardedAdOutcome? outcome,
     String? rejectReason,
     Object? error,
@@ -56,7 +56,7 @@ class EarnState extends Equatable {
   }) => EarnState(
     phase: phase ?? this.phase,
     status: status ?? this.status,
-    creditedPoints: creditedPoints ?? this.creditedPoints,
+    creditedTickets: creditedTickets ?? this.creditedTickets,
     outcome: outcome,
     rejectReason: rejectReason,
     error: error,
@@ -67,7 +67,7 @@ class EarnState extends Equatable {
   List<Object?> get props => [
     phase,
     status,
-    creditedPoints,
+    creditedTickets,
     outcome,
     rejectReason,
     error,
@@ -211,7 +211,7 @@ class RewardedAdsCubit extends Cubit<EarnState> with SafeEmit<EarnState> {
           final claim = await _repository.claim(sessionId).timeout(_requestLimit);
           adLog(
             'claim id=$sessionId status=${claim.session.status.name} '
-            'points=${claim.session.points} after ${_since(started)}',
+            'tickets=${claim.session.tickets} after ${_since(started)}',
           );
           if (isClosed) return;
           _settle(sessionId, claim, quiet: quiet);
@@ -255,7 +255,7 @@ class RewardedAdsCubit extends Cubit<EarnState> with SafeEmit<EarnState> {
       case AdSessionStatus.credited:
         _pending?.remove(sessionId);
         onCredited(); // GET /wallet; the balance always comes from the server.
-        emit(state.copyWith(phase: EarnPhase.credited, creditedPoints: session.points));
+        emit(state.copyWith(phase: EarnPhase.credited, creditedTickets: session.tickets));
       case AdSessionStatus.pending:
         if (!quiet) {
           emit(state.copyWith(phase: EarnPhase.stillPending, pendingSessionId: sessionId));
@@ -319,7 +319,7 @@ class RewardedAdsCubit extends Cubit<EarnState> with SafeEmit<EarnState> {
           state.copyWith(
             phase: state.phase,
             status: status,
-            creditedPoints: state.creditedPoints,
+            creditedTickets: state.creditedTickets,
             outcome: state.outcome,
             rejectReason: state.rejectReason,
             error: state.error,

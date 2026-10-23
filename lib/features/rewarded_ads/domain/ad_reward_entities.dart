@@ -4,7 +4,7 @@ class AdRewardStatus extends Equatable {
   const AdRewardStatus({
     required this.enabled,
     this.verification = '',
-    this.pointsPerCompletedAd = 0,
+    this.ticketsPerCompletedAd = 0,
     this.dailyLimit = 0,
     this.usedToday = 0,
     this.remainingToday = 0,
@@ -19,7 +19,7 @@ class AdRewardStatus extends Equatable {
 
   /// Server verification mode; only [clientReported] is supported.
   final String verification;
-  final int pointsPerCompletedAd;
+  final int ticketsPerCompletedAd;
   final int dailyLimit;
   final int usedToday;
   final int remainingToday;
@@ -34,7 +34,7 @@ class AdRewardStatus extends Equatable {
   List<Object?> get props => [
     enabled,
     verification,
-    pointsPerCompletedAd,
+    ticketsPerCompletedAd,
     usedToday,
     remainingToday,
     nextAvailableAt,
@@ -47,7 +47,7 @@ class AdSession extends Equatable {
   const AdSession({
     required this.id,
     required this.status,
-    this.points = 0,
+    this.tickets = 0,
     this.rejectReason,
     this.expiresAt,
     this.creditedAt,
@@ -55,7 +55,9 @@ class AdSession extends Equatable {
 
   final String id;
   final AdSessionStatus status;
-  final int points;
+
+  /// Tickets this session credits. Tickets are not redeemable (AdMob policy).
+  final int tickets;
   final String? rejectReason;
   final DateTime? expiresAt;
 
@@ -66,25 +68,26 @@ class AdSession extends Equatable {
   bool get isFinal => status != AdSessionStatus.pending;
 
   @override
-  List<Object?> get props => [id, status, points, rejectReason];
+  List<Object?> get props => [id, status, tickets, rejectReason];
 }
 
 /// Answer of `POST /ad-rewards/claims`.
 class AdClaim extends Equatable {
-  const AdClaim({required this.session, this.balance});
+  const AdClaim({required this.session, this.tickets});
 
   final AdSession session;
 
-  /// Wallet balance right after the claim (server value).
-  final int? balance;
+  /// Tickets balance right after the claim (server value).
+  final int? tickets;
 
   @override
-  List<Object?> get props => [session, balance];
+  List<Object?> get props => [session, tickets];
 }
 
-/// Earn Points ads (FLUTTER_ADS-1.md, client-reported completion): status →
+/// Earn Tickets ads (FLUTTER_ADS-1.md, client-reported completion): status →
 /// one-time session → rewarded ad → claim on `onUserEarnedReward`. The server
-/// decides points, limits and cooldowns and credits the wallet.
+/// decides tickets, limits and cooldowns and credits the tickets balance.
+/// Ads never credit redeemable points.
 abstract interface class AdRewardsRepository {
   Future<AdRewardStatus> status(String deviceId);
 

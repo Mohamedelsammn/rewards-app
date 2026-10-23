@@ -14,7 +14,7 @@ class AppConfig extends Equatable {
     this.termsUrl = '',
     this.adRewardsEnabled = false,
     this.socialProductsEnabled = false,
-    this.pointsPerCompletedAd = 0,
+    this.ticketsPerCompletedAd = 0,
     this.serverTime,
   });
 
@@ -29,7 +29,7 @@ class AppConfig extends Equatable {
   /// True only when both `features.adRewards` and `adRewards.enabled` are on.
   final bool adRewardsEnabled;
   final bool socialProductsEnabled;
-  final int pointsPerCompletedAd;
+  final int ticketsPerCompletedAd;
   final DateTime? serverTime;
 
   /// Whether [appVersion] (e.g. `1.1.1`) is older than [minVersion].
@@ -46,7 +46,7 @@ class AppConfig extends Equatable {
     termsUrl,
     adRewardsEnabled,
     socialProductsEnabled,
-    pointsPerCompletedAd,
+    ticketsPerCompletedAd,
   ];
 }
 

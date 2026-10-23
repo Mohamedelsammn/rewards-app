@@ -12,6 +12,7 @@ class WalletState extends Equatable {
   final Object? error;
 
   int get balance => wallet?.balance ?? 0;
+  int get tickets => wallet?.tickets ?? 0;
 
   @override
   List<Object?> get props => [wallet, loading, error];
@@ -59,6 +60,7 @@ class WalletCubit extends Cubit<WalletState> with SafeEmit<WalletState> {
           lifetimeEarned: current?.lifetimeEarned ?? 0,
           lifetimeSpent: current?.lifetimeSpent ?? 0,
           updatedAt: DateTime.now(),
+          tickets: current?.tickets ?? 0,
         ),
       ),
     );

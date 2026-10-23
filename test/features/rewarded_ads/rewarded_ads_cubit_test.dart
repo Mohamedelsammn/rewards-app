@@ -9,7 +9,7 @@ import 'package:rewardsapp/features/rewarded_ads/presentation/rewarded_ads_cubit
 const _status = AdRewardStatus(
   enabled: true,
   verification: AdRewardStatus.clientReported,
-  pointsPerCompletedAd: 25,
+  ticketsPerCompletedAd: 25,
   dailyLimit: 10,
   usedToday: 2,
   remainingToday: 8,
@@ -17,13 +17,13 @@ const _status = AdRewardStatus(
 );
 
 AdSession _session(AdSessionStatus status, {String id = 's1', int points = 25}) =>
-    AdSession(id: id, status: status, points: points);
+    AdSession(id: id, status: status, tickets: points);
 
 /// Scripted backend. Claims answer from [claims] in order (an [Object]
 /// that is an exception is thrown).
 class _Repository implements AdRewardsRepository {
   _Repository({this.status$ = _status, List<Object>? claims, this.createError})
-    : claims = claims ?? [AdClaim(session: _session(AdSessionStatus.credited), balance: 120)];
+    : claims = claims ?? [AdClaim(session: _session(AdSessionStatus.credited), tickets: 120)];
 
   AdRewardStatus status$;
   final List<Object> claims;
@@ -107,7 +107,7 @@ void main() {
       final cubit = build(_Repository(), _Presenter(RewardedAdOutcome.completed));
       await cubit.loadStatus();
       expect(cubit.state.phase, EarnPhase.ready);
-      expect(cubit.state.status!.pointsPerCompletedAd, 25);
+      expect(cubit.state.status!.ticketsPerCompletedAd, 25);
     });
 
     test('another verification mode (old SSV) is never used', () async {
@@ -214,7 +214,7 @@ void main() {
       await cubit.watch();
       expect(repository.claimedIds, ['s1']);
       expect(cubit.state.phase, EarnPhase.credited);
-      expect(cubit.state.creditedPoints, 25, reason: 'from the claim, never hardcoded');
+      expect(cubit.state.creditedTickets, 25, reason: 'from the claim, never hardcoded');
       expect(credited, 1);
     });
 
@@ -260,10 +260,10 @@ void main() {
             session: AdSession(
               id: 's1',
               status: AdSessionStatus.credited,
-              points: 25,
+              tickets: 25,
               creditedAt: DateTime.utc(2026, 10, 22, 12, 1),
             ),
-            balance: 120,
+            tickets: 120,
           ),
         ],
       );
@@ -278,7 +278,7 @@ void main() {
         claims: [
           const AppException(code: AppException.timeout),
           const AppException(code: 'SERVER_ERROR', statusCode: 503),
-          AdClaim(session: _session(AdSessionStatus.credited), balance: 120),
+          AdClaim(session: _session(AdSessionStatus.credited), tickets: 120),
         ],
       );
       final cubit = build(repository, _Presenter(RewardedAdOutcome.completed));
@@ -297,7 +297,7 @@ void main() {
           const AppException(code: AppException.network),
           const AppException(code: AppException.network),
           const AppException(code: AppException.network),
-          AdClaim(session: _session(AdSessionStatus.credited), balance: 120),
+          AdClaim(session: _session(AdSessionStatus.credited), tickets: 120),
         ],
       );
       final cubit = build(repository, _Presenter(RewardedAdOutcome.completed), pending: pending);
@@ -317,7 +317,7 @@ void main() {
 
     test('an already credited session answers the same (idempotent retry)', () async {
       final repository = _Repository(
-        claims: [AdClaim(session: _session(AdSessionStatus.credited), balance: 120)],
+        claims: [AdClaim(session: _session(AdSessionStatus.credited), tickets: 120)],
       );
       final cubit = build(repository, _Presenter(RewardedAdOutcome.completed));
       await cubit.loadStatus();
@@ -332,7 +332,7 @@ void main() {
       final repository = _Repository(
         claims: [
           const AppException(code: 'COOLDOWN', statusCode: 429, details: {'retryAfter': 87}),
-          AdClaim(session: _session(AdSessionStatus.credited), balance: 120),
+          AdClaim(session: _session(AdSessionStatus.credited), tickets: 120),
         ],
       );
       final cubit = build(repository, _Presenter(RewardedAdOutcome.completed), pending: pending);
@@ -425,7 +425,7 @@ void main() {
     test('reopening the page claims an unconfirmed reward once (same id)', () async {
       final pending = PendingAdSessions()..add('s9');
       final repository = _Repository(
-        claims: [AdClaim(session: _session(AdSessionStatus.credited, id: 's9'), balance: 120)],
+        claims: [AdClaim(session: _session(AdSessionStatus.credited, id: 's9'), tickets: 120)],
       );
       final cubit = build(repository, _Presenter(RewardedAdOutcome.completed), pending: pending);
       await cubit.loadStatus();

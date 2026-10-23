@@ -480,7 +480,7 @@ abstract class AppLocalizations {
   /// No description provided for @splashTagline.
   ///
   /// In en, this message translates to:
-  /// **'Play · Earn · Redeem'**
+  /// **'Play · Join · Enjoy'**
   String get splashTagline;
 
   /// No description provided for @maintenanceTitle.
@@ -558,7 +558,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Play, earn, and redeem amazing rewards with ease.'**
+  /// **'A loyalty program with free giveaways.'**
   String get welcomeSubtitle;
 
   /// No description provided for @welcomeGetStarted.
@@ -1248,7 +1248,7 @@ abstract class AppLocalizations {
   /// No description provided for @walletFastEarn.
   ///
   /// In en, this message translates to:
-  /// **'Fast, Earn'**
+  /// **'Earn tickets'**
   String get walletFastEarn;
 
   /// No description provided for @walletPlaceOrder.
@@ -1374,19 +1374,19 @@ abstract class AppLocalizations {
   /// No description provided for @earnTitle.
   ///
   /// In en, this message translates to:
-  /// **'Earn points'**
+  /// **'Earn tickets'**
   String get earnTitle;
 
   /// No description provided for @earnHeadline.
   ///
   /// In en, this message translates to:
-  /// **'Watch & earn'**
+  /// **'Watch & collect tickets'**
   String get earnHeadline;
 
   /// No description provided for @earnBody.
   ///
   /// In en, this message translates to:
-  /// **'Watch a short video to earn {points} points. Points are added once the reward is confirmed.'**
+  /// **'Watch a short video to collect {points} tickets. Tickets are for use inside the app only and can\'t be redeemed for products or converted to points.'**
   String earnBody(int points);
 
   /// No description provided for @earnRemaining.
@@ -1410,7 +1410,7 @@ abstract class AppLocalizations {
   /// No description provided for @earnCredited.
   ///
   /// In en, this message translates to:
-  /// **'+{points} PTS added to your wallet'**
+  /// **'+{points} tickets added'**
   String earnCredited(String points);
 
   /// No description provided for @earnRejected.
@@ -1440,7 +1440,7 @@ abstract class AppLocalizations {
   /// No description provided for @earnDismissedEarly.
   ///
   /// In en, this message translates to:
-  /// **'Watch the full video to earn points.'**
+  /// **'Watch the full video to get tickets.'**
   String get earnDismissedEarly;
 
   /// No description provided for @earnAdFailed.
@@ -1452,13 +1452,13 @@ abstract class AppLocalizations {
   /// No description provided for @earnUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Earning with videos is coming soon'**
+  /// **'Collecting tickets with videos is coming soon'**
   String get earnUnavailable;
 
   /// No description provided for @earnUnavailableBody.
   ///
   /// In en, this message translates to:
-  /// **'We\'ll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.'**
+  /// **'We\'ll let you know when you can collect tickets by watching videos.'**
   String get earnUnavailableBody;
 
   /// No description provided for @earnCooldown.
@@ -2558,6 +2558,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim before {date}'**
   String claimDeadline(String date);
+
+  /// No description provided for @walletTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tickets: {count} (not redeemable)'**
+  String walletTickets(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

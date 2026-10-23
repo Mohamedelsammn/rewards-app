@@ -212,7 +212,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errInvalidCursor => 'تغيّرت القائمة. اسحب للتحديث.';
 
   @override
-  String get splashTagline => 'العب · اكسب · استبدل';
+  String get splashTagline => 'العب · شارك · استمتع';
 
   @override
   String get maintenanceTitle => 'سنعود قريبًا';
@@ -251,7 +251,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcomeTitleBottom => 'تبدأ هنا';
 
   @override
-  String get welcomeSubtitle => 'العب واكسب واستبدل مكافآت رائعة بسهولة.';
+  String get welcomeSubtitle => 'برنامج ولاء ومسابقات مجانية بسهولة.';
 
   @override
   String get welcomeGetStarted => 'ابدأ الآن';
@@ -634,7 +634,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get walletBalance => 'الرصيد';
 
   @override
-  String get walletFastEarn => 'اكسب بسرعة';
+  String get walletFastEarn => 'اكسب تذاكر';
 
   @override
   String get walletPlaceOrder => 'تصفح المكافآت';
@@ -699,14 +699,14 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get earnTitle => 'اكسب نقاطًا';
+  String get earnTitle => 'اكسب تذاكر';
 
   @override
-  String get earnHeadline => 'شاهد واكسب';
+  String get earnHeadline => 'شاهد واجمع تذاكر';
 
   @override
   String earnBody(int points) {
-    return 'شاهد فيديو قصيرًا لتكسب $points نقطة. تُضاف النقاط بعد تأكيد المكافأة.';
+    return 'شاهد فيديو قصيرًا لتجمع $points تذكرة. التذاكر للاستخدام داخل التطبيق فقط ولا يمكن استبدالها بمنتجات أو تحويلها إلى نقاط.';
   }
 
   @override
@@ -722,7 +722,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String earnCredited(String points) {
-    return 'تمت إضافة $points PTS إلى محفظتك';
+    return 'تمت إضافة $points تذكرة';
   }
 
   @override
@@ -738,17 +738,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get earnCheckAgain => 'تحقق مرة أخرى';
 
   @override
-  String get earnDismissedEarly => 'شاهد الفيديو كاملًا لتكسب النقاط.';
+  String get earnDismissedEarly => 'شاهد الفيديو كاملًا لتحصل على التذاكر.';
 
   @override
   String get earnAdFailed => 'لا يتوفر فيديو حاليًا. حاول لاحقًا.';
 
   @override
-  String get earnUnavailable => 'الكسب عبر مشاهدة الفيديو قريبًا';
+  String get earnUnavailable => 'جمع التذاكر عبر الفيديو قريبًا';
 
   @override
-  String get earnUnavailableBody =>
-      'سنخبرك عندما يصبح بإمكانك كسب النقاط بمشاهدة الفيديو. لا يزال بإمكانك استبدال النقاط والمشاركة في السحوبات.';
+  String get earnUnavailableBody => 'سنخبرك عندما يصبح بإمكانك جمع التذاكر بمشاهدة الفيديو.';
 
   @override
   String earnCooldown(String time) {
@@ -1326,5 +1325,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String claimDeadline(String date) {
     return 'اطلبها قبل $date';
+  }
+
+  @override
+  String walletTickets(int count) {
+    return 'تذاكرك: $count (غير قابلة للاستبدال)';
   }
 }

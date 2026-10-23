@@ -44,7 +44,18 @@ class WalletPage extends StatelessWidget {
             const _BalanceCard(),
             const SizedBox(height: 18),
             _FastEarnButton(onTap: () => context.push(Routes.earn)),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
+            // Ad rewards are a separate, non-redeemable balance.
+            Builder(
+              builder: (context) => Text(
+                l10n.walletTickets(
+                  context.select<WalletCubit, int>((cubit) => cubit.state.tickets),
+                ),
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: AppColors.muted, fontSize: 14),
+              ),
+            ),
+            const SizedBox(height: 22),
             _ActionRow(
               icon: LucideIcons.shoppingCart,
               title: l10n.walletPlaceOrder,

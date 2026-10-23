@@ -1,11 +1,14 @@
 {
   "enabled": true,
   "verification": "CLIENT_REPORTED",
-  "pointsPerCompletedAd": 10,
+  "ticketsPerCompletedAd": 10,
   "dailyLimit": 10,
   "usedToday": 2,
   "remainingToday": 8,
   "cooldownSeconds": 120,
   "nextAvailableAt": null,
-  "serverTime": "2026-10-22T12:00:00Z"
+  "serverTime": "2026-10-22T12:00:00Z",
+  "rewardType": "TICKETS",
+  "redeemable": false,
+  "minWatchSeconds": 15
 }

@@ -42,7 +42,7 @@ void main() {
     expect(splashIntroDone.value, isFalse);
     await tester.pump(const Duration(milliseconds: 800));
     expect(splashIntroDone.value, isTrue);
-    expect(find.text('Play · Earn · Redeem'), findsOneWidget);
+    expect(find.text('Play · Join · Enjoy'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
   });
 

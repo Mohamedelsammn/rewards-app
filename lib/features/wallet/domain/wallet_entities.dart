@@ -3,15 +3,25 @@ import 'package:equatable/equatable.dart';
 import '../../../core/utils/cursor_page.dart';
 
 class Wallet extends Equatable {
-  const Wallet({this.balance = 0, this.lifetimeEarned = 0, this.lifetimeSpent = 0, this.updatedAt});
+  const Wallet({
+    this.balance = 0,
+    this.lifetimeEarned = 0,
+    this.lifetimeSpent = 0,
+    this.updatedAt,
+    this.tickets = 0,
+  });
 
   final int balance;
+
+  /// Tickets earned from rewarded ads. A separate balance that can never be
+  /// redeemed or converted to points (AdMob rewarded-ad policy).
+  final int tickets;
   final int lifetimeEarned;
   final int lifetimeSpent;
   final DateTime? updatedAt;
 
   @override
-  List<Object?> get props => [balance, lifetimeEarned, lifetimeSpent, updatedAt];
+  List<Object?> get props => [balance, lifetimeEarned, lifetimeSpent, updatedAt, tickets];
 }
 
 enum WalletTransactionType {

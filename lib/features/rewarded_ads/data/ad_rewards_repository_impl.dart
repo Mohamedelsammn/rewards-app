@@ -14,7 +14,7 @@ class AdRewardsRepositoryImpl implements AdRewardsRepository {
     return AdRewardStatus(
       enabled: json['enabled'] == true,
       verification: '${json['verification'] ?? ''}',
-      pointsPerCompletedAd: parseInt(json['pointsPerCompletedAd']),
+      ticketsPerCompletedAd: parseInt(json['ticketsPerCompletedAd']),
       dailyLimit: parseInt(json['dailyLimit']),
       usedToday: parseInt(json['usedToday']),
       remainingToday: parseInt(json['remainingToday']),
@@ -36,8 +36,8 @@ class AdRewardsRepositoryImpl implements AdRewardsRepository {
   @override
   Future<AdClaim> claim(String sessionId) async {
     final json = await _api.post('/ad-rewards/claims', body: {'sessionId': sessionId});
-    final balance = json['balance'];
-    return AdClaim(session: _session(json), balance: balance == null ? null : parseInt(balance));
+    final tickets = json['tickets'];
+    return AdClaim(session: _session(json), tickets: tickets == null ? null : parseInt(tickets));
   }
 
   /// `{ session: {...} }` with an id, or a bad-response error.
@@ -58,7 +58,7 @@ AdSession parseAdSession(Map<String, dynamic> json) => AdSession(
     'EXPIRED' => AdSessionStatus.expired,
     _ => AdSessionStatus.pending,
   },
-  points: parseInt(json['points']),
+  tickets: parseInt(json['tickets']),
   rejectReason: json['rejectReason'] as String?,
   expiresAt: parseDate(json['expiresAt']),
   creditedAt: parseDate(json['creditedAt']),

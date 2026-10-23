@@ -131,7 +131,7 @@ class _EarnViewState extends State<_EarnView> {
               ),
               const SizedBox(height: 14),
               Text(
-                l10n.earnBody(status.pointsPerCompletedAd),
+                l10n.earnBody(status.ticketsPerCompletedAd),
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: AppColors.muted, fontSize: 16, height: 1.5),
               ),
@@ -185,7 +185,7 @@ class _EarnViewState extends State<_EarnView> {
     final l10n = context.l10n;
     return switch (state.phase) {
       EarnPhase.verifying => l10n.earnVerifying,
-      EarnPhase.credited => l10n.earnCredited(Formatters.points(state.creditedPoints)),
+      EarnPhase.credited => l10n.earnCredited(Formatters.points(state.creditedTickets)),
       // COOLDOWN on the claim: wait, then Check again (same session).
       EarnPhase.stillPending when state.error != null => errorMessage(context, state.error!),
       EarnPhase.stillPending => l10n.earnPendingLong,

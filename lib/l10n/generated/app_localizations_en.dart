@@ -214,7 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errInvalidCursor => 'The list changed. Pull to refresh.';
 
   @override
-  String get splashTagline => 'Play · Earn · Redeem';
+  String get splashTagline => 'Play · Join · Enjoy';
 
   @override
   String get maintenanceTitle => 'We\'ll be right back';
@@ -254,7 +254,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeTitleBottom => 'Journey Starts Here';
 
   @override
-  String get welcomeSubtitle => 'Play, earn, and redeem amazing rewards with ease.';
+  String get welcomeSubtitle => 'A loyalty program with free giveaways.';
 
   @override
   String get welcomeGetStarted => 'Get Started';
@@ -636,7 +636,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get walletBalance => 'BALANCE';
 
   @override
-  String get walletFastEarn => 'Fast, Earn';
+  String get walletFastEarn => 'Earn tickets';
 
   @override
   String get walletPlaceOrder => 'Place an Order';
@@ -701,14 +701,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get earnTitle => 'Earn points';
+  String get earnTitle => 'Earn tickets';
 
   @override
-  String get earnHeadline => 'Watch & earn';
+  String get earnHeadline => 'Watch & collect tickets';
 
   @override
   String earnBody(int points) {
-    return 'Watch a short video to earn $points points. Points are added once the reward is confirmed.';
+    return 'Watch a short video to collect $points tickets. Tickets are for use inside the app only and can\'t be redeemed for products or converted to points.';
   }
 
   @override
@@ -724,7 +724,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String earnCredited(String points) {
-    return '+$points PTS added to your wallet';
+    return '+$points tickets added';
   }
 
   @override
@@ -740,17 +740,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get earnCheckAgain => 'Check again';
 
   @override
-  String get earnDismissedEarly => 'Watch the full video to earn points.';
+  String get earnDismissedEarly => 'Watch the full video to get tickets.';
 
   @override
   String get earnAdFailed => 'No video is available right now. Try again later.';
 
   @override
-  String get earnUnavailable => 'Earning with videos is coming soon';
+  String get earnUnavailable => 'Collecting tickets with videos is coming soon';
 
   @override
   String get earnUnavailableBody =>
-      'We\'ll let you know when you can earn points by watching videos. You can still redeem points and join giveaways.';
+      'We\'ll let you know when you can collect tickets by watching videos.';
 
   @override
   String earnCooldown(String time) {
@@ -1329,5 +1329,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String claimDeadline(String date) {
     return 'Claim before $date';
+  }
+
+  @override
+  String walletTickets(int count) {
+    return 'Your tickets: $count (not redeemable)';
   }
 }
